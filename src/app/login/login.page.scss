@@ -1,0 +1,109 @@
+ion-toolbar {
+  --background: linear-gradient(to left, #2f1cff, #ff00fb); 
+  margin-top: 14px;
+  color: black;
+}
+
+ion-content {
+  --background: #0d0d0d; /* fondo negro profundo */
+  padding-top: env(safe-area-inset-top);
+  font-family: 'Nunito', sans-serif !important;
+  color: #fff;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 16px;
+  background-color: #1e1e2f; /* azul oscuro-grisáceo */
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(0, 126, 17, 0.3); /* glow azul suave */
+}
+
+ion-card-title {
+  color: #3dd6f0; /* azul claro vibrante */
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.login-button {
+  margin-top: 20px;
+  --background: #03a6c7; /* azul medio */
+  --color: #fff;
+  --border-radius: 8px;
+  --box-shadow: 0 0 10px rgba(1, 66, 83, 0.651);
+  font-weight: bold;
+   font-size: 18px;
+}
+
+ion-button[size="small"] {
+  --background: #f5120a; /* azul oscuro */
+  --color: #fff;
+  font-weight: bold;
+  --border-radius: 6px;
+  margin-top: 8px;
+}
+
+.error-text {
+  color: #ff4d4d; /* rojo fuerte solo para errores */
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.login-container ion-item {
+  --background: transparent;
+  --padding-start: 2px;
+  --inner-padding-end: 2px;
+  --highlight-color-focused: #f533ff; /* azul al enfocar */
+  --border-radius: 8px;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: #9233ff;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(1, 131, 22, 0.2); /* sombra azul */
+}
+
+.login-container ion-input {
+  --color: #fff;
+  --placeholder-color: #ccc;
+  font-size: 20px;
+}
+
+.ion-text-center {
+  text-align: center;
+  font-size: 32px;
+}
+
+.boton-ingreso-rapido {
+  width: 95px;
+  height: 50px;
+  border-radius: 100%;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Centrado horizontal */
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-family: 'Nunito', sans-serif;
+  --background: linear-gradient(to right, #fe00c3, #8e41e7);
+}
+
+
+.boton-home{
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  background-color: #11e9f5;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+}

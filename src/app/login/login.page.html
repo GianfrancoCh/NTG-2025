@@ -1,0 +1,136 @@
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-title>Inicio de Sesión</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class='boton-home' (click)="volverAlHome()">
+        Página Principal
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding content-with-safe-area">
+  <div class="login-container">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Bienvenido</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-input
+              label="Correo Electrónico"
+              labelPlacement="floating"
+              type="email"
+              formControlName="email"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-input
+              class="input-password"
+              label="Contraseña"
+              labelPlacement="floating"
+              type="password"
+              formControlName="password"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" class="login-button">
+            Ingresar
+          </ion-button>
+        </form>
+
+        <ion-text color="medium" class="ion-text-center">
+          <h1>O autocompletá con:</h1>
+        </ion-text>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+                (click)="autocompletarLogin(1)"
+              >
+                Dueño
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+                (click)="autocompletarLogin(2)"
+              >
+                Supervisor
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+                
+                (click)="autocompletarLogin(3)"
+              >
+                Maitre
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+                
+                (click)="autocompletarLogin(4)"
+              >
+                Mozo
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+               
+                (click)="autocompletarLogin(5)"
+              >
+                Cocinero
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+               
+                (click)="autocompletarLogin(6)"
+              >
+                Bartender
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+               
+                (click)="autocompletarLogin(7)"
+              >
+                Cliente Registrado
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button
+                class="boton-ingreso-rapido"
+               
+                (click)="autocompletarLogin(8)"
+              >
+                Cliente Anónimo
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-grid>
+
+        <p *ngIf="errorMessage" class="error-text">
+          {{ errorMessage }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

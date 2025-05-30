@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,18 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+
+  constructor(public router:Router, private platform: Platform) {
+    this.initializeApp();
+    // this.showSplashScreen();
+  }
+
+  async initializeApp() {
+    await this.platform.ready().then(() => {
+
+      this.router.navigateByUrl('splash');
+    });
+    
+  };
+
 }
