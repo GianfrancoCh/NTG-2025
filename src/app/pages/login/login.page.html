@@ -20,25 +20,14 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <ion-item>
             <ion-icon name="mail-outline" slot="start"></ion-icon>
-            <ion-input
-              label="Correo Electrónico"
-              labelPlacement="floating"
-              type="email"
-              formControlName="email"
-              required
-            ></ion-input>
+            <ion-input label="Correo Electrónico" labelPlacement="floating" type="email" formControlName="email"
+              required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-            <ion-input
-              class="input-password"
-              label="Contraseña"
-              labelPlacement="floating"
-              type="password"
-              formControlName="password"
-              required
-            ></ion-input>
+            <ion-input class="input-password" label="Contraseña" labelPlacement="floating" type="password"
+              formControlName="password" required></ion-input>
           </ion-item>
 
           <ion-button expand="block" type="submit" class="login-button">
@@ -53,72 +42,42 @@
         <ion-grid>
           <ion-row>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-                (click)="autocompletarLogin(1)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(1)">
                 Dueño
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-                (click)="autocompletarLogin(2)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(2)">
                 Supervisor
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-                
-                (click)="autocompletarLogin(3)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(3)">
                 Maitre
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-                
-                (click)="autocompletarLogin(4)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(4)">
                 Mozo
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-               
-                (click)="autocompletarLogin(5)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(5)">
                 Cocinero
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-               
-                (click)="autocompletarLogin(6)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(6)">
                 Bartender
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-               
-                (click)="autocompletarLogin(7)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(7)">
                 Cliente Registrado
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button
-                class="boton-ingreso-rapido"
-               
-                (click)="autocompletarLogin(8)"
-              >
+              <ion-button class="boton-ingreso-rapido" (click)="autocompletarLogin(8)">
                 Cliente Anónimo
               </ion-button>
             </ion-col>
@@ -131,6 +90,11 @@
           {{ errorMessage }}
         </p>
       </ion-card-content>
+
+      <ion-button expand="block" class="btn btn-primary" routerLink="/alta-cliente">
+        Registrarse
+      </ion-button>
+      
     </ion-card>
   </div>
 </ion-content>

@@ -1,0 +1,97 @@
+<div class="container background-pri">
+  <ion-card style="width: 95%;">
+    <ion-card-header>
+      <ion-card-title>Alta de Cliente</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="ion-margin-bottom">
+        <ion-text *ngIf="!auth.getCurrentUser">No quiero dar mis datos.
+          <a (click)="navCtrl.navigateRoot('alta-cliente-anon')">Registrarse de forma anónima</a>.
+        </ion-text>
+      </div>
+      <form [formGroup]="frmCliente" (ngSubmit)="subirCliente()">
+        <div class="inputs">
+          <div id="correo" class="correo">
+            <ion-input id="input-correo" label="Correo" type="email" formControlName="correo" name="email" required
+              ngDefaultControl>
+              <ion-button *ngIf="frmCliente.controls['correo'].enabled" id="btn-correo" fill="clear" slot="end"
+                aria-label="Buscar/Cambiar" (click)="buscarCorreo();" [disabled]="frmCliente.controls['correo'].errors">
+                <ion-icon slot="icon-only" name="search" aria-hidden="true"></ion-icon>
+              </ion-button>
+            </ion-input>
+            <div class="errores" *ngIf="frmCliente.controls['correo'].dirty && frmCliente.controls['correo'].errors">
+              <small *ngIf="frmCliente.controls['correo'].errors['required']">Debe rellenar este campo.</small>
+              <small *ngIf="frmCliente.controls['correo'].errors['pattern']">No es un correo electrónico.</small>
+            </div>
+          </div>
+          <div id="dni" class="dni">
+            <ion-input id="input-dni" label="DNI" type="text" (keypress)="filtrarInputDoc($event)" formControlName="dni"
+              name="dni" required ngDefaultControl>
+              <ng-container *ngIf="frmCliente.controls['dni'].enabled">
+                <ion-button id="btn-dni" *ngIf="frmCliente.controls['dni'].errors; else buscar" fill="clear" slot="end"
+                  aria-label="escanear" (click)="escanearDni();">
+                  <ion-icon slot="icon-only" name="scan" aria-hidden="true"></ion-icon>
+                </ion-button>
+                <ng-template #buscar>
+                  <ion-button id="btn-dni" fill="clear" slot="end" aria-label="buscar" (click)="buscarDni();">
+                    <ion-icon slot="icon-only" name="search" aria-hidden="true"></ion-icon>
+                  </ion-button>
+                </ng-template>
+              </ng-container>
+            </ion-input>
+            <div class="errores" *ngIf="frmCliente.controls['dni'].dirty && frmCliente.controls['dni'].errors">
+              <small *ngIf="frmCliente.controls['dni'].errors['required']">Debe rellenar este campo.</small>
+              <small *ngIf="frmCliente.controls['dni'].errors['pattern']">No es un DNI.</small>
+            </div>
+          </div>
+          <div id="datos-personales">
+            <div class="nombre_apellido">
+              <div class="nombre">
+                <ion-input label="Nombre" type="text" formControlName="nombre" name="name" required ngDefaultControl>
+                </ion-input>
+                <div class="errores"
+                  *ngIf="frmCliente.controls['nombre'].dirty && frmCliente.controls['nombre'].errors">
+                  <small *ngIf="frmCliente.controls['nombre'].errors['required']">Debe rellenar este campo.</small>
+                  <small *ngIf="frmCliente.controls['nombre'].errors['pattern']">Compruebe el texto ingresado.</small>
+                </div>
+              </div>
+              <div class="apellido">
+                <ion-input label="Apellido" type="text" formControlName="apellido" name="surname" required
+                  ngDefaultControl>
+                </ion-input>
+                <div class="errores"
+                  *ngIf="frmCliente.controls['apellido'].dirty && frmCliente.controls['apellido'].errors">
+                  <small *ngIf="frmCliente.controls['apellido'].errors['required']">Debe rellenar este campo.</small>
+                  <small *ngIf="frmCliente.controls['apellido'].errors['pattern']">Compruebe el texto
+                    ingresado.</small>
+                </div>
+              </div>
+            </div>
+            <div class="contra">
+              <ion-input label="Contraseña" type="password" (ionInput)="verificarCoincid()" formControlName="contra"
+                name="password" required ngDefaultControl>
+              </ion-input>
+              <div class="errores" *ngIf="frmCliente.controls['contra'].dirty && frmCliente.controls['contra'].errors">
+                <small *ngIf="frmCliente.controls['contra'].errors['required']">Debe rellenar este campo.</small>
+              </div>
+            </div>
+            <div class="reContra">
+              <ion-input label="Confirmar contraseña" type="password" formControlName="reContra" name="passwordCheck"
+                required ngDefaultControl>
+              </ion-input>
+              <div class="errores"
+                *ngIf="frmCliente.controls['reContra'].dirty && frmCliente.controls['reContra'].errors">
+                <small *ngIf="frmCliente.controls['reContra'].errors['required']">Debe rellenar este campo.</small>
+                <small *ngIf="frmCliente.controls['reContra'].errors['noCoinciden']">Las contraseñas deben
+                  coincidir.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-button type="submit" expand="block" color="tertiary" [disabled]="frmCliente.invalid">
+          Agregar cliente
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>

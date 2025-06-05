@@ -1,13 +1,13 @@
 ion-toolbar {
-  --background: linear-gradient(to left, #2f1cff, #ff00fb); 
-  margin-top: 36px;
+  --background: linear-gradient(to left, #2f1cff, #ff00fb);
+  margin-top: 38px;
   color: black;
 }
 
 ion-content {
   --background: #0d0d0d; /* fondo negro profundo */
   padding-top: env(safe-area-inset-top);
-  font-family: 'Nunito', sans-serif !important;
+  font-family: "Nunito", sans-serif !important;
   color: #fff;
 }
 
@@ -41,7 +41,7 @@ ion-card-title {
   --border-radius: 8px;
   --box-shadow: 0 0 10px rgba(1, 66, 83, 0.651);
   font-weight: bold;
-   font-size: 18px;
+  font-size: 18px;
 }
 
 ion-button[size="small"] {
@@ -94,16 +94,15 @@ ion-button[size="small"] {
   margin: 0 auto; /* Centrado horizontal */
   color: rgb(0, 0, 0);
   font-weight: bold;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   --background: linear-gradient(to right, #fe00c3, #8e41e7);
 }
 
-
-.boton-home{
+.boton-home {
   font-weight: bold;
   font-size: 14px;
   color: rgb(0, 0, 0);
   background-color: #11e9f5;
   border-radius: 10px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
