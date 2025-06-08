@@ -4,9 +4,11 @@ import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Persona } from '../clases/persona';
+import { Jefe } from '../clases/jefe';
 import { Colecciones, DatabaseService } from './database.service';
 import { ErrorCodes, Exception } from '../clases/exception';
 import { Cliente } from '../clases/cliente';
+import { Empleado } from '../clases/empleado';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -81,6 +83,68 @@ export class AuthService {
       email: usuario.correo,
       foto_url: usuario.fotoUrl,
       rol: usuario.perfil,
+    });
+
+    if (insertError) {
+      throw new Error('auth-error: db-error' + insertError.message);
+    }
+  }
+  //AGREGUE ESTO
+  async registrarSupervisor(usuario: Jefe, password: string): Promise<void> {
+    const { data, error } = await this.supabase.auth.signUp({
+      email: usuario.correo,
+      password: password,
+    });
+
+    if (error) {
+      throw new Error('auth-error: ' + error.message);
+    }
+
+    const user = data.user;
+    if (!user) {
+      throw new Error('auth-null: No se pudo crear el usuario.');
+    }
+
+    const { error: insertError } = await this.supabase.from('supervisores').insert({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      dni: usuario.dni,
+      cuil: usuario.cuil,
+      email: usuario.correo,
+      foto_url: usuario.fotoUrl,
+      rol: usuario.perfil,
+    });
+
+    if (insertError) {
+      throw new Error('auth-error: db-error' + insertError.message);
+    }
+  };
+
+  //AGREGUE ESTO
+
+  async registrarEmpleado(usuario: Empleado, password: string): Promise<void> {
+    const { data, error } = await this.supabase.auth.signUp({
+      email: usuario.correo,
+      password: password,
+    });
+
+    if (error) {
+      throw new Error('auth-error: ' + error.message);
+    }
+
+    const user = data.user;
+    if (!user) {
+      throw new Error('auth-null: No se pudo crear el usuario.');
+    }
+
+    const { error: insertError } = await this.supabase.from('empleados').insert({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      dni: usuario.dni,
+      cuil: usuario.cuil,
+      email: usuario.correo,
+      foto_url: usuario.fotoUrl,
+      rol: usuario.tipo,
     });
 
     if (insertError) {

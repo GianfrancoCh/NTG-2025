@@ -1,0 +1,261 @@
+<div class="container background-pri">
+  <ion-card style="width: 95%;">
+    <ion-card-header>
+      <ion-card-title>Alta de Supervisor</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="frmSupervisor" (ngSubmit)="subirSupervisor()">
+        <div class="inputs">
+          <div id="correo" class="correo">
+            <ion-input
+              id="input-correo"
+              label="Correo"
+              type="email"
+              formControlName="correo"
+              name="email"
+              required
+              ngDefaultControl
+            >
+              <ion-button
+                id="btn-correo"
+                fill="clear"
+                slot="end"
+                (click)="manejarCorreo();"
+                aria-label="Buscar/Cambiar"
+                [disabled]="frmSupervisor.controls['correo'].errors"
+              >
+                <ion-icon
+                  slot="icon-only"
+                  name="search"
+                  aria-hidden="true"
+                ></ion-icon>
+              </ion-button>
+            </ion-input>
+            @if (frmSupervisor.controls['correo'].dirty &&
+            frmSupervisor.controls['correo'].errors) {
+            <div class="errores">
+              @if (frmSupervisor.controls['correo'].errors['required']) {
+              <small>Debe rellenar este campo.</small>
+              } @if (frmSupervisor.controls['correo'].errors['pattern']) {
+              <small>No es un correo electrónico.</small>
+              }
+            </div>
+            }
+          </div>
+          <div id="dni" class="dni">
+            <ion-input
+              id="input-dni"
+              label="DNI"
+              type="text"
+              formControlName="DNI"
+              name="dni"
+              required
+              ngDefaultControl
+              (keypress)="filtrarInputDoc($event)"
+            >
+              <ng-container *ngIf="frmSupervisor.controls['DNI'].enabled">
+                <ion-button
+                  id="btn-dni"
+                  *ngIf="frmSupervisor.controls['DNI'].errors; else buscar"
+                  fill="clear"
+                  slot="end"
+                  aria-label="escanear"
+                  (click)="escanearDni()"
+                >
+                  <ion-icon slot="icon-only" name="scan" aria-hidden="true"></ion-icon>
+                </ion-button>
+                <ng-template #buscar>
+                  <ion-button
+                    id="btn-dni"
+                    fill="clear"
+                    slot="end"
+                    aria-label="buscar"
+                    (click)="buscarDni()"
+                  >
+                    <ion-icon slot="icon-only" name="search" aria-hidden="true"></ion-icon>
+                  </ion-button>
+                </ng-template>
+              </ng-container>
+            </ion-input>
+
+            <div class="errores" *ngIf="frmSupervisor.controls['DNI'].dirty && frmSupervisor.controls['DNI'].errors">
+              <small *ngIf="frmSupervisor.controls['DNI'].errors['required']">Debe rellenar este campo.</small>
+              <small *ngIf="frmSupervisor.controls['DNI'].errors['pattern']">No es un DNI.</small>
+            </div>
+          </div>
+
+          <div id="datos-personales" class="deshabilitado">
+            <div class="CUIL">
+              <ion-input
+                label="CUIL"
+                type="text"
+                formControlName="CUIL"
+                name="CUIL"
+                required
+                ngDefaultControl
+                (keypress)="filtrarInputDoc($event)"
+               >
+              </ion-input>
+              @if (frmSupervisor.controls['CUIL'].dirty &&
+              frmSupervisor.controls['CUIL'].errors) {
+              <div class="errores">
+                @if (frmSupervisor.controls['CUIL'].errors['required']) {
+                <small>Debe rellenar este campo.</small>
+                } @if (frmSupervisor.controls['CUIL'].errors['patron']) {
+                <small>No es un CUIL.</small>
+                } @if (frmSupervisor.controls['CUIL'].errors['dniNoEncontrado'])
+                {
+                <small>El CUIL debe contener su DNI.</small>
+                }
+              </div>
+              }
+            </div>
+
+            <div class="nombre_apellido">
+              <div class="nombre">
+                <ion-input
+                  label="Nombre"
+                  type="text"
+                  formControlName="nombre"
+                  name="name"
+                  required
+                  ngDefaultControl
+                >
+                </ion-input>
+
+                @if (frmSupervisor.controls['nombre'].dirty &&
+                frmSupervisor.controls['nombre'].errors) {
+                <div class="errores">
+                  @if (frmSupervisor.controls['nombre'].errors['required']) {
+                  <small>Debe rellenar este campo.</small>
+                  } @if (frmSupervisor.controls['nombre'].errors['pattern']) {
+                  <small>Compruebe el texto ingresado.</small>
+                  }
+                </div>
+                }
+              </div>
+              <div class="apellido">
+                <ion-input
+                  label="Apellido"
+                  type="text"
+                  formControlName="apellido"
+                  name="surname"
+                  required
+                  ngDefaultControl
+                >
+                </ion-input>
+                @if (frmSupervisor.controls['apellido'].dirty &&
+                frmSupervisor.controls['apellido'].errors) {
+                <div class="errores">
+                  @if (frmSupervisor.controls['apellido'].errors['required']) {
+                  <small>Debe rellenar este campo.</small>
+                  } @if (frmSupervisor.controls['apellido'].errors['pattern']) {
+                  <small>Compruebe el texto ingresado.</small>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="contra">
+              <ion-input
+                label="Contraseña"
+                [clearOnEdit]="false"
+                type="password"
+                formControlName="contra"
+                name="password"
+                required
+                ngDefaultControl
+                (ionInput)="verificarCoincid()"
+              >
+                <ion-input-password-toggle
+                  slot="end"
+                ></ion-input-password-toggle>
+              </ion-input>
+              @if (frmSupervisor.controls['contra'].dirty &&
+              frmSupervisor.controls['contra'].errors) {
+              <div class="errores">
+                @if (frmSupervisor.controls['contra'].errors['required']) {
+                <small>Debe rellenar este campo.</small>
+                }
+              </div>
+              }
+            </div>
+            <div class="reContra">
+              <ion-input
+                label="Reingrese"
+                [clearOnEdit]="false"
+                type="password"
+                formControlName="reContra"
+                name="passwordCheck"
+                required
+                ngDefaultControl
+              >
+                <ion-input-password-toggle
+                  slot="end"
+                ></ion-input-password-toggle>
+              </ion-input>
+              @if (frmSupervisor.controls['reContra'].dirty &&
+              frmSupervisor.controls['reContra'].errors) {
+              <div class="errores">
+                @if (frmSupervisor.controls['reContra'].errors['required']) {
+                <small>Debe rellenar este campo.</small>
+                }
+                @if (frmSupervisor.controls['reContra'].errors['noCoinciden']) {
+                <small>Las contraseñas deben coincidir.</small>
+                }
+              </div>
+              }
+            </div>
+
+            <ion-radio-group 
+              name="tipo"
+              required
+              (ionChange)="selecTipo($event)">
+
+              <div class="rdb-supervisorDueno">
+                <ion-item lines="none">
+                  <ion-radio slot="start" value="dueno"></ion-radio>
+                  <span class="radio-label">Dueño</span>
+                  <img class="radio-img" src="assets/jefe/dueno.png" />
+                </ion-item>
+
+                <ion-item lines="none">
+                  <ion-radio slot="start" value="supervisor"></ion-radio>
+                  <span class="radio-label">Supervisor</span>
+                  <img class="radio-img" src="assets/jefe/supervisor.png" />
+                </ion-item>
+              </div>
+            </ion-radio-group>
+
+
+            <!-- <button
+            type="button"
+            mat-raised-button
+            class="btnPic"
+            (click)="avatarInput.click()">
+            Elija una foto para su avatar </button> -->
+
+            <ion-button expand="block" color="tertiary" (click)="takePic()"
+              >Foto</ion-button
+            >
+            @if(tempImg !== ""){
+            <div id="tempImg">
+              <img [src]="tempImg" />
+            </div>
+            }
+          </div>
+        </div>
+
+        <ion-button
+          type="submit"
+          expand="block"
+          color="tertiary"
+          [disabled]="frmSupervisor.invalid"
+        >
+          Agregar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>

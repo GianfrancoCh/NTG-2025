@@ -28,4 +28,13 @@ export const routes: Routes = [
         (m) => m.AltaClientePage
       ),
   },
+  {
+    path: 'alta-supervisor',
+    loadComponent: () => import('./pages/altas/alta-supervisor/alta-supervisor.page').then( m => m.AltaSupervisorPage)
+  },
+  {
+    path: 'alta-empleado',
+    loadComponent: () => import('./pages/altas/alta-empleado/alta-empleado.page').then( m => m.AltaEmpleadoPage)
+  },
+
 ];

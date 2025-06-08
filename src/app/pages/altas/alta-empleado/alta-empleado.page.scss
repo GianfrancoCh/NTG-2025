@@ -1,0 +1,104 @@
+// @import '/src/theme/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .tipo-empleado {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+
+    .rdb-empleado {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; // Espaciado entre radios
+        justify-content: space-around;
+        width: 100%;
+    }
+
+      ion-radio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.25s;
+        width: 100px;
+        height: 110px;
+
+        &.radio-checked {
+          background-color: rgb(255, 0, 255);
+        }
+
+        img {
+          width: 50px;
+          margin-top: 5px;
+        }
+
+        &::part(container) {
+          display: none;
+        }
+
+        &::part(label) {
+          margin: 0;
+        }
+
+        .opcion {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 10px;
+          border-radius: 10px;
+          width: 100px;
+          cursor: pointer;
+          text-align: center;
+          transition: background-color 0.3s ease;
+
+          label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #e1eef5;
+          }
+
+          img {
+            width: 50px;
+            height: auto;
+          }
+        }
+      }
+  }
+
+
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+
+    .nombre_apellido {
+      display: flex;
+      flex-wrap: wrap;
+
+      .nombre,
+      .apellido {
+        width: 50%;
+        min-width: 100px;
+      }
+    }
+
+    .errores {
+      display: flex;
+      flex-direction: column;
+      color: red;
+    }
+  }
+
+  @media (min-width: 550px) {
+    ion-card {
+      max-width: 515px
+    }
+  }
+}

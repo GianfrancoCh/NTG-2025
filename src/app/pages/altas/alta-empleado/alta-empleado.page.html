@@ -1,0 +1,135 @@
+<div class="container background-pri">
+  <ion-card style="width: 95%;">
+    <ion-card-header>
+      <ion-card-title>Alta de Empleado</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="empleadoFrm" (ngSubmit)="subirEmpleado()">
+        <div class="inputs">
+          <div id="correo" class="correo">
+            <ion-input id="input-correo" label="Correo" type="email"
+              formControlName="correo" name="email" required ngDefaultControl>
+              <ion-button id="btn-correo" fill="clear" slot="end" aria-label="Buscar/Cambiar" (click)="buscarCorreo();"
+                [disabled]="empleadoFrm.controls['correo'].errors">
+                <ion-icon slot="icon-only" name="search" aria-hidden="true"></ion-icon>
+              </ion-button>
+            </ion-input>
+            <div class="errores" *ngIf="empleadoFrm.controls['correo'].dirty && empleadoFrm.controls['correo'].errors">
+              <small *ngIf="empleadoFrm.controls['correo'].errors['required']">Debe rellenar este campo.</small>
+              <small *ngIf="empleadoFrm.controls['correo'].errors['pattern']">No es un correo electrónico.</small>
+            </div>
+          </div>
+          <div id="dni" class="dni deshabilitado">
+            <ion-input id="input-dni" label="DNI" type="text" formControlName="dni"
+              name="dni" required ngDefaultControl (keypress)="filtrarInputDoc($event)">
+              <ion-button id="btn-dni" *ngIf="empleadoFrm.controls['dni'].errors; else buscar"
+                fill="clear" slot="end" aria-label="escanear" (click)="escanearDni()">
+                <ion-icon slot="icon-only" name="scan" aria-hidden="true"></ion-icon>
+              </ion-button>
+              <ng-template #buscar>
+                <ion-button id="btn-dni" fill="clear" slot="end" aria-label="buscar" (click)="buscarDni();">
+                  <ion-icon slot="icon-only" name="search" aria-hidden="true"></ion-icon>
+                </ion-button>
+              </ng-template>
+            </ion-input>
+            <div class="errores" *ngIf="empleadoFrm.controls['dni'].dirty && empleadoFrm.controls['dni'].errors">
+              <small *ngIf="empleadoFrm.controls['dni'].errors['required']">Debe rellenar este campo.</small>
+              <small *ngIf="empleadoFrm.controls['dni'].errors['pattern']">No es un DNI.</small>
+            </div>
+          </div>
+          <div id="datos-personales" class="deshabilitado">
+            <div class="cuil">
+              <ion-input label="CUIL" type="text" formControlName="cuil" 
+                name="cuil" required ngDefaultControl (keypress)="filtrarInputDoc($event)">
+              </ion-input>
+              <div class="errores" *ngIf="empleadoFrm.controls['cuil'].dirty && empleadoFrm.controls['cuil'].errors">
+                <small *ngIf="empleadoFrm.controls['cuil'].errors['required']">Debe rellenar este campo.</small>
+                <small *ngIf="empleadoFrm.controls['cuil'].errors['patron']">No es un CUIL.</small>
+                <small *ngIf="empleadoFrm.controls['cuil'].errors['dniNoEncontrado']">El CUIL debe contener su
+                  DNI.</small>
+              </div>
+            </div>
+            <div class="nombre_apellido">
+              <div class="nombre">
+                <ion-input label="Nombre" type="text" formControlName="nombre"
+                  name="name" required ngDefaultControl>
+                </ion-input>
+                <div class="errores"
+                  *ngIf="empleadoFrm.controls['nombre'].dirty && empleadoFrm.controls['nombre'].errors">
+                  <small *ngIf="empleadoFrm.controls['nombre'].errors['required']">Debe rellenar este campo.</small>
+                  <small *ngIf="empleadoFrm.controls['nombre'].errors['pattern']">Compruebe el texto ingresado.</small>
+                </div>
+              </div>
+              <div class="apellido">
+                <ion-input label="Apellido" type="text" formControlName="apellido" 
+                  name="surname" required ngDefaultControl>
+                </ion-input>
+                <div class="errores"
+                  *ngIf="empleadoFrm.controls['apellido'].dirty && empleadoFrm.controls['apellido'].errors">
+                  <small *ngIf="empleadoFrm.controls['apellido'].errors['required']">Debe rellenar este campo.</small>
+                  <small *ngIf="empleadoFrm.controls['apellido'].errors['pattern']">Compruebe el texto ingresado.</small>
+                </div>
+              </div>
+            </div>
+            <div class="contra">
+              <ion-input label="Contraseña" [clearOnEdit]="false" type="password" (ionInput)="verificarCoincid()"
+                formControlName="contra" name="password" required ngDefaultControl>
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+              <div class="errores"
+                *ngIf="empleadoFrm.controls['contra'].dirty && empleadoFrm.controls['contra'].errors">
+                <small *ngIf="empleadoFrm.controls['contra'].errors['required']">Debe rellenar este campo.</small>
+              </div>
+            </div>
+            <div class="reContra">
+              <ion-input label="Reingrese" [clearOnEdit]="false" type="password"
+                formControlName="reContra" name="passwordCheck" required ngDefaultControl>
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+              <div class="errores"
+                *ngIf="empleadoFrm.controls['reContra'].dirty && empleadoFrm.controls['reContra'].errors">
+                <small *ngIf="empleadoFrm.controls['reContra'].errors['required']">Debe rellenar este campo.</small>
+                <small *ngIf="empleadoFrm.controls['reContra'].errors['noCoinciden']">Las contraseñas deben coincidir.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- #region Tipo empleado -->
+       <ion-radio-group id="tipo-radio" class="tipo-empleado" name="tipo" required (ionChange)="selecTipo($event)">
+          <div class="rdb-empleado">
+            <ion-radio value="bartender">
+              <div class="opcion">
+                <label>Bartender</label>
+                <img src="assets/empleado/bartender.png" />
+              </div>
+            </ion-radio>
+            <ion-radio value="cocinero">
+              <div class="opcion">
+                <label>Cocinero</label>
+                <img src="assets/empleado/cocinero.png" />
+              </div>
+            </ion-radio>
+            <ion-radio value="metre">
+              <div class="opcion">
+                <label>Metre</label>
+                <img src="assets/empleado/metre.png" />
+              </div>
+            </ion-radio>
+            <ion-radio value="mozo">
+              <div class="opcion">
+                <label>Mozo</label>
+                <img src="assets/empleado/mozo.png" />
+              </div>
+            </ion-radio>
+          </div>
+        </ion-radio-group>
+        <!-- #endregion -->
+
+        <ion-button type="submit" expand="block" color="tertiary" [disabled]="empleadoFrm.invalid">
+          Agregar empleado
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>
