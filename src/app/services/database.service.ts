@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Persona } from '../clases/persona';
+import { Producto } from '../clases/producto';
 
 export enum Colecciones {
   Usuarios = 'users',
@@ -152,5 +153,24 @@ export class DatabaseService {
     }
 
     return data as Persona;
-  }
+  };
+
+  async subirProducto(producto: Producto): Promise<void> {
+    
+      const { error: insertError } = await this.supabase.from('productos').insert({
+        nombre: producto.nombre,
+        descripcion: producto.descripcion,
+        minutos: producto.tiempoElab,
+        precio: producto.precio,
+        sector: producto.sector,
+        fotos_url: producto.fotosUrl,
+      });
+  
+      if (insertError) {
+        throw new Error('auth-error: db-error' + insertError.message);
+      }
+    };
+  
+
+
 }

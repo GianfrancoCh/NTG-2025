@@ -36,5 +36,9 @@ export const routes: Routes = [
     path: 'alta-empleado',
     loadComponent: () => import('./pages/altas/alta-empleado/alta-empleado.page').then( m => m.AltaEmpleadoPage)
   },
+  {
+    path: 'alta-producto',
+    loadComponent: () => import('./pages/altas/alta-producto/alta-producto.page').then( m => m.AltaProductoPage)
+  },
 
 ];
