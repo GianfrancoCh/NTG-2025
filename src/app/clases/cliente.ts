@@ -2,8 +2,8 @@ import { Persona } from './persona';
 
 export class Cliente extends Persona {
   tipo: TipoCliente;
-  idMesa: string | null;
   estadoCliente: EstadoCliente;
+  idMesa: string | null;
 
   constructor(
     nombre: string,

@@ -162,7 +162,7 @@ export class AltaClientePage {
         fotoUrl,
         'registrado'
       );
-      await this.auth.registrarUsuario(cliente, contra);
+      await this.auth.registrarCliente(cliente, contra);
       ToastSuccess.fire('Cliente creado!');
 
       // this.notification.sendNotificationToRole(

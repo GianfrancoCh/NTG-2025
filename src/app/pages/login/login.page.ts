@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormsModule,
@@ -21,6 +21,8 @@ import {
 } from '@ionic/angular/standalone';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -44,6 +46,7 @@ import { Router, RouterModule } from '@angular/router';
     IonList,
     IonItem,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -54,7 +57,8 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {
     this.loginForm = this.fb.group({
       email: [''],
@@ -63,6 +67,7 @@ export class LoginPage {
   }
 
   async login() {
+    this.spinner.show();
     const { email, password } = this.loginForm.value;
     try {
       const { data, error } = await this.authService.signIn(email, password);
@@ -74,6 +79,8 @@ export class LoginPage {
         } else {
           this.errorMessage = error.message;
         }
+
+        this.spinner.hide();
         return;
       }
 
@@ -81,6 +88,11 @@ export class LoginPage {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/home']);
       });
+
+      setTimeout(() => {
+        this.spinner.hide();
+      }, 1500);
+
       console.log('Login exitoso:', data.user);
     } catch (err) {
       this.errorMessage = 'Error al iniciar sesión.';

@@ -87,4 +87,34 @@ export class AuthService {
       throw new Error('auth-error: db-error' + insertError.message);
     }
   }
+
+  //agrego registro cliente
+  async registrarCliente(usuario: Cliente, password: string): Promise<void> {
+    const { data, error } = await this.supabase.auth.signUp({
+      email: usuario.correo,
+      password: password,
+    });
+
+    if (error) {
+      throw new Error('auth-error: ' + error.message);
+    }
+
+    const user = data.user;
+    if (!user) {
+      throw new Error('auth-null: No se pudo crear el usuario.');
+    }
+
+    const { error: insertError } = await this.supabase.from('clientes').insert({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      dni: usuario.dni,
+      email: usuario.correo,
+      foto_url: usuario.fotoUrl,
+      rol: usuario.perfil,
+    });
+
+    if (insertError) {
+      throw new Error('auth-error: db-error' + insertError.message);
+    }
+  }
 }
