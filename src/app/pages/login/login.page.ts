@@ -10,36 +10,24 @@ import {
   IonButton,
   IonInput,
   IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
   IonHeader,
   IonToolbar,
   IonButtons,
   IonTitle,
-  IonCol,
-  IonGrid,
-  IonRow,
-  IonText,
   IonItem,
-  IonIcon,
+  IonList,
+  IonMenu,
+  IonMenuButton,
 } from '@ionic/angular/standalone';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
   imports: [
-    IonIcon,
-    IonItem,
-    IonText,
-    IonRow,
-    IonGrid,
-    IonCol,
+    IonList,
     IonTitle,
     IonButtons,
     IonToolbar,
@@ -48,13 +36,13 @@ import { Router, RouterModule } from '@angular/router';
     IonContent,
     IonInput,
     IonButton,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
     RouterModule,
     ReactiveFormsModule,
     IonHeader,
+    IonMenu,
+    IonMenuButton,
+    IonList,
+    IonItem,
   ],
 })
 export class LoginPage {
@@ -99,16 +87,7 @@ export class LoginPage {
     }
   }
 
-  // autocompletarLogin(email:String) {
-
-  //   this.loginForm.patchValue({
-  //     email: email,
-  //     password: password
-
-  //   })
-  // };
-
-  autocompletarLogin(numUser: number) {
+  async autocompletarLogin(numUser: number) {
     switch (numUser) {
       case 1:
         this.email = 'dueno@dueno.com';
@@ -150,9 +129,14 @@ export class LoginPage {
       email: this.email,
       password: this.password,
     });
-  } // end of loadFast
+  }
 
   volverAlHome() {
     this.router.navigate(['/home']);
+  }
+
+  limpiarInputs() {
+    this.loginForm.reset();
+    this.errorMessage = '';
   }
 }

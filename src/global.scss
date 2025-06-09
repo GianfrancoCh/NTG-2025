@@ -34,4 +34,50 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+@import "./theme/variables.scss";
+
+// .container {
+//   height: 100%;
+//   width: 100%;
+//   margin-top: 112px !important;
+// }
+
+.background-pri {
+  background-color: $grey;
+  --background: #{$grey};
+}
+
+.background-sec {
+  background-color: $dark;
+  --background: #{$dark};
+}
+
+.background-ter {
+  background-color: $blue;
+  --background: #{$blue};
+}
+
+.background-for {
+  background-color: $green;
+  --background: #{$green};
+}
+
+.background-fiv {
+  background-color: $mint;
+  --background: #{$mint};
+}
+
+.background-six {
+  background-color: $dark-blue;
+  --background: #{$dark-blue};
+}
+.deshabilitado {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.invisible {
+  display: none;
+}
