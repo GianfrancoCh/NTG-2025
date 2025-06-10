@@ -7,13 +7,13 @@
 | -                 | Generación Proyecto                                    | Gianfranco Chiarizia | Finalizado  |
 | -                 | Iconos Splash                                          | Aguirre Antonio      | Finalizado  |
 | -                 | Login                                                  | Aguirre Antonio      | Finalizado  |
-| -                 | Registro                                               | Aguirre Antonio      | En Progreso |
+| -                 | Registro                                               | Aguirre Antonio      | Finalizado |
 | Altas             |                                                        |                      |             |
-| A                 | Alta Dueño / Supervisor                                | Gianfranco Chiarizia |             |
-| B                 | Alta de Empleados                                      | Gianfranco Chiarizia |             |
-| C                 | Alta Clientes                                          | Nahuel Borquez       |             |
-| D                 | Alta Productos                                         | Gianfranco Chiarizia |             |
-| E                 | Alta Mesa                                              | Aguirre Antonio      |             |
+| A                 | Alta Dueño / Supervisor                                | Gianfranco Chiarizia | Finalizado  |
+| B                 | Alta de Empleados                                      | Gianfranco Chiarizia | Finalizado  |
+| C                 | Alta Clientes                                          | Nahuel Borquez       | Finalizado  |
+| D                 | Alta Productos                                         | Gianfranco Chiarizia | Finalizado  |
+| E                 | Alta Mesa                                              | Aguirre Antonio      | Finalizado  |
 | Codigos QR        |                                                        |                      |             |
 | F                 | QR Ingreso al local                                    | Nahuel Borquez       |             |
 | G                 | QR de la Mesa                                          | Gianfranco Chiarizia |             |
