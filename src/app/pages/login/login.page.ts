@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormsModule,
@@ -10,23 +10,18 @@ import {
   IonButton,
   IonInput,
   IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
   IonHeader,
   IonToolbar,
   IonButtons,
   IonTitle,
-  IonCol,
-  IonGrid,
-  IonRow,
-  IonText,
   IonItem,
-  IonIcon,
+  IonList,
+  IonMenu,
+  IonMenuButton,
 } from '@ionic/angular/standalone';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -34,12 +29,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./login.page.scss'],
   standalone: true,
   imports: [
-    IonIcon,
-    IonItem,
-    IonText,
-    IonRow,
-    IonGrid,
-    IonCol,
+    IonList,
     IonTitle,
     IonButtons,
     IonToolbar,
@@ -48,14 +38,15 @@ import { Router, RouterModule } from '@angular/router';
     IonContent,
     IonInput,
     IonButton,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
     RouterModule,
     ReactiveFormsModule,
     IonHeader,
+    IonMenu,
+    IonMenuButton,
+    IonList,
+    IonItem,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -66,7 +57,8 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {
     this.loginForm = this.fb.group({
       email: [''],
@@ -75,6 +67,7 @@ export class LoginPage {
   }
 
   async login() {
+    this.spinner.show();
     const { email, password } = this.loginForm.value;
     try {
       const { data, error } = await this.authService.signIn(email, password);
@@ -86,6 +79,8 @@ export class LoginPage {
         } else {
           this.errorMessage = error.message;
         }
+
+        this.spinner.hide();
         return;
       }
 
@@ -93,22 +88,18 @@ export class LoginPage {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/home']);
       });
+
+      setTimeout(() => {
+        this.spinner.hide();
+      }, 1500);
+
       console.log('Login exitoso:', data.user);
     } catch (err) {
       this.errorMessage = 'Error al iniciar sesión.';
     }
   }
 
-  // autocompletarLogin(email:String) {
-
-  //   this.loginForm.patchValue({
-  //     email: email,
-  //     password: password
-
-  //   })
-  // };
-
-  autocompletarLogin(numUser: number) {
+  async autocompletarLogin(numUser: number) {
     switch (numUser) {
       case 1:
         this.email = 'dueno@dueno.com';
@@ -150,9 +141,14 @@ export class LoginPage {
       email: this.email,
       password: this.password,
     });
-  } // end of loadFast
+  }
 
   volverAlHome() {
     this.router.navigate(['/home']);
+  }
+
+  limpiarInputs() {
+    this.loginForm.reset();
+    this.errorMessage = '';
   }
 }

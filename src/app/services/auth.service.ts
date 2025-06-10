@@ -120,9 +120,41 @@ export class AuthService {
     }
   };
 
-  //AGREGUE ESTO
 
-  async registrarEmpleado(usuario: Empleado, password: string): Promise<void> {
+
+  // Registro de empleado
+async registrarEmpleado(usuario: Empleado, password: string): Promise<void> {
+  const { data, error } = await this.supabase.auth.signUp({
+    email: usuario.correo,
+    password: password,
+  });
+
+  if (error) {
+    throw new Error('auth-error: ' + error.message);
+  }
+
+  const user = data.user;
+  if (!user) {
+    throw new Error('auth-null: No se pudo crear el usuario.');
+  }
+
+  const { error: insertError } = await this.supabase.from('empleados').insert({
+    nombre: usuario.nombre,
+    apellido: usuario.apellido,
+    dni: usuario.dni,
+    cuil: usuario.cuil,
+    email: usuario.correo,
+    foto_url: usuario.fotoUrl,
+    rol: usuario.tipo,
+  });
+
+  if (insertError) {
+    throw new Error('auth-error: db-error' + insertError.message);
+  }
+}
+
+// Registro de cliente
+  async registrarCliente(usuario: Cliente, password: string): Promise<void> {
     const { data, error } = await this.supabase.auth.signUp({
       email: usuario.correo,
       password: password,
@@ -137,14 +169,13 @@ export class AuthService {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
-    const { error: insertError } = await this.supabase.from('empleados').insert({
+    const { error: insertError } = await this.supabase.from('clientes').insert({
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       dni: usuario.dni,
-      cuil: usuario.cuil,
       email: usuario.correo,
       foto_url: usuario.fotoUrl,
-      rol: usuario.tipo,
+      rol: usuario.perfil,
     });
 
     if (insertError) {
