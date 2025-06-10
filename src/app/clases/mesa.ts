@@ -20,27 +20,27 @@ export class Mesa {
 
 export type TipoMesa = 'VIP' | 'discapacitados' | 'estandar';
 export enum EstadoMesa {
-  Disponible,
-  Asignada,
-  SinPedido,
-  PidiendoComida,
-  EsperandoComida,
-  Comiendo,
-  Pagando,
-  Pago
-};
+  Disponible = 'Disponible',
+  Asignada = 'Asignada',
+  SinPedido = 'SinPedido',
+  PidiendoComida = 'PidiendoComida',
+  EsperandoComida = 'EsperandoComida',
+  Comiendo = 'Comiendo',
+  Pagando = 'Pagando',
+  Pago = 'Pago'
+}
 
 export const parseEstadoMesa = (estado: EstadoMesa): string => {
-  const estados = [
-    'Mesa Disponible',
-    'Mesa Asignada',
-    'Cliente sin pedido',
-    'Cliente pidiendo comida',
-    'Cliente esperando comida',
-    'Cliente comiendo',
-    'Cliente pagando',
-    'Cliente ya pagó',
-  ];
+  const mapa: Record<EstadoMesa, string> = {
+    [EstadoMesa.Disponible]: 'Mesa Disponible',
+    [EstadoMesa.Asignada]: 'Mesa Asignada',
+    [EstadoMesa.SinPedido]: 'Cliente sin pedido',
+    [EstadoMesa.PidiendoComida]: 'Cliente pidiendo comida',
+    [EstadoMesa.EsperandoComida]: 'Cliente esperando comida',
+    [EstadoMesa.Comiendo]: 'Cliente comiendo',
+    [EstadoMesa.Pagando]: 'Cliente pagando',
+    [EstadoMesa.Pago]: 'Cliente ya pagó',
+  };
 
-  return estados[estado];
-}
+  return mapa[estado];
+};
