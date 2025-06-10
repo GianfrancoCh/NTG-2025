@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
+ .rdb-supervisorDueno {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; /* clave */
+    gap: 10px;
+    justify-content: space-around;
+    margin: 15px 0;
+
+    ion-item {
+        flex: 1 1 45%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
+        width: auto;
+        --padding-start: 0;
+        --inner-padding-end: 0;
+        --inner-padding-start: 0;
+        --inner-padding-bottom: 0;
+        --inner-border-width: 0;
+    }
+
+    .radio-label {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .radio-img {
+        width: 50px;
+        height: auto;
+    }
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+
+    #datos-personales{
+        .nombre_apellido {
+          display: flex;
+          flex-wrap: wrap;
+    
+          .nombre,
+          .apellido {
+            width: 50%;
+            min-width: 100px;
+          }
+        }
+        
+        #tempImg{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            
+            img{
+              width: 50%;
+            }
+        }
+    }
+
+    .errores {
+      display: flex;
+      flex-direction: column;
+      color: red;
+    }
+  }
+
+  @media (min-width: 550px) {
+    ion-card {
+      max-width: 515px
+    }
+  }
+}

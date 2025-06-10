@@ -11,7 +11,7 @@ export interface DatosDni {
   dni: number;
   nombre: string;
   apellido: string;
-  // cuil: number;
+  cuil: number;
 }
 @Injectable({
   providedIn: 'root',
@@ -105,16 +105,16 @@ export class ScannerService {
       const dni = partes[4].replace(/[-. ]/g, '');
       console.log('dni:', dni);
 
-      // const digitosCuil = partes[8];
-      // const cuil = [digitosCuil.slice(0, 2), dni, digitosCuil.slice(2)].join(
-      //   ''
-      // );
+      const digitosCuil = partes[8];
+      const cuil = [digitosCuil.slice(0, 2), dni, digitosCuil.slice(2)].join(
+        ''
+      );
 
       datos = {
         dni: Number(dni),
         nombre: this.capitalizarPalabras(partes[2]),
         apellido: this.capitalizarPalabras(partes[1]),
-        // cuil: Number(cuil),
+        cuil: Number(cuil),
       };
     } else if (partes.length === 17) {
       //DNI viejo
@@ -124,7 +124,7 @@ export class ScannerService {
         dni: Number(dni),
         nombre: this.capitalizarPalabras(partes[5]),
         apellido: this.capitalizarPalabras(partes[4]),
-        // cuil: 0,
+        cuil: 0,
       };
     } else
       throw new Exception(

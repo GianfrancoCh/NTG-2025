@@ -1,0 +1,93 @@
+// @import '/src/theme/variables.scss';
+
+@media (min-width: 550px) {
+  ion-card {
+    max-width: 515px
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .tipo-mesa {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+
+    .rdb-mesa {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; // Espaciado entre radios
+        justify-content: space-around;
+        width: 100%;
+    }
+
+      ion-radio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        border-radius: 10px;
+        transition: 0.25s;
+        width: 120px;
+        height: 110px;
+
+        &.radio-checked {
+          background-color: rgb(255, 0, 255);
+        }
+
+        img {
+          width: 60px;
+          margin-top: 5px;
+        }
+
+        &::part(container) {
+          display: none;
+        }
+
+        &::part(label) {
+          margin: 0;
+        }
+
+        .opcion {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin:5px;
+          padding: 10px;
+          border-radius: 10px;
+          width: 110px;
+          cursor: pointer;
+          text-align: center;
+          transition: background-color 0.3s ease;
+
+          label {
+            font-weight: bold;;
+            margin: 5px;
+            color: #e1eef5;
+          }
+
+          img {
+            width: 60px;
+            height: auto;
+          }
+        }
+      }
+  }
+}
+
+#tomarFotoImg {
+  width: 40px;
+  margin-left: 0.5rem;
+}
+
+#QR {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
