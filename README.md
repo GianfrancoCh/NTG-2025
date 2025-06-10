@@ -10,7 +10,7 @@
 | -                 | Registro                                               | Aguirre Antonio      | En Progreso |
 | Altas             |                                                        |                      |             |
 | A                 | Alta Dueño / Supervisor                                | Gianfranco Chiarizia |             |
-| B                 | Alta de Empleados                                      | Aguirre Antonio      |             |
+| B                 | Alta de Empleados                                      | Gianfranco Chiarizia |             |
 | C                 | Alta Clientes                                          | Nahuel Borquez       |             |
 | D                 | Alta Productos                                         | Gianfranco Chiarizia |             |
 | E                 | Alta Mesa                                              | Aguirre Antonio      |             |
