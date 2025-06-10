@@ -1,0 +1,171 @@
+<div class="container background-pri">
+  <ion-card style="width: 95%;">
+    <ion-card-header>
+      <ion-card-title>Alta de Mesa</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="frmMesa" (ngSubmit)="subirMesa()">
+        <div class="inputs">
+          <div id="nroMesa" class="nroMesa">
+            <ion-input
+              id="input-nroMesa"
+              label="Nro de mesa"
+              type="number"
+              formControlName="nroMesa"
+              name="nroMesa"
+              required
+              ngDefaultControl
+            >
+              <ion-button
+                id="btn-nroMesa"
+                fill="clear"
+                slot="end"
+                (click)="manejarNroMesa();"
+                aria-label="Buscar/Cambiar"
+                [disabled]="frmMesa.controls['nroMesa'].errors"
+              >
+                <ion-icon
+                  slot="icon-only"
+                  name="search"
+                  aria-hidden="true"
+                ></ion-icon>
+              </ion-button>
+            </ion-input>
+
+            @if (frmMesa.controls['nroMesa'].dirty &&
+            frmMesa.controls['nroMesa'].errors) {
+            <div class="errores">
+              @if (frmMesa.controls['nroMesa'].errors['required']) {
+              <small>Debe rellenar este campo.</small>
+              }
+              @if (frmMesa.controls['nroMesa'].errors['min']) {
+              <small>el valor debe ser mayor a 0</small>
+              }
+            </div>
+            }
+          </div>
+          <div id="cantComensales" class="deshabilitado">
+            <ion-input
+              id="input-cantComensales"
+              label="Comensales"
+              type="number"
+              formControlName="cantComensales"
+              name="cantComensales"
+              required
+              ngDefaultControl
+            >
+            </ion-input>
+
+            @if (frmMesa.controls['cantComensales'].dirty &&
+            frmMesa.controls['cantComensales'].errors) {
+            <div class="errores">
+              @if (frmMesa.controls['cantComensales'].errors['required']) {
+              <small>Debe rellenar este campo.</small>
+              }
+              @if (frmMesa.controls['cantComensales'].errors['min']) {
+              <small>el valor debe ser mayor a 0</small>
+              }
+            </div>
+            }
+          </div>
+
+          <div id="tipoMesa" class="deshabilitado">
+            <ion-radio-group
+              class="tipo-mesa"
+              (ionChange)="selecTipo($event)"
+              name="tipo"
+              required
+            >
+            <div class="rdb-mesa">
+              <ion-item>
+                <ion-radio alignment="center" value="estandar">
+                  <div class="opcion">
+                    <label>Estándar</label>
+                    <img src="assets/mesa/discapacitado.png" width="auto" />
+                  </div>
+                </ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-radio alignment="center" value="discapacitado">
+                  <div class="opcion">
+                    <label>Discapacitados</label>
+                    <img
+                      src="assets/mesa/discapacitado-2.png"
+                      width="auto"
+                    />
+                  </div>
+                </ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-radio alignment="center" value="vip">
+                  <div class="opcion">
+                    <label>V.I.P</label>
+                    <img
+                      src="assets/mesa/vip.png"
+                      width="auto"
+                    />
+                  </div>
+                </ion-radio>
+              </ion-item>
+            </div>
+            </ion-radio-group>
+          </div>
+          <!-- <div class="qr">
+              <ion-card *ngIf="qrData">
+                <ion-card-header>
+                  <ion-card-title>Código QR del producto</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-card *ngIf="qrData">
+                    ...
+                    <qr-code [value]="qrData" [size]="256" errorCorrectionLevel="M"></qr-code>
+                  </ion-card>
+                </ion-card-content>
+              </ion-card>
+          </div> -->
+        </div>
+        <ion-button
+          id="btn-tomarFoto"
+          expand="block"
+          color="tertiary"
+          (click)="takePic()"
+          [ngClass]="(frmMesa.controls['cantComensales'].valid && frmMesa.controls['tipoMesaControl'].valid)?'':'deshabilitado'"
+          [disabled]="!!picture"
+          >
+          Foto de la mesa
+          <img id="tomarFotoImg"
+            src="assets/camara.png"
+            width="auto"
+          />
+        </ion-button>
+
+        @if(mesaCreada && QRs.length > 0) {
+          <div id="QR">
+            <qr-code [value]="QRs[0]" size="300" errorCorrectionLevel="M"></qr-code>
+          </div>
+        }
+
+        <ion-button
+        id="btn-agregarMesa"
+          type="submit"
+          expand="block"
+          color="tertiary"
+          [disabled]="frmMesa.invalid"
+          [style.display]="QRs.length > 0 ? 'none' : 'block'"
+          >
+          Agregar Mesa
+        </ion-button>
+        
+        <ion-button
+          expand="block"
+          color="tertiary"
+          (click)="nuevaMesa()"
+          [style.display]="QRs.length < 1 ? 'none' : 'block'"
+          >
+          Nueva mesa
+        </ion-button>  
+        
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>

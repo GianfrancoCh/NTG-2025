@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Persona } from '../clases/persona';
 import { Producto } from '../clases/producto';
+import { Mesa } from '../clases/mesa';
 
 export enum Colecciones {
   Usuarios = 'users',
@@ -169,7 +170,29 @@ export class DatabaseService {
       if (insertError) {
         throw new Error('auth-error: db-error' + insertError.message);
       }
-    };
+  };
+
+  async subirMesa(mesa: Mesa): Promise<string> {
+    const { data, error } = await this.supabase.from('mesas').insert({
+      numero: mesa.nroMesa,
+      cant_comensales: mesa.cantComensales,
+      tipo: mesa.tipo,
+      foto_url: mesa.fotoUrl,
+      codigo_qr: mesa.codigoQr,
+      estado: mesa.estado,
+    }).select('id'); // Para obtener el ID insertado
+
+    if (error) {
+      throw new Error('auth-error: db-error ' + error.message);
+    }
+
+    if (!data || data.length === 0) {
+      throw new Error('auth-error: insert returned no data');
+    }
+
+    console.log(data[0].id);
+    return data[0].id;
+};                                                       
   
 
 
