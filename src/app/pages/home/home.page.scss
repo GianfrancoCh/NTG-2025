@@ -1,7 +1,17 @@
+@import "src/theme/variables.scss";
+
 ion-toolbar {
-  --background: linear-gradient(to left, #ff1cec, #9000ff); 
-  margin-top: 36px;
-  color: black;
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #{$dark};
+  color: #fff;
+}
+.titulo-header {
+  font-weight: bold;
 }
 .container {
   height: 100vh;
@@ -9,17 +19,13 @@ ion-toolbar {
   flex-direction: column;
 }
 
-
-.boton-logout{
+.boton-logout {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   color: rgb(255, 255, 255);
-  background-color: #363cf4;
-  border-radius: 10px;
-  font-family: 'Roboto', sans-serif;
 }
 
-.titulo{
+.titulo {
   font-family: "system-ui", sans-serif;
   color: black;
 }
@@ -30,7 +36,7 @@ ion-toolbar {
   text-align: center;
   width: 100%;
   margin-bottom: 1rem;
-  font-family: 'system-ui', sans-serif;
+  font-family: "system-ui", sans-serif;
   font-weight: bold;
 }
 
@@ -40,7 +46,7 @@ ion-toolbar {
   text-align: center;
   width: 100%;
   margin-bottom: 2rem;
-  font-family: 'system-ui', sans-serif;
+  font-family: "system-ui", sans-serif;
   font-weight: bold;
 }
 
@@ -58,7 +64,7 @@ ion-toolbar {
     font-size: 24px;
     font-weight: bold;
     background: rgba(240, 248, 255, 0.6); /* Fondo opcional */
-    
+
     .button-content {
       display: flex;
       flex-direction: column;
@@ -68,8 +74,7 @@ ion-toolbar {
       span {
         margin-top: 14px;
         font-size: 28px;
-        font-family: 'system-ui', sans-serif;
-        
+        font-family: "system-ui", sans-serif;
       }
     }
   }
@@ -101,7 +106,7 @@ ion-toolbar {
 }
 
 .nice-button {
-  --background: #4CAF50; /* verde lindo */
+  --background: #4caf50; /* verde lindo */
   --color: white;
 }
 

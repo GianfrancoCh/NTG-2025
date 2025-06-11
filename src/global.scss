@@ -73,6 +73,12 @@
   background-color: $dark-blue;
   --background: #{$dark-blue};
 }
+
+// .background-sev {
+//   background-color: $dark-grey;
+//   --background: #{$dark-grey};
+// }
+
 .deshabilitado {
   pointer-events: none;
   opacity: 0.5;

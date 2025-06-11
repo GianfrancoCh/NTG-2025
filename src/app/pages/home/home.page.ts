@@ -13,6 +13,8 @@ import {
   IonCard,
   IonCardTitle,
   IonCardContent,
+  IonMenu,
+  IonMenuButton,
 } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -42,6 +44,8 @@ import { NavController } from '@ionic/angular';
     IonButton,
     CommonModule,
     IonButtons,
+    IonMenu,
+    IonMenuButton,
   ],
 })
 export class HomePage implements OnInit {
