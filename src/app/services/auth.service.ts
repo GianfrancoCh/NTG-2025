@@ -90,6 +90,29 @@ export class AuthService {
     if (insertError) {
       throw new Error('auth-error: db-error' + insertError.message);
     }
+  };
+
+  async obtenerUsuarioCliente(): Promise<Cliente | null> {
+    const email = this.currentUser$.value?.email;
+    if (!email) return null;
+
+    const { data, error } = await this.supabase
+      .from('usuarios')
+      .select('*')
+      .eq('email', email)
+      .single();
+
+    if (error || !data || data.rol !== 'cliente') return null;
+
+    // Mapeamos manualmente a la clase Cliente si hace falta
+    const cliente: Cliente = {
+      ...data,
+      estadoCliente: data.estado as 'aceptado' | 'pendiente' | 'rechazado' | 'no necesita',
+      tipo: data.tipo ?? 'registrado',
+      idMesa: null, // si tenés este campo en otro lado, podés traerlo también
+    };
+
+    return cliente;
   }
   ////////////////////////////////////////////
   async obtenerUsuarioExtendido(): Promise<Cliente | Empleado | Jefe | null> {

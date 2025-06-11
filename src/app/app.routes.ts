@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { clienteAceptadoGuard } from './guards/cliente-aceptado.guard';
 
 export const routes: Routes = [
   {
@@ -43,6 +44,15 @@ export const routes: Routes = [
   {
     path: 'alta-mesa',
     loadComponent: () => import('./pages/altas/alta-mesa/alta-mesa.page').then( m => m.AltaMesaPage)
-  }
+  },
+  {
+    path: 'alta-pedido',
+    loadComponent: () =>
+      import('./pages/altas/alta-pedido/alta-pedido.page').then(
+        (m) => m.AltaPedidoPage
+      ),
+    canActivate: [clienteAceptadoGuard],
+  },
+
 
 ];
