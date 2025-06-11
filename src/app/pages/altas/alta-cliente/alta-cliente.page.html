@@ -1,14 +1,17 @@
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Alta cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
 <div class="container background-pri">
   <ion-card style="width: 95%;">
     <ion-card-header>
-      <ion-card-title>Alta de Cliente</ion-card-title>
+      <ion-card-title>Ingrese sus datos</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div class="ion-margin-bottom">
-        <ion-text *ngIf="!auth.getCurrentUser">No quiero dar mis datos.
-          <a (click)="navCtrl.navigateRoot('alta-cliente-anon')">Registrarse de forma anónima</a>.
-        </ion-text>
-      </div>
       <form [formGroup]="frmCliente" (ngSubmit)="subirCliente()">
         <div class="inputs">
           <div id="correo" class="correo">
@@ -91,6 +94,14 @@
         <ion-button type="submit" expand="block" color="tertiary" [disabled]="frmCliente.invalid">
           Agregar cliente
         </ion-button>
+        <div class="ion-margin-bottom">
+          <br>
+          <!-- <ion-text *ngIf="!auth.getCurrentUser">No quiero dar mis datos. -->
+          <ion-text style="font-weight: bold;">No queres dar tus datos?</ion-text>
+          <br>
+          <a (click)="navCtrl.navigateRoot('alta-cliente-anon')" style="font-weight: bold;">Registrarse de forma
+            anónima</a>.
+        </div>
       </form>
     </ion-card-content>
   </ion-card>

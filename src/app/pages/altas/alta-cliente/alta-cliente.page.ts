@@ -25,6 +25,8 @@ import {
   IonText,
   IonButton,
   IonIcon,
+  IonButtons,
+  IonBackButton,
 } from '@ionic/angular/standalone';
 import { Cliente } from 'src/app/clases/cliente';
 import { AuthService } from 'src/app/services/auth.service';
@@ -46,6 +48,8 @@ import { BarcodeFormat } from '@capacitor-mlkit/barcode-scanning';
   styleUrls: ['./alta-cliente.page.scss'],
   standalone: true,
   imports: [
+    IonBackButton,
+    IonButtons,
     IonIcon,
     IonButton,
     IonText,
@@ -56,9 +60,9 @@ import { BarcodeFormat } from '@capacitor-mlkit/barcode-scanning';
     // IonLoading,
     // IonProgressBar,
     // IonContent,
-    // IonHeader,
-    // IonTitle,
-    // IonToolbar,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
     CommonModule,
     FormsModule,
     // IonNav,

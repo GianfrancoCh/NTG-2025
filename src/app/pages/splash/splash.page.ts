@@ -14,14 +14,7 @@ import { Route, Router } from '@angular/router';
   templateUrl: './splash.page.html',
   styleUrls: ['./splash.page.scss'],
   standalone: true,
-  imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    CommonModule,
-    FormsModule,
-  ],
+  imports: [IonContent, CommonModule, FormsModule],
 })
 export class SplashPage implements OnInit {
   constructor(public router: Router) {

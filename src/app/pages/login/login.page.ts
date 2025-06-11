@@ -22,6 +22,7 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-login',
@@ -58,7 +59,8 @@ export class LoginPage {
     private authService: AuthService,
     private router: Router,
     private fb: FormBuilder,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private databaseService: DatabaseService
   ) {
     this.loginForm = this.fb.group({
       email: [''],
@@ -94,6 +96,7 @@ export class LoginPage {
       }, 1500);
 
       console.log('Login exitoso:', data.user);
+
     } catch (err) {
       this.errorMessage = 'Error al iniciar sesión.';
     }

@@ -1,6 +1,6 @@
 export abstract class Persona {
   id: string;
-  perfil: PerfilUsuario;
+  perfil: RolUsuario;
   nombre: string;
   apellido: string;
   dni: number;
@@ -8,7 +8,7 @@ export abstract class Persona {
   correo: string;
 
   constructor(
-    perfil: PerfilUsuario,
+    perfil: RolUsuario,
     nombre: string,
     apellido: string,
     dni: number,
@@ -25,4 +25,4 @@ export abstract class Persona {
   }
 }
 
-export type PerfilUsuario = 'cliente' | 'empleado' | 'jefe';
+export type RolUsuario = 'cliente' | 'empleado' | 'jefe';

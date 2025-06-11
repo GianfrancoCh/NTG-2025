@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -16,7 +16,9 @@ export class AuthService {
     environment.supabaseUrl,
     environment.supabaseKey
   );
+
   private currentUser$ = new BehaviorSubject<User | null>(null);
+  databaseService: DatabaseService = inject(DatabaseService);
 
   constructor(private router: Router) {
     this.supabase.auth.onAuthStateChange(async (_, session) => {
@@ -89,6 +91,53 @@ export class AuthService {
       throw new Error('auth-error: db-error' + insertError.message);
     }
   }
+  ////////////////////////////////////////////
+  async obtenerUsuarioExtendido(): Promise<Cliente | Empleado | Jefe | null> {
+    const id = this.getCurrentUserId();
+    if (!id) return null;
+
+    // buscar en tabla 'usuarios', 'clientes', o según tu lógica
+    const { data, error } = await this.supabase
+      .from('usuarios')
+      .select('*')
+      .eq('email', this.currentUser$.value?.email)
+      .single();
+
+    if (error || !data) return null;
+
+    // Verificar si el usuario es un cliente, empleado o jefe
+    if (data.rol === 'cliente') {
+      const { data: clienteData, error: clienteError } = await this.supabase
+        .from('clientes')
+        .select('*')
+        .eq('email', data.email)
+        .single();
+
+      if (clienteError || !clienteData) return null;
+      return clienteData as Cliente;
+    } else if (data.rol === 'empleado') {
+      const { data: empleadoData, error: empleadoError } = await this.supabase
+        .from('empleados')
+        .select('*')
+        .eq('email', data.email)
+        .single();
+
+      if (empleadoError || !empleadoData) return null;
+      return empleadoData as Empleado;
+    } else if (data.rol === 'jefe') {
+      const { data: jefeData, error: jefeError } = await this.supabase
+        .from('supervisores')
+        .select('*')
+        .eq('email', data.email)
+        .single();
+
+      if (jefeError || !jefeData) return null;
+      return jefeData as Jefe;
+    } else {
+      return null; // Si no es cliente, empleado o jefe, retornar null
+    }
+  }
+
   //AGREGUE ESTO
   async registrarSupervisor(usuario: Jefe, password: string): Promise<void> {
     const { data, error } = await this.supabase.auth.signUp({
@@ -105,55 +154,56 @@ export class AuthService {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
-    const { error: insertError } = await this.supabase.from('supervisores').insert({
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
-      dni: usuario.dni,
-      cuil: usuario.cuil,
-      email: usuario.correo,
-      foto_url: usuario.fotoUrl,
-      rol: usuario.perfil,
-    });
+    const { error: insertError } = await this.supabase
+      .from('supervisores')
+      .insert({
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        dni: usuario.dni,
+        cuil: usuario.cuil,
+        email: usuario.correo,
+        foto_url: usuario.fotoUrl,
+        rol: usuario.perfil,
+      });
 
     if (insertError) {
       throw new Error('auth-error: db-error' + insertError.message);
     }
-  };
-
-
+  }
 
   // Registro de empleado
-async registrarEmpleado(usuario: Empleado, password: string): Promise<void> {
-  const { data, error } = await this.supabase.auth.signUp({
-    email: usuario.correo,
-    password: password,
-  });
+  async registrarEmpleado(usuario: Empleado, password: string): Promise<void> {
+    const { data, error } = await this.supabase.auth.signUp({
+      email: usuario.correo,
+      password: password,
+    });
 
-  if (error) {
-    throw new Error('auth-error: ' + error.message);
+    if (error) {
+      throw new Error('auth-error: ' + error.message);
+    }
+
+    const user = data.user;
+    if (!user) {
+      throw new Error('auth-null: No se pudo crear el usuario.');
+    }
+
+    const { error: insertError } = await this.supabase
+      .from('empleados')
+      .insert({
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        dni: usuario.dni,
+        cuil: usuario.cuil,
+        email: usuario.correo,
+        foto_url: usuario.fotoUrl,
+        rol: usuario.tipo,
+      });
+
+    if (insertError) {
+      throw new Error('auth-error: db-error' + insertError.message);
+    }
   }
 
-  const user = data.user;
-  if (!user) {
-    throw new Error('auth-null: No se pudo crear el usuario.');
-  }
-
-  const { error: insertError } = await this.supabase.from('empleados').insert({
-    nombre: usuario.nombre,
-    apellido: usuario.apellido,
-    dni: usuario.dni,
-    cuil: usuario.cuil,
-    email: usuario.correo,
-    foto_url: usuario.fotoUrl,
-    rol: usuario.tipo,
-  });
-
-  if (insertError) {
-    throw new Error('auth-error: db-error' + insertError.message);
-  }
-}
-
-// Registro de cliente
   async registrarCliente(usuario: Cliente, password: string): Promise<void> {
     const { data, error } = await this.supabase.auth.signUp({
       email: usuario.correo,
@@ -169,13 +219,14 @@ async registrarEmpleado(usuario: Empleado, password: string): Promise<void> {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
-    const { error: insertError } = await this.supabase.from('clientes').insert({
+    const { error: insertError } = await this.supabase.from('usuarios').insert({
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       dni: usuario.dni,
       email: usuario.correo,
       foto_url: usuario.fotoUrl,
       rol: usuario.perfil,
+      estado: 'pendiente',
     });
 
     if (insertError) {
