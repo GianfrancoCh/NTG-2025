@@ -1,0 +1,15 @@
+#noClientes {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  ion-card-title {
+    font-size: 4rem;
+  }
+
+  p,
+  ion-button {
+    font-size: 2rem;
+  }
+}

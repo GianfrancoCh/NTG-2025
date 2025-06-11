@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>lista-clientes-pendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container background-pri">
+    <ion-card style="width: 95%">
+      <ion-card-header>
+        <ion-card-title>Clientes pendientes</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list id="lista" *ngIf="clientes.length > 0; else noClientes">
+          @for (cliente of clientes; track $index) {
+          <ion-item id="item">
+            <ion-avatar class="ion-margin-horizontal">
+              <img alt="avatar" [src]="cliente.fotoUrl" />
+            </ion-avatar>
+            <ion-label>{{cliente.nombre}} {{cliente.apellido}}</ion-label>
+
+            <div part="content" class="content">
+              <div class="cont-prod">
+                <ion-button size="large" color="danger" expand="fill" (click)="manejarCliente(cliente, 'rechazado')">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="remove-circle-outline" color="light"></ion-icon>
+                </ion-button>
+                <ion-button size="large" color="success" expand="fill" (click)="manejarCliente(cliente, 'aceptado')">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="checkmark-circle-outline"
+                    color="light"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-item>
+          }
+        </ion-list>
+        <ng-template #noClientes>
+          <div id="noClientes">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>No hay clientes</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <p>Parece que no hay clientes en lista de espera.</p>
+                <ion-button expand="block" (click)="navCtrl.navigateRoot('home')">Ir a Inicio</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ng-template>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

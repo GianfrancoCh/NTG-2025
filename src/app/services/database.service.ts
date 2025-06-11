@@ -6,7 +6,7 @@ import { Producto } from '../clases/producto';
 import { Mesa } from '../clases/mesa';
 
 export enum Colecciones {
-  Usuarios = 'users',
+  Usuarios = 'usuarios',
   Mesas = 'mesas',
   Productos = 'productos',
   EncuestasCliente = 'encuestas-clientes',
@@ -64,12 +64,21 @@ export class DatabaseService {
 
   async traerCoincidencias<T>(
     coleccion: string,
-    constraint: { campo: string; operacion: any; valor: any }
+    constraint: { campo: string; operacion: string; valor: any }
   ): Promise<Array<T>> {
-    const { data, error } = await this.supabase
-      .from(coleccion)
-      .select('*')
-      .filter(constraint.campo, constraint.operacion, constraint.valor);
+    let query;
+
+    // Si querés permitir varios campos (como rol y estadoCliente juntos)
+    if (constraint.campo === '' && typeof constraint.valor === 'object') {
+      query = this.supabase.from(coleccion).select('*').match(constraint.valor); // esto permite múltiples filtros
+    } else {
+      query = this.supabase
+        .from(coleccion)
+        .select('*')
+        .filter(constraint.campo, constraint.operacion, constraint.valor);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('Error al traer coincidencias:', error.message);
@@ -154,11 +163,12 @@ export class DatabaseService {
     }
 
     return data as Persona;
-  };
+  }
 
   async subirProducto(producto: Producto): Promise<void> {
-    
-      const { error: insertError } = await this.supabase.from('productos').insert({
+    const { error: insertError } = await this.supabase
+      .from('productos')
+      .insert({
         nombre: producto.nombre,
         descripcion: producto.descripcion,
         minutos: producto.tiempoElab,
@@ -166,21 +176,24 @@ export class DatabaseService {
         sector: producto.sector,
         fotos_url: producto.fotosUrl,
       });
-  
-      if (insertError) {
-        throw new Error('auth-error: db-error' + insertError.message);
-      }
-  };
+
+    if (insertError) {
+      throw new Error('auth-error: db-error' + insertError.message);
+    }
+  }
 
   async subirMesa(mesa: Mesa): Promise<string> {
-    const { data, error } = await this.supabase.from('mesas').insert({
-      numero: mesa.nroMesa,
-      cant_comensales: mesa.cantComensales,
-      tipo: mesa.tipo,
-      foto_url: mesa.fotoUrl,
-      codigo_qr: mesa.codigoQr,
-      estado: mesa.estado,
-    }).select('id'); // Para obtener el ID insertado
+    const { data, error } = await this.supabase
+      .from('mesas')
+      .insert({
+        numero: mesa.nroMesa,
+        cant_comensales: mesa.cantComensales,
+        tipo: mesa.tipo,
+        foto_url: mesa.fotoUrl,
+        codigo_qr: mesa.codigoQr,
+        estado: mesa.estado,
+      })
+      .select('id'); // Para obtener el ID insertado
 
     if (error) {
       throw new Error('auth-error: db-error ' + error.message);
@@ -192,8 +205,5 @@ export class DatabaseService {
 
     console.log(data[0].id);
     return data[0].id;
-};                                                       
-  
-
-
+  }
 }

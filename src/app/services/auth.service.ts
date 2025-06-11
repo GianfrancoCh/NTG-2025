@@ -155,7 +155,7 @@ export class AuthService {
     }
 
     const { error: insertError } = await this.supabase
-      .from('supervisores')
+      .from('usuarios')
       .insert({
         nombre: usuario.nombre,
         apellido: usuario.apellido,
@@ -188,7 +188,7 @@ export class AuthService {
     }
 
     const { error: insertError } = await this.supabase
-      .from('empleados')
+      .from('usuarios')
       .insert({
         nombre: usuario.nombre,
         apellido: usuario.apellido,
