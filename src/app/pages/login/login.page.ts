@@ -23,6 +23,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatabaseService } from 'src/app/services/database.service';
+import { ToastError, ToastSuccess } from 'src/app/utils/alerts';
 
 @Component({
   selector: 'app-login',
@@ -71,22 +72,41 @@ export class LoginPage {
   async login() {
     this.spinner.show();
     const { email, password } = this.loginForm.value;
+
     try {
       const { data, error } = await this.authService.signIn(email, password);
+
       if (error) {
-        if (error.message === 'Invalid login credentials') {
-          this.errorMessage = 'Correo o contraseña incorrectos.';
-        } else if (error.message === 'missing email or phone') {
-          this.errorMessage = 'Falta correo o contraseña.';
-        } else {
-          this.errorMessage = error.message;
-        }
+        this.errorMessage = error.message.includes('Invalid')
+          ? 'Correo o contraseña incorrectos.'
+          : error.message.includes('missing')
+          ? 'Falta correo o contraseña.'
+          : error.message;
 
         this.spinner.hide();
         return;
       }
 
-      // Opcional: navegar a otra ruta
+      const cliente = await this.authService.obtenerUsuarioCliente();
+
+      if (cliente) {
+        if (cliente.estadoCliente === 'rechazado') {
+          await this.authService.signOut();
+          this.spinner.hide();
+          this.loginForm.reset();
+          ToastError.fire('Su registro fue rechazado.'); 
+          return;
+        }
+
+        if (cliente.estadoCliente === 'pendiente') {
+          await this.authService.signOut();
+          this.spinner.hide();
+          this.loginForm.reset();
+          ToastError.fire('Su registro aún no fue aprobado.'); 
+          return;
+        }
+      }
+
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/home']);
       });
@@ -95,10 +115,12 @@ export class LoginPage {
         this.spinner.hide();
       }, 1500);
 
+      ToastSuccess.fire('Inicio de sesión exitoso'); 
       console.log('Login exitoso:', data.user);
-
     } catch (err) {
+      this.spinner.hide();
       this.errorMessage = 'Error al iniciar sesión.';
+      ToastError.fire(this.errorMessage); 
     }
   }
 

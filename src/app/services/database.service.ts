@@ -62,6 +62,7 @@ export class DatabaseService {
     return data as T;
   }
 
+  // Permite traer coincidencias en una colección con un filtro específico
   async traerCoincidencias<T>(
     coleccion: string,
     constraint: { campo: string; operacion: string; valor: any }

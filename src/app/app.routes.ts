@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { clienteAceptadoGuard } from './guards/cliente-aceptado.guard';
 
 export const routes: Routes = [
   {
@@ -30,23 +31,37 @@ export const routes: Routes = [
   },
   {
     path: 'alta-supervisor',
-    loadComponent: () => import('./pages/altas/alta-supervisor/alta-supervisor.page').then( m => m.AltaSupervisorPage)
+    loadComponent: () =>
+      import('./pages/altas/alta-supervisor/alta-supervisor.page').then(
+        (m) => m.AltaSupervisorPage
+      ),
   },
   {
     path: 'alta-empleado',
-    loadComponent: () => import('./pages/altas/alta-empleado/alta-empleado.page').then( m => m.AltaEmpleadoPage)
+    loadComponent: () =>
+      import('./pages/altas/alta-empleado/alta-empleado.page').then(
+        (m) => m.AltaEmpleadoPage
+      ),
   },
   {
     path: 'alta-producto',
-    loadComponent: () => import('./pages/altas/alta-producto/alta-producto.page').then( m => m.AltaProductoPage)
-  },  
+    loadComponent: () =>
+      import('./pages/altas/alta-producto/alta-producto.page').then(
+        (m) => m.AltaProductoPage
+      ),
+  },
   {
     path: 'alta-mesa',
-    loadComponent: () => import('./pages/altas/alta-mesa/alta-mesa.page').then( m => m.AltaMesaPage)
-  },  {
+    loadComponent: () =>
+      import('./pages/altas/alta-mesa/alta-mesa.page').then(
+        (m) => m.AltaMesaPage
+      ),
+  },
+  {
     path: 'lista-clientes-pendientes',
-    loadComponent: () => import('./pages/listas/lista-clientes-pendientes/lista-clientes-pendientes.page').then( m => m.ListaClientesPendientesPage)
-  }
-
-
+    loadComponent: () =>
+      import(
+        './pages/listas/lista-clientes-pendientes/lista-clientes-pendientes.page'
+      ).then((m) => m.ListaClientesPendientesPage),
+  },
 ];

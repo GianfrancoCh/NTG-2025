@@ -16,6 +16,8 @@ import {
   IonList,
   IonAvatar,
   IonItem,
+  IonButtons,
+  IonBackButton,
 } from '@ionic/angular/standalone';
 import {
   Colecciones,
@@ -35,6 +37,8 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./lista-clientes-pendientes.page.scss'],
   standalone: true,
   imports: [
+    IonBackButton,
+    IonButtons,
     IonItem,
     IonAvatar,
     IonList,
@@ -72,7 +76,7 @@ export class ListaClientesPendientesPage implements OnInit {
       const clientesFiltrados = await this.db.traerCoincidencias<Cliente>(
         Colecciones.Usuarios,
         {
-          campo: '', 
+          campo: '',
           operacion: '',
           valor: { rol: 'cliente', estado: 'pendiente' },
         }

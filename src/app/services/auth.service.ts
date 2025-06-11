@@ -90,53 +90,76 @@ export class AuthService {
     if (insertError) {
       throw new Error('auth-error: db-error' + insertError.message);
     }
-  }
-  ////////////////////////////////////////////
-  async obtenerUsuarioExtendido(): Promise<Cliente | Empleado | Jefe | null> {
-    const id = this.getCurrentUserId();
-    if (!id) return null;
+  };
 
-    // buscar en tabla 'usuarios', 'clientes', o según tu lógica
+  async obtenerUsuarioCliente(): Promise<Cliente | null> {
+    const email = this.currentUser$.value?.email;
+    if (!email) return null;
+
     const { data, error } = await this.supabase
       .from('usuarios')
       .select('*')
-      .eq('email', this.currentUser$.value?.email)
+      .eq('email', email)
       .single();
 
-    if (error || !data) return null;
+    if (error || !data || data.rol !== 'cliente') return null;
 
-    // Verificar si el usuario es un cliente, empleado o jefe
-    if (data.rol === 'cliente') {
-      const { data: clienteData, error: clienteError } = await this.supabase
-        .from('clientes')
-        .select('*')
-        .eq('email', data.email)
-        .single();
+    // Mapeamos manualmente a la clase Cliente si hace falta
+    const cliente: Cliente = {
+      ...data,
+      estadoCliente: data.estado as 'aceptado' | 'pendiente' | 'rechazado' | 'no necesita',
+      tipo: data.tipo ?? 'registrado',
+      idMesa: null, // si tenés este campo en otro lado, podés traerlo también
+    };
 
-      if (clienteError || !clienteData) return null;
-      return clienteData as Cliente;
-    } else if (data.rol === 'empleado') {
-      const { data: empleadoData, error: empleadoError } = await this.supabase
-        .from('empleados')
-        .select('*')
-        .eq('email', data.email)
-        .single();
-
-      if (empleadoError || !empleadoData) return null;
-      return empleadoData as Empleado;
-    } else if (data.rol === 'jefe') {
-      const { data: jefeData, error: jefeError } = await this.supabase
-        .from('supervisores')
-        .select('*')
-        .eq('email', data.email)
-        .single();
-
-      if (jefeError || !jefeData) return null;
-      return jefeData as Jefe;
-    } else {
-      return null; // Si no es cliente, empleado o jefe, retornar null
-    }
+    return cliente;
   }
+
+  // async obtenerUsuarioExtendido(): Promise<Cliente | Empleado | Jefe | null> {
+  //   const id = this.getCurrentUserId();
+  //   if (!id) return null;
+
+  //   // buscar en tabla 'usuarios', 'clientes', o según tu lógica
+  //   const { data, error } = await this.supabase
+  //     .from('usuarios')
+  //     .select('*')
+  //     .eq('email', this.currentUser$.value?.email)
+  //     .single();
+
+  //   if (error || !data) return null;
+
+  //   // Verificar si el usuario es un cliente, empleado o jefe
+  //   if (data.rol === 'cliente') {
+  //     const { data: clienteData, error: clienteError } = await this.supabase
+  //       .from('clientes')
+  //       .select('*')
+  //       .eq('email', data.email)
+  //       .single();
+
+  //     if (clienteError || !clienteData) return null;
+  //     return clienteData as Cliente;
+  //   } else if (data.rol === 'empleado') {
+  //     const { data: empleadoData, error: empleadoError } = await this.supabase
+  //       .from('empleados')
+  //       .select('*')
+  //       .eq('email', data.email)
+  //       .single();
+
+  //     if (empleadoError || !empleadoData) return null;
+  //     return empleadoData as Empleado;
+  //   } else if (data.rol === 'jefe') {
+  //     const { data: jefeData, error: jefeError } = await this.supabase
+  //       .from('supervisores')
+  //       .select('*')
+  //       .eq('email', data.email)
+  //       .single();
+
+  //     if (jefeError || !jefeData) return null;
+  //     return jefeData as Jefe;
+  //   } else {
+  //     return null; // Si no es cliente, empleado o jefe, retornar null
+  //   }
+  // }
 
   //AGREGUE ESTO
   async registrarSupervisor(usuario: Jefe, password: string): Promise<void> {

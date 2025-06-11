@@ -1,9 +1,11 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="header-fix">
   <ion-toolbar>
-    <ion-title>lista-clientes-pendientes</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista clientes pendientes</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <div class="container background-pri">
     <ion-card style="width: 95%">
