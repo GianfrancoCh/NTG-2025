@@ -24,6 +24,7 @@ import { Router, RouterModule } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ToastError, ToastSuccess } from 'src/app/utils/alerts';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-login',
@@ -61,7 +62,8 @@ export class LoginPage {
     private router: Router,
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private emailService: EmailService
   ) {
     this.loginForm = this.fb.group({
       email: [''],
@@ -176,4 +178,6 @@ export class LoginPage {
     this.loginForm.reset();
     this.errorMessage = '';
   }
+
+  
 }
