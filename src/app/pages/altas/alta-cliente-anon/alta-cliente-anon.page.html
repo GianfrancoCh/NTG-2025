@@ -1,0 +1,38 @@
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/alta-cliente"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Alta cliente anonimo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container background-pri">
+    <ion-card style="width: 95%;">
+      <ion-card-header>
+        <ion-card-title>Alta de Cliente Anónimo</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="ion-margin-bottom">
+          <ion-text>Quiero formar parte de sus clientes!
+            <a routerLink="/alta-cliente">Registrarse</a>.
+          </ion-text>
+        </div>
+        <form [formGroup]="frmCliente" (ngSubmit)="subirCliente()">
+          <div class="nombre">
+            <ion-input label="Nombre" type="text" formControlName="nombre" name="name" required ngDefaultControl>
+            </ion-input>
+            <div class="errores" *ngIf="frmCliente.controls['nombre'].dirty && frmCliente.controls['nombre'].errors">
+              <small *ngIf="frmCliente.controls['nombre'].errors['required']">Debe rellenar este campo.</small>
+              <small *ngIf="frmCliente.controls['nombre'].errors['pattern']">Compruebe el texto ingresado.</small>
+            </div>
+          </div>
+          <ion-button type="submit" expand="block" color="tertiary" [disabled]="frmCliente.invalid">
+            Ingresar
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

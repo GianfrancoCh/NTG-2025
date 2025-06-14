@@ -41,6 +41,7 @@ import { ErrorCodes, Exception } from 'src/app/clases/exception';
 import { ScannerService } from 'src/app/services/scanner.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { BarcodeFormat } from '@capacitor-mlkit/barcode-scanning';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-alta-cliente',
@@ -67,6 +68,7 @@ import { BarcodeFormat } from '@capacitor-mlkit/barcode-scanning';
     FormsModule,
     // IonNav,
     ReactiveFormsModule,
+    RouterLink,
   ],
 })
 export class AltaClientePage {

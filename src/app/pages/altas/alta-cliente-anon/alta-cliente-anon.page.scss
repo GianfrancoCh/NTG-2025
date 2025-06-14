@@ -6,26 +6,10 @@
   align-items: center;
   justify-content: center;
 
-  .inputs {
+  .errores {
     display: flex;
     flex-direction: column;
-
-    .nombre_apellido {
-      display: flex;
-      flex-wrap: wrap;
-
-      .nombre,
-      .apellido {
-        width: 50%;
-        min-width: 100px;
-      }
-    }
-
-    .errores {
-      display: flex;
-      flex-direction: column;
-      color: red;
-    }
+    color: red;
   }
 
   @media (min-width: 550px) {

@@ -64,4 +64,8 @@ export const routes: Routes = [
         './pages/listas/lista-clientes-pendientes/lista-clientes-pendientes.page'
       ).then((m) => m.ListaClientesPendientesPage),
   },
+  {
+    path: 'alta-cliente-anon',
+    loadComponent: () => import('./pages/altas/alta-cliente-anon/alta-cliente-anon.page').then( m => m.AltaClienteAnonPage)
+  },
 ];
