@@ -24,6 +24,8 @@ import { Router, RouterModule } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ToastError, ToastSuccess } from 'src/app/utils/alerts';
+import { EmailService } from 'src/app/services/email.service';
+import { PushNotificationService } from 'src/app/services/push-notification.service';
 
 @Component({
   selector: 'app-login',
@@ -61,7 +63,9 @@ export class LoginPage {
     private router: Router,
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private emailService: EmailService,
+    private pushNotificationService: PushNotificationService
   ) {
     this.loginForm = this.fb.group({
       email: [''],
@@ -175,5 +179,15 @@ export class LoginPage {
   limpiarInputs() {
     this.loginForm.reset();
     this.errorMessage = '';
+  };
+
+  enviarPush() {
+    this.pushNotificationService.enviarNotificacion('TestNoti', 'Notificación de prueba desde codigo')
+      .subscribe({
+        next: (res) => console.log('Éxito', res),
+        error: (err) => console.error('Error al enviar', err)
+      });
   }
+
+  
 }
