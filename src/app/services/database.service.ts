@@ -140,7 +140,7 @@ export class DatabaseService {
     const { data, error } = await this.supabase
       .from(Colecciones.Usuarios)
       .select('*')
-      .eq('correo', correo)
+      .eq('email', correo)
       .single();
 
     if (error) {

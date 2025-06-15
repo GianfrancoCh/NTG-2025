@@ -9,6 +9,8 @@ import { Colecciones, DatabaseService } from './database.service';
 import { ErrorCodes, Exception } from '../clases/exception';
 import { Cliente } from '../clases/cliente';
 import { Empleado } from '../clases/empleado';
+import OneSignal from 'onesignal-cordova-plugin';
+import { PushNotificationService } from './push-notification.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -19,6 +21,7 @@ export class AuthService {
 
   private currentUser$ = new BehaviorSubject<User | null>(null);
   databaseService: DatabaseService = inject(DatabaseService);
+  pushService: PushNotificationService = inject(PushNotificationService);
 
   constructor(private router: Router) {
     this.supabase.auth.onAuthStateChange(async (_, session) => {
@@ -134,6 +137,10 @@ export class AuthService {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
+     // 👉 Obtenemos el playerId del dispositivo
+    const playerId = await this.pushService.loadPlayerId();
+    console.log('Player ID obtenido:', playerId);
+
     const { error: insertError } = await this.supabase.from('usuarios').insert({
       nombre: usuario.nombre,
       apellido: usuario.apellido,
@@ -142,6 +149,7 @@ export class AuthService {
       email: usuario.correo,
       foto_url: usuario.fotoUrl,
       rol: usuario.perfil,
+      player_id: playerId, // agregamos el player_id
     });
 
     if (insertError) {
@@ -195,6 +203,10 @@ export class AuthService {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
+    // 👉 Obtenemos el playerId del dispositivo
+    const playerId = await this.pushService.loadPlayerId();
+    console.log('Player ID obtenido:', playerId);
+
     const { error: insertError } = await this.supabase.from('usuarios').insert({
       nombre: usuario.nombre,
       apellido: usuario.apellido,
@@ -203,6 +215,7 @@ export class AuthService {
       foto_url: usuario.fotoUrl,
       rol: usuario.perfil,
       estado: 'pendiente',
+      player_id: playerId, // 🔴 acá lo guardás
     });
 
     if (insertError) {
