@@ -137,7 +137,7 @@ export class AuthService {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
-     // 👉 Obtenemos el playerId del dispositivo
+    // 👉 Obtenemos el playerId del dispositivo
     const playerId = await this.pushService.loadPlayerId();
     console.log('Player ID obtenido:', playerId);
 
@@ -189,6 +189,8 @@ export class AuthService {
   }
 
   async registrarCliente(usuario: Cliente, password: string): Promise<void> {
+    await OneSignal.logout();
+
     const { data, error } = await this.supabase.auth.signUp({
       email: usuario.correo,
       password: password,
@@ -203,7 +205,8 @@ export class AuthService {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
-    // 👉 Obtenemos el playerId del dispositivo
+    await OneSignal.login(user.id);
+
     const playerId = await this.pushService.loadPlayerId();
     console.log('Player ID obtenido:', playerId);
 
@@ -215,12 +218,18 @@ export class AuthService {
       foto_url: usuario.fotoUrl,
       rol: usuario.perfil,
       estado: 'pendiente',
-      player_id: playerId, // 🔴 acá lo guardás
+      player_id: playerId,
     });
 
     if (insertError) {
       throw new Error('auth-error: db-error' + insertError.message);
     }
+
+    // Notificar a los jefes
+    await this.pushService.notificarJefesNuevoUsuario(
+      usuario.nombre,
+      usuario.apellido
+    );
   }
 
   async registrarUsuarioAnonimo(usuarioAnonimo: Persona): Promise<void> {

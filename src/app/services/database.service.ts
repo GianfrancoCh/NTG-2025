@@ -21,7 +21,7 @@ export enum Colecciones {
   providedIn: 'root',
 })
 export class DatabaseService {
-  private supabase: SupabaseClient;
+  supabase: SupabaseClient;
 
   constructor() {
     this.supabase = createClient(

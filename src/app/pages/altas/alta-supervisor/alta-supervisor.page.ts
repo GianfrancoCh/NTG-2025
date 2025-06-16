@@ -1,17 +1,50 @@
 import { Component } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators,
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
 } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonRadioGroup, IonRadio, IonCardHeader, IonCard, IonCardTitle, IonCardContent, IonIcon, IonInputPasswordToggle } from '@ionic/angular/standalone';
-import { MySwal, ToastError, ToastSuccess, ToastInfo } from 'src/app/utils/alerts';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonInput,
+  IonButton,
+  IonItem,
+  IonRadioGroup,
+  IonRadio,
+  IonCardHeader,
+  IonCard,
+  IonCardTitle,
+  IonCardContent,
+  IonIcon,
+  IonInputPasswordToggle,
+} from '@ionic/angular/standalone';
+import {
+  MySwal,
+  ToastError,
+  ToastSuccess,
+  ToastInfo,
+} from 'src/app/utils/alerts';
 import { AuthService } from 'src/app/services/auth.service';
-import { Colecciones, DatabaseService } from 'src/app/services/database.service';
+import {
+  Colecciones,
+  DatabaseService,
+} from 'src/app/services/database.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Jefe, TipoJefe } from 'src/app/clases/jefe';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Exception, ErrorCodes } from 'src/app/clases/exception';
 import { addIcons } from 'ionicons';
-import { search, scanOutline, scanCircleOutline} from 'ionicons/icons';
+import { search, scanOutline, scanCircleOutline } from 'ionicons/icons';
 import { Barcode, BarcodeFormat } from '@capacitor-mlkit/barcode-scanning';
 import { ScannerService } from 'src/app/services/scanner.service';
 import { FotosService } from 'src/app/services/fotos.service';
@@ -21,12 +54,30 @@ import { FotosService } from 'src/app/services/fotos.service';
   templateUrl: './alta-supervisor.page.html',
   styleUrls: ['./alta-supervisor.page.scss'],
   standalone: true,
-  imports: [ IonIcon, IonCardContent, IonCardTitle, IonCard, IonCardHeader, IonRadio, IonRadioGroup, IonItem, IonButton, IonInput, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonInputPasswordToggle],
+  imports: [
+    IonIcon,
+    IonCardContent,
+    IonCardTitle,
+    IonCard,
+    IonCardHeader,
+    IonRadio,
+    IonRadioGroup,
+    IonItem,
+    IonButton,
+    IonInput,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonInputPasswordToggle,
+  ],
 })
 export class AltaSupervisorPage {
-
   picture!: File;
-  tempImg: string = "";
+  tempImg: string = '';
 
   isSupported = false;
 
@@ -43,33 +94,45 @@ export class AltaSupervisorPage {
     this.frmSupervisor = this.formBuilder.group({
       nombre: new FormControl('', [Validators.required]),
       apellido: new FormControl('', [Validators.required]),
-      DNI: new FormControl('', [ Validators.required, Validators.pattern(/^\b[\d]{1,3}(\.|\-|\/| )?[\d]{3}(\.|\-|\/| )?[\d]{3}$/),]),
+      DNI: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          /^\b[\d]{1,3}(\.|\-|\/| )?[\d]{3}(\.|\-|\/| )?[\d]{3}$/
+        ),
+      ]),
       CUIL: new FormControl('', [Validators.required, this.verificarCuil]),
-      correo: new FormControl('', [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
+      correo: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),
+      ]),
       foto: new FormControl('', [Validators.required]),
       contra: new FormControl('', [Validators.required]),
-      reContra: new FormControl('', [Validators.required, this.contraseñasCoinciden]),
+      reContra: new FormControl('', [
+        Validators.required,
+        this.contraseñasCoinciden,
+      ]),
       supervisorDueno: [null, [Validators.required]],
     });
 
-    addIcons({ search, scanOutline, scanCircleOutline});
+    addIcons({ search, scanOutline, scanCircleOutline });
   }
 
   async takePic() {
     const foto = await this.fotosServ.tomarFoto();
-    if (foto)
-      this.picture = foto;
-      this.frmSupervisor.controls['foto'].setValue('valid');
-      this.frmSupervisor.updateValueAndValidity();
-    
+    if (foto) this.picture = foto;
+    this.frmSupervisor.controls['foto'].setValue('valid');
+    this.frmSupervisor.updateValueAndValidity();
   }
 
   async uploadPicture(image: File) {
     try {
       this.spinner.show();
       const dni = <string>this.frmSupervisor.controls['DNI'].value;
-      
-      const url = await this.storage.subirArchivo(image,`${Colecciones.Usuarios}/jefe-${dni}`);
+
+      const url = await this.storage.subirArchivo(
+        image,
+        `${Colecciones.Usuarios}/jefe-${dni}`
+      );
       this.spinner.hide();
       ToastSuccess.fire('Imagen subida con éxito!');
       return url;
@@ -85,11 +148,16 @@ export class AltaSupervisorPage {
     if (fotoUrl) {
       const nombre = this.frmSupervisor.controls['nombre'].value;
       const apellido = this.frmSupervisor.controls['apellido'].value;
-      const DNI = Number((this.frmSupervisor.controls['DNI'].value).replace(/[-. ]/g, ''));
-      const CUIL = Number((this.frmSupervisor.controls['CUIL'].value).replace(/[-. ]/g, ''));
+      const DNI = Number(
+        this.frmSupervisor.controls['DNI'].value.replace(/[-. ]/g, '')
+      );
+      const CUIL = Number(
+        this.frmSupervisor.controls['CUIL'].value.replace(/[-. ]/g, '')
+      );
       const correo = this.frmSupervisor.controls['correo'].value;
       const contra = this.frmSupervisor.controls['contra'].value;
-      const supervisorDueno = this.frmSupervisor.controls['supervisorDueno'].value as TipoJefe;
+      const supervisorDueno = this.frmSupervisor.controls['supervisorDueno']
+        .value as TipoJefe;
 
       let jefe = new Jefe(
         nombre,
@@ -115,27 +183,37 @@ export class AltaSupervisorPage {
       )
       .catch((error: any) => {
         if (
-          error instanceof Exception && error.code === ErrorCodes.CorreoNoRegistrado
+          error instanceof Exception &&
+          error.code === ErrorCodes.CorreoNoRegistrado
         ) {
           document.getElementById('correo')!.classList.add('deshabilitado');
-          (document.getElementById('input-correo')! as HTMLIonInputElement).disabled = true;
-          (document.getElementById('btn-correo')! as HTMLIonButtonElement).style.display = 'none';
-          
+          (
+            document.getElementById('input-correo')! as HTMLIonInputElement
+          ).disabled = true;
+          (
+            document.getElementById('btn-correo')! as HTMLIonButtonElement
+          ).style.display = 'none';
+
           document.getElementById('DNI')!.classList.remove('deshabilitado');
-          (document.getElementById('btn-DNI')! as HTMLIonButtonElement).style.display = 'block';
-          (document.getElementById('btn-scan-DNI')! as HTMLIonButtonElement).style.display = 'block';
+          (
+            document.getElementById('btn-DNI')! as HTMLIonButtonElement
+          ).style.display = 'block';
+          (
+            document.getElementById('btn-scan-DNI')! as HTMLIonButtonElement
+          ).style.display = 'block';
 
           // (document.getElementById('btn-scan-DNI')! as HTMLIonButtonElement).classList.remove('deshabilitado');
 
           ToastSuccess.fire('El correo no está en uso.');
-
         } else ToastError.fire('Ocurrió un erorr.', error.message);
       });
 
     this.spinner.hide();
   }
 
-  private verificarCuil = (control: AbstractControl): ValidationErrors | null => {
+  private verificarCuil = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
     if (!control.value) return null;
 
     const DNI = (<string>control.parent?.value.DNI).replace(/[-. ]/g, '');
@@ -147,9 +225,11 @@ export class AltaSupervisorPage {
     else if (dniEnCuil !== DNI) return { dniNoEncontrado: true };
 
     return null;
-  }
+  };
 
-  private contraseñasCoinciden = (control: AbstractControl): ValidationErrors | null => {
+  private contraseñasCoinciden = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
     if (!control.value) return null;
 
     const contra = control.parent?.value.contra;
@@ -160,7 +240,7 @@ export class AltaSupervisorPage {
     }
 
     return null;
-  }
+  };
 
   verificarCoincid() {
     const contraCtrl = this.frmSupervisor.controls['contra'];
@@ -169,15 +249,14 @@ export class AltaSupervisorPage {
     if (reContraCtrl.dirty) {
       if (contraCtrl.value !== reContraCtrl.value)
         reContraCtrl.setErrors({ noCoinciden: true });
-      else
-        reContraCtrl.setErrors(null);
+      else reContraCtrl.setErrors(null);
     }
   }
 
   async buscarDni(): Promise<boolean> {
     this.spinner.show();
     const dniCtrl = this.frmSupervisor.controls['DNI'];
-    
+
     let existe: boolean = true;
     await this.db
       .buscarUsuarioPorDni(Number(dniCtrl.value.replace(/[-. ]/g, '')))
@@ -207,7 +286,6 @@ export class AltaSupervisorPage {
   }
 
   filtrarInputDoc($ev: any) {
-    
     const patron = /^[0-9 .\-\ ]*$/gm;
     const inputChar = String.fromCharCode($ev.charCode);
     if (!patron.test(inputChar)) {

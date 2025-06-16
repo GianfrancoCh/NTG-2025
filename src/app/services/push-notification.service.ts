@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Colecciones, DatabaseService } from './database.service';
 import OneSignal from 'onesignal-cordova-plugin';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PushNotificationService {
@@ -55,33 +56,51 @@ export class PushNotificationService {
     return this.http.post(this.oneSignalApiUrl, body, { headers });
   }
 
-  // async notificarJefesNuevoUsuario() {
-  //   try {
-  //     const jefes: any[] = await this.db.traerCoincidencias(
-  //       Colecciones.Usuarios,
-  //       {
-  //         campo: 'rol',
-  //         operacion: 'eq',
-  //         valor: 'jefe',
-  //       }
-  //     );
+  async notificarJefesNuevoUsuario(nombre: string, apellido: string) {
+    try {
+      // 1. Obtener todos los jefes que tengan player_id registrado
+      const { data, error } = await this.db.supabase
+        .from('usuarios')
+        .select('player_id')
+        .eq('rol', 'jefe')
+        .not('player_id', 'is', null);
 
-  //     const playerIds = jefes.map((j) => j.player_id).filter((id) => !!id); // quitamos los vacíos
+      if (error) {
+        console.error('❌ Error al obtener jefes:', error.message);
+        return;
+      }
 
-  //     if (playerIds.length === 0) {
-  //       console.warn('No hay jefes con player_id para enviar notificaciones.');
-  //       return;
-  //     }
+      const playerIds = data
+        .map((j: any) => j.player_id)
+        .filter((id: string) => !!id);
 
-  //     await this.enviarNotificacion(
-  //       'Nuevo usuario',
-  //       'Un nuevo usuario se a registrado!',
-  //       playerIds
-  //     );
+      if (playerIds.length === 0) {
+        console.log('No se encontraron jefes con player_id.');
+        return;
+      }
 
-  //     console.log('Notificación enviada a jefes.');
-  //   } catch (error) {
-  //     console.error('Error al notificar a jefes:', error);
-  //   }
-  // }
+      // 2. Enviar notificación
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.oneSignalApiKey}`,
+      });
+
+      const body = {
+        app_id: this.oneSignalAppId,
+        include_player_ids: playerIds,
+        headings: { en: 'Nuevo usuario registrado' },
+        contents: {
+          en: `Se ha registrado un nuevo usuario: ${nombre} ${apellido}`,
+        },
+      };
+
+      const response = await firstValueFrom(
+        this.http.post(this.oneSignalApiUrl, body, { headers })
+      );
+
+      console.log('✅ Notificación enviada a jefes:', response);
+    } catch (err) {
+      console.error('❌ Error al enviar notificación a jefes:', err);
+    }
+  }
 }

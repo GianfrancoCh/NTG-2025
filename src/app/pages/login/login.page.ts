@@ -26,6 +26,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 import { ToastError, ToastSuccess } from 'src/app/utils/alerts';
 import { EmailService } from 'src/app/services/email.service';
 import { PushNotificationService } from 'src/app/services/push-notification.service';
+import OneSignal from 'onesignal-cordova-plugin';
 
 @Component({
   selector: 'app-login',
@@ -98,7 +99,7 @@ export class LoginPage {
           await this.authService.signOut();
           this.spinner.hide();
           this.loginForm.reset();
-          ToastError.fire('Su registro fue rechazado.'); 
+          ToastError.fire('Su registro fue rechazado.');
           return;
         }
 
@@ -106,8 +107,31 @@ export class LoginPage {
           await this.authService.signOut();
           this.spinner.hide();
           this.loginForm.reset();
-          ToastError.fire('Su registro aún no fue aprobado.'); 
+          ToastError.fire('Su registro aún no fue aprobado.');
           return;
+        }
+      }
+
+      await OneSignal.logout();
+
+      const userId = data.user.id;
+      await OneSignal.login(userId);
+
+      const playerId = await this.pushNotificationService.loadPlayerId();
+
+      if (playerId) {
+        const { error: updateError } = await this.databaseService.supabase
+          .from('usuarios')
+          .update({ player_id: playerId })
+          .eq('email', email);
+
+        if (updateError) {
+          console.error(
+            '❌ Error actualizando player_id:',
+            updateError.message
+          );
+        } else {
+          console.log('✅ player_id actualizado en login:', playerId);
         }
       }
 
@@ -119,12 +143,12 @@ export class LoginPage {
         this.spinner.hide();
       }, 1500);
 
-      ToastSuccess.fire('Inicio de sesión exitoso'); 
+      ToastSuccess.fire('Inicio de sesión exitoso');
       console.log('Login exitoso:', data.user);
     } catch (err) {
       this.spinner.hide();
       this.errorMessage = 'Error al iniciar sesión.';
-      ToastError.fire(this.errorMessage); 
+      ToastError.fire(this.errorMessage);
     }
   }
 
@@ -179,15 +203,14 @@ export class LoginPage {
   limpiarInputs() {
     this.loginForm.reset();
     this.errorMessage = '';
-  };
-
-  enviarPush() {
-    this.pushNotificationService.enviarNotificacion('TestNoti', 'Notificación de prueba desde codigo')
-      .subscribe({
-        next: (res) => console.log('Éxito', res),
-        error: (err) => console.error('Error al enviar', err)
-      });
   }
 
-  
+  enviarPush() {
+    this.pushNotificationService
+      .enviarNotificacion('TestNoti', 'Notificación de prueba desde codigo')
+      .subscribe({
+        next: (res) => console.log('Éxito', res),
+        error: (err) => console.error('Error al enviar', err),
+      });
+  }
 }

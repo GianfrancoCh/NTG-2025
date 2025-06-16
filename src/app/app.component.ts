@@ -39,23 +39,6 @@ export class AppComponent {
         }
       );
 
-      
-      setTimeout(async () => {
-        try {
-          const playerId = await OneSignal.User.pushSubscription.getIdAsync();
-          console.log('Player ID obtenido:', playerId);
-
-          if (playerId) {
-            this.pushService.setPlayerId(playerId);
-            console.log('✅ Player ID:', playerId);
-          } else {
-            console.warn('⚠️ No se pudo obtener el Player ID');
-          }
-        } catch (error) {
-          console.error('❌ Error al obtener Player ID:', error);
-        }
-      }, 3000);
-
       this.router.navigateByUrl('splash');
     });
   }
