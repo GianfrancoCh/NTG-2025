@@ -9,18 +9,18 @@ export class Cliente extends Persona {
     nombre: string,
     apellido: string,
     dni: number,
-    correo: string,
-    fotoUrl: string,
+    email: string,
+    foto_url: string,
     tipo: TipoCliente
   ) {
-    super('cliente', nombre, apellido, dni, fotoUrl, correo);
+    super('cliente', nombre, apellido, dni, foto_url, email);
     this.tipo = tipo;
     this.idMesa = null;
     this.estadoCliente = 'pendiente';
   }
 
-  static crearClienteAnon(nombre: string, fotoUrl: string) {
-    const anon = new Cliente(nombre, '', 0, '', fotoUrl, 'anonimo');
+  static crearClienteAnon(nombre: string, foto_url: string) {
+    const anon = new Cliente(nombre, '', 0, '', foto_url, 'anonimo');
     anon.estadoCliente = 'no necesita';
     return anon;
   }

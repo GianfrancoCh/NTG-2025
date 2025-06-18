@@ -212,7 +212,7 @@ export class AltaEmpleadoPage {
 
   async subirEmpleado() {
     try {
-      let fotoUrl = '';
+      let foto_url = '';
       await MySwal.fire({
         title: '¿Desea subir foto del empleado?',
         showConfirmButton: true,
@@ -223,7 +223,7 @@ export class AltaEmpleadoPage {
         denyButtonColor: '#f0ec0d',
       }).then(async (res) => {
         if (res.isConfirmed)
-          fotoUrl = await this.tomarFotoEmpleado();
+          foto_url = await this.tomarFotoEmpleado();
       });
 
       this.spinner.show();
@@ -235,7 +235,7 @@ export class AltaEmpleadoPage {
       const contra = this.empleadoFrm.controls['contra'].value;
       const tipoEmpleado = this.empleadoFrm.controls['tipoEmpleado'].value as TipoEmpleado;
 
-      const empleado = new Empleado(nombre, apellido, dni, cuil, correo, fotoUrl, tipoEmpleado);
+      const empleado = new Empleado(nombre, apellido, dni, cuil, correo, foto_url, tipoEmpleado);
       await this.auth.registrarEmpleado(empleado, contra);
       this.resetForm();
 
@@ -249,17 +249,17 @@ export class AltaEmpleadoPage {
 
   async tomarFotoEmpleado() {
     const foto = await this.fotosServ.tomarFoto();
-    let fotoUrl = '';
+    let foto_url = '';
 
     if (foto) {
       this.spinner.show();
       const dni = <string>this.empleadoFrm.controls['dni'].value;
 
-      fotoUrl = await this.storage.subirArchivo(foto, `${Colecciones.Usuarios}/empleado-${dni}`);
+      foto_url = await this.storage.subirArchivo(foto, `${Colecciones.Usuarios}/empleado-${dni}`);
       this.spinner.hide();
     }
 
-    return fotoUrl;
+    return foto_url;
   }
 
   private resetForm() {

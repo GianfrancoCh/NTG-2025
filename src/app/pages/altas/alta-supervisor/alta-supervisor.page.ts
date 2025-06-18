@@ -144,8 +144,8 @@ export class AltaSupervisorPage {
   }
 
   async subirSupervisor() {
-    const fotoUrl = await this.uploadPicture(this.picture);
-    if (fotoUrl) {
+    const foto_url = await this.uploadPicture(this.picture);
+    if (foto_url) {
       const nombre = this.frmSupervisor.controls['nombre'].value;
       const apellido = this.frmSupervisor.controls['apellido'].value;
       const DNI = Number(
@@ -165,7 +165,7 @@ export class AltaSupervisorPage {
         DNI,
         CUIL,
         correo,
-        fotoUrl,
+        foto_url,
         supervisorDueno
       );
       console.log('Jefe a registrar:', jefe);

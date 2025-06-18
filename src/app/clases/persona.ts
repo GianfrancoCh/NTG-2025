@@ -4,24 +4,24 @@ export abstract class Persona {
   nombre: string;
   apellido: string;
   dni: number;
-  fotoUrl: string;
-  correo: string;
+  foto_url: string;
+  email: string;
 
   constructor(
     perfil: RolUsuario,
     nombre: string,
     apellido: string,
     dni: number,
-    fotoUrl: string,
-    correo: string
+    foto_url: string,
+    email: string
   ) {
     this.id = '';
     this.perfil = perfil;
     this.nombre = nombre;
     this.apellido = apellido;
     this.dni = dni;
-    this.fotoUrl = fotoUrl;
-    this.correo = correo;
+    this.foto_url = foto_url;
+    this.email = email;
   }
 }
 

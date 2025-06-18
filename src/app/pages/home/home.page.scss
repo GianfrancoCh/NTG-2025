@@ -7,12 +7,13 @@ ion-toolbar {
 }
 
 ion-content {
-  --background: #{$dark};
+  --background: #{$dark-blue};
   color: #fff;
 }
 .titulo-header {
   font-weight: bold;
 }
+
 .container {
   height: 100vh;
   display: flex;

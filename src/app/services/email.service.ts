@@ -14,12 +14,19 @@ export class EmailService {
   constructor() {}
 
   enviarCorreoAprobado(data: any) {
+    console.log('Correo aprobacion enviado ');
     return emailjs.send(this.serviceID, this.templateID, data, this.userID);
   }
 
   enviarCorreoRechazado(data: any) {
-    return emailjs.send(this.serviceID, this.templateIDRechazado, data, this.userID);
-  };
+    console.log('Correo rechazo enviado');
+    return emailjs.send(
+      this.serviceID,
+      this.templateIDRechazado,
+      data,
+      this.userID
+    );
+  }
 
   //Como Mandar correo aprobado
 
@@ -37,7 +44,6 @@ export class EmailService {
   //     ToastError.fire('Error al enviar correo');
   //   }
   // }
-
 
   //Como Mandar correo rechazado
 

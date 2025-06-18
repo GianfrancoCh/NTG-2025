@@ -30,6 +30,7 @@ import { FotosService } from 'src/app/services/fotos.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-alta-cliente-anon',
@@ -52,6 +53,7 @@ import { AuthService } from 'src/app/services/auth.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
   ],
 })
 export class AltaClienteAnonPage {
@@ -72,7 +74,7 @@ export class AltaClienteAnonPage {
 
   async tomarFotoCliente() {
     const foto = await this.fotosServ.tomarFoto();
-    let fotoUrl = '';
+    let foto_url = '';
 
     if (!foto)
       throw new Exception(
@@ -82,23 +84,23 @@ export class AltaClienteAnonPage {
 
     this.spinner.show();
     const nombre = this.frmCliente.controls['nombre'].value;
-    fotoUrl = await this.storage.subirArchivo(
+    foto_url = await this.storage.subirArchivo(
       foto,
       `${Colecciones.Usuarios}/cliente-anon-${nombre}`
     );
     this.spinner.hide();
 
-    return fotoUrl;
+    return foto_url;
   }
 
   async subirCliente() {
     try {
-      let fotoUrl = await this.tomarFotoCliente();
+      let foto_url = await this.tomarFotoCliente();
 
       this.spinner.show();
       const nombre = this.frmCliente.controls['nombre'].value;
 
-      const cliente = Cliente.crearClienteAnon(nombre, fotoUrl);
+      const cliente = Cliente.crearClienteAnon(nombre, foto_url);
       await this.auth.registrarUsuarioAnonimo(cliente);
       ToastSuccess.fire('Registrado de forma anónima!');
       this.navCtrl.navigateRoot('home');

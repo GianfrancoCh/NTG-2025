@@ -23,9 +23,10 @@ export class PushNotificationService {
     try {
       const id = await OneSignal.User.pushSubscription.getIdAsync();
       this.playerId = id ?? null;
+
       return this.playerId;
     } catch (error) {
-      console.error('❌ Error al obtener el playerId:', error);
+      console.error('Error al obtener el playerId:', error);
       this.playerId = null;
       return null;
     }
@@ -66,7 +67,7 @@ export class PushNotificationService {
         .not('player_id', 'is', null);
 
       if (error) {
-        console.error('❌ Error al obtener jefes:', error.message);
+        console.error('Error al obtener jefes:', error.message);
         return;
       }
 
@@ -90,7 +91,7 @@ export class PushNotificationService {
         include_player_ids: playerIds,
         headings: { en: 'Nuevo usuario registrado' },
         contents: {
-          en: `Se ha registrado un nuevo usuario: ${nombre} ${apellido}`,
+          en: `${nombre} ${apellido} se ha registrado!`,
         },
       };
 
@@ -98,9 +99,9 @@ export class PushNotificationService {
         this.http.post(this.oneSignalApiUrl, body, { headers })
       );
 
-      console.log('✅ Notificación enviada a jefes:', response);
+      console.log('Notificación enviada a jefes:', response);
     } catch (err) {
-      console.error('❌ Error al enviar notificación a jefes:', err);
+      console.error('Error al enviar notificación a jefes:', err);
     }
   }
 }

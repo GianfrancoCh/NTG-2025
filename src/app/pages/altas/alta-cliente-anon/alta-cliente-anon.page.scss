@@ -1,10 +1,36 @@
 @import "src/theme/variables.scss";
 
+ion-toolbar {
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #{$dark-blue};
+  color: #fff;
+}
+
+.titulo-header {
+  font-weight: bold;
+}
+
 .container {
+  --background: #{$dark-blue};
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 16px;
+  padding-top: 0px;
+
+  ion-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+  }
 
   .errores {
     display: flex;

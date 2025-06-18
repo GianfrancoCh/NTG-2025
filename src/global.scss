@@ -38,46 +38,36 @@
 
 @import "./theme/variables.scss";
 
-// .container {
-//   height: 100%;
-//   width: 100%;
-//   margin-top: 112px !important;
-// }
+.container {
+  height: 100%;
+  width: 100%;
+  margin-top: 112px !important;
+}
 
-.background-pri {
+.background-grey {
   background-color: $grey;
   --background: #{$grey};
 }
 
-.background-sec {
-  background-color: $dark;
-  --background: #{$dark};
+.background-black {
+  background-color: $black;
+  --background: #{$black};
 }
 
-.background-ter {
+.background-blue {
   background-color: $blue;
   --background: #{$blue};
 }
 
-.background-for {
-  background-color: $green;
-  --background: #{$green};
-}
-
-.background-fiv {
-  background-color: $mint;
-  --background: #{$mint};
-}
-
-.background-six {
+.background-dark-blue {
   background-color: $dark-blue;
   --background: #{$dark-blue};
 }
 
-// .background-sev {
-//   background-color: $dark-grey;
-//   --background: #{$dark-grey};
-// }
+.background-dark-grey {
+  background-color: $dark-grey;
+  --background: #{$dark-grey};
+}
 
 .deshabilitado {
   pointer-events: none;

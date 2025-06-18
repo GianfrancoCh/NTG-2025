@@ -103,12 +103,15 @@ export class ScannerService {
     if (partes.length <= 10) {
       //DNI nuevo
       const dni = partes[4].replace(/[-. ]/g, '');
-      console.log('dni:', dni);
 
-      const digitosCuil = partes[8];
-      const cuil = [digitosCuil.slice(0, 2), dni, digitosCuil.slice(2)].join(
-        ''
-      );
+      // const digitosCuil = partes[8];
+      // const cuil = [digitosCuil.slice(0, 2), dni, digitosCuil.slice(2)].join(
+      //   ''
+      // );
+
+      const prefijo = Math.floor(Math.random() * 8) + 20; // Números entre 20 y 27
+      const sufijo = Math.floor(Math.random() * 10); // Número entre 0 y 9
+      const cuil = `${prefijo}${dni}${sufijo}`;
 
       datos = {
         dni: Number(dni),

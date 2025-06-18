@@ -33,6 +33,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding content-with-safe-area" id="main-content">
+  <!-- <img src="../../../assets/logo-comanda.png" alt="" style="height: 250px;"> -->
   <div class="login-container">
     <div class="login-form">
       <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -61,10 +62,13 @@
           <ion-button expand="block" class="registro-btn" routerLink="/alta-cliente">
             REGISTRARSE
           </ion-button>
+          <ion-button expand="block" class="registro-anon-btn" routerLink="/alta-cliente-anon">
+            INGRESAR DE FORMA ANÓNIMA
+          </ion-button>
         </div>
       </form>
 
-      <ion-button expand="block" class="btn btn-primary" routerLink="/alta-supervisor">
+      <!-- <ion-button expand="block" class="btn btn-primary" routerLink="/alta-supervisor">
         Registrar Dueño
       </ion-button>
       <ion-button expand="block" class="btn btn-primary" routerLink="/alta-empleado">
@@ -75,8 +79,9 @@
       </ion-button>
       <ion-button expand="block" class="btn btn-primary" routerLink="/alta-mesa">
         Alta Mesa
-      </ion-button>
-      <button (click)="enviarPush()">Enviar notificación</button>
+      </ion-button> -->
+
+      <!-- <button (click)="enviarPush()">Enviar notificación</button> -->
 
     </div>
   </div>

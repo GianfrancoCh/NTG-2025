@@ -68,7 +68,7 @@ export class AuthService {
 
   async registrarUsuario(usuario: Persona, password: string): Promise<void> {
     const { data, error } = await this.supabase.auth.signUp({
-      email: usuario.correo,
+      email: usuario.email,
       password: password,
     });
 
@@ -85,8 +85,8 @@ export class AuthService {
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       dni: usuario.dni,
-      email: usuario.correo,
-      foto_url: usuario.fotoUrl,
+      email: usuario.email,
+      foto_url: usuario.foto_url,
       rol: usuario.perfil,
     });
 
@@ -124,7 +124,7 @@ export class AuthService {
 
   async registrarSupervisor(usuario: Jefe, password: string): Promise<void> {
     const { data, error } = await this.supabase.auth.signUp({
-      email: usuario.correo,
+      email: usuario.email,
       password: password,
     });
 
@@ -146,8 +146,8 @@ export class AuthService {
       apellido: usuario.apellido,
       dni: usuario.dni,
       cuil: usuario.cuil,
-      email: usuario.correo,
-      foto_url: usuario.fotoUrl,
+      email: usuario.email,
+      foto_url: usuario.foto_url,
       rol: usuario.perfil,
       player_id: playerId, // agregamos el player_id
     });
@@ -160,7 +160,7 @@ export class AuthService {
   // Registro de empleado
   async registrarEmpleado(usuario: Empleado, password: string): Promise<void> {
     const { data, error } = await this.supabase.auth.signUp({
-      email: usuario.correo,
+      email: usuario.email,
       password: password,
     });
 
@@ -178,8 +178,8 @@ export class AuthService {
       apellido: usuario.apellido,
       dni: usuario.dni,
       cuil: usuario.cuil,
-      email: usuario.correo,
-      foto_url: usuario.fotoUrl,
+      email: usuario.email,
+      foto_url: usuario.foto_url,
       rol: usuario.tipo,
     });
 
@@ -192,7 +192,7 @@ export class AuthService {
     await OneSignal.logout();
 
     const { data, error } = await this.supabase.auth.signUp({
-      email: usuario.correo,
+      email: usuario.email,
       password: password,
     });
 
@@ -214,8 +214,8 @@ export class AuthService {
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       dni: usuario.dni,
-      email: usuario.correo,
-      foto_url: usuario.fotoUrl,
+      email: usuario.email,
+      foto_url: usuario.foto_url,
       rol: usuario.perfil,
       estado: 'pendiente',
       player_id: playerId,
@@ -259,7 +259,7 @@ export class AuthService {
           apellido: usuarioAnonimo.apellido,
           dni: usuarioAnonimo.dni,
           email,
-          foto_url: usuarioAnonimo.fotoUrl,
+          foto_url: usuarioAnonimo.foto_url,
           rol: usuarioAnonimo.perfil || 'anonimo',
           // estado: 'no necesita', // si es necesario
         });

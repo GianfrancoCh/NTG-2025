@@ -4,8 +4,8 @@ export class Jefe extends Persona {
   tipo: TipoJefe;
   cuil: number;
 
-  constructor(nombre: string, apellido: string, dni: number, cuil: number, correo: string, fotoUrl: string, tipo: TipoJefe) {
-    super('jefe', nombre, apellido, dni, fotoUrl, correo);
+  constructor(nombre: string, apellido: string, dni: number, cuil: number, email: string, foto_url: string, tipo: TipoJefe) {
+    super('jefe', nombre, apellido, dni, foto_url, email);
     this.tipo = tipo;
     this.cuil = cuil;
   }

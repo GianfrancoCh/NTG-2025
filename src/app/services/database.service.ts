@@ -175,7 +175,7 @@ export class DatabaseService {
         minutos: producto.tiempoElab,
         precio: producto.precio,
         sector: producto.sector,
-        fotos_url: producto.fotosUrl,
+        fotos_url: producto.foto_url,
       });
 
     if (insertError) {
@@ -190,7 +190,7 @@ export class DatabaseService {
         numero: mesa.nroMesa,
         cant_comensales: mesa.cantComensales,
         tipo: mesa.tipo,
-        foto_url: mesa.fotoUrl,
+        foto_url: mesa.foto_url,
         codigo_qr: mesa.codigoQr,
         estado: mesa.estado,
       })

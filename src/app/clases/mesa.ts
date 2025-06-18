@@ -3,16 +3,22 @@ export class Mesa {
   nroMesa: number;
   cantComensales: number;
   tipo: TipoMesa;
-  fotoUrl: string | undefined;
+  foto_url: string | undefined;
   codigoQr: string;
   estado: EstadoMesa;
 
-  constructor(nroMesa: number, cantComensales: number, tipo: TipoMesa, fotoUrl: string | undefined, codigoQr: string) {
+  constructor(
+    nroMesa: number,
+    cantComensales: number,
+    tipo: TipoMesa,
+    foto_url: string | undefined,
+    codigoQr: string
+  ) {
     this.id = '';
     this.nroMesa = nroMesa;
     this.cantComensales = cantComensales;
     this.tipo = tipo;
-    this.fotoUrl = fotoUrl;
+    this.foto_url = foto_url;
     this.codigoQr = codigoQr;
     this.estado = EstadoMesa.Disponible;
   }
@@ -27,7 +33,7 @@ export enum EstadoMesa {
   EsperandoComida = 'EsperandoComida',
   Comiendo = 'Comiendo',
   Pagando = 'Pagando',
-  Pago = 'Pago'
+  Pago = 'Pago',
 }
 
 export const parseEstadoMesa = (estado: EstadoMesa): string => {

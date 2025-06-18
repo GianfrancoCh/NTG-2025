@@ -1,5 +1,21 @@
 @import "src/theme/variables.scss";
 
+ion-toolbar {
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #{$dark-blue};
+  color: #fff;
+}
+
+.titulo-header {
+  font-weight: bold;
+}
+
+
 #noClientes {
   display: flex;
   height: 100%;

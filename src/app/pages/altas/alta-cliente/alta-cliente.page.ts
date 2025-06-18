@@ -60,7 +60,7 @@ import { RouterLink } from '@angular/router';
     IonCard,
     // IonLoading,
     // IonProgressBar,
-    // IonContent,
+    IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
@@ -149,7 +149,7 @@ export class AltaClientePage {
 
   async subirCliente() {
     try {
-      let fotoUrl = await this.tomarFotoCliente();
+      let foto_url = await this.tomarFotoCliente();
 
       this.spinner.show();
       const nombre = this.frmCliente.controls['nombre'].value;
@@ -165,17 +165,12 @@ export class AltaClientePage {
         apellido,
         dni,
         correo,
-        fotoUrl,
+        foto_url,
         'registrado'
       );
       await this.auth.registrarCliente(cliente, contra);
       ToastSuccess.fire('Cliente creado!');
 
-      // this.notification.sendNotificationToRole(
-      //   'Nuevo Cliente Registrado',
-      //   `El cliente ${nombre} ${apellido} se ha registrado.`,
-      //   'jefe'
-      // );
       this.resetForm();
       this.spinner.hide();
       this.navCtrl.navigateRoot('home');
@@ -198,7 +193,6 @@ export class AltaClientePage {
 
       this.frmCliente.patchValue({
         dni: datosDni.dni.toString(),
-        // cuil: datosDni.cuil.toString(),
         nombre: datosDni.nombre,
         apellido: datosDni.apellido,
       });
@@ -206,14 +200,13 @@ export class AltaClientePage {
       this.spinner.hide();
     } catch (error: any) {
       this.spinner.hide();
-      // ToastError.fire('Ups...', error.message);
       ToastError.fire('Ups...', 'escaneo cancelado o fallido.');
     }
   }
 
   async tomarFotoCliente() {
     const foto = await this.fotosServ.tomarFoto();
-    let fotoUrl = '';
+    let foto_url = '';
 
     if (!foto)
       throw new Exception(
@@ -223,13 +216,13 @@ export class AltaClientePage {
 
     this.spinner.show();
     const dni = <string>this.frmCliente.controls['dni'].value;
-    fotoUrl = await this.storage.subirArchivo(
+    foto_url = await this.storage.subirArchivo(
       foto,
       `${Colecciones.Usuarios}/cliente-${dni}`
     );
     this.spinner.hide();
 
-    return fotoUrl;
+    return foto_url;
   }
 
   async buscarCorreo() {
