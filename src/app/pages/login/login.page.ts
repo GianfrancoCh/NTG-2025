@@ -138,7 +138,7 @@ export class LoginPage {
       }
 
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       });
 
       setTimeout(() => {

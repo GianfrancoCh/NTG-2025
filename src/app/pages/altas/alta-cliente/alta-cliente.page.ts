@@ -176,7 +176,7 @@ export class AltaClientePage {
 
       await this.auth.signOut();
 
-      // this.navCtrl.navigateRoot('login');
+      this.navCtrl.navigateRoot('login');
     } catch (error: any) {
       this.spinner.hide();
       console.error(error);
