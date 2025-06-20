@@ -15,8 +15,8 @@
 | D                 | Alta Productos                                         | Gianfranco Chiarizia | Finalizado  |
 | E                 | Alta Mesa                                              | Aguirre Antonio      | Finalizado  |
 | Codigos QR        |                                                        |                      |             |
-| F                 | QR Ingreso al local                                    | Nahuel Borquez       |             |
-| G                 | QR de la Mesa                                          | Gianfranco Chiarizia |             |
+| F                 | QR Ingreso al local                                    | Nahuel Borquez       | En Progreso |
+| G                 | QR de la Mesa                                          | Gianfranco Chiarizia | En Progreso |
 | H                 | QR de la propina                                       | Aguirre Antonio      |             |
 | Encuestas         |                                                        |                      |             |
 | I                 | Encuesta Clientes                                      | Nahuel Borquez       |             |
