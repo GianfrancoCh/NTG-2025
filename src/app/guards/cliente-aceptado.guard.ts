@@ -16,15 +16,12 @@ export const clienteAceptadoGuard: CanActivateFn = async (route, state) => {
     return false;
   }
 
-  if (
-    cliente.estadoCliente === 'aceptado' ||
-    cliente.estadoCliente === 'no necesita'
-  ) {
+  if (cliente.estado === 'aceptado' || cliente.estado === 'no necesita') {
     return true;
   } else {
     ToastError.fire(
       `Acceso denegado: su registro ${
-        cliente.estadoCliente === 'rechazado'
+        cliente.estado === 'rechazado'
           ? 'fue rechazado.'
           : 'todavía no fue aprobado.'
       }`

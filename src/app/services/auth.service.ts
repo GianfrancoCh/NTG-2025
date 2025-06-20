@@ -23,6 +23,12 @@ export class AuthService {
   databaseService: DatabaseService = inject(DatabaseService);
   pushService: PushNotificationService = inject(PushNotificationService);
 
+  private usuarioEnSesion: Persona | null = null;
+
+  get UsuarioEnSesion(): Persona | null {
+    return this.usuarioEnSesion;
+  }
+
   constructor(private router: Router) {
     this.supabase.auth.onAuthStateChange(async (_, session) => {
       this.currentUser$.next(session?.user ?? null);
@@ -32,8 +38,26 @@ export class AuthService {
   }
 
   private async loadUser() {
-    const { data, error } = await this.supabase.auth.getUser();
+    const { data } = await this.supabase.auth.getUser();
     this.currentUser$.next(data.user ?? null);
+  }
+
+  async cargarDatosUsuario(email: string): Promise<void> {
+    const { data, error } = await this.supabase
+      .from('usuarios')
+      .select('*')
+      .eq('email', email)
+      .single();
+
+    if (data && !error) {
+      this.usuarioEnSesion = data as Persona;
+      console.log(
+        'Usuario en sesión cargado desde login:',
+        this.usuarioEnSesion
+      );
+    } else {
+      console.warn('No se encontró el usuario en la base de datos.');
+    }
   }
 
   signUp(email: string, password: string) {
@@ -87,7 +111,7 @@ export class AuthService {
       dni: usuario.dni,
       email: usuario.email,
       foto_url: usuario.foto_url,
-      rol: usuario.perfil,
+      rol: usuario.rol,
     });
 
     if (insertError) {
@@ -110,7 +134,7 @@ export class AuthService {
     // Mapeamos manualmente a la clase Cliente si hace falta
     const cliente: Cliente = {
       ...data,
-      estadoCliente: data.estado as
+      estado: data.estado as
         | 'aceptado'
         | 'pendiente'
         | 'rechazado'
@@ -137,7 +161,7 @@ export class AuthService {
       throw new Error('auth-null: No se pudo crear el usuario.');
     }
 
-    // 👉 Obtenemos el playerId del dispositivo
+    // Obtenemos el playerId del dispositivo
     const playerId = await this.pushService.loadPlayerId();
     console.log('Player ID obtenido:', playerId);
 
@@ -148,7 +172,7 @@ export class AuthService {
       cuil: usuario.cuil,
       email: usuario.email,
       foto_url: usuario.foto_url,
-      rol: usuario.perfil,
+      rol: usuario.rol,
       player_id: playerId, // agregamos el player_id
     });
 
@@ -216,7 +240,7 @@ export class AuthService {
       dni: usuario.dni,
       email: usuario.email,
       foto_url: usuario.foto_url,
-      rol: usuario.perfil,
+      rol: usuario.rol,
       estado: 'pendiente',
       player_id: playerId,
     });
@@ -260,7 +284,7 @@ export class AuthService {
           dni: usuarioAnonimo.dni,
           email,
           foto_url: usuarioAnonimo.foto_url,
-          rol: usuarioAnonimo.perfil || 'anonimo',
+          rol: usuarioAnonimo.rol || 'anonimo',
           // estado: 'no necesita', // si es necesario
         });
 

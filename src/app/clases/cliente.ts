@@ -2,7 +2,7 @@ import { Persona } from './persona';
 
 export class Cliente extends Persona {
   tipo: TipoCliente;
-  estadoCliente: EstadoCliente;
+  estado: EstadoCliente;
   idMesa: string | null;
 
   constructor(
@@ -16,12 +16,12 @@ export class Cliente extends Persona {
     super('cliente', nombre, apellido, dni, foto_url, email);
     this.tipo = tipo;
     this.idMesa = null;
-    this.estadoCliente = 'pendiente';
+    this.estado = 'pendiente';
   }
 
   static crearClienteAnon(nombre: string, foto_url: string) {
     const anon = new Cliente(nombre, '', 0, '', foto_url, 'anonimo');
-    anon.estadoCliente = 'no necesita';
+    anon.estado = 'no necesita';
     return anon;
   }
 }

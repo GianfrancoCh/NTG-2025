@@ -18,5 +18,5 @@ export interface Roles_Tipos {
 export interface ClienteEnEspera {
   id: string;
   fecha: Date;
-  cliente: Cliente;
+  id_cliente: string;
 }

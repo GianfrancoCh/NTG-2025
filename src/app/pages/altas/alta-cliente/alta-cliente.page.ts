@@ -173,7 +173,10 @@ export class AltaClientePage {
 
       this.resetForm();
       this.spinner.hide();
-      this.navCtrl.navigateRoot('home');
+
+      await this.auth.signOut();
+
+      // this.navCtrl.navigateRoot('login');
     } catch (error: any) {
       this.spinner.hide();
       console.error(error);

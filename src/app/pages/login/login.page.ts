@@ -92,10 +92,13 @@ export class LoginPage {
         return;
       }
 
+      // 🔄 Cargamos los datos del usuario en memoria
+      await this.authService.cargarDatosUsuario(email);
+
       const cliente = await this.authService.obtenerUsuarioCliente();
 
       if (cliente) {
-        if (cliente.estadoCliente === 'rechazado') {
+        if (cliente.estado === 'rechazado') {
           await this.authService.signOut();
           this.spinner.hide();
           this.loginForm.reset();
@@ -103,7 +106,7 @@ export class LoginPage {
           return;
         }
 
-        if (cliente.estadoCliente === 'pendiente') {
+        if (cliente.estado === 'pendiente') {
           await this.authService.signOut();
           this.spinner.hide();
           this.loginForm.reset();
@@ -113,7 +116,6 @@ export class LoginPage {
       }
 
       await OneSignal.logout();
-
       const userId = data.user.id;
       await OneSignal.login(userId);
 

@@ -10,14 +10,17 @@ ion-content {
   --background: #{$dark-blue};
   color: #fff;
 }
+
 .titulo-header {
   font-weight: bold;
 }
 
 .container {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 8px;
 }
 
 .boton-logout {
@@ -26,92 +29,43 @@ ion-content {
   color: rgb(255, 255, 255);
 }
 
-.titulo {
-  font-family: "system-ui", sans-serif;
-  color: black;
-}
-
 .titulo-inicio {
-  font-size: 32px;
-  color: #1ed7f0;
+  font-size: 25px;
+  color: #ffffff;
   text-align: center;
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
   font-family: "system-ui", sans-serif;
   font-weight: bold;
 }
 
 .descripcion-inicio {
   font-size: 20px;
-  color: #44ff00;
+  color: #639d4c;
   text-align: center;
   width: 100%;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem 0;
   font-family: "system-ui", sans-serif;
   font-weight: bold;
 }
 
-.options {
-  flex: 1;
+/* Nuevos estilos para el contenedor QR */
+.qr-container {
+  width: 100%;
+  padding: 10px 0;
   display: flex;
-  flex-direction: column;
-  padding: 0;
-
-  ion-button {
-    flex: 1;
-    margin: 0;
-    border-radius: 0;
-    --border-radius: 0;
-    font-size: 24px;
-    font-weight: bold;
-    background: rgba(240, 248, 255, 0.6); /* Fondo opcional */
-
-    .button-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      span {
-        margin-top: 14px;
-        font-size: 28px;
-        font-family: "system-ui", sans-serif;
-      }
-    }
-  }
-}
-
-#container {
-  text-align: center;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  background: transparent;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.btn_qr {
+  width: 98%;
+  height: 50px;
+  margin: 0;
+  --border-radius: 8px; /* Opcional: bordes redondeados */
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0 0 20px 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-.nice-button {
-  --background: #4caf50; /* verde lindo */
-  --color: white;
-}
-
-.ugly-button {
-  --background: #f44336; /* rojo feo */
-  --color: white;
+.img_qr {
+  width: 24px; /* Tamaño ajustado para mejor proporción */
+  height: 24px;
 }

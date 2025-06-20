@@ -1,6 +1,6 @@
 export abstract class Persona {
   id: string;
-  perfil: RolUsuario;
+  rol: RolUsuario;
   nombre: string;
   apellido: string;
   dni: number;
@@ -8,7 +8,7 @@ export abstract class Persona {
   email: string;
 
   constructor(
-    perfil: RolUsuario,
+    rol: RolUsuario,
     nombre: string,
     apellido: string,
     dni: number,
@@ -16,7 +16,7 @@ export abstract class Persona {
     email: string
   ) {
     this.id = '';
-    this.perfil = perfil;
+    this.rol = rol;
     this.nombre = nombre;
     this.apellido = apellido;
     this.dni = dni;

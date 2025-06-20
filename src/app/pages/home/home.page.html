@@ -12,22 +12,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding content-with-safe-area" id="main-content">
+<ion-content>
   <div class="container">
-    <div *ngIf="!user" id="container">
-      <h1 class="titulo-inicio">BIENVENIDO</h1>
+    <div *ngIf="!user">
+      <h1 class="titulo-inicio">Bienvenido</h1>
       <p class="descripcion-inicio">Debes estar registrado para poder utilizar la app.</p>
 
       <ion-button size="big" (click)="goToLogin()">Iniciar Sesión</ion-button>
       <ion-button size="big" (click)="goToRegister()">Crear una Cuenta</ion-button>
-
     </div>
 
     <div *ngIf="user">
-
       <h1 class="titulo-inicio">¡Hola, {{ user.email }}!</h1>
-
       <ion-button size="big" routerLink="/lista-clientes-pendientes">Lista clientes pendientes</ion-button>
     </div>
+
+    <!-- OPCIONES USUARIOS -->
+
+  </div>
+
+  <!-- Reemplazo del ion-footer por div -->
+  <div class="qr-container">
+    <ion-button (click)="this.escanearQrEntrada()" fill="outline" class="btn_qr">
+      <img src="../../../assets/qr.png" class="img_qr">
+    </ion-button>
   </div>
 </ion-content>
