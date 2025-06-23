@@ -1,0 +1,46 @@
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de clientes en espera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container background-ter">
+    <ion-list *ngIf="clientesEsperando.length > 0; else noClientes" class="ion-padding-vertical">
+      <ion-card *ngFor="let cliEspera of clientesEsperando"
+        class="item-card ion-no-margin ion-margin-bottom ion-no-padding">
+        <ion-card-header class="ion-text-center">
+          <div class="img-container">
+            <img [src]="cliEspera.foto_url" />
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card-title color="tertiary">
+            {{cliEspera.nombre}} {{cliEspera.tipo === 'anonimo' ? '(Anónimo)' :
+            cliEspera.apellido}}
+          </ion-card-title>
+          <ion-card-subtitle color="secondary" *ngIf="cliEspera.tipo !== 'anonimo'">
+            {{cliEspera.dni}}, {{cliEspera.email}}
+          </ion-card-subtitle>
+          <ion-button expand="block" color="success" (click)="selecCliente(cliEspera)">ASIGNAR</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+    <ng-template #noClientes>
+      <div id="noClientes">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>No hay clientes</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Parece que no hay clientes en lista de espera.</p>
+            <ion-button expand="block" (click)="navCtrl.navigateRoot('home')">Ir a Inicio</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

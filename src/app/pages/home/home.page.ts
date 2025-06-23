@@ -16,6 +16,8 @@ import {
   IonMenu,
   IonMenuButton,
   IonFooter,
+  IonItem,
+  IonList,
 } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -39,6 +41,8 @@ import {
 import { ClienteEnEspera } from 'src/app/utils/interfaces/interfaces';
 import { EstadoMesa, Mesa } from 'src/app/clases/mesa';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Persona } from 'src/app/clases/persona';
+import { PushNotificationService } from 'src/app/services/push-notification.service';
 
 @Component({
   selector: 'app-home',
@@ -46,6 +50,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
+    IonList,
+    IonItem,
     IonFooter,
     IonCardContent,
     IonCardTitle,
@@ -70,14 +76,16 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class HomePage implements OnInit {
   user: User | null = null;
   isLoggedIn = false;
+  usuarioActual: Persona | null = null;
 
   constructor(
     private router: Router,
-    private authService: AuthService,
+    public authService: AuthService,
     protected navCtrl: NavController,
     private scanner: ScannerService,
     private db: DatabaseService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private pushService: PushNotificationService
   ) {}
 
   ngOnInit() {
@@ -85,6 +93,9 @@ export class HomePage implements OnInit {
       this.user = user;
       console.log('Usuario en home:', user);
     });
+
+    this.usuarioActual = this.authService.UsuarioEnSesion;
+    console.log('Usuario actual:', this.usuarioActual);
   }
 
   goToLogin() {
@@ -190,6 +201,10 @@ export class HomePage implements OnInit {
         //   `${clienteEnEspera.cliente.nombre} ${clienteEnEspera.cliente.apellido} se sumó a la lista de espera`,
         //   'metre'
         // );
+        this.pushService.notificarMaitreClienteEspera(
+          this.authService.UsuarioEnSesion?.nombre ?? '',
+          this.authService.UsuarioEnSesion?.apellido ?? ''
+        );
       }
 
       this.navCtrl.navigateRoot(url);

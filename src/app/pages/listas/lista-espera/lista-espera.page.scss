@@ -1,0 +1,67 @@
+@import "src/theme/variables.scss";
+
+ion-toolbar {
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #{$dark-blue};
+  color: #fff;
+}
+
+.titulo-header {
+  font-weight: bold;
+}
+
+.container {
+  overflow-y: auto;
+
+  ion-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 100%;
+  }
+
+  ion-card.item-card {
+    width: 300px;
+    height: fit-content;
+    --background: #bccbd7;
+
+    ion-card-header {
+      .img-container {
+        background-color: #4d4646;
+        height: 240px;
+        width: 268px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          display: block;
+        }
+      }
+    }
+  }
+
+  #noClientes {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    ion-card-title {
+      font-size: 4rem;
+    }
+
+    p,
+    ion-button {
+      font-size: 2rem;
+    }
+  }
+}

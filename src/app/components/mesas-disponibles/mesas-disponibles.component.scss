@@ -1,0 +1,66 @@
+.tabla-container {
+  .tabla {
+    max-height: 50vh;
+    overflow: auto;
+
+    table {
+      max-height: 40vh;
+      margin: 1rem;
+      border-collapse: collapse;
+      color: #2a2a2a;
+      border: 3px solid #dee2e6;
+      background: rgba(207, 220, 150, 0.5);
+      font-family: 'Gill Sans', sans-serif;
+      font-size: 16px;
+
+      thead {
+        position: sticky;
+        top: 0;
+        background-color: #6c757d;
+        color: #ffffff;
+
+        th {
+          border-right: 1px solid #dee2e6;
+          text-align: start;
+          padding: 10px 5px;
+          font-size: 18px;
+
+          &:last-child {
+            border-right: none;
+          }
+
+          &#nroMesa {
+            width: 40%;
+          }
+
+          &#tipo {
+            width: 40%;
+          }
+
+          &#cantComensales {
+            width: 20%;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          height: 3rem;
+
+          &:nth-child(odd) {
+            background-color: #f8f9fa;
+          }
+
+          &:nth-child(even) {
+            background-color: #e9ecef;
+          }
+        }
+
+        td {
+          padding: 10px 5px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

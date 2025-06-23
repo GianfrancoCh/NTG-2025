@@ -4,6 +4,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Persona } from '../clases/persona';
 import { Producto } from '../clases/producto';
 import { Mesa } from '../clases/mesa';
+import { ClienteEnEspera } from '../utils/interfaces/interfaces';
 
 export enum Colecciones {
   Usuarios = 'usuarios',
@@ -126,7 +127,7 @@ export class DatabaseService {
     const { error } = await this.supabase
       .from(coleccion)
       .delete()
-      .eq('id', docId);
+      .eq('id_cliente', docId);
 
     if (error) {
       console.error('Error al borrar documento:', error.message);

@@ -1,7 +1,7 @@
 import { Cliente, TipoCliente } from 'src/app/clases/cliente';
 import { TipoEmpleado } from 'src/app/clases/empleado';
 import { TipoJefe } from 'src/app/clases/jefe';
-import { RolUsuario } from 'src/app/clases/persona';
+// import { RolUsuario } from 'src/app/clases/persona';
 
 export interface Foto {
   id: string;
@@ -11,7 +11,7 @@ export interface Foto {
 }
 
 export interface Roles_Tipos {
-  rol: RolUsuario;
+  rol: string;
   tipo?: TipoCliente | TipoEmpleado | TipoJefe;
 }
 

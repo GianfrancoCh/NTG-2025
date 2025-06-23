@@ -66,6 +66,16 @@ export const routes: Routes = [
   },
   {
     path: 'alta-cliente-anon',
-    loadComponent: () => import('./pages/altas/alta-cliente-anon/alta-cliente-anon.page').then( m => m.AltaClienteAnonPage)
+    loadComponent: () =>
+      import('./pages/altas/alta-cliente-anon/alta-cliente-anon.page').then(
+        (m) => m.AltaClienteAnonPage
+      ),
+  },
+  {
+    path: 'lista-espera',
+    loadComponent: () =>
+      import('./pages/listas/lista-espera/lista-espera.page').then(
+        (m) => m.ListaEsperaPage
+      ),
   },
 ];

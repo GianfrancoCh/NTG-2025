@@ -79,6 +79,7 @@ export class AuthService {
   async signOut() {
     await this.supabase.auth.signOut();
     this.currentUser$.next(null);
+    this.usuarioEnSesion = null;
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
@@ -275,6 +276,14 @@ export class AuthService {
         );
       }
 
+      //verificar que se cargue en usuarioActual
+
+      //pushNotf
+      await OneSignal.login(data.user.id);
+
+      const playerId = await this.pushService.loadPlayerId();
+      console.log('Player ID obtenido:', playerId);
+
       // Insertamos en la tabla 'usuarios'
       const { error: insertError } = await this.supabase
         .from('usuarios')
@@ -285,7 +294,8 @@ export class AuthService {
           email,
           foto_url: usuarioAnonimo.foto_url,
           rol: usuarioAnonimo.rol || 'anonimo',
-          // estado: 'no necesita', // si es necesario
+          estado: 'no necesita', // si es necesario
+          player_id: playerId,
         });
 
       if (insertError) {

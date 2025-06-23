@@ -1,6 +1,6 @@
 export abstract class Persona {
   id: string;
-  rol: RolUsuario;
+  rol: string; // RolUsuario
   nombre: string;
   apellido: string;
   dni: number;
@@ -8,7 +8,7 @@ export abstract class Persona {
   email: string;
 
   constructor(
-    rol: RolUsuario,
+    rol: string,
     nombre: string,
     apellido: string,
     dni: number,
@@ -25,4 +25,4 @@ export abstract class Persona {
   }
 }
 
-export type RolUsuario = 'cliente' | 'empleado' | 'jefe';
+// export type RolUsuario = 'cliente' | 'empleado' | 'jefe';

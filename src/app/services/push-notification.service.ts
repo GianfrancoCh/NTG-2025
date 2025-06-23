@@ -104,4 +104,52 @@ export class PushNotificationService {
       console.error('Error al enviar notificación a jefes:', err);
     }
   }
+
+  async notificarMaitreClienteEspera(nombre: string, apellido: string) {
+    try {
+      // 1. Obtener todos los maitres que tengan player_id registrado
+      const { data, error } = await this.db.supabase
+        .from('usuarios')
+        .select('player_id')
+        .eq('rol', 'maitre')
+        .not('player_id', 'is', null);
+
+      if (error) {
+        console.error('Error al obtener jefes:', error.message);
+        return;
+      }
+
+      const playerIds = data
+        .map((j: any) => j.player_id)
+        .filter((id: string) => !!id);
+
+      if (playerIds.length === 0) {
+        console.log('No se encontraron maitre con player_id.');
+        return;
+      }
+
+      // 2. Enviar notificación
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.oneSignalApiKey}`,
+      });
+
+      const body = {
+        app_id: this.oneSignalAppId,
+        include_player_ids: playerIds,
+        headings: { en: 'Nuevo cliente en espera!' },
+        contents: {
+          en: `${nombre} ${apellido} se sumo a la lista de espera!`,
+        },
+      };
+
+      const response = await firstValueFrom(
+        this.http.post(this.oneSignalApiUrl, body, { headers })
+      );
+
+      console.log('Notificación enviada a jefes:', response);
+    } catch (err) {
+      console.error('Error al enviar notificación a maitres:', err);
+    }
+  }
 }
