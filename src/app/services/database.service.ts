@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient, RealtimeChannel } from '@supabase/supabase-js';
 import { Persona } from '../clases/persona';
 import { Producto } from '../clases/producto';
 import { Mesa } from '../clases/mesa';
@@ -207,5 +207,30 @@ export class DatabaseService {
 
     console.log(data[0].id);
     return data[0].id;
+  }
+
+  //para ver si cambia un usuario en la db de supabase
+  escucharUsuario(
+    id: string,
+    callback: (cliente: any) => void
+  ): RealtimeChannel {
+    const canal = this.supabase
+      .channel(`usuario-${id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'usuarios',
+          filter: `id=eq.${id}`,
+        },
+        async (payload) => {
+          const clienteActualizado = payload.new;
+          callback(clienteActualizado);
+        }
+      )
+      .subscribe();
+
+    return canal;
   }
 }

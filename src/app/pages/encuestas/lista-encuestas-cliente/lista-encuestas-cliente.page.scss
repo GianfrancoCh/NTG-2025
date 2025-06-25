@@ -1,0 +1,78 @@
+@import "src/theme/variables.scss";
+
+ion-toolbar {
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #{$dark-blue};
+  color: #fff;
+}
+
+.titulo-header {
+  font-weight: bold;
+}
+
+.container {
+  overflow-y: auto;
+
+  .btns {
+    display: flex;
+
+    ion-button {
+      width: 50%;
+    }
+  }
+
+  .encuestas {
+    ion-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      --background: #{$dark-blue};
+      --inner-padding-end: 0;
+
+      &::part(native) {
+        padding: 5px;
+      }
+
+      .encuesta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .autor {
+          display: flex;
+          align-items: center;
+
+          ion-avatar {
+            width: 2rem;
+            height: 2rem;
+          }
+
+          ion-text {
+            font-weight: 500;
+          }
+        }
+      }
+
+      .cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .mensaje-vacio {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 200px;
+      /* Altura ajustable según el diseño deseado */
+    }
+  }
+}

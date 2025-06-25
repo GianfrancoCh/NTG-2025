@@ -137,7 +137,7 @@ export class PushNotificationService {
       const body = {
         app_id: this.oneSignalAppId,
         include_player_ids: playerIds,
-        headings: { en: 'Nuevo cliente en espera!' },
+        headings: { en: 'Nuevo cliente' },
         contents: {
           en: `${nombre} ${apellido} se sumo a la lista de espera!`,
         },
@@ -147,7 +147,7 @@ export class PushNotificationService {
         this.http.post(this.oneSignalApiUrl, body, { headers })
       );
 
-      console.log('Notificación enviada a jefes:', response);
+      console.log('Notificación enviada a maitres:', response);
     } catch (err) {
       console.error('Error al enviar notificación a maitres:', err);
     }

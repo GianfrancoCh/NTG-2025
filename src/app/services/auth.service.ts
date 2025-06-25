@@ -276,8 +276,6 @@ export class AuthService {
         );
       }
 
-      //verificar que se cargue en usuarioActual
-
       //pushNotf
       await OneSignal.login(data.user.id);
 
@@ -302,7 +300,8 @@ export class AuthService {
         throw new Error('auth-error: db-error ' + insertError.message);
       }
 
-      // this.sesionEventEmitter.emit({ sesionAbierta: true });
+      //anonimo se carga en usuarioActual
+      this.cargarDatosUsuario(email);
       console.log(usuarioAnonimo);
     } catch (error: any) {
       throw new Error('auth-error: ' + error.message);

@@ -1,0 +1,32 @@
+@import "src/theme/variables.scss";
+
+ion-toolbar {
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #{$dark-blue};
+  color: #fff;
+}
+
+.titulo-header {
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  ion-card-title {
+    font-size: 4rem;
+  }
+
+  p,
+  ion-button {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,51 @@
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista encuestas cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container background-ter">
+    <ion-text color="primary">
+      <h1 class="ion-padding">Encuesta de clientes</h1>
+    </ion-text>
+
+    <div class="btns">
+      <ion-button size="large" class="ion-margin" (click)="navCtrl.navigateRoot('home')">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+      <ion-button size="large" class="ion-margin" (click)="navCtrl.navigateRoot('grafico-clientes')">
+        <ion-icon slot="icon-only" name="stats-chart"></ion-icon>
+      </ion-button>
+    </div>
+
+    <ion-list *ngIf="lista.length > 0; else noEncuestas" class="encuestas" [inset]="true">
+      <ion-item *ngFor="let enc of lista" lines="full">
+        <div class="encuesta">
+          <div class="autor">
+            <ion-avatar slot="start">
+              <img alt="{{enc.autor.nombre}}_{{enc.autor.apellido}}" [src]="enc.autor.foto_url" />
+            </ion-avatar>
+            <ion-text>
+              {{enc.autor.nombre}} {{enc.autor.apellido}}
+            </ion-text>
+          </div>
+          <div class="puntuacion">
+            <!-- <app-range-estrellas [idEstrellas]="enc.id" [readonly]="true" [valor]="enc.puntuacionGeneral"
+              [max]="maxEstrellas(enc.puntuacionGeneral)"></app-range-estrellas> -->
+          </div>
+        </div>
+        <div class="cover" (click)="mostrarEncuesta(enc)"></div>
+      </ion-item>
+    </ion-list>
+    <ng-template #noEncuestas>
+      <div id="noClientes">
+        <ion-card>
+        </ion-card>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

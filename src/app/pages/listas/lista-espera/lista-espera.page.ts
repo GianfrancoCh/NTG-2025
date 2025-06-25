@@ -65,16 +65,20 @@ export class ListaEsperaPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    await this.cargarLista();
+  }
+
+  async cargarLista() {
     this.spinner.show();
 
     try {
       // Paso 1: Traer la lista de espera
       this.listaDeEspera = await this.db.traerColeccion<ClienteEnEspera>(
         Colecciones.ListaDeEspera,
-        'fecha' 
+        'fecha'
       );
 
-      // Paso 2: Por cada id_cliente, traer datos del cliente desde 'usuarios'
+      // Paso 2: Traer datos de cada cliente
       const clientes: Cliente[] = [];
 
       for (const item of this.listaDeEspera) {
@@ -88,14 +92,12 @@ export class ListaEsperaPage implements OnInit {
       }
 
       this.clientesEsperando = clientes;
-      console.log('Clientes en espera:', this.clientesEsperando);
 
-      //traer las mesas disponibles y cargarlas en mesasDisp
+      // Paso 3: Traer mesas disponibles
       this.mesasDisp = await this.db.traerCoincidencias<Mesa>(
         Colecciones.Mesas,
         { campo: 'estado', operacion: 'eq', valor: 'Disponible' }
       );
-      console.log('Mesas disponibles:', this.mesasDisp);
     } catch (error) {
       console.error('Error al cargar lista de espera:', error);
     }
@@ -103,7 +105,6 @@ export class ListaEsperaPage implements OnInit {
     await delay(3000);
     this.spinner.hide();
   }
-
   // private timestampParse = async (cliEspera: ClienteEnEspera) => {
   //   cliEspera.fecha =
   //     cliEspera.fecha instanceof Timestamp
@@ -112,7 +113,6 @@ export class ListaEsperaPage implements OnInit {
   //   return cliEspera;
   // };
 
-  // async selecCliente(cliente: ClienteEnEspera) {
   async selecCliente(cliente: Cliente) {
     try {
       const mesasModal = await this.modalCtrl.create({
@@ -131,6 +131,7 @@ export class ListaEsperaPage implements OnInit {
       switch (modalDismiss.role) {
         case 'success':
           ToastSuccess.fire('Cliente asignado!');
+          await this.cargarLista(); // refrescamos la lista de espera
           break;
         case 'cancel':
           ToastInfo.fire('Operación cancelada.');

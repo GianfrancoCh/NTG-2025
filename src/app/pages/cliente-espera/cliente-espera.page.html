@@ -1,0 +1,26 @@
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sala de espera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container background-for">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Usted esta en la lista de Espera</ion-card-title>
+      </ion-card-header>
+      <br>
+      <ion-card-content>
+        <p>Espere a que el <i>metre</i> le indique dónde sentarse.</p>
+      </ion-card-content>
+    </ion-card>
+    <!-- boton para salir de la lista de espera? -->
+    <ion-button (click)="salirDeListaEspera()" expand="block" fill="clear" shape="round">
+      Salide de la lista de espera
+    </ion-button>
+  </div>
+</ion-content>
