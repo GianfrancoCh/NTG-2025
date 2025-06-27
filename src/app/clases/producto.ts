@@ -5,7 +5,7 @@ export class Producto {
   tiempoElab: number;
   precio: number;
   sector: 'cocina' | 'barra';
-  foto_url: string[];
+  fotos_url: string[];
 
   constructor(
     nombre: string,
@@ -13,7 +13,7 @@ export class Producto {
     tiempoElab: number,
     precio: number,
     sector: 'cocina' | 'barra',
-    foto_url: string[]
+    fotos_url: string[]
   ) {
     this.id = '';
     this.nombre = nombre;
@@ -21,6 +21,6 @@ export class Producto {
     this.tiempoElab = tiempoElab;
     this.precio = precio;
     this.sector = sector;
-    this.foto_url = foto_url;
+    this.fotos_url = fotos_url;
   }
 }

@@ -239,8 +239,6 @@ export class HomePage implements OnInit {
       const cliente = this.authService.UsuarioEnSesion as Cliente;
       if (!cliente) return;
 
-      console.log('dentro de escanearQrMesa');
-
       if (!cliente.idMesa)
         throw new Exception(
           ErrorCodes.ClienteSinMesa,
@@ -309,8 +307,83 @@ export class HomePage implements OnInit {
             this.spinner.hide();
           });
           break;
-        ///////
-        //los demas cases de EstadoMesa
+        case EstadoMesa.EsperandoComida:
+          const ped = (
+            await this.db.traerCoincidencias<Pedido>(Colecciones.Pedidos, {
+              campo: 'idCliente',
+              operacion: '==',
+              valor: cliente.id,
+            })
+          )[0];
+          this.spinner.hide();
+          if (ped.estado == 'entregado') {
+            await this.db.actualizarDoc(Colecciones.Mesas, mesaEscan.id, {
+              estado: EstadoMesa.Comiendo,
+            });
+            ToastSuccess.fire('Pedido recibido.');
+          } else {
+            this.mostrarMenu(mesaEscan, ped);
+          }
+          break;
+        case EstadoMesa.Comiendo:
+          const pedido = (
+            await this.db.traerCoincidencias<Pedido>(Colecciones.Pedidos, {
+              campo: 'idCliente',
+              operacion: '==',
+              valor: cliente.id,
+            })
+          )[0];
+          this.spinner.hide();
+
+          this.mostrarMenu(mesaEscan, pedido).then(async (rta) => {
+            if (rta === 'jugar')
+              ToastInfo.fire('Modalidad en proceso.'); //TODO: Pendiente
+            else if (rta === 'alta-encuesta')
+              this.navCtrl.navigateRoot('alta-encuesta-cliente', {
+                state: { idPedido: pedido.id },
+              });
+            else if (rta === 'lista-encuestas')
+              this.navCtrl.navigateRoot('lista-encuestas-cliente');
+            else if (rta === 'cuenta') {
+              //push al mozo
+              // this.push.sendNotificationToType(
+              //   'Pedido de cuenta',
+              //   `La mesa número ${mesaEscan.nroMesa} pidió la cuenta`,
+              //   'mozo'
+              // );
+              this.pushService.notificarMozoCuenta(mesaEscan.nroMesa);
+
+              this.spinner.show();
+              mesaEscan.estado = EstadoMesa.Pagando;
+              this.db.actualizarDoc(Colecciones.Mesas, mesaEscan.id, {
+                estado: EstadoMesa.Pagando,
+              });
+              this.spinner.hide();
+
+              pedido.porcPropina = await this.escanearPropina();
+              const cuentaModal = await this.modalCtrl.create({
+                component: CuentaComponent,
+                id: 'cuenta-modal',
+                backdropDismiss: false,
+                componentProps: { pedido: pedido },
+              });
+              cuentaModal.present();
+
+              const dismiss = await cuentaModal.onDidDismiss();
+              if (dismiss.role === 'success') {
+                this.spinner.show();
+                await this.db.actualizarDoc(Colecciones.Mesas, mesaEscan.id, {
+                  estado: EstadoMesa.Pago,
+                });
+                this.spinner.hide();
+                ToastSuccess.fire(
+                  'Pago registrado!',
+                  'Espere a que el mozo confirme el pago.'
+                );
+              }
+            }
+          });
+          break;
       }
 
       this.spinner.hide();

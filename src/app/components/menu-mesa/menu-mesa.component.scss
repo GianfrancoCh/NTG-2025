@@ -1,0 +1,33 @@
+#menu-container {
+  height: 100vh; // Ocupa todo el alto
+  width: 100vw;  // Ocupa todo el ancho
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Centrado vertical
+  align-items: center;     // Centrado horizontal
+  text-align: center;
+  padding: 1rem;
+
+  ion-header,
+  ion-card,
+  ion-footer {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    div {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+
+  ion-button {
+    min-width: 120px;
+  }
+}

@@ -1,13 +1,78 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="header-fix">
   <ion-toolbar>
-    <ion-title>alta-pedido</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pedidos pendientes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">alta-pedido</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container background-sec">
+    <ion-card style="width: 95%;">
+      <div id="btn-container">
+        <ion-button fill="clear" size="large" style="font-weight: bold;"
+          (click)="navCtrl.navigateForward('consulta-mozo')">
+          <ion-icon slot="icon-only" name="chatbubble-ellipses-outline" color="medium"></ion-icon>
+          Consultar mozo
+        </ion-button>
+        <ion-button fill="clear" size="large" style="font-weight: bold;" (click)="mostrarPedido()"
+          [disabled]="Object.keys(productosElegidos).length < 1">
+          <ion-icon slot="icon-only" name="receipt-outline" color="medium"></ion-icon>
+          Mostrar pedido
+        </ion-button>
+      </div>
+      <ion-card-header>
+
+        <ion-card-subtitle style="font-size: 40px;">
+          {{precio | currency}}
+        </ion-card-subtitle>
+
+      </ion-card-header>
+      <ion-card-content id="menu-container">
+        <ion-accordion-group id="lista-productos">
+          @for (item of productos; track $index) {
+          <ion-accordion toggleIconSlot="none" [value]="item.nombre">
+            <ion-item class="item" color="primary" slot="header">
+              <ion-badge slot="start" color="secondary">
+                @if (!productosElegidos[item.id]) {
+                <ion-icon name="caret-down-outline"></ion-icon>
+                } @else {
+                {{productosElegidos[item.id]}}
+                }
+              </ion-badge>
+              <ion-label>
+                {{item.nombre}}
+              </ion-label>
+              <ion-text class="precio-prod">{{item.precio | currency}}</ion-text>
+            </ion-item>
+            <div class="content" slot="content">
+              <h2>{{item.descripcion}}</h2>
+              <div class="imgs-container">
+                @for (foto of item.fotos_url; track $index) {
+                <img [src]="foto">
+                }
+              </div>
+              <h2>
+                Tiempo de elaboración: {{item.tiempoElab}} minutos.
+              </h2>
+              <div class="cont-prod">
+                <ion-button size="medium" color="danger" expand="fill" (click)="restarProd(item)"
+                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="remove-circle-outline" color="light"></ion-icon>
+                </ion-button>
+                <ion-input type="number" min="0" max="99" color="light" [(ngModel)]="productosElegidos[item.id]"
+                  ngDefaultControl></ion-input>
+                <ion-button size="medium" color="success" expand="fill" (click)="sumarProd(item)"
+                  [disabled]="productosElegidos[item.id] === 99">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="add-circle-outline" color="light"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-accordion>
+          }
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
