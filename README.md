@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/efdf79ac-2c09-4446-80b1-b5847b764c1b" alt="Logo Comanda" width="240" />
+  <img src="https://github.com/user-attachments/assets/efdf79ac-2c09-4446-80b1-b5847b764c1b" alt="Logo Comanda" width="300" />
 </p>
 
 # Proyecto **Comanda App**
@@ -8,15 +8,13 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 
 ---
 
-## 🌳 Ramas principales
+## Ramas principales
 
-| Rama         | Propósito                              |
-| ------------ | -------------------------------------- |
-| `main`       | Rama de producción estable             |
-| `tony`       | Desarrollo de **Antonio Aguirre**      |
-| `gianfranco` | Desarrollo de **Gianfranco Chiarizia** |
-
-> ℹ️ Añade o cambia las ramas según las que utilice tu repositorio.
+| Rama         | Propósito                                                                                          |
+| ------------ | -------------------------------------------------------------------------------------------------- |
+| `main`       | Rama de producción estable                                                                         |
+| `tony`       | Desarrollo de **[Antonio Aguirre](https://github.com/GianfrancoCh/NTG-2025/tree/Tony#)**           |
+| `gianfranco` | Desarrollo de **[Gianfranco Chiarizia](https://github.com/GianfrancoCh/NTG-2025/tree/Gianfranco)** |
 
 ---
 
@@ -70,14 +68,14 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 ### QR general de ingreso
 
 <p align="center">
-  <img src="assets/qr-principal.png" alt="QR ingreso" width="260" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/qr-entrada.png?raw=true" alt="QR ingreso" width="260" />
 </p>
 
 ### QRs por mesa
 
 <p align="center">
-  <img src="assets/qr-mesa1.png" alt="QR Mesa 1" width="120" />
-  <img src="assets/qr-mesa2.png" alt="QR Mesa 2" width="120" />
-  <img src="assets/qr-mesa3.png" alt="QR Mesa 3" width="120" />
-  <img src="assets/qr-mesa4.png" alt="QR Mesa 4" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true" alt="QR Mesa 1" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-2.png?raw=true" alt="QR Mesa 2" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-3.png?raw=true" alt="QR Mesa 3" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" />
 </p>
