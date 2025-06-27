@@ -94,4 +94,12 @@ export const routes: Routes = [
     path: 'lista-pedidos-pendiente',
     loadComponent: () => import('./pages/listas/lista-pedidos-pendiente/lista-pedidos-pendiente.page').then( m => m.ListaPedidosPendientePage)
   },
+  {
+    path: 'alta-pedido',
+    loadComponent: () => import('./pages/altas/alta-pedido/alta-pedido.page').then( m => m.AltaPedidoPage)
+  },
+  {
+    path: 'consulta-mozo',
+    loadComponent: () => import('./pages/consulta-mozo/consulta-mozo.page').then(m => m.ConsultaMozoPage),
+  },
 ];

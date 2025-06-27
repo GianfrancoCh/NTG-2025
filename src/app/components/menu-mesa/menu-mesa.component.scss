@@ -1,0 +1,19 @@
+#menu-container {
+    max-height: 50vh;
+    padding: 0.5rem;
+    overflow-y: auto;
+
+    ion-header, 
+    ion-card, 
+    ion-footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+        align-items: center;
+        div{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

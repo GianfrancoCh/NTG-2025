@@ -321,7 +321,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  private async mostrarMenu(mesa: Mesa, pedido?: Pedido) {
+  protected async mostrarMenu(mesa: Mesa, pedido?: Pedido) {
     const modal = await this.modalCtrl.create({
       component: MenuMesaComponent,
       id: 'menu-mesa-modal',
@@ -365,5 +365,27 @@ export class HomePage implements OnInit {
 
     const porcentaje = Number(QR.split('-')[1]);
     return porcentaje as PorcPropina;
+  }
+  //BORRAR ESTO PRUEBA
+  async pruebaMesa() {
+    const mesaEscan = await this.db.traerDoc<Mesa>(
+      Colecciones.Mesas,
+      "3"
+    );
+    console.log(mesaEscan);
+
+    if (mesaEscan !== null) {
+      this.mostrarMenu(mesaEscan).then((rta) => {
+        this.spinner.show();
+
+        if (rta === 'pedir-comida') {
+          this.navCtrl.navigateRoot('alta-pedido');
+        } else if (rta === 'consultar') {
+          this.navCtrl.navigateForward('consulta-mozo');
+        }
+
+        this.spinner.hide();
+      });
+    }
   }
 }

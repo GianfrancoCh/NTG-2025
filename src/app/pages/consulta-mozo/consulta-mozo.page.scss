@@ -1,0 +1,90 @@
+
+
+.container {
+  align-content: center;
+
+  ion-card-header {
+    padding: 0;
+
+    ion-button {
+      align-self: flex-start;
+    }
+  }
+
+  ion-card-content {
+    background-color: #1f1f1f;
+    // background: url('../../../assets/chat-bg.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+
+    #mensajes {
+      overflow-y: auto;
+      margin-bottom: 2.5rem;
+
+      .msg {
+        display: flex;
+        flex-direction: column;
+        min-width: 50.01%;
+        max-width: 80%;
+        padding: 0.5rem;
+        border-radius: 10px;
+        padding-left: 10px;
+        margin: 5px;
+
+        &.enviado {
+          float: right;
+          text-align: right;
+          background-color: grey;
+        }
+
+        &.recibido {
+          float: left;
+          text-align: left;
+          background-color: rgb(210, 206, 206);
+        }
+
+        ion-text {
+          word-wrap: break-word;
+          color: #1f1f1f;
+        }
+
+        .alias {
+          ion-text {
+            font-size: large;
+            margin: 0;
+          }
+        }
+
+        .texto {
+          font-size: 1.5rem;
+        }
+
+        .fecha {
+          align-self: flex-end;
+        }
+
+      }
+    }
+
+    .card-body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card-footer {
+      position: fixed;
+      width: 90%;
+      bottom: 0;
+      color: rgb(94, 5, 94);
+
+      #enviar:active {
+        transform: scale(0.7);
+      }
+    }
+  }
+}
