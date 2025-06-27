@@ -67,7 +67,7 @@ export class MenuMesaComponent implements OnInit {
     this.db
       .traerCoincidencias<EncuestaCliente>(Colecciones.EncuestasCliente, {
         campo: 'idPedido',
-        operacion: '==',
+        operacion: 'eq',
         valor: this.pedido.id,
       })
       .then((res) => {

@@ -311,7 +311,7 @@ export class HomePage implements OnInit {
           const ped = (
             await this.db.traerCoincidencias<Pedido>(Colecciones.Pedidos, {
               campo: 'idCliente',
-              operacion: '==',
+              operacion: 'eq',
               valor: cliente.id,
             })
           )[0];
@@ -329,7 +329,7 @@ export class HomePage implements OnInit {
           const pedido = (
             await this.db.traerCoincidencias<Pedido>(Colecciones.Pedidos, {
               campo: 'idCliente',
-              operacion: '==',
+              operacion: 'eq',
               valor: cliente.id,
             })
           )[0];

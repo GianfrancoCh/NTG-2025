@@ -156,19 +156,9 @@ export class AltaPedidoPage {
       // Evitar subir el id vacío
       const { id, ...pedidoSinId } = pedidoHecho;
 
-      // Subir el pedido
-      // const idGenerado = await this.db.subirDoc(
-      //   Colecciones.Pedidos,
-      //   pedidoSinId
-      // );
-
-      // if (idGenerado) {
-      //   pedidoHecho.id = idGenerado; // ahora el objeto tiene el id correcto
-      // }
+      //subo el pedido sin el id, el id se genera automatico en la db
       this.spinner.show();
-      this.db.subirDoc(Colecciones.Pedidos, pedidoHecho).then(() => {
-        console.log('pedidoHecho:', pedidoHecho);
-
+      this.db.subirDoc(Colecciones.Pedidos, pedidoSinId).then(() => {
         this.db.actualizarDoc(
           Colecciones.Mesas,
           (<Cliente>this.auth.UsuarioEnSesion).idMesa!,

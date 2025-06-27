@@ -97,18 +97,7 @@ export class ListaPedidosPendientePage implements OnInit {
       }),
     ]);
 
-    this.db.escucharColeccion<Pedido>(
-      Colecciones.Pedidos,
-      this.pedidos,
-      (item) => {
-        if (this.empleado.tipo === 'mozo')
-          return item.estado === 'pendiente' || item.estado === 'listo';
-        else {
-          const sector = this.empleado.tipo === 'cocinero' ? 'cocina' : 'barra';
-          return item.estado === 'en proceso' && !item.confirmaciones[sector];
-        }
-      }
-    );
+    await this.cargarPedidos(); // ← Usamos la nueva función
 
     this.spinner.hide();
   }
@@ -128,31 +117,13 @@ export class ListaPedidosPendientePage implements OnInit {
           ? ['en proceso', 'Pedido en preparación.']
           : ['entregado', 'Pedido listo!'];
 
-      //enviar push cocinero
-      // this.push.sendNotificationToType(
-      //   'Nuevo pedido',
-      //   'se ha confirmado un pedido, a la cocina!!',
-      //   'cocinero'
-      // );
       this.push.notificarCocinero();
-
-      //enviar push bartender
-      // this.push.sendNotificationToType(
-      //   'Nuevo pedido',
-      //   'se ha confirmado un pedido, a la barra!!',
-      //   'bartender'
-      // );
       this.push.notificarBartender();
     } else {
       const sector = this.empleado.tipo === 'cocinero' ? 'cocina' : 'barra';
       nuevaConfirm[sector] = true;
       nuevoEstado = 'en proceso';
       msj = `Pedido en ${sector} listo!`;
-      // this.push.sendNotificationToType(
-      //   'Pedido hecho',
-      //   'pase a retirarlo por las distintas zonas',
-      //   'mozo'
-      // );
       this.push.notificarMozo();
       if (pedido.confirmaciones.cocina && pedido.confirmaciones.barra) {
         nuevoEstado = 'listo';
@@ -164,6 +135,8 @@ export class ListaPedidosPendientePage implements OnInit {
       confirmaciones: nuevaConfirm,
       estado: nuevoEstado,
     });
+
+    await this.cargarPedidos();
 
     this.spinner.hide();
     ToastSuccess.fire(msj);
@@ -207,5 +180,9 @@ export class ListaPedidosPendientePage implements OnInit {
     //  componentProps: { pedido: productosCant },
     //});
     //await modal.present();
+  }
+
+  private async cargarPedidos() {
+    this.pedidos = await this.db.traerColeccion<Pedido>(Colecciones.Pedidos);
   }
 }

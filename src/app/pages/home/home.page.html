@@ -33,8 +33,9 @@
         *ngIf="user && (this.usuarioActual?.rol == 'empleado' || this.usuarioActual?.rol == 'cocinero' || this.usuarioActual?.rol == 'mozo' || this.usuarioActual?.rol == 'bartender' || this.usuarioActual?.rol == 'maitre')">
         <ion-button size="big" routerLink="/login">boton empleado</ion-button>
       </div>
-      <!-- mozo -->
-      <div *ngIf="user && this.usuarioActual?.rol == 'mozo'">
+      <!-- mozo cocinero bartender-->
+      <div
+        *ngIf="user && (this.usuarioActual?.rol == 'cocinero' || this.usuarioActual?.rol == 'mozo' || this.usuarioActual?.rol == 'bartender')">
         <ion-button size="big" routerLink="/lista-pedidos-pendiente">Pedidos pendientes</ion-button>
       </div>
       <!-- maitre -->
