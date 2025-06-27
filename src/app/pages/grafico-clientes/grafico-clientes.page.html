@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>grafico-clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container background-pri">
+    <ion-card style="width: 95%;">
+      <ion-card-header>
+        <ion-button fill="clear" (click)="navCtrl.navigateRoot('lista-encuestas-cliente')">
+          <ion-icon slot="start" name="chevron-back-circle-outline" size="large"></ion-icon>
+          Volver
+        </ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="button-container">
+          <ion-button expand="block" fill="clear" (click)="mostrarGrafico1()">
+            <ion-icon name="bar-chart-outline"></ion-icon>
+            <ion-label>Gráfico sobre la puntuación total</ion-label>
+          </ion-button>
+
+          <ion-button expand="block" fill="clear" (click)="mostrarGrafico2()">
+            <ion-icon name="analytics"></ion-icon>
+            <ion-label>Gráfico sobre la calidad de nuestra atención </ion-label>
+          </ion-button>
+
+          <ion-button expand="block" fill="clear" (click)="mostrarGrafico3()">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            <ion-label>Gráfico sobre la recomendación de los clientes</ion-label>
+          </ion-button>
+        </div>
+
+        <div *ngIf="mostrarGraficoBarras===true">
+          <div style="height: 500px; width: 100%;">
+            <canvas #barChart></canvas>
+          </div>
+        </div>
+
+        <div *ngIf="mostrarGraficoLineas===true">
+          <div style="height: 500px; width: 100%;">
+            <canvas #lineChart></canvas>
+          </div>
+        </div>
+
+        <div *ngIf="mostrarGraficoTorta===true">
+          <div style="height: 500px; width: 100%;">
+            <canvas #doughnutChart></canvas>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

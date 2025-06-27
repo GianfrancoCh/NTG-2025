@@ -86,4 +86,12 @@ export const routes: Routes = [
     path: 'lista-encuestas-cliente',
     loadComponent: () => import('./pages/encuestas/lista-encuestas-cliente/lista-encuestas-cliente.page').then( m => m.ListaEncuestasClientePage)
   },
+  {
+    path: 'grafico-clientes',
+    loadComponent: () => import('./pages/grafico-clientes/grafico-clientes.page').then( m => m.GraficoClientesPage)
+  },
+  {
+    path: 'lista-pedidos-pendiente',
+    loadComponent: () => import('./pages/listas/lista-pedidos-pendiente/lista-pedidos-pendiente.page').then( m => m.ListaPedidosPendientePage)
+  },
 ];

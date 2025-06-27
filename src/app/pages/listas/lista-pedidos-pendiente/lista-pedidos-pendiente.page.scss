@@ -1,0 +1,22 @@
+@import "src/theme/variables.scss";
+
+ion-toolbar {
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #{$dark-blue};
+  color: #fff;
+}
+
+.titulo-header {
+  font-weight: bold;
+}
+
+.pedido {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

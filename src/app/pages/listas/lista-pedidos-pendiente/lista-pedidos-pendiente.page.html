@@ -1,0 +1,60 @@
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pedidos pendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container background-pri">
+    <ion-card style="width: 95%">
+      <ion-card-header>
+        <ion-card-title>Pedidos
+          @if(this.empleado.tipo === 'mozo'){
+          pendientes de entrega
+          }@else {
+          a realizar
+          }
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list id="lista">
+          @for (pedido of pedidos; track $index) {
+          @for (cliente of clientes; track $index) {
+          @if (pedido.idCliente === cliente.id) {
+          @for (mesa of mesas; track $index) {
+          @if (mesa.id === cliente.idMesa) {
+          <ion-item>
+            <div class="pedido">
+              <ion-button fill="clear" size="large" (click)="mostrarPedido(pedido)">
+                <ion-icon slot="icon-only" name="receipt-outline" color="medium"></ion-icon>
+              </ion-button>
+
+              <div class="text">
+                <ion-label>Mesa Nro{{mesa.nroMesa}}</ion-label>
+                <ion-label><small>{{accionPedido(pedido)}}</small></ion-label>
+              </div>
+
+              <div part="content" class="content">
+                <div class="cont-prod">
+                  <ion-button size="large" color="success" expand="fill" (click)="manejarEstadoPedido(pedido)">
+                    <ion-icon slot="icon-only" aria-label="hidden" name="checkmark-circle-outline"
+                      color="light"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+          }
+          }
+          }
+          }
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

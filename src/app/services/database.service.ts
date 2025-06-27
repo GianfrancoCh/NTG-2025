@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { createClient, SupabaseClient, RealtimeChannel } from '@supabase/supabase-js';
+import {
+  createClient,
+  SupabaseClient,
+  RealtimeChannel,
+} from '@supabase/supabase-js';
 import { Persona } from '../clases/persona';
 import { Producto } from '../clases/producto';
 import { Mesa } from '../clases/mesa';
@@ -127,7 +131,7 @@ export class DatabaseService {
     const { error } = await this.supabase
       .from(coleccion)
       .delete()
-      .eq('id_cliente', docId);
+      .eq('id_cliente', docId); // id_cliente esta en lista-de-espera
 
     if (error) {
       console.error('Error al borrar documento:', error.message);
@@ -227,6 +231,57 @@ export class DatabaseService {
         async (payload) => {
           const clienteActualizado = payload.new;
           callback(clienteActualizado);
+        }
+      )
+      .subscribe();
+
+    return canal;
+  }
+
+  //generica
+  escucharColeccion<T extends { id: string }>(
+    coleccion: string,
+    arrayRef: Array<T>,
+    filtroFunc?: (item: T) => boolean,
+    ordenFunc?: (a: T, b: T) => number,
+    transformar?: (item: T) => Promise<T>
+  ): RealtimeChannel {
+    const canal = this.supabase
+      .channel(`realtime-${coleccion}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: coleccion,
+        },
+        async (payload) => {
+          const tipo = payload.eventType;
+          const datos = tipo === 'DELETE' ? payload.old : payload.new;
+
+          let item: T = datos as T;
+          if (transformar) item = await transformar(item);
+          const pasaFiltro = !filtroFunc || filtroFunc(item);
+          const index = arrayRef.findIndex((e) => e.id === item.id);
+
+          if (tipo === 'INSERT') {
+            if (pasaFiltro) arrayRef.push(item);
+          }
+
+          if (tipo === 'UPDATE') {
+            if (index === -1) {
+              if (pasaFiltro) arrayRef.push(item);
+            } else {
+              if (pasaFiltro) arrayRef[index] = item;
+              else arrayRef.splice(index, 1);
+            }
+          }
+
+          if (tipo === 'DELETE') {
+            if (index !== -1) arrayRef.splice(index, 1);
+          }
+
+          if (ordenFunc) arrayRef.sort(ordenFunc);
         }
       )
       .subscribe();

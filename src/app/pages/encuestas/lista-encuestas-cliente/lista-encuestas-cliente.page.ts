@@ -27,6 +27,7 @@ import {
   DatabaseService,
 } from 'src/app/services/database.service';
 import { RouterLink } from '@angular/router';
+import { RangeEstrellasComponent } from 'src/app/components/range-estrellas/range-estrellas.component';
 
 @Component({
   selector: 'app-lista-encuestas-cliente',
@@ -50,32 +51,32 @@ import { RouterLink } from '@angular/router';
     CommonModule,
     FormsModule,
     RouterLink,
+    RangeEstrellasComponent,
   ],
+  providers: [ModalController],
 })
-export class ListaEncuestasClientePage {
+export class ListaEncuestasClientePage implements OnInit {
   lista: Array<EncuestaCliente> = [];
 
   constructor(
     private modalCtrl: ModalController,
-    protected navCtrl: NavController
+    protected navCtrl: NavController,
+    private db: DatabaseService
   ) {
     addIcons({ home, statsChart });
-    // inject(DatabaseService).escucharColeccion(
-    //   Colecciones.EncuestasCliente,
-    //   this.lista,
-    //   undefined,
-    //   undefined,
-    // this.timestampParse
-    // );
   }
 
-  // private timestampParse = async (encuesta: EncuestaCliente) => {
-  //   encuesta.fecha =
-  //     encuesta.fecha instanceof Timestamp
-  //       ? encuesta.fecha.toDate()
-  //       : encuesta.fecha;
-  //   return encuesta;
-  // };
+  async ngOnInit() {
+    try {
+      this.lista = await this.db.traerColeccion<EncuestaCliente>(
+        Colecciones.EncuestasCliente,
+        'fecha' // si querés que se ordene por fecha
+      );
+      console.log('Encuestas cliente:', this.lista);
+    } catch (error) {
+      console.error('Error al cargar encuestas:', error);
+    }
+  }
 
   maxEstrellas = (cantidad: number) => Math.ceil(cantidad);
 

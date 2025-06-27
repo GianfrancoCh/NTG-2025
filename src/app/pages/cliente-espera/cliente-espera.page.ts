@@ -83,11 +83,35 @@ export class ClienteEsperaPage implements OnInit {
     );
   }
 
-  salirDeListaEspera() {
-    //quitar de la db lista-espera el cliente
-    this.navCtrl.navigateRoot('home');
+  async salirDeListaEspera() {
+    const usuario = this.auth.UsuarioEnSesion!;
+    try {
+      const lista = await this.db.traerColeccion<any>(
+        Colecciones.ListaDeEspera
+      );
 
-    // Opcional: cerrar canal
+      const entrada = lista.find((item) => item.id_cliente === usuario.id);
+
+      if (entrada) {
+        const exito = await this.db.borrarDoc(
+          Colecciones.ListaDeEspera,
+          entrada.id_cliente
+        );
+        if (!exito) {
+          console.error(
+            'No se pudo borrar la entrada del cliente de la lista de espera'
+          );
+        }
+      } else {
+        console.warn(
+          'No se encontró la entrada del cliente en la lista de espera'
+        );
+      }
+    } catch (error) {
+      console.error('Error al salir de la lista de espera:', error);
+    }
+
     this.db.supabase.removeChannel(this.canalUsuario);
+    this.navCtrl.navigateRoot('home');
   }
 }
