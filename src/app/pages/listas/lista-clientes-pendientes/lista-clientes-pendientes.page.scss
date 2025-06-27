@@ -15,7 +15,6 @@ ion-content {
   font-weight: bold;
 }
 
-
 #noClientes {
   display: flex;
   height: 100%;
@@ -30,4 +29,48 @@ ion-content {
   ion-button {
     font-size: 2rem;
   }
+}
+
+/* 👉  Contenedor grid de 2 columnas responsivas */
+#lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* 👉  Tarjeta de cada cliente */
+.cliente-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  /* bordes redondeados y sombra sutil */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* 📸  Imagen grande ocupando todo el ancho de la tarjeta */
+.cliente-foto {
+  width: 100%;
+  height: 220px; /* ajusta a gusto */
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* 📝  Título (nombre) */
+ion-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff; /* adapta si usas otro tema */
+}
+
+/* ✅❌  Botones juntos y centrados */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
