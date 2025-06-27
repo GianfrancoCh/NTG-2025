@@ -82,18 +82,26 @@ export class ConsultaMozoPage implements OnInit, DoCheck {
   enviarMensaje() {
     const textoMensaje = this.nuevoMensaje.trim();
     if (textoMensaje == '') return;
+
+    const fechaActual = new Date();
+    const hora = fechaActual.getHours().toString().padStart(2, '0');
+    const minutos = fechaActual.getMinutes().toString().padStart(2, '0');
+    const fechaFormateada = `${hora}:${minutos}`;
+
+    const mensajeNotificacion = `Mesa ${this.nroMesa} - ${fechaFormateada}: ${textoMensaje}`;
+
     let msg: chatMsg = {
       id: this.usuario.id,
       mensaje: textoMensaje,
-      fecha: new Date(),
+      fecha: fechaActual,
       autor: this.usuario,
       nroMesa: this.nroMesa
     };
     this.nuevoMensaje = '';
 
-    // if (this.usuario.rol === 'cliente') {
-    //   this.push.sendNotificationToType('Nueva consulta', `La mesa ${msg.nroMesa} dijo: ${msg.mensaje}`, 'mozo');
-    // }
+    if (this.usuario.rol === 'cliente') {
+      this.push.notificarMozoConsulta(mensajeNotificacion);
+    }
 
     this.db.subirDoc(Colecciones.Mensajes, msg);
   }
