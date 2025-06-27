@@ -4,7 +4,6 @@ ion-content {
   animation: gradient-animation 1s ease infinite;
   font-family: "Nunito", sans-serif !important;
 }
-
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -17,140 +16,147 @@ ion-content {
   }
 }
 
-@-webkit-keyframes bounce-in-top {
-  0% {
-    -webkit-transform: translateY(-500px);
-    transform: translateY(-500px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 0;
-  }
-  38% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-  55% {
-    -webkit-transform: translateY(-65px);
-    transform: translateY(-65px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  72% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  81% {
-    -webkit-transform: translateY(-28px);
-    transform: translateY(-28px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  90% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  95% {
-    -webkit-transform: translateY(-8px);
-    transform: translateY(-8px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
-@keyframes bounce-in-top {
-  0% {
-    -webkit-transform: translateY(-500px);
-    transform: translateY(-500px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 0;
-  }
-  38% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-  55% {
-    -webkit-transform: translateY(-65px);
-    transform: translateY(-65px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  72% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  81% {
-    -webkit-transform: translateY(-28px);
-    transform: translateY(-28px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  90% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  95% {
-    -webkit-transform: translateY(-8px);
-    transform: translateY(-8px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
-.container {
-  -webkit-animation: bounce-in-top 2s both;
-  animation: bounce-in-top 1.5s both;
+.logo {
+  -webkit-animation: scale-down-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    1s both;
+  animation: scale-down-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
 }
 
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-}
-
-.animated-logo img {
+.container img {
   height: 250px;
-  margin-bottom: 50px;
+  margin-top: 64%;
 }
 
-.nombre {
-  font-size: 34px;
-  font-weight: bold;
-  color: black;
-  font-family: "Nunito", sans-serif !important;
+@keyframes jello-horizontal {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
-.subtexto {
-  font-size: 34px;
-  margin-bottom: 100px;
+.nombre-texto {
+  color: white;
+  font-size: 30px;
+  font-weight: normal;
+  margin: 8px 0;
+}
+
+.titulos {
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartel-inferior {
+  background: linear-gradient(45deg, #028cfd, #1d63dd);
+  padding: 12px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: fade-slide-up 2s ease-in-out; /* ← aquí el cambio */
+}
+
+/* Cartel superior */
+.cartel-superior {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
   font-weight: bold;
-  color: black;
-  font-family: "Nunito", sans-serif !important;
+  color: #fff;
+  background: linear-gradient(45deg, #028cfd, #1d63dd);
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 999;
+  animation: fade-slide 2s ease-in-out;
+}
+
+/* Animación del cartel */
+@keyframes fade-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo-grupo {
+  height: 3rem;
+}
+
+@-webkit-keyframes slide-bck-center {
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateZ(-400px);
+    transform: translateZ(-400px);
+  }
+}
+@keyframes slide-bck-center {
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateZ(-400px);
+    transform: translateZ(-400px);
+  }
+}
+
+@-webkit-keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+}
+@keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+}
+
+@keyframes fade-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(70px); /* parte debajo de la pantalla */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* posición final */
+  }
 }
