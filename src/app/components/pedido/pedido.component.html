@@ -1,0 +1,39 @@
+<div id="pedido-container">
+  @if(pedido.length > 0){
+  <table id="tabla-pedido">
+    <thead>
+      <tr>
+        <th id="cant">Cantidad</th>
+        <th id="nombre">Producto</th>
+        <!-- <th id="tiempo">Mins.</th> -->
+        <!-- <th id="precio">Valor Un.</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      @for(prodCant of pedido; track $index) {
+      <tr>
+        <td class="prod-cant">{{prodCant.cantidad}}</td>
+        <td class="prod-nombre">{{prodCant.producto.nombre}}</td>
+        <!-- <td class="prod-tiempo">{{prodCant.producto.tiempoElab}}'</td> -->
+        <!-- <td class="prod-precio">{{prodCant.producto.precio | currency}}</td> -->
+      </tr>
+      }
+    </tbody>
+    <tfoot>
+      <tr>
+        <!-- <td colspan="2" class="total-label">Tiempo estimado</td> -->
+        <td class="total-label">Tiempo</td>
+        <td class="total-tiempo">{{ tiempoEst }}'</td>
+        <!-- <td class="total-precio">{{ valorTotal | currency }}</td> -->
+      </tr>
+    </tfoot>
+  </table>
+  @if (auth.UsuarioEnSesion?.rol == 'cliente') {
+  <ion-button size="light" color="tertiary" expand="block" (click)="hacerPedido()">
+    Confirmar pedido
+  </ion-button>
+  }
+  }@else {
+  <h2>Todavia no cargó ningun producto a su pedido</h2>
+  }
+</div>

@@ -177,10 +177,10 @@ export class DatabaseService {
       .insert({
         nombre: producto.nombre,
         descripcion: producto.descripcion,
-        minutos: producto.tiempoElab,
+        tiempoElab: producto.tiempoElab,
         precio: producto.precio,
         sector: producto.sector,
-        fotos_url: producto.foto_url,
+        fotos_url: producto.fotos_url,
       });
 
     if (insertError) {

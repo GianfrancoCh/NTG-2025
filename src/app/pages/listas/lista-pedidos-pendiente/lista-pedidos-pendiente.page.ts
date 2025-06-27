@@ -38,6 +38,7 @@ import {
   removeCircleOutline,
 } from 'ionicons/icons';
 import { ToastSuccess } from 'src/app/utils/alerts';
+import { PedidoComponent } from 'src/app/components/pedido/pedido.component';
 
 @Component({
   selector: 'app-lista-pedidos-pendiente',
@@ -91,7 +92,7 @@ export class ListaPedidosPendientePage implements OnInit {
       this.db.traerColeccion<Mesa>(Colecciones.Mesas),
       this.db.traerCoincidencias<Cliente>(Colecciones.Usuarios, {
         campo: 'rol',
-        operacion: '==',
+        operacion: 'eq',
         valor: 'cliente',
       }),
     ]);
@@ -121,7 +122,7 @@ export class ListaPedidosPendientePage implements OnInit {
     } = pedido.confirmaciones;
     let msj: string;
 
-    if (this.empleado.tipo === 'mozo') {
+    if (this.empleado.rol === 'mozo') {
       [nuevoEstado, msj] =
         pedido.estado === 'pendiente'
           ? ['en proceso', 'Pedido en preparación.']
@@ -200,11 +201,11 @@ export class ListaPedidosPendientePage implements OnInit {
       });
     });
 
-    // const modal = await this.modalCtrl.create({
-    //   component: PedidoComponent,
-    //   id: 'pedido-modal',
-    //   componentProps: { pedido: productosCant },
-    // });
-    // await modal.present();
+    //const modal = await this.modalCtrl.create({
+    //  component: PedidoComponent,
+    //  id: 'pedido-modal',
+    //  componentProps: { pedido: productosCant },
+    //});
+    //await modal.present();
   }
 }

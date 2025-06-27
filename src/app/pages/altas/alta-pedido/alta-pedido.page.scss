@@ -1,0 +1,107 @@
+@import "src/theme/variables.scss";
+// @import url("https://fonts.cdnfonts.com/css/cash-currency");
+
+ion-toolbar {
+  --background: #{$blue};
+  --color: white;
+  font-weight: bold;
+}
+ion-content {
+  --background: #{$dark-blue};
+  color: #fff;
+}
+.titulo-header {
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+
+  ion-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    ion-card-subtitle {
+      font-family: "Cash Currency", sans-serif;
+      font-size: xx-large;
+    }
+
+    #btn-container ion-icon {
+      font-size: 3.5rem;
+    }
+  }
+
+  ion-card-content#menu-container {
+    h2 {
+      color: $dark-grey;
+      padding: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    ion-accordion-group#lista-productos {
+      max-height: 62.5vh;
+      overflow-y: auto;
+
+      ion-accordion {
+        &:nth-child(odd) ion-item {
+          --ion-color-base: #{$grey} !important;
+        }
+
+        &:nth-child(even) ion-item {
+          --ion-color-base: #{$grey} !important;
+        }
+
+        ion-item {
+          ion-badge {
+            color: #{$dark-blue};
+            margin-inline-end: 0.25rem;
+            width: 2.125rem;
+            font-size: 1.25rem;
+          }
+
+          .precio-prod {
+            color: #000000;
+            font-family: "Cash Currency", sans-serif;
+          }
+        }
+
+        .content {
+          background-color: #989898;
+          color: #fff;
+          .imgs-container {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+
+            img {
+              width: 100%;
+              height: auto;
+              display: block !important;
+              margin: 0 1rem;
+            }
+          }
+
+          .cont-prod {
+            color: #fff;
+            display: flex;
+            align-items: center;
+
+            ion-button {
+              width: 70%;
+            }
+
+            ion-input {
+              color: #fff;
+              width: 30%;
+              text-align: center;
+              font-size: 3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

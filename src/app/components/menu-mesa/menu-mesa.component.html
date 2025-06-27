@@ -7,39 +7,39 @@
   <ion-card>
 
     @switch (mesa.estado) {
-      @case (estados[1]) {
-        <h2>
-          ¿Ya desea realizar su pedido?
-        </h2>
-        <div>
-          <ion-button (click)="modalCtrl.dismiss('pedir-comida')" color="success">Sí</ion-button>
-          <ion-button (click)="modalCtrl.dismiss('salir')" color="danger">No</ion-button>
-        </div>
+    @case (estados[1]) {
+    <h2>
+      ¿Ya desea realizar su pedido?
+    </h2>
+    <div>
+      <ion-button (click)="modalCtrl.dismiss('pedir-comida')" color="success">Sí</ion-button>
+      <ion-button (click)="modalCtrl.dismiss('salir')" color="danger">No</ion-button>
+    </div>
+    }
+    @case (estados[2]) {
+    <h2>
+      ¿Qué desea hacer?
+    </h2>
+    <div>
+      <ion-button (click)="modalCtrl.dismiss('pedir-comida')" color="tertiary">Pedir comida</ion-button>
+      <ion-button (click)="modalCtrl.dismiss('consultar')" color="tertiary">Consultar</ion-button>
+    </div>
+    }
+    @case (estados[4]) {
+    <h2>Estado de su pedido:<br><b>{{pedido.estado}}</b></h2>
+    }
+    @case (estados[5]) {
+    <div>
+      @if( pedido.estado !== 'pendiente'){
+      <!-- <ion-button (click)="modalCtrl.dismiss('jugar')">Jugar</ion-button> -->
+      @if (!hizoEncuesta) {
+      <ion-button (click)="modalCtrl.dismiss('alta-encuesta')">Subir Encuesta</ion-button>
       }
-      @case (estados[2]) {
-        <h2>
-          ¿Qué desea hacer?
-        </h2>
-        <div>
-          <ion-button (click)="modalCtrl.dismiss('pedir-comida')" color="tertiary">Pedir comida</ion-button>
-          <ion-button (click)="modalCtrl.dismiss('consultar')" color="tertiary">Consultar</ion-button>
-        </div>
+      <ion-button (click)="modalCtrl.dismiss('lista-encuestas')">Lista de Encuestas</ion-button>
+      <ion-button (click)="modalCtrl.dismiss('cuenta')">Pedir cuenta</ion-button>
       }
-      @case (estados[4]) {
-        <h2>Estado de su pedido:<br><b>{{pedido.estado}}</b></h2>
-      }
-      @case (estados[5]) {
-        <div>
-          @if( pedido.estado !== 'pendiente'){
-          <!-- <ion-button (click)="modalCtrl.dismiss('jugar')">Jugar</ion-button> -->
-          @if (!hizoEncuesta) {
-            <ion-button (click)="modalCtrl.dismiss('alta-encuesta')">Subir Encuesta</ion-button>
-          }
-          <ion-button (click)="modalCtrl.dismiss('lista-encuestas')">Lista de Encuestas</ion-button>
-          <ion-button (click)="modalCtrl.dismiss('cuenta')">Pedir cuenta</ion-button>
-          }
-        </div>
-      }
+    </div>
+    }
     }
   </ion-card>
   <ion-footer>

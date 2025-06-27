@@ -58,6 +58,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'alta-pedido',
+    loadComponent: () =>
+      import('./pages/altas/alta-pedido/alta-pedido.page').then(
+        (m) => m.AltaPedidoPage
+      ),
+  },
+  {
     path: 'lista-clientes-pendientes',
     loadComponent: () =>
       import(
@@ -80,19 +87,31 @@ export const routes: Routes = [
   },
   {
     path: 'cliente-espera',
-    loadComponent: () => import('./pages/cliente-espera/cliente-espera.page').then( m => m.ClienteEsperaPage)
+    loadComponent: () =>
+      import('./pages/cliente-espera/cliente-espera.page').then(
+        (m) => m.ClienteEsperaPage
+      ),
   },
   {
     path: 'lista-encuestas-cliente',
-    loadComponent: () => import('./pages/encuestas/lista-encuestas-cliente/lista-encuestas-cliente.page').then( m => m.ListaEncuestasClientePage)
+    loadComponent: () =>
+      import(
+        './pages/encuestas/lista-encuestas-cliente/lista-encuestas-cliente.page'
+      ).then((m) => m.ListaEncuestasClientePage),
   },
   {
     path: 'grafico-clientes',
-    loadComponent: () => import('./pages/grafico-clientes/grafico-clientes.page').then( m => m.GraficoClientesPage)
+    loadComponent: () =>
+      import('./pages/grafico-clientes/grafico-clientes.page').then(
+        (m) => m.GraficoClientesPage
+      ),
   },
   {
     path: 'lista-pedidos-pendiente',
-    loadComponent: () => import('./pages/listas/lista-pedidos-pendiente/lista-pedidos-pendiente.page').then( m => m.ListaPedidosPendientePage)
+    loadComponent: () =>
+      import(
+        './pages/listas/lista-pedidos-pendiente/lista-pedidos-pendiente.page'
+      ).then((m) => m.ListaPedidosPendientePage),
   },
   {
     path: 'alta-pedido',

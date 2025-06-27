@@ -14,28 +14,47 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-list id="lista" *ngIf="clientes.length > 0; else noClientes">
-          @for (cliente of clientes; track $index) {
-          <ion-item id="item">
-            <ion-avatar class="ion-margin-horizontal">
-              <img alt="avatar" [src]="cliente.foto_url" />
-            </ion-avatar>
-            <ion-label>{{cliente.nombre}} {{cliente.apellido}}</ion-label>
+        <!-- Grid de 2 columnas de tarjetas -->
+        <div id="lista" *ngIf="clientes.length > 0; else noClientes">
+          @for (cliente of clientes; track cliente.id) {
+          <ion-card class="cliente-card">
+            <!-- 📸 Imagen grande arriba -->
+            <img
+              class="cliente-foto"
+              [src]="cliente.foto_url"
+              alt="Foto de {{ cliente.nombre }}"
+            />
 
-            <div part="content" class="content">
-              <div class="cont-prod">
-                <ion-button size="large" color="danger" expand="fill" (click)="manejarCliente(cliente, 'rechazado')">
-                  <ion-icon slot="icon-only" aria-label="hidden" name="remove-circle-outline" color="light"></ion-icon>
+            <!-- 📝 Nombre completo -->
+            <ion-card-header>
+              <ion-card-title
+                >{{ cliente.nombre }} {{ cliente.apellido }}</ion-card-title
+              >
+            </ion-card-header>
+
+            <!-- ✅❌ Botonera centrada -->
+            <ion-card-content>
+              <div class="btn-group">
+                <ion-button
+                  color="danger"
+                  fill="solid"
+                  (click)="manejarCliente(cliente, 'rechazado')"
+                >
+                  <ion-icon name="remove-circle-outline"></ion-icon>
                 </ion-button>
-                <ion-button size="large" color="success" expand="fill" (click)="manejarCliente(cliente, 'aceptado')">
-                  <ion-icon slot="icon-only" aria-label="hidden" name="checkmark-circle-outline"
-                    color="light"></ion-icon>
+
+                <ion-button
+                  color="success"
+                  fill="solid"
+                  (click)="manejarCliente(cliente, 'aceptado')"
+                >
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
                 </ion-button>
               </div>
-            </div>
-          </ion-item>
+            </ion-card-content>
+          </ion-card>
           }
-        </ion-list>
+        </div>
         <ng-template #noClientes>
           <div id="noClientes">
             <ion-card>
@@ -44,7 +63,9 @@
               </ion-card-header>
               <ion-card-content>
                 <p>Parece que no hay clientes en lista de espera.</p>
-                <ion-button expand="block" routerLink="/home">Ir a Inicio</ion-button>
+                <ion-button expand="block" routerLink="/home"
+                  >Ir a Inicio</ion-button
+                >
               </ion-card-content>
             </ion-card>
           </div>

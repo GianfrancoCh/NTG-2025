@@ -296,4 +296,52 @@ export class PushNotificationService {
       console.error('Error al enviar notificación a mozos:', err);
     }
   }
+
+  async notificarMozoCuenta(nroMesa: number) {
+    try {
+      // 1. Obtener todos los que tengan player_id registrado
+      const { data, error } = await this.db.supabase
+        .from('usuarios')
+        .select('player_id')
+        .eq('rol', 'mozo')
+        .not('player_id', 'is', null);
+
+      if (error) {
+        console.error('Error al obtener mozos:', error.message);
+        return;
+      }
+
+      const playerIds = data
+        .map((j: any) => j.player_id)
+        .filter((id: string) => !!id);
+
+      if (playerIds.length === 0) {
+        console.log('No se encontraron mozos con player_id.');
+        return;
+      }
+
+      // 2. Enviar notificación
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${this.oneSignalApiKey}`,
+      });
+
+      const body = {
+        app_id: this.oneSignalAppId,
+        include_player_ids: playerIds,
+        headings: { en: 'Pedido de cuenta' },
+        contents: {
+          en: `La mesa número ${nroMesa} pidió la cuenta!`,
+        },
+      };
+
+      const response = await firstValueFrom(
+        this.http.post(this.oneSignalApiUrl, body, { headers })
+      );
+
+      console.log('Notificación enviada a mozos:', response);
+    } catch (err) {
+      console.error('Error al enviar notificación a mozos:', err);
+    }
+  }
 }
