@@ -47,6 +47,7 @@ import {
   Colecciones,
 } from 'src/app/services/database.service';
 import { ToastSuccess } from 'src/app/utils/alerts';
+import { each } from 'chart.js/dist/helpers/helpers.core';
 
 @Component({
   selector: 'app-alta-pedido',
@@ -98,6 +99,19 @@ export class AltaPedidoPage {
     this.db.traerColeccion<Producto>(Colecciones.Productos).then((prods) => {
       this.productos = prods;
       this.spinner.hide();
+
+      this.productos.forEach((prod) => {
+        if (typeof prod.fotos_url === 'string') {
+          try {
+            prod.fotos_url = JSON.parse(prod.fotos_url);
+            console.log('Fotos URL parseadas:', prod.fotos_url);
+          } catch (e) {
+            console.error('Error al parsear fotos_url:', prod.fotos_url);
+            prod.fotos_url = []; // fallback vacío si hay error
+          }
+        }
+      });
+      
     });
 
     addIcons({

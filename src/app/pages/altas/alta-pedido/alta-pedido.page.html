@@ -50,7 +50,7 @@
               <h2>{{item.descripcion}}</h2>
               <div class="imgs-container">
                 @for (foto of item.fotos_url; track $index) {
-                <img [src]="foto">
+                  <img [attr.src]="foto" alt="foto del producto">
                 }
               </div>
               <h2>
