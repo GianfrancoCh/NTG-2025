@@ -9,6 +9,7 @@ import { Persona } from '../clases/persona';
 import { Producto } from '../clases/producto';
 import { Mesa } from '../clases/mesa';
 import { ClienteEnEspera } from '../utils/interfaces/interfaces';
+import { Pedido } from '../clases/pedido';
 
 export enum Colecciones {
   Usuarios = 'usuarios',
@@ -287,5 +288,24 @@ export class DatabaseService {
       .subscribe();
 
     return canal;
+  }
+
+  escucharPedido(
+    id: number | string,
+    cb: (p: Pedido) => void
+  ): RealtimeChannel {
+    return this.supabase
+      .channel(`pedido-${id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'pedidos',
+          filter: `id=eq.${id}`,
+        },
+        (payload) => cb(payload.new as Pedido)
+      )
+      .subscribe();
   }
 }

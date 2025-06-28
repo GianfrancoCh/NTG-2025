@@ -1,0 +1,22 @@
+<ion-content *ngIf="pedido">
+  <h2>Estado de tu pedido</h2>
+
+  <ion-progress-bar
+    [value]="pedido.estado === 'pendiente'
+      ? 0.25
+      : pedido.estado === 'en proceso'
+      ? 0.5
+      : pedido.estado === 'listo'
+      ? 0.75
+      : 1"
+  >
+  </ion-progress-bar>
+
+  <p *ngIf="pedido.estado === 'pendiente'">
+    Tu pedido está pendiente de confirmación.
+  </p>
+  <p *ngIf="pedido.estado === 'en proceso'">¡Estamos preparando tu pedido!</p>
+  <p *ngIf="pedido.estado === 'listo'">El mozo está llevando tu pedido.</p>
+  <p *ngIf="pedido.estado === 'entregado'">¡Buen provecho!</p>
+</ion-content>
+<ion-content *ngIf="!pedido"> <p>No se encontró el pedido.</p></ion-content>

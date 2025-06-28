@@ -1,0 +1,21 @@
+<ion-content>
+  <ion-card *ngFor="let p of pedidos()">
+    <ion-card-header>
+      <ion-card-title>
+        <!--Mesa #{{ p.idMesa }} • Pedido #{{ p.id }}-->
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ul>
+        <li *ngFor="let prod of p.pedidoProd" [hidden]="prod.sector !== sector">
+          {{ prod.cantidad }} × {{ prod.nombre }}
+        </li>
+      </ul>
+
+      <ion-button expand="block" color="success" (click)="marcarListo(p)">
+        Marcar listo
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
