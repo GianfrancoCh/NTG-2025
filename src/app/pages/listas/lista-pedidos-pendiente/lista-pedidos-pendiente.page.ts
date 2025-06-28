@@ -178,6 +178,7 @@ export class ListaPedidosPendientePage implements OnInit {
       component: PedidoComponent,
       id: 'pedido-modal',
       componentProps: { pedido: productosCant },
+      cssClass: 'modal-transparente' // 👈 clase personalizada
     });
     await modal.present();
   }

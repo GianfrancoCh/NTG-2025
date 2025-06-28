@@ -1,4 +1,10 @@
 .tabla-container {
+  height: 100vh; // ocupa toda la pantalla (o ajustalo a lo que necesites)
+  display: flex;
+  justify-content: center; // centra horizontalmente
+  align-items: center; // centra verticalmente
+  padding: 1rem; // opcional, para que no quede pegado al borde
+
   .tabla {
     max-height: 50vh;
     overflow: auto;
@@ -10,7 +16,7 @@
       color: #2a2a2a;
       border: 3px solid #dee2e6;
       background: rgba(207, 220, 150, 0.5);
-      font-family: 'Gill Sans', sans-serif;
+      font-family: "Gill Sans", sans-serif;
       font-size: 16px;
 
       thead {

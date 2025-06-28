@@ -157,6 +157,7 @@ export class AltaPedidoPage {
     const modal = await this.modalCtrl.create({
       component: PedidoComponent,
       id: 'pedido-modal',
+      cssClass: 'modal-transparente', 
       componentProps: { pedido: pedido },
     });
 

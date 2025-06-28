@@ -44,6 +44,13 @@
 //   margin-top: 112px !important;
 // }
 
+.modal-transparente::part(backdrop) {
+  background-color: rgba(0, 0, 0, 0.4); // Fondo negro semi-transparente
+}
+.modal-transparente::part(content) {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 .background-grey {
   background-color: $grey;
   --background: #{$grey};

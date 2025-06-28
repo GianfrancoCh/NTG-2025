@@ -365,6 +365,7 @@ export class HomePage implements OnInit {
               const cuentaModal = await this.modalCtrl.create({
                 component: CuentaComponent,
                 id: 'cuenta-modal',
+                cssClass: 'modal-transparente',
                 backdropDismiss: false,
                 componentProps: { pedido: pedido },
               });
@@ -399,6 +400,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: MenuMesaComponent,
       id: 'menu-mesa-modal',
+      cssClass: 'modal-transparente',
       componentProps: {
         mesa: mesa,
         cliente: <Cliente>this.authService.UsuarioEnSesion,

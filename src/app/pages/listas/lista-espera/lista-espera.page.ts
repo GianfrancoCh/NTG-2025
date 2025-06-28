@@ -122,6 +122,7 @@ export class ListaEsperaPage implements OnInit {
           clienteEspera: cliente,
         },
         id: 'mesas-modal',
+        cssClass: 'modal-transparente',
       });
 
       await mesasModal.present();
