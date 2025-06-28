@@ -115,10 +115,16 @@ export const routes: Routes = [
   },
   {
     path: 'alta-pedido',
-    loadComponent: () => import('./pages/altas/alta-pedido/alta-pedido.page').then( m => m.AltaPedidoPage)
+    loadComponent: () =>
+      import('./pages/altas/alta-pedido/alta-pedido.page').then(
+        (m) => m.AltaPedidoPage
+      ),
   },
   {
     path: 'consulta-mozo',
-    loadComponent: () => import('./pages/consulta-mozo/consulta-mozo.page').then(m => m.ConsultaMozoPage),
+    loadComponent: () =>
+      import('./pages/consulta-mozo/consulta-mozo.page').then(
+        (m) => m.ConsultaMozoPage
+      ),
   },
 ];

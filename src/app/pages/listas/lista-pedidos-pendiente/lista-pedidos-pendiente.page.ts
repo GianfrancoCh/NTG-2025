@@ -174,12 +174,12 @@ export class ListaPedidosPendientePage implements OnInit {
       });
     });
 
-    //const modal = await this.modalCtrl.create({
-    //  component: PedidoComponent,
-    //  id: 'pedido-modal',
-    //  componentProps: { pedido: productosCant },
-    //});
-    //await modal.present();
+    const modal = await this.modalCtrl.create({
+      component: PedidoComponent,
+      id: 'pedido-modal',
+      componentProps: { pedido: productosCant },
+    });
+    await modal.present();
   }
 
   private async cargarPedidos() {

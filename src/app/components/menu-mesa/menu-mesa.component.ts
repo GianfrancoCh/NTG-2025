@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {IonHeader,
+import {
+  IonHeader,
   IonTitle,
   IonCard,
   IonCardTitle,
@@ -27,17 +28,32 @@ import {
   templateUrl: './menu-mesa.component.html',
   styleUrls: ['./menu-mesa.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonHeader, IonTitle, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonItem, IonLabel, IonIcon, IonButton, IonFooter],
+  imports: [
+    CommonModule,
+    IonHeader,
+    IonTitle,
+    IonCard,
+    IonCardTitle,
+    IonCardHeader,
+    IonCardContent,
+    IonItem,
+    IonLabel,
+    IonIcon,
+    IonButton,
+    IonFooter,
+  ],
 })
 export class MenuMesaComponent implements OnInit {
-
   protected mesa!: Mesa;
   protected cliente!: Cliente;
   protected pedido!: Pedido;
 
   estados: EstadoMesa[] = Object.values(EstadoMesa);
   hizoEncuesta: boolean = false;
-  constructor(protected modalCtrl: ModalController, private db: DatabaseService) { }
+  constructor(
+    protected modalCtrl: ModalController,
+    private db: DatabaseService
+  ) {}
 
   async ngOnInit() {
     this.db

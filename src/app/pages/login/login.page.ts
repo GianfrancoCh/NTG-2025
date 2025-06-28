@@ -115,27 +115,27 @@ export class LoginPage {
         }
       }
 
-      // await OneSignal.logout();
-      // const userId = data.user.id;
-      // await OneSignal.login(userId);
+      await OneSignal.logout();
+      const userId = data.user.id;
+      await OneSignal.login(userId);
 
-      // const playerId = await this.pushNotificationService.loadPlayerId();
+      const playerId = await this.pushNotificationService.loadPlayerId();
 
-      // if (playerId) {
-      //   const { error: updateError } = await this.databaseService.supabase
-      //     .from('usuarios')
-      //     .update({ player_id: playerId })
-      //     .eq('email', email);
+      if (playerId) {
+        const { error: updateError } = await this.databaseService.supabase
+          .from('usuarios')
+          .update({ player_id: playerId })
+          .eq('email', email);
 
-      //   if (updateError) {
-      //     console.error(
-      //       '❌ Error actualizando player_id:',
-      //       updateError.message
-      //     );
-      //   } else {
-      //     console.log('✅ player_id actualizado en login:', playerId);
-      //   }
-      // }
+        if (updateError) {
+          console.error(
+            '❌ Error actualizando player_id:',
+            updateError.message
+          );
+        } else {
+          console.log('✅ player_id actualizado en login:', playerId);
+        }
+      }
 
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/home']);

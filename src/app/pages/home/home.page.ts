@@ -236,8 +236,15 @@ export class HomePage implements OnInit {
   async escanearQrMesa(nroMesaEscaneado: string) {
     try {
       this.spinner.show();
-      const cliente = this.authService.UsuarioEnSesion as Cliente;
+      //traigo el usuario actualizado con el idMesa
+      const cliente = await this.db.traerDoc<Cliente>(
+        Colecciones.Usuarios,
+        this.authService.UsuarioEnSesion!.id
+      );
+
       if (!cliente) return;
+
+      console.log('cliente.idMesa', cliente.idMesa);
 
       if (!cliente.idMesa)
         throw new Exception(
@@ -345,12 +352,6 @@ export class HomePage implements OnInit {
             else if (rta === 'lista-encuestas')
               this.navCtrl.navigateRoot('lista-encuestas-cliente');
             else if (rta === 'cuenta') {
-              //push al mozo
-              // this.push.sendNotificationToType(
-              //   'Pedido de cuenta',
-              //   `La mesa número ${mesaEscan.nroMesa} pidió la cuenta`,
-              //   'mozo'
-              // );
               this.pushService.notificarMozoCuenta(mesaEscan.nroMesa);
 
               this.spinner.show();
@@ -441,10 +442,7 @@ export class HomePage implements OnInit {
   }
   //BORRAR ESTO PRUEBA
   async pruebaMesa() {
-    const mesaEscan = await this.db.traerDoc<Mesa>(
-      Colecciones.Mesas,
-      "3"
-    );
+    const mesaEscan = await this.db.traerDoc<Mesa>(Colecciones.Mesas, '3');
     console.log(mesaEscan);
 
     if (mesaEscan !== null) {
