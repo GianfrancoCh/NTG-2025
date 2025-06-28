@@ -115,10 +115,37 @@ export const routes: Routes = [
   },
   {
     path: 'alta-pedido',
-    loadComponent: () => import('./pages/altas/alta-pedido/alta-pedido.page').then( m => m.AltaPedidoPage)
+    loadComponent: () =>
+      import('./pages/altas/alta-pedido/alta-pedido.page').then(
+        (m) => m.AltaPedidoPage
+      ),
   },
   {
     path: 'consulta-mozo',
-    loadComponent: () => import('./pages/consulta-mozo/consulta-mozo.page').then(m => m.ConsultaMozoPage),
+    loadComponent: () =>
+      import('./pages/consulta-mozo/consulta-mozo.page').then(
+        (m) => m.ConsultaMozoPage
+      ),
+  },
+  {
+    path: 'sector-lista',
+    loadComponent: () =>
+      import('./pages/sector-lista/sector-lista.page').then(
+        (m) => m.SectorListaPage
+      ),
+  },
+  {
+    path: 'estado-pedido',
+    loadComponent: () =>
+      import('./pages/estado-pedido/estado-pedido.page').then(
+        (m) => m.EstadoPedidoPage
+      ),
+  },
+  {
+    path: 'estado-pedido/:id',
+    loadComponent: () =>
+      import('./pages/estado-pedido/estado-pedido.page').then(
+        (m) => m.EstadoPedidoPage
+      ),
   },
 ];

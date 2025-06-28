@@ -45,3 +45,10 @@ export interface PedidoArmado {
   sector: 'cocina' | 'barra';
 }
 export type PorcPropina = 0 | 5 | 10 | 15 | 20;
+
+export function sectorPendiente(
+  p: Pedido,
+  sector: 'cocina' | 'barra'
+): boolean {
+  return !p.confirmaciones?.[sector];
+}
