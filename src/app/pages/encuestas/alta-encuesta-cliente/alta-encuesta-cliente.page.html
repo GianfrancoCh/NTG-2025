@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>alta-encuesta-cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container background-pri">
+    <ion-card style="width: 95%;">
+      <ion-card-header>
+        <ion-card-title>Encuesta de Cliente</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="frmEncuesta" (ngSubmit)="subirEncuesta()">
+
+          <div id="puntuacionGeneral" class="control">
+            <app-range-estrellas titulo="Puntuación General" idEstrellas="puntuacionGeneral"
+              (cambioValor)="frmEncuesta.controls['puntuacionGeneral'].setValue($event)"></app-range-estrellas>
+          </div>
+
+          <div id="comida" class="control">
+            <div class="label">
+              <ion-label>Calidad de la Comida</ion-label>
+            </div>
+            <div class="input">
+              <ion-range [min]="1" [max]="10" [value]="frmEncuesta.controls['comida'].value" [pin]="true" [ticks]="true"
+                [snaps]="true" step="1" (ionChange)="onComidaChange($event)" formControlName="comida" required
+                ngDefaultControl>
+                <ion-label slot="start">1</ion-label>
+                <ion-label slot="end">10</ion-label>
+              </ion-range>
+            </div>
+          </div>
+
+          <div id="atencion" class="control">
+            <ion-label>Atención</ion-label>
+            <ion-radio-group formControlName="atencion" (ionChange)="onAtencionChange($event)" required
+              ngDefaultControl>
+              <ion-item>
+                <ion-label>Muy Mala</ion-label>
+                <ion-radio slot="start" value="muy mala"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Mala</ion-label>
+                <ion-radio slot="start" value="mala"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Buena</ion-label>
+                <ion-radio slot="start" value="buena"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Excelente</ion-label>
+                <ion-radio slot="start" value="excelente"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </div>
+
+          <div id="recomendacion" class="control">
+            <ion-item>
+              <ion-label>¿Recomendaría el restaurante?</ion-label>
+              <ion-checkbox formControlName="recomendacion" (ionChange)="onRecomendacionChange($event)" required
+                ngDefaultControl></ion-checkbox>
+            </ion-item>
+          </div>
+
+          <div id="comentarios" class="control">
+            <div class="label">
+              <ion-label>Comentarios</ion-label>
+            </div>
+            <div class="input">
+              <textarea [maxlength]="255" formControlName="comentarios" required ngDefaultControl></textarea>
+            </div>
+          </div>
+
+          <ion-button type="submit" expand="block" [disabled]="frmEncuesta.invalid">Subir</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

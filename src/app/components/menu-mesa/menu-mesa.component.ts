@@ -88,5 +88,7 @@ export class MenuMesaComponent implements OnInit {
       }
     );
     this.hizoEncuesta = encuestas.length > 0;
+
+    console.log('estado de la mesa:', this.mesa.estado);
   }
 }

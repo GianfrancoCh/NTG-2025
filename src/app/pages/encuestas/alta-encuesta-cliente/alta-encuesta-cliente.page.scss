@@ -1,0 +1,27 @@
+@import "src/theme/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  ion-card-header {
+    padding-bottom: 0;
+  }
+
+  .control {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+
+    .label {
+      font-size: 1.25rem;
+    }
+
+    .input,
+    .input textarea {
+      width: 100%;
+    }
+  }
+}

@@ -117,7 +117,7 @@ export class DatabaseService {
     const { error } = await this.supabase
       .from(coleccion)
       .update(data)
-      .eq('id', Number(docId));
+      .eq('id', docId);
 
     if (error) {
       console.error('Error al actualizar documento:', error.message);
@@ -236,7 +236,7 @@ export class DatabaseService {
       .subscribe();
 
     return canal;
-  };
+  }
 
   // escucharMensajes<T>(
   //   tabla: string,
@@ -288,13 +288,18 @@ export class DatabaseService {
       .select('*')
       .then(async ({ data, error }) => {
         if (error) {
-          console.error(`Error al obtener datos iniciales de ${coleccion}:`, error.message);
+          console.error(
+            `Error al obtener datos iniciales de ${coleccion}:`,
+            error.message
+          );
           return;
         }
 
         if (data) {
           for (let item of data) {
-            let transformado = transformar ? await transformar(item as T) : item as T;
+            let transformado = transformar
+              ? await transformar(item as T)
+              : (item as T);
             if (!filtroFunc || filtroFunc(transformado)) {
               datosLocales.push(transformado);
             }
