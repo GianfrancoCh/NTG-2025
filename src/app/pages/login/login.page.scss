@@ -1,12 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
 }
 
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
 
@@ -14,14 +14,13 @@ ion-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 8px;
+
 }
 
 .login-form {
   width: 100%;
   max-width: 400px;
-  background-color: #{$dark-grey};
+  background-color: #414068;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -33,7 +32,7 @@ ion-content {
 
 .input-label {
   color: white;
-  font-size: 16px;
+  font-size: 30px;
   margin-bottom: 8px;
 }
 
@@ -55,7 +54,7 @@ ion-content {
 }
 
 .action-button {
-  --background: #3a3a5a;
+  --background: #24B4F8;
   --color: white;
   --border-radius: 5px;
   height: 50px;
@@ -64,11 +63,12 @@ ion-content {
 }
 
 .action-button.secondary {
-  --background: #2a2a3a;
+  --background: #24B4F8;
+  font-weight: normal;
 }
 
 .login-btn {
-  --background: #3a3a5a;
+  --background: #24B4F8;
   --color: white;
   --border-radius: 5px;
   height: 50px;
@@ -77,7 +77,7 @@ ion-content {
 }
 
 .registro-btn {
-  --background: #{$black};
+  --background: #b524f8;
   --color: white;
   --border-radius: 5px;
   height: 50px;
@@ -86,7 +86,7 @@ ion-content {
 }
 
 .registro-anon-btn {
-  --background: #{$blue};
+  --background: #f824a0;
   --color: white;
   --border-radius: 5px;
   height: 50px;
@@ -96,23 +96,56 @@ ion-content {
 
 // Header styles
 ion-menu {
-  --background: #2d2d3a;
+  --background: #039BE6;
   color: white;
 }
 ion-item {
   --color: white;
+  --background: #201d44;
+  font-size: 20px;
 }
 
 .menu-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
 }
 /* Estilos para el header */
 .header-fix ion-toolbar {
   --border-width: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .header-fix ion-title {
   font-size: 20px;
   font-weight: bold;
+}
+
+.logo {
+  -webkit-animation: scale-down-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    1s both;
+  animation: scale-down-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+  height: 180px;
+}
+
+@-webkit-keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+}
+@keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
 }

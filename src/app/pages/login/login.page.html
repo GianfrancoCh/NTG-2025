@@ -23,7 +23,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Inicio de sesión</ion-title>
+    <ion-title style="font-size: 35px;">Inicio de sesión</ion-title>
     <ion-buttons slot="end">
       <ion-button class='boton-home' (click)="volverAlHome()">
         <img src="../../../assets/home.png" style="height: 30px;" />
@@ -33,8 +33,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding content-with-safe-area" id="main-content">
-  <!-- <img src="../../../assets/logo-comanda.png" alt="" style="height: 250px;"> -->
-  <div class="login-container">
+<div class="ion-text-center splash-container">
+    <div class="container">
+      <img src="assets/comanda-negro.png" class="logo" />
+    </div>
+</div>  <div class="login-container">
     <div class="login-form">
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="input-container">
