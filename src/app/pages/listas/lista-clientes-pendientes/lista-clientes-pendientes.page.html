@@ -1,4 +1,4 @@
-<ion-header [translucent]="true" class="header-fix">
+<ion-header [translucent]="true" class="header-fix" >
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button routerLink="/home"></ion-back-button>
@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <div class="container background-pri">
+  <div class="container">
     <ion-card style="width: 95%">
       <ion-card-header>
         <ion-card-title>Clientes pendientes</ion-card-title>
@@ -27,13 +27,13 @@
 
             <!-- 📝 Nombre completo -->
             <ion-card-header>
-              <ion-card-title
+              <ion-card-title style="font-size: 30px;"
                 >{{ cliente.nombre }} {{ cliente.apellido }}</ion-card-title
               >
             </ion-card-header>
 
             <!-- ✅❌ Botonera centrada -->
-            <ion-card-content>
+            <ion-card-content style="background-color: #039BE6;">
               <div class="btn-group">
                 <ion-button
                   color="danger"

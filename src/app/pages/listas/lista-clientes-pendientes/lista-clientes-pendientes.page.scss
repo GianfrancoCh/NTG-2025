@@ -1,13 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
-  font-weight: bold;
 }
 
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
 
@@ -31,6 +30,24 @@ ion-content {
   }
 }
 
+ion-card-header {
+  background-color: #039BE6;/* color de fondo del header */
+}
+
+ion-card-content {
+  background-color: #414068;/* color de fondo del header */
+}
+ion-card-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff; /* color del texto */
+}
+
+/* 👉  Contenedor principal */
+.container {
+  background-color: #2D2D51; /* color de fondo */
+}
+
 /* 👉  Contenedor grid de 2 columnas responsivas */
 #lista {
   display: grid;
@@ -45,7 +62,7 @@ ion-content {
   flex-direction: column;
   align-items: center;
   text-align: center;
-
+  background-color: #039BE6; /* color de fondo de la tarjeta */
   /* bordes redondeados y sombra sutil */
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -65,6 +82,7 @@ ion-card-title {
   font-size: 1.2rem;
   font-weight: 700;
   color: #fff; /* adapta si usas otro tema */
+  background-color: #039BE6;
 }
 
 /* ✅❌  Botones juntos y centrados */

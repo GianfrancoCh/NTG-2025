@@ -1,13 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
-  font-weight: bold;
 }
 
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
 
@@ -22,11 +21,11 @@ ion-content {
   justify-content: center;
 
   ion-card-title {
-    font-size: 4rem;
+    font-size: 30px;
   }
 
   p,
   ion-button {
-    font-size: 2rem;
+    font-size: 25px;
   }
 }
