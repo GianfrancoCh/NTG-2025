@@ -27,14 +27,14 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 | -                     | Login                                                  | Aguirre Antonio      | Finalizado  |
 | -                     | Registro                                               | Aguirre Antonio      | Finalizado  |
 | **Altas**             |                                                        |                      |             |
-| A                     | Alta Dueño / Supervisor                                | Gianfranco Chiarizia | Finalizado  |
-| B                     | Alta de Empleados                                      | Gianfranco Chiarizia | Finalizado  |
+| A                     | Alta Dueño / Supervisor                                | Gianfranco Chiarizia | —           |
+| B                     | Alta de Empleados                                      | Gianfranco Chiarizia | —           |
 | C                     | Alta Clientes                                          | Nahuel Borquez       | Finalizado  |
-| D                     | Alta Productos                                         | Gianfranco Chiarizia | Finalizado  |
-| E                     | Alta Mesa                                              | Aguirre Antonio      | Finalizado  |
+| D                     | Alta Productos                                         | Gianfranco Chiarizia | —           |
+| E                     | Alta Mesa                                              | Aguirre Antonio      | —           |
 | **Códigos QR**        |                                                        |                      |             |
-| F                     | QR Ingreso al local                                    | Nahuel Borquez       | En Progreso |
-| G                     | QR de la Mesa                                          | Gianfranco Chiarizia | En Progreso |
+| F                     | QR Ingreso al local                                    | Nahuel Borquez       | Finalizado  |
+| G                     | QR de la Mesa                                          | Gianfranco Chiarizia | Finalizado  |
 | H                     | QR de la propina                                       | Aguirre Antonio      | —           |
 | **Encuestas**         |                                                        |                      |             |
 | I                     | Encuesta Clientes                                      | Nahuel Borquez       | Pendiente   |
@@ -47,15 +47,15 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 | O                     | Confirmar Pedidos                                      | Nahuel Borquez       | Pendiente   |
 | P                     | Generar reservas agendadas                             | Gianfranco Chiarizia | Pendiente   |
 | **Push Notification** |                                                        |                      |             |
-| Q                     | Push - Agregar cliente nuevo                           | Nahuel Borquez       | Pendiente   |
-| R                     | Push - Ingreso al local                                | Gianfranco Chiarizia | Pendiente   |
+| Q                     | Push - Agregar cliente nuevo                           | Nahuel Borquez       | Finalizado  |
+| R                     | Push - Ingreso al local                                | Gianfranco Chiarizia | Finalizado  |
 | S                     | Push - Consultar al mozo                               | Aguirre Antonio      | Pendiente   |
 | T                     | Push - Confirmar pedido (parte del mozo)               | Nahuel Borquez       | Pendiente   |
 | U                     | Push - Confirmar pedido (parte del cocinero/bartender) | Gianfranco Chiarizia | Pendiente   |
-| V                     | Generar reservas agendadas / Delivery                  | Aguirre Antonio      | Pendiente   |
+| V                     | Generar reservas agendadas / Delivery                  | Aguirre Antonio      | —           |
 | **Delivery**          |                                                        |                      |             |
-| W                     | Delivery - Realizar Pedido con GPS o Dirección         | Nahuel Borquez       | Pendiente   |
-| X                     | Mapa Ruta hasta domicilio entrega                      | Gianfranco Chiarizia | Pendiente   |
+| W                     | Delivery - Realizar Pedido con GPS o Dirección         | Nahuel Borquez       | —           |
+| X                     | Mapa Ruta hasta domicilio entrega                      | Gianfranco Chiarizia | —           |
 | **Juegos**            |                                                        |                      |             |
 | Y                     | Juego 10% descuento                                    | Aguirre Antonio      | Pendiente   |
 | Z                     | Juego 15% descuento                                    | Nahuel Borquez       | Pendiente   |
