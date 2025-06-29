@@ -14,7 +14,6 @@ ion-content {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .login-form {
@@ -32,7 +31,7 @@ ion-content {
 
 .input-label {
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 8px;
 }
 
@@ -126,7 +125,7 @@ ion-item {
   -webkit-animation: scale-down-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     1s both;
   animation: scale-down-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
-  height: 180px;
+  height: 120px;
 }
 
 @-webkit-keyframes scale-down-center {
