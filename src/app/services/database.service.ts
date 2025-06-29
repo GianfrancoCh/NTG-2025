@@ -118,7 +118,7 @@ export class DatabaseService {
     const { error } = await this.supabase
       .from(coleccion)
       .update(data)
-      .eq('id', docId);
+      .eq('id', Number(docId));
 
     if (error) {
       console.error('Error al actualizar documento:', error.message);

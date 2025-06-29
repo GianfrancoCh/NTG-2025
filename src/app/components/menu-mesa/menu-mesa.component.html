@@ -1,11 +1,11 @@
 <div id="menu-container">
-  <ion-header>
-    <h1>
-      Hola, {{cliente.nombre}}
-    </h1>
-  </ion-header>
-  <ion-card>
 
+  <ion-card>
+    <ion-header>
+      <h1>
+        Hola, {{cliente.nombre}}
+      </h1>
+    </ion-header>
     @switch (mesa.estado) {
     @case (estados[1]) {
     <h2>
@@ -41,8 +41,8 @@
     </div>
     }
     }
+    <ion-footer>
+      <ion-button (click)="modalCtrl.dismiss('salir')" color="tertiary">Volver</ion-button>
+    </ion-footer>
   </ion-card>
-  <ion-footer>
-    <ion-button (click)="modalCtrl.dismiss('salir')" color="tertiary">Volver</ion-button>
-  </ion-footer>
 </div>
