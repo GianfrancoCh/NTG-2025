@@ -1,17 +1,16 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <!-- Usa back-button si corresponde o elimina si abres como modal -->
-      <ion-back-button defaultHref="/home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Hola, {{ cliente.nombre }}</ion-title>
+  <!-- Header extra-alto -->
+  <ion-toolbar class="tool-large" style="background-color: #039be6;">
+    <ion-title>Mesa {{ cliente.idMesa }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container">
     <ion-card class="accion-card">
-      <!-- ⚡  Contenido dinámico según el estado de la mesa -->
+      <br/>
+      <br/>
+      <!-- Contenido dinámico -->
       @switch (mesa.estado) {
         @case (estados[1]) {
           <ion-card-header>
@@ -19,12 +18,12 @@
           </ion-card-header>
           <ion-card-content>
             <div class="btn-group">
-              <ion-button color="success" fill="solid" (click)="modalCtrl.dismiss('pedir-comida')">
+              <button class="btn-custom btn-green" (click)="modalCtrl.dismiss('pedir-comida')">
                 <ion-icon name="checkmark-circle-outline"></ion-icon>
-              </ion-button>
-              <ion-button color="danger" fill="solid" (click)="modalCtrl.dismiss('salir')">
+              </button>
+              <button class="btn-custom btn-red" (click)="modalCtrl.dismiss('salir')">
                 <ion-icon name="close-circle-outline"></ion-icon>
-              </ion-button>
+              </button>
             </div>
           </ion-card-content>
         }
@@ -34,12 +33,12 @@
           </ion-card-header>
           <ion-card-content>
             <div class="btn-group">
-              <ion-button color="tertiary" fill="solid" (click)="modalCtrl.dismiss('pedir-comida')">
+              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('pedir-comida')">
                 Pedir comida
-              </ion-button>
-              <ion-button color="tertiary" fill="solid" (click)="modalCtrl.dismiss('consultar')">
+              </button>
+              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('consultar')">
                 Consultar
-              </ion-button>
+              </button>
             </div>
           </ion-card-content>
         }
@@ -59,26 +58,24 @@
             <div class="btn-group">
               @if (pedido.estado !== 'pendiente') {
                 @if (!hizoEncuesta) {
-                  <ion-button fill="solid" (click)="modalCtrl.dismiss('alta-encuesta')">
+                  <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
                     Subir encuesta
-                  </ion-button>
+                  </button>
                 }
-                <ion-button fill="solid" (click)="modalCtrl.dismiss('lista-encuestas')">
+                <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
                   Lista de encuestas
-                </ion-button>
-                <ion-button fill="solid" (click)="modalCtrl.dismiss('cuenta')">
+                </button>
+                <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('cuenta')">
                   Pedir cuenta
-                </ion-button>
+                </button>
               }
             </div>
           </ion-card-content>
         }
       }
     </ion-card>
-
-    <!-- 🔙  Botón volver -->
-    <ion-button class="volver-btn" color="tertiary" expand="block" (click)="modalCtrl.dismiss('salir')">
-      Volver
-    </ion-button>
+    <br/><br/>
+    <!-- Botón volver -->
+    <button class="volver-btn" (click)="modalCtrl.dismiss('salir')">Volver</button>
   </div>
 </ion-content>

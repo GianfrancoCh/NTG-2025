@@ -1,17 +1,28 @@
+/*************  VARIABLES *************/
 :host {
   --azul-claro: #039be6;
   --azul-oscuro: #2d2d51;
   --azul-intermedio: #414068;
+  --violeta: #6106b6;
   --blanco: #ffffff;
 }
 
-/*************  HEADER ***************/
-ion-toolbar {
-  --background: var(--azul-claro);
-  --color: var(--blanco);
+/*************  HEADER *************/
+.tool-large {
+  height: 120px;               /* Header alto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--azul-claro);
+  color: var(--blanco);
 }
 
-/*************  CONTENIDO ***************/
+ion-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/*************  CONTENIDO *************/
 ion-content {
   --background: var(--azul-oscuro);
   color: var(--blanco);
@@ -27,12 +38,11 @@ ion-content {
   gap: 1rem;
 }
 
-/*************  TARJETA PRINCIPAL ***************/
+/*************  TARJETA PRINCIPAL *************/
 .accion-card {
   width: 95%;
   border-radius: 16px;
   overflow: hidden;
-  /* sombra suave */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -51,7 +61,35 @@ ion-card-content {
   background-color: var(--azul-intermedio);
 }
 
-/*************  GRUPO DE BOTONES ***************/
+/*************  BOTONES PERSONALIZADOS *************/
+.btn-custom {
+  min-width: 140px;
+  height: 44px;
+  padding: 0 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  color: var(--blanco);
+  background-color: var(--azul-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.btn-custom:hover {
+  transform: scale(1.05);
+}
+
+/* variantes de color */
+.btn-green { background-color: #28a745; }
+.btn-red   { background-color: #dc3545; }
+.btn-blue  { background-color: var(--azul-claro); }
+
+/*************  GRUPO DE BOTONES *************/
 .btn-group {
   display: flex;
   justify-content: center;
@@ -60,13 +98,27 @@ ion-card-content {
   margin: 0.5rem 0;
 }
 
-ion-button {
-  min-width: 140px;
-  font-size: 1.1rem;
-}
-
+/*************  BOTÓN VOLVER *************/
 .volver-btn {
   width: 95%;
   max-width: 500px;
   margin-bottom: 1rem;
+  height: 46px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  color: var(--blanco);
+  background-color: var(--violeta);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.volver-btn:hover {
+  transform: scale(1.05);
+}
+
+/*************  ICONOS *************/
+ion-icon {
+  font-size: 22px;
 }
