@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+/* Ionic (stand-alone) */
 import {
+  IonContent,
+  IonButtons,
+  IonToolbar,
+  IonBackButton,
   IonHeader,
   IonTitle,
   IonCard,
@@ -11,8 +17,11 @@ import {
   IonLabel,
   IonIcon,
   IonButton,
-  IonFooter, IonBackButton, IonToolbar, IonButtons, IonContent } from '@ionic/angular/standalone';
+  IonFooter,
+} from '@ionic/angular/standalone';
+
 import { ModalController } from '@ionic/angular/standalone';
+
 import { Cliente } from 'src/app/clases/cliente';
 import { EncuestaCliente } from 'src/app/clases/encuestas/encuesta-cliente';
 import { EstadoMesa, Mesa } from 'src/app/clases/mesa';
@@ -27,8 +36,12 @@ import {
   templateUrl: './menu-mesa.component.html',
   styleUrls: ['./menu-mesa.component.scss'],
   standalone: true,
-  imports: [IonContent, IonButtons, IonToolbar, IonBackButton, 
-    CommonModule,
+  imports: [
+    /* Ionic */
+    IonContent,
+    IonButtons,
+    IonToolbar,
+    IonBackButton,
     IonHeader,
     IonTitle,
     IonCard,
@@ -40,30 +53,40 @@ import {
     IonIcon,
     IonButton,
     IonFooter,
+    /* Angular */
+    CommonModule,
   ],
 })
 export class MenuMesaComponent implements OnInit {
-  protected mesa!: Mesa;
-  protected cliente!: Cliente;
-  protected pedido!: Pedido;
+  /* ────────────── Entradas ────────────── */
+  @Input() mesa!: Mesa;
+  @Input() cliente!: Cliente;
+  /** Puede venir undefined si aún no se generó el pedido */
+  @Input() pedido?: Pedido;
 
+  /* ────────────── Propiedades auxiliares ────────────── */
   estados: EstadoMesa[] = Object.values(EstadoMesa);
-  hizoEncuesta: boolean = false;
+  /** True ↔ el cliente ya completó una encuesta para este pedido */
+  hizoEncuesta = false;
+
   constructor(
     protected modalCtrl: ModalController,
     private db: DatabaseService
   ) {}
 
   async ngOnInit() {
-    this.db
-      .traerCoincidencias<EncuestaCliente>(Colecciones.EncuestasCliente, {
+    /* Si todavía no hay pedido, no hay nada que verificar */
+    if (!this.pedido) return;
+
+    /* Comprobar si existe encuesta asociada al pedido */
+    const encuestas = await this.db.traerCoincidencias<EncuestaCliente>(
+      Colecciones.EncuestasCliente,
+      {
         campo: 'idPedido',
         operacion: 'eq',
         valor: this.pedido.id,
-      })
-      .then((res) => {
-        console.log(res);
-        this.hizoEncuesta = res.length > 0;
-      });
+      }
+    );
+    this.hizoEncuesta = encuestas.length > 0;
   }
 }
