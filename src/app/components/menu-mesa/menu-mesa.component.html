@@ -1,48 +1,84 @@
-<div id="menu-container">
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Usa back-button si corresponde o elimina si abres como modal -->
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Hola, {{ cliente.nombre }}</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-card>
-    <ion-header>
-      <h1>
-        Hola, {{cliente.nombre}}
-      </h1>
-    </ion-header>
-    @switch (mesa.estado) {
-    @case (estados[1]) {
-    <h2>
-      ¿Ya desea realizar su pedido?
-    </h2>
-    <div>
-      <ion-button (click)="modalCtrl.dismiss('pedir-comida')" color="success">Sí</ion-button>
-      <ion-button (click)="modalCtrl.dismiss('salir')" color="danger">No</ion-button>
-    </div>
-    }
-    @case (estados[2]) {
-    <h2>
-      ¿Qué desea hacer?
-    </h2>
-    <div>
-      <ion-button (click)="modalCtrl.dismiss('pedir-comida')" color="tertiary">Pedir comida</ion-button>
-      <ion-button (click)="modalCtrl.dismiss('consultar')" color="tertiary">Consultar</ion-button>
-    </div>
-    }
-    @case (estados[4]) {
-    <h2>Estado de su pedido:<br><b>{{pedido.estado}}</b></h2>
-    }
-    @case (estados[5]) {
-    <div>
-      @if( pedido.estado !== 'pendiente'){
-      <!-- <ion-button (click)="modalCtrl.dismiss('jugar')">Jugar</ion-button> -->
-      @if (!hizoEncuesta) {
-      <ion-button (click)="modalCtrl.dismiss('alta-encuesta')">Subir Encuesta</ion-button>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-card class="accion-card">
+      <!-- ⚡  Contenido dinámico según el estado de la mesa -->
+      @switch (mesa.estado) {
+        @case (estados[1]) {
+          <ion-card-header>
+            <ion-card-title>¿Ya desea realizar su pedido?</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="btn-group">
+              <ion-button color="success" fill="solid" (click)="modalCtrl.dismiss('pedir-comida')">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" fill="solid" (click)="modalCtrl.dismiss('salir')">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-card-content>
+        }
+        @case (estados[2]) {
+          <ion-card-header>
+            <ion-card-title>¿Qué desea hacer?</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="btn-group">
+              <ion-button color="tertiary" fill="solid" (click)="modalCtrl.dismiss('pedir-comida')">
+                Pedir comida
+              </ion-button>
+              <ion-button color="tertiary" fill="solid" (click)="modalCtrl.dismiss('consultar')">
+                Consultar
+              </ion-button>
+            </div>
+          </ion-card-content>
+        }
+        @case (estados[4]) {
+          <ion-card-header>
+            <ion-card-title>
+              Estado de su pedido:<br />
+              <b>{{ pedido.estado }}</b>
+            </ion-card-title>
+          </ion-card-header>
+        }
+        @case (estados[5]) {
+          <ion-card-header>
+            <ion-card-title>Opciones</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="btn-group">
+              @if (pedido.estado !== 'pendiente') {
+                @if (!hizoEncuesta) {
+                  <ion-button fill="solid" (click)="modalCtrl.dismiss('alta-encuesta')">
+                    Subir encuesta
+                  </ion-button>
+                }
+                <ion-button fill="solid" (click)="modalCtrl.dismiss('lista-encuestas')">
+                  Lista de encuestas
+                </ion-button>
+                <ion-button fill="solid" (click)="modalCtrl.dismiss('cuenta')">
+                  Pedir cuenta
+                </ion-button>
+              }
+            </div>
+          </ion-card-content>
+        }
       }
-      <ion-button (click)="modalCtrl.dismiss('lista-encuestas')">Lista de Encuestas</ion-button>
-      <ion-button (click)="modalCtrl.dismiss('cuenta')">Pedir cuenta</ion-button>
-      }
-    </div>
-    }
-    }
-    <ion-footer>
-      <ion-button (click)="modalCtrl.dismiss('salir')" color="tertiary">Volver</ion-button>
-    </ion-footer>
-  </ion-card>
-</div>
+    </ion-card>
+
+    <!-- 🔙  Botón volver -->
+    <ion-button class="volver-btn" color="tertiary" expand="block" (click)="modalCtrl.dismiss('salir')">
+      Volver
+    </ion-button>
+  </div>
+</ion-content>
