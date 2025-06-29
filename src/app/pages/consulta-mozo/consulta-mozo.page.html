@@ -7,19 +7,33 @@
       </ion-button>
     </ion-card-header>
     <ion-card-content>
-      <div id="mensajes" #mensajesDiv>
-        <ng-container *ngIf="mensajes.length > 0">
-          <ng-container *ngFor="let msg of mensajes; trackBy: trackByFn">
-            <div [id]="msg.id" class="msg" [ngClass]="usuario.id === msg.autor.id ? 'enviado' : 'recibido'">
-              <div *ngIf="usuario.id !== msg.autor.id" class="alias">
-                <ion-text>{{ msg.autor.rol === 'cliente' ? 'Mesa '+msg.nroMesa : 'Mozo '+msg.autor.nombre }}</ion-text>
-              </div>
-              <ion-text class="texto">{{msg.mensaje}}</ion-text>
-              <ion-text class="fecha">{{msg.fecha | date:'dd/MM | HH:mm'}}</ion-text>
+     <div id="mensajes" #mensajesDiv>
+      <ng-container *ngIf="mensajes.length > 0">
+        <ng-container *ngFor="let msg of mensajes; trackBy: trackByFn">
+          <div [id]="msg.id" class="msg" [ngClass]="usuario.id === msg.autor.id ? 'enviado' : 'recibido'">
+            <!-- <div *ngIf="msg.autor.rol === 'cliente' && msg.nroMesa" class="info-mesa">
+              <ion-text color="medium" style="font-weight: bold; margin-left: 10px;">
+                Mesa: {{ msg.nroMesa }}
+              </ion-text>
+            </div> -->
+            <div *ngIf="usuario.id !== msg.autor.id" class="alias">
+              <ion-text>
+                {{ msg.autor.rol === 'cliente' && msg.nroMesa ? 'Mesa ' + msg.nroMesa : 'Mozo ' + msg.autor.nombre }}
+              </ion-text>              
             </div>
-          </ng-container>
+            <ion-text class="texto">{{ msg.mensaje }}</ion-text>
+           <ion-text
+              class="fecha"
+              [ngClass]="{
+                'fecha-izquierda': msg.autor.rol === 'mozo',
+                'fecha-derecha': msg.autor.rol !== 'mozo'
+              }">
+              {{ msg.fecha | date:'dd/MM | HH:mm' }}
+            </ion-text>   
+          </div>
         </ng-container>
-      </div>
+      </ng-container>
+    </div>
 
       <form class="card-footer text-muted">
         <div class="input">

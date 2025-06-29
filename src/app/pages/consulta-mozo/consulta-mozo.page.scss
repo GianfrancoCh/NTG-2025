@@ -38,15 +38,15 @@
         margin: 5px;
 
         &.enviado {
-          float: right;
+          align-self: flex-end;
           text-align: right;
-          background-color: grey;
+          background-color: rgb(35, 159, 23);
         }
 
         &.recibido {
-          float: left;
+          align-self: flex-start;
           text-align: left;
-          background-color: rgb(210, 206, 206);
+          background-color: rgb(107, 107, 107);
         }
 
         ion-text {
@@ -65,11 +65,24 @@
           font-size: 1.5rem;
         }
 
-        .fecha {
+        .fecha-derecha {
           align-self: flex-end;
         }
 
+        .fecha-izquierda {
+          align-self: flex-start;
+        }
+
       }
+    }
+    .info-mesa {
+      color: #333;
+      font-weight: bold;
+      padding-bottom: 1px;
+      margin-bottom: 1px;
+      align-self: flex-end;
+      font-size: 1rem;
+      max-width: fit-content;
     }
 
     .card-body::-webkit-scrollbar {

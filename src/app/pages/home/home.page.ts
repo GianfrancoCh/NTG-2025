@@ -442,7 +442,7 @@ export class HomePage implements OnInit {
   }
   //BORRAR ESTO PRUEBA
   async pruebaMesa() {
-    const mesaEscan = await this.db.traerDoc<Mesa>(Colecciones.Mesas, '3');
+    const mesaEscan = await this.db.traerDoc<Mesa>(Colecciones.Mesas, '2');
     console.log(mesaEscan);
 
     if (mesaEscan !== null) {

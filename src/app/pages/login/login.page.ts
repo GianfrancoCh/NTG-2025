@@ -115,9 +115,9 @@ export class LoginPage {
         }
       }
 
-      await OneSignal.logout();
-      const userId = data.user.id;
-      await OneSignal.login(userId);
+      // await OneSignal.logout();
+      // const userId = data.user.id;
+      // await OneSignal.login(userId);
 
       const playerId = await this.pushNotificationService.loadPlayerId();
 

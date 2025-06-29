@@ -333,6 +333,9 @@ export class PushNotificationService {
         contents: {
           en: `${mensaje}`,
         },
+        data: {
+          ruta: '/consulta-mozo'  // <- esto es clave
+        }
       };
 
       const response = await firstValueFrom(

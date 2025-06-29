@@ -10,7 +10,6 @@ import { Producto } from '../clases/producto';
 import { Mesa } from '../clases/mesa';
 import { ClienteEnEspera } from '../utils/interfaces/interfaces';
 import { Pedido } from '../clases/pedido';
-
 export enum Colecciones {
   Usuarios = 'usuarios',
   Mesas = 'mesas',
@@ -237,8 +236,138 @@ export class DatabaseService {
       .subscribe();
 
     return canal;
-  }
+  };
 
+  // escucharMensajes<T>(
+  //   tabla: string,
+  //   // Podrías pasar filtros, orden, parseo, etc. según necesites
+  //   callback: (datosActualizados: T[]) => void
+  // ): RealtimeChannel {
+  //   const canal = this.supabase
+  //     .channel(`mensajes-${tabla}`)
+  //     .on(
+  //       'postgres_changes',
+  //       {
+  //         event: '*', // puede ser INSERT, UPDATE, DELETE o '*'
+  //         schema: 'public',
+  //         table: tabla,
+  //         // Si querés, podés agregar filtros (e.g., "nroMesa=eq.5")
+  //       },
+  //       async (payload) => {
+  //         // Cuando hay un cambio, consultás de nuevo la tabla y ejecutas callback con los datos actualizados
+  //         const { data, error } = await this.supabase
+  //           .from<T>(tabla)
+  //           .select('*');
+
+  //         if (error) {
+  //           console.error('Error al obtener mensajes:', error);
+  //           return;
+  //         }
+  //         callback(data || []);
+  //       }
+  //     )
+  //     .subscribe();
+
+  //   return canal;
+  // }
+
+  escucharMensajes<T extends { id: string }>(
+    coleccion: string,
+    arrayRef: Array<T>,
+    filtroFunc?: (item: T) => boolean,
+    ordenFunc?: (a: T, b: T) => number,
+    transformar?: (item: T) => Promise<T>,
+    onChange?: (nuevosDatos: T[]) => void
+  ): RealtimeChannel {
+    // Usamos un array local para evitar modificar arrayRef in-place
+    let datosLocales: T[] = [];
+
+    // Carga inicial
+    this.supabase
+      .from(coleccion)
+      .select('*')
+      .then(async ({ data, error }) => {
+        if (error) {
+          console.error(`Error al obtener datos iniciales de ${coleccion}:`, error.message);
+          return;
+        }
+
+        if (data) {
+          for (let item of data) {
+            let transformado = transformar ? await transformar(item as T) : item as T;
+            if (!filtroFunc || filtroFunc(transformado)) {
+              datosLocales.push(transformado);
+            }
+          }
+
+          if (ordenFunc) {
+            datosLocales.sort(ordenFunc);
+          }
+        }
+
+        if (onChange) onChange(datosLocales);
+      });
+
+    // Escuchar cambios realtime
+    const canal = this.supabase
+      .channel(`realtime-${coleccion}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: coleccion,
+        },
+        async (payload) => {
+          const tipo = payload.eventType;
+          const datos = tipo === 'DELETE' ? payload.old : payload.new;
+
+          let item: T = datos as T;
+          if (transformar) item = await transformar(item);
+          const pasaFiltro = !filtroFunc || filtroFunc(item);
+          const index = datosLocales.findIndex((e) => e.id === item.id);
+
+          if (tipo === 'INSERT') {
+            if (pasaFiltro) datosLocales = [...datosLocales, item];
+          }
+
+          if (tipo === 'UPDATE') {
+            if (index === -1) {
+              if (pasaFiltro) datosLocales = [...datosLocales, item];
+            } else {
+              if (pasaFiltro) {
+                datosLocales = [
+                  ...datosLocales.slice(0, index),
+                  item,
+                  ...datosLocales.slice(index + 1),
+                ];
+              } else {
+                datosLocales = [
+                  ...datosLocales.slice(0, index),
+                  ...datosLocales.slice(index + 1),
+                ];
+              }
+            }
+          }
+
+          if (tipo === 'DELETE') {
+            if (index !== -1) {
+              datosLocales = [
+                ...datosLocales.slice(0, index),
+                ...datosLocales.slice(index + 1),
+              ];
+            }
+          }
+
+          if (ordenFunc) datosLocales.sort(ordenFunc);
+
+          if (onChange) onChange(datosLocales);
+        }
+      )
+      .subscribe();
+
+    return canal;
+  }
   //generica
   escucharColeccion<T extends { id: string }>(
     coleccion: string,

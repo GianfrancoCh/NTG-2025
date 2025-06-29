@@ -39,6 +39,19 @@ export class AppComponent {
         }
       );
 
+      OneSignal.Notifications.addEventListener('click', (event) => {
+        console.log('Notificación clickeada:', event);
+
+        const data = event?.notification?.additionalData as { ruta?: string };
+        const ruta = data?.ruta;
+          if (ruta) {
+            this.router.navigateByUrl(ruta);
+          } else {
+            // ruta por defecto
+            this.router.navigateByUrl('/consulta-mozo');
+          }
+      });
+
       this.router.navigateByUrl('splash');
     });
   }
