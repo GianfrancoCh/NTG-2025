@@ -39,26 +39,27 @@ ion-content {
 ion-card-header {
   background-color: var(--azul-claro);
   text-align: center;
-}
+  padding: 1rem;
 
-ion-card-title {
-  font-size: 30px;
-  font-weight: bold;
-  color: var(--blanco);
-}
+  ion-header,
+  ion-card,
+  ion-footer {
+    color: #fff;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 
-ion-card-content {
-  background-color: var(--azul-intermedio);
-}
-
-/*************  GRUPO DE BOTONES ***************/
-.btn-group {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin: 0.5rem 0;
-}
+    div {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
 
 ion-button {
   min-width: 140px;
