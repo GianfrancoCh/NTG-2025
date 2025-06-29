@@ -11,8 +11,7 @@ import {
   IonLabel,
   IonIcon,
   IonButton,
-  IonFooter,
-} from '@ionic/angular/standalone';
+  IonFooter, IonBackButton, IonToolbar, IonButtons, IonContent } from '@ionic/angular/standalone';
 import { ModalController } from '@ionic/angular/standalone';
 import { Cliente } from 'src/app/clases/cliente';
 import { EncuestaCliente } from 'src/app/clases/encuestas/encuesta-cliente';
@@ -28,7 +27,7 @@ import {
   templateUrl: './menu-mesa.component.html',
   styleUrls: ['./menu-mesa.component.scss'],
   standalone: true,
-  imports: [
+  imports: [IonContent, IonButtons, IonToolbar, IonBackButton, 
     CommonModule,
     IonHeader,
     IonTitle,
