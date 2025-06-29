@@ -196,6 +196,8 @@ export class LoginPage {
       email: this.email,
       password: this.password,
     });
+
+    this.login();
   }
 
   volverAlHome() {

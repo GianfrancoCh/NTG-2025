@@ -84,6 +84,7 @@ export class ListaEncuestasClientePage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: EncuestaClienteComponent,
       id: 'encuesta-modal',
+      cssClass: 'modal-transparente', 
       componentProps: { encuesta: encuesta },
     });
 

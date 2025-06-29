@@ -20,7 +20,7 @@ import {
   IonButtons,
 } from '@ionic/angular/standalone';
 import { EstadoPedido, Pedido, PedidoProd } from 'src/app/clases/pedido';
-import { Mesa } from 'src/app/clases/mesa';
+import { EstadoMesa, Mesa } from 'src/app/clases/mesa';
 import { Cliente } from 'src/app/clases/cliente';
 import { Producto } from 'src/app/clases/producto';
 import { Empleado } from 'src/app/clases/empleado';
@@ -73,6 +73,9 @@ export class ListaPedidosPendientePage implements OnInit {
   protected productos: Producto[] = [];
   protected empleado!: Empleado;
 
+  protected pedidosPendientes: Pedido[] = [];
+  protected pedidosListos: Pedido[] = [];
+
   constructor(
     private db: DatabaseService,
     private spinner: NgxSpinnerService,
@@ -83,7 +86,6 @@ export class ListaPedidosPendientePage implements OnInit {
     this.empleado = <Empleado>this.auth.UsuarioEnSesion;
     addIcons({ checkmarkCircleOutline, removeCircleOutline, receiptOutline });
   }
-
   async ngOnInit() {
     this.spinner.show();
 
@@ -97,7 +99,32 @@ export class ListaPedidosPendientePage implements OnInit {
       }),
     ]);
 
-    await this.cargarPedidos(); // ← Usamos la nueva función
+    // 👇 Carga inicial de pedidos con filtro
+    const pedidosTotales = await this.db.traerColeccion<Pedido>(
+      Colecciones.Pedidos
+    );
+    this.pedidos = pedidosTotales.filter((item) => {
+      if (this.empleado.tipo === 'mozo')
+        return item.estado === 'pendiente' || item.estado === 'listo';
+      else {
+        const sector = this.empleado.tipo === 'cocinero' ? 'cocina' : 'barra';
+        return item.estado === 'en proceso' && !item.confirmaciones[sector];
+      }
+    });
+
+    // 👇 Activar escucha en tiempo real para mantener sincronizado
+    this.db.escucharColeccion<Pedido>(
+      Colecciones.Pedidos,
+      this.pedidos,
+      (item) => {
+        if (this.empleado.tipo === 'mozo')
+          return item.estado === 'pendiente' || item.estado === 'listo';
+        else {
+          const sector = this.empleado.tipo === 'cocinero' ? 'cocina' : 'barra';
+          return item.estado === 'en proceso' && !item.confirmaciones[sector];
+        }
+      }
+    );
 
     this.spinner.hide();
   }
@@ -124,10 +151,12 @@ export class ListaPedidosPendientePage implements OnInit {
       nuevaConfirm[sector] = true;
       nuevoEstado = 'en proceso';
       msj = `Pedido en ${sector} listo!`;
-      this.push.notificarMozo();
+
       if (pedido.confirmaciones.cocina && pedido.confirmaciones.barra) {
         nuevoEstado = 'listo';
         msj = 'Pedido listo para entrega!';
+
+        this.push.notificarMozo(); // Notificar al mozo que el pedido está listo
       }
     }
 
@@ -136,7 +165,7 @@ export class ListaPedidosPendientePage implements OnInit {
       estado: nuevoEstado,
     });
 
-    await this.cargarPedidos();
+    // await this.cargarPedidos();
 
     this.spinner.hide();
     ToastSuccess.fire(msj);
@@ -178,11 +207,32 @@ export class ListaPedidosPendientePage implements OnInit {
       component: PedidoComponent,
       id: 'pedido-modal',
       componentProps: { pedido: productosCant },
+      cssClass: 'modal-transparente',
     });
     await modal.present();
   }
 
   private async cargarPedidos() {
     this.pedidos = await this.db.traerColeccion<Pedido>(Colecciones.Pedidos);
+  }
+
+  async entregarPedido(pedido: Pedido) {
+    this.spinner.show();
+
+    console.log('Entregando pedido:', pedido);
+
+    try {
+      await this.db.actualizarDoc(Colecciones.Pedidos, pedido.id, {
+        estado: 'entregado',
+      });
+
+      this.pedidosListos = this.pedidosListos.filter((p) => p.id !== pedido.id); //actualizar visualmente la lista
+
+      ToastSuccess.fire('Pedido entregado con éxito!');
+    } catch (error) {
+      console.error('Error al entregar el pedido:', error);
+    }
+
+    this.spinner.hide();
   }
 }

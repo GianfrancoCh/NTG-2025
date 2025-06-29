@@ -4,26 +4,26 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons> -->
     <ion-buttons slot="end">
-      <ion-button *ngIf="user" class="boton-logout" (click)="logout()">
-        <ion-icon name="exit-outline"></ion-icon>
-      </ion-button>
     </ion-buttons>
     <ion-title class="titulo-header">Pagina principal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content id="main-content">
-  <div class="container">
+  <div class="container" style="font-size: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
     <div *ngIf="!user">
-      <h1 class="titulo-inicio">Bienvenido</h1>
+      <h1 class="titulo-inicio" style="margin-top: 40px; font-size: 40px;">Bienvenido</h1>
       <p class="descripcion-inicio">Debes estar registrado para poder utilizar la app.</p>
 
-      <ion-button size="big" (click)="goToLogin()">Iniciar Sesión</ion-button>
-      <ion-button size="big" (click)="goToRegister()">Crear una Cuenta</ion-button>
+      <ion-button size="big" style="height: 70px;" (click)="goToLogin()">Iniciar Sesión</ion-button>
+      <br/>
+      <ion-button size="big"style="height: 70px;"  (click)="goToRegister()">Crear una Cuenta</ion-button>
     </div>
 
-    <div *ngIf="user">
-      <h1 class="titulo-inicio">¡Hola, {{ user.email }}!</h1>
+    <div *ngIf="user" class="botones-inicio">
+      <h1 >Bienvenido/a</h1>
+      <h1 class="titulo-inicio">{{usuarioActual?.nombre}} {{usuarioActual?.apellido}}</h1>
+      <h1 class="titulo-mail">Ingresaste como {{ user.email }}</h1>
       <!-- JEFE -->
       <div *ngIf="user && this.usuarioActual?.rol == 'jefe'">
         <ion-button size="big" routerLink="/lista-clientes-pendientes">Lista clientes pendientes</ion-button>
@@ -52,10 +52,22 @@
 
   </div>
 
-  <!-- Reemplazo del ion-footer por div -->
-  <div class="qr-container">
-    <ion-button (click)="this.escanearQr()" fill="outline" class="btn_qr">
-      <img src="../../../assets/qr.png" class="img_qr">
-    </ion-button>
+  <!-- FABs visibles solo cuando hay usuario logueado -->
+<ion-fab *ngIf="user" vertical="bottom" horizontal="center" slot="fixed">
+  <div class="fab-wrapper">
+    <!-- Cerrar sesión -->
+    <ion-fab-button class="fab-btn fab-logout" (click)="logout()">
+      <ion-icon size="large" name="exit-outline"></ion-icon>
+    </ion-fab-button>
+
+    <!-- Escanear QR -->
+    <ion-fab-button class="fab-btn fab-qr" (click)="escanearQr()">
+      <!-- Icono vectorial o tu PNG -->
+      <ion-icon size="large" name="qr-code-outline"></ion-icon>
+      <!--  Si prefieres la imagen que ya usas:
+      <img src="../../../assets/qr.png" class="fab-img" />
+      -->
+    </ion-fab-button>
   </div>
+</ion-fab>
 </ion-content>

@@ -1,18 +1,18 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
-  font-weight: bold;
 }
 
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
 
 .titulo-header {
   font-weight: bold;
+  font-size: 35px;
 }
 
 .container {
@@ -29,13 +29,23 @@ ion-content {
 }
 
 .titulo-inicio {
-  font-size: 25px;
-  color: #ffffff;
+  font-size: 35px;
+  color: #039BE6;
   text-align: center;
   width: 100%;
   margin: 0 0 1rem 0;
   font-family: "system-ui", sans-serif;
   font-weight: bold;
+}
+
+.titulo-mail {
+  font-size: 20px;
+  color: #aaaaaa;
+  text-align: center;
+  width: 100%;
+  margin: 0 0 1rem 0;
+  font-family: "system-ui", sans-serif;
+  font-weight: normal;
 }
 
 .descripcion-inicio {
@@ -51,7 +61,7 @@ ion-content {
 /* Nuevos estilos para el contenedor QR */
 .qr-container {
   width: 100%;
-  padding: 10px 0;
+  padding: 30px 0;
   display: flex;
   justify-content: center;
   background: transparent;
@@ -67,4 +77,76 @@ ion-content {
 .img_qr {
   width: 24px; /* Tamaño ajustado para mejor proporción */
   height: 24px;
+}
+/* Estilos para el header */
+.header-fix ion-toolbar {
+  --border-width: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.header-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+  background-color: #039BE6; /* Color de fondo del header */
+  height: 40px;
+}
+
+.header-fix ion-title {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Botones flotantes grandes */
+.fab-wrapper {
+  /* Distribuye los dos FAB uno al lado del otro */
+  display: flex;
+  gap: 24px;          /* separación entre ellos */
+}
+
+.fab-btn {
+  /* Diámetro y tipografía grandes */
+  width: 120px;
+  height: 120px;
+  font-size: 60px;
+  --border-radius: 50%;      /* redondos */
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --color: #ffffff;
+}
+
+/* Colores de acción distintos (opcional) */
+.fab-logout {
+  --background: #e53935;     /* rojo */
+}
+.fab-qr {
+  --background: #039be6;     /* azul */
+}
+
+/* Si utilizas <img> dentro del FAB */
+.fab-img {
+  width: 42px;
+  height: 42px;
+}
+
+
+ion-button {
+  --background: #24B4F8;
+  --color: white;
+  --border-radius: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.botones-inicio {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Espacio entre los botones */
 }
