@@ -297,7 +297,7 @@ export class PushNotificationService {
     }
   }
 
-  async notificarMozoConsulta(mensaje:string) {
+  async notificarMozoConsulta(mensaje:string, nroMesa: number) {
     try {
       // 1. Obtener todos los que tengan player_id registrado
       const { data, error } = await this.db.supabase
@@ -334,10 +334,13 @@ export class PushNotificationService {
           en: `${mensaje}`,
         },
         data: {
-          ruta: '/consulta-mozo'  // <- esto es clave
+          ruta: '/consulta-mozo',
+          nroMesa: nroMesa // 👈 agrega esto
+          
         }
       };
 
+      console.log('Mesa para mozo: ', nroMesa);
       const response = await firstValueFrom(
         this.http.post(this.oneSignalApiUrl, body, { headers })
       );
