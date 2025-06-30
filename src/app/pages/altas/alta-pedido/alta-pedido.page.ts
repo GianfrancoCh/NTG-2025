@@ -178,6 +178,7 @@ export class AltaPedidoPage {
           (<Cliente>this.auth.UsuarioEnSesion).idMesa!,
           { estado: EstadoMesa.EsperandoComida }
         );
+
         this.spinner.hide();
         ToastSuccess.fire('En instantes un mozo le confirmará su pedido');
         this.navCtrl.navigateRoot('home');

@@ -19,6 +19,8 @@ import {
   IonLabel,
   IonRadio,
   IonButton,
+  IonRange,
+  IonCheckbox,
 } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -52,6 +54,8 @@ import { Exception, ErrorCodes } from 'src/app/clases/exception';
     IonRadio,
     IonLabel,
     IonItem,
+    IonRange,
+    IonCheckbox,
     IonCardContent,
     IonCardTitle,
     IonCardHeader,

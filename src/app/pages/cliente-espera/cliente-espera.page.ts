@@ -75,6 +75,10 @@ export class ClienteEsperaPage implements OnInit {
           title: `Se le ha asignado la mesa N°${mesa?.nroMesa}`,
           timer: 15000, // aumento duracion del toast
         });
+
+        // Actualizar el cliente en sesión con la mesa asignada(para los anon)
+        (this.auth.UsuarioEnSesion as Cliente).idMesa = cliente.idMesa;
+
         this.navCtrl.navigateRoot('home');
 
         // Opcional: cerrar canal
