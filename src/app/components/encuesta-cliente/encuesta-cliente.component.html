@@ -1,3 +1,37 @@
-<p>
-  encuesta-cliente works!
-</p>
+<div class="encuesta-container">
+  <ion-card>
+    <ion-card-header>
+      {{cliente.tipo | uppercase}} {{cliente.nombre}} {{cliente.apellido}}
+    </ion-card-header>
+    <ion-card-content>
+      La puntuación general del resturante es:
+      <app-range-estrellas [idEstrellas]="'aux'+encuesta.id" [readonly]="true"
+        [valor]="encuesta.puntuacionGeneral"></app-range-estrellas>
+
+      <div *ngIf="encuesta.fotoUrls.length > 0" class="fotos-container">
+        Fotos adjuntas:
+        <div class="fotos-scroll">
+          <div *ngFor="let foto of encuesta.fotoUrls" class="foto-item">
+            <img [src]="foto">
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="encuesta.atencion; else ningunAspecto" class="buenosAspectos">
+        <ion-text>Los siguientes aspectos se encontraban en buenas condiciones:</ion-text>
+        <div class="aspectos">
+          <span>
+            {{encuesta.atencion}}</span>
+        </div>
+      </div>
+      <ng-template #ningunAspecto>
+        Ningún aspecto se encontraba en buenas condiciones.
+      </ng-template>
+
+      <div class="comentarios">
+        Comentarios del cliente:
+        <p>{{encuesta.comentarios}}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

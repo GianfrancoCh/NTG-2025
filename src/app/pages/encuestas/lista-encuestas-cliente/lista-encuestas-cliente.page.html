@@ -13,15 +13,6 @@
       <h1 class="ion-padding">Encuesta de clientes</h1>
     </ion-text>
 
-    <div class="btns">
-      <ion-button size="large" class="ion-margin" (click)="navCtrl.navigateRoot('home')">
-        <ion-icon slot="icon-only" name="home"></ion-icon>
-      </ion-button>
-      <ion-button size="large" class="ion-margin" (click)="navCtrl.navigateRoot('grafico-clientes')">
-        <ion-icon slot="icon-only" name="stats-chart"></ion-icon>
-      </ion-button>
-    </div>
-
     <ion-list *ngIf="lista.length > 0; else noEncuestas" class="encuestas" [inset]="true">
       <ion-item *ngFor="let enc of lista" lines="full">
         <div class="encuesta">
@@ -47,5 +38,14 @@
         </ion-card>
       </div>
     </ng-template>
+
+    <div class="btns">
+      <ion-button size="large" class="ion-margin" (click)="navCtrl.navigateRoot('home')">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+      <ion-button size="large" class="ion-margin" (click)="navCtrl.navigateRoot('grafico-clientes')">
+        <ion-icon slot="icon-only" name="stats-chart"></ion-icon>
+      </ion-button>
+    </div>
   </div>
 </ion-content>

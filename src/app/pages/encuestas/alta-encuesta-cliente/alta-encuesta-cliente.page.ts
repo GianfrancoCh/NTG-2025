@@ -185,7 +185,19 @@ export class AltaEncuestaClientePage {
         this.fotos.map((f) => f.url as string),
         this.frmEncuesta.value.comentarios
       );
-      await this.db.subirDoc(Colecciones.EncuestasCliente, nuevaEncuesta);
+      const encuestaObj = {
+        autor: nuevaEncuesta.autor,
+        idPedido: String(nuevaEncuesta.idPedido),
+        puntuacionGeneral: Number(nuevaEncuesta.puntuacionGeneral),
+        comida: Number(nuevaEncuesta.comida),
+        atencion: nuevaEncuesta.atencion,
+        recomendacion: nuevaEncuesta.recomendacion,
+        fotoUrls: JSON.stringify(nuevaEncuesta.fotoUrls),
+        comentarios: nuevaEncuesta.comentarios,
+      };
+
+      await this.db.subirDoc(Colecciones.EncuestasCliente, encuestaObj);
+      // await this.db.subirDoc(Colecciones.EncuestasCliente, nuevaEncuesta);
       this.navCtrl.navigateRoot('home');
       ToastSuccess.fire('Encuesta subida!');
     } catch (error: any) {

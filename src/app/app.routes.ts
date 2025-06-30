@@ -150,7 +150,14 @@ export const routes: Routes = [
   },
   {
     path: 'juego',
-    loadComponent: () => import('./pages/juego/juego.page').then( m => m.JuegoPage)
+    loadComponent: () =>
+      import('./pages/juego/juego.page').then((m) => m.JuegoPage),
   },
-
+  {
+    path: 'alta-encuesta-cliente',
+    loadComponent: () =>
+      import(
+        './pages/encuestas/alta-encuesta-cliente/alta-encuesta-cliente.page'
+      ).then((m) => m.AltaEncuestaClientePage),
+  },
 ];
