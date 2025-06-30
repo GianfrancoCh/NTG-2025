@@ -1,61 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Ahorcado de comidas</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="ahorcado-container">
+    <ion-text color="primary">
+      <h1>Ahorcado de comidas</h1>
+    </ion-text>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Ahorcado</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="imagen-ahorcado">
+      <img [src]="obtenerImagenAhorcado()" alt="Ahorcado">
+    </div>
 
-  <ion-grid class="ion-padding">
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12" class="ion-text-center">
-        <ion-img [src]="obtenerImagenAhorcado()" alt="Ahorcado" class="imagen-ahorcado"></ion-img>
-      </ion-col>
-    </ion-row>
+    <ion-text>
+      <h3>Adivina la palabra</h3>
+    </ion-text>
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12" class="ion-text-center">
-        <ion-text>
-          <h3>Adivina la palabra</h3>
-          <h2>{{ palabraOculta }}</h2>
-        </ion-text>
-      </ion-col>
-    </ion-row>
+    <div class="palabra-oculta">
+      {{ palabraOculta }}
+    </div>
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12" class="ion-text-center">
-        <p>Intentos fallidos: {{ intentos }} / {{ maxIntentos }}</p>
-        <p>Letras fallidas: {{ letrasFalladas.join(', ') }}</p>
-      </ion-col>
-    </ion-row>
+    <div class="intentos">
+      <p>Intentos fallidos: {{ intentos }} / {{ maxIntentos }}</p>
+      <p>Letras fallidas: {{ letrasFalladas.join(', ') }}</p>
+    </div>
 
-    <ion-row class="ion-wrap ion-justify-content-center">
-      <ion-col size="auto" *ngFor="let letra of 'abcdefghijklmnopqrstuvwxyz'.split('')">
-        <ion-button 
-          expand="block" 
-          size="small" 
-          (click)="comprobarLetra(letra)"
-          [disabled]="letrasAdivinadas.includes(letra) || letrasFalladas.includes(letra)">
-          {{ letra | uppercase }}
-        </ion-button>
-      </ion-col>
-    </ion-row>
+    <div class="teclado">
+      <button *ngFor="let letra of 'abcdefghijklmnopqrstuvwxyz'.split('')" 
+              (click)="comprobarLetra(letra)" 
+              [disabled]="letrasAdivinadas.includes(letra) || letrasFalladas.includes(letra)">
+        {{ letra | uppercase }}
+      </button>
+    </div>
 
-    <ion-row class="ion-justify-content-center" *ngIf="juegoTerminado">
-      <ion-col size="12" class="ion-text-center">
-        <ion-text color="danger" *ngIf="intentos >= maxIntentos">
-          <p>¡Has perdido! La palabra era: <strong>{{ palabra }}</strong></p>
-        </ion-text>
-        <ion-text color="success" *ngIf="intentos < maxIntentos && !palabraOculta.includes('_')">
-          <p>¡Has ganado!</p>
-        </ion-text>
-        <ion-button (click)="reiniciar()" color="primary" class="boton-reiniciar">Reiniciar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <div *ngIf="juegoTerminado">
+      <p *ngIf="intentos >= maxIntentos" class="palabra-correcta">
+        ¡Has perdido! La palabra era: <strong>{{ palabra }}</strong>
+      </p>
+      <p *ngIf="intentos < maxIntentos && !palabraOculta.includes('_')">¡Has ganado!</p>
+      <button (click)="reiniciar()" class="boton-reiniciar">Reiniciar</button>
+    </div>
+  </div>
 </ion-content>
