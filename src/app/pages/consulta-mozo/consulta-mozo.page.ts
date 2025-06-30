@@ -14,6 +14,7 @@ import { Mesa } from 'src/app/clases/mesa';
 import { Persona } from 'src/app/clases/persona';
 import { PushNotificationService } from 'src/app/services/push-notification.service';
 import { RealtimeChannel } from '@supabase/supabase-js';
+import { Router } from '@angular/router'; 
 declare interface chatMsg {
   id: string,
   mensaje: string,
@@ -36,30 +37,39 @@ export class ConsultaMozoPage implements OnInit, DoCheck {
   private cantMsjPrev: number = 0;
   canalMensajes!: RealtimeChannel;
 
-  constructor(private db: DatabaseService, private auth: AuthService, private spinner: NgxSpinnerService, protected navCtrl: NavController, private push: PushNotificationService, private cdr: ChangeDetectorRef) {
+  constructor(private db: DatabaseService, private auth: AuthService, private spinner: NgxSpinnerService, protected navCtrl: NavController, private push: PushNotificationService, private cdr: ChangeDetectorRef, private router:Router) {
     addIcons({ chevronBackCircleOutline, sendOutline });
   }
 
-  async ngOnInit() {
-    this.spinner.show();
-    this.usuario = this.auth.UsuarioEnSesion!.rol === 'cliente' ?
-      this.auth.UsuarioEnSesion! as Cliente : this.auth.UsuarioEnSesion! as Empleado;
+ async ngOnInit() {
 
-      if (this.usuario.rol === 'cliente') {
-        this.db.traerDoc<Mesa>(Colecciones.Mesas, (<Cliente>this.usuario).idMesa!)
-          .then(mesa => {
-            if (mesa) {
-              this.nroMesa = mesa.nroMesa;
-            } else {
-              console.warn('Mesa no encontrada para el cliente');
-            }
-          });
+    const navData = this.router.getCurrentNavigation()?.extras?.state;
+    if (navData && navData['nroMesa']) {
+      this.nroMesa = navData['nroMesa'];
+      console.log('Mozo abrió chat con nroMesa:', this.nroMesa);
+    }
+    this.spinner.show();
+    this.usuario = this.auth.UsuarioEnSesion!.rol === 'cliente'
+      ? this.auth.UsuarioEnSesion! as Cliente
+      : this.auth.UsuarioEnSesion! as Empleado;
+
+    if (this.usuario.rol === 'cliente') {
+      const mesa = await this.db.traerDoc<Mesa>(Colecciones.Mesas, (<Cliente>this.usuario).idMesa!);
+      if (mesa) {
+        this.nroMesa = mesa.nroMesa;
+      } else {
+        console.warn('Mesa no encontrada para el cliente');
+        this.spinner.hide();
+        return;
       }
+    }
 
     this.canalMensajes = this.db.escucharMensajes<chatMsg>(
       Colecciones.Mensajes,
-      this.mensajes, // ya no se modificará directamente, solo para la firma
-      undefined,
+      this.mensajes,
+      this.usuario.rol === 'cliente'
+        ? (msg) => msg.nroMesa === this.nroMesa // ✅ solo su mesa
+        : undefined,                            // ✅ mozos ven todo
       (a, b) => a.fecha.getTime() - b.fecha.getTime(),
       this.timestampParse,
       (nuevosDatos) => {
@@ -67,10 +77,8 @@ export class ConsultaMozoPage implements OnInit, DoCheck {
         this.cdr.detectChanges();
         this.scrollUltimoMensaje();
       }
-    );  
+    );
 
-    // setTimeout(() => {
-    // }, 3000);
     this.cantMsjPrev = this.mensajes.length;
     this.spinner.hide();
   }
@@ -163,8 +171,8 @@ export class ConsultaMozoPage implements OnInit, DoCheck {
     };
     this.nuevoMensaje = '';
 
-    if (this.usuario.rol === 'cliente') {
-      this.push.notificarMozoConsulta(mensajeNotificacion);
+    if (this.usuario.rol === 'cliente' && this.nroMesa !== null) {
+      this.push.notificarMozoConsulta(mensajeNotificacion, this.nroMesa);
     }
     this.db.subirDoc(Colecciones.Mensajes, msg).then(() => {
          this.recargarMensajes();
@@ -174,7 +182,8 @@ export class ConsultaMozoPage implements OnInit, DoCheck {
   async recargarMensajes() {
       const { data, error } = await this.db.supabase
       .from(Colecciones.Mensajes)
-      .select('*');
+      .select('*')
+      .eq('nroMesa', this.nroMesa);
 
     if (error) {
       console.error('Error al recargar mensajes:', error.message);

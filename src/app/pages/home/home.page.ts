@@ -273,7 +273,8 @@ export class HomePage implements OnInit {
           ErrorCodes.MesaInexistente,
           'Este QR no pertenece a una de nuestras mesas.'
         );
-
+        
+        console.log('Estado de la mesa escaneada:', mesaEscan.estado);
       switch (mesaEscan.estado) {
         case EstadoMesa.Disponible:
           ToastInfo.fire(
@@ -444,8 +445,7 @@ export class HomePage implements OnInit {
   }
   //BORRAR ESTO PRUEBA
   async pruebaMesa() {
-    const mesaEscan = await this.db.traerDoc<Mesa>(Colecciones.Mesas, '2');
-    console.log(mesaEscan);
+    const mesaEscan = await this.db.traerDoc<Mesa>(Colecciones.Mesas, '1');
 
     if (mesaEscan !== null) {
       this.mostrarMenu(mesaEscan).then((rta) => {

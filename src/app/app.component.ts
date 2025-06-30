@@ -42,14 +42,16 @@ export class AppComponent {
       OneSignal.Notifications.addEventListener('click', (event) => {
         console.log('Notificación clickeada:', event);
 
-        const data = event?.notification?.additionalData as { ruta?: string };
+        const data = event?.notification?.additionalData as { ruta?: string; nroMesa?: number };
         const ruta = data?.ruta;
-          if (ruta) {
-            this.router.navigateByUrl(ruta);
-          } else {
-            // ruta por defecto
-            this.router.navigateByUrl('/consulta-mozo');
-          }
+        const nroMesa = data?.nroMesa;
+
+        if (ruta) {
+          // Si querés pasar nroMesa en la navegación, podés usar extras o query params
+          this.router.navigate([ruta], { state: { nroMesa } });
+        } else {
+          this.router.navigateByUrl('/consulta-mozo');
+        }
       });
 
       this.router.navigateByUrl('splash');
