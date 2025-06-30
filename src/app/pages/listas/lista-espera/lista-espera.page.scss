@@ -1,13 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
-  font-weight: bold;
 }
 
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
 
@@ -17,6 +16,7 @@ ion-content {
 
 .container {
   overflow-y: auto;
+  --background: #414068;
 
   ion-list {
     display: flex;
@@ -29,7 +29,7 @@ ion-content {
   ion-card.item-card {
     width: 300px;
     height: fit-content;
-    --background: #bccbd7;
+    --background: #414068;
 
     ion-card-header {
       .img-container {
@@ -64,4 +64,21 @@ ion-content {
       font-size: 2rem;
     }
   }
+}
+
+ion-button {
+  --background: #039BE6;
+  --color: white;
+  --border-radius: 20px;
+}
+
+ion-card-title{
+  color: #fff;
+  font-size: 2rem;
+}
+
+ion-card-subtitle{
+  color: #50c5ff;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
 }

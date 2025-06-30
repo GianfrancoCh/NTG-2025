@@ -31,7 +31,6 @@
       <!-- EMPLEADO -->
       <div
         *ngIf="user && (this.usuarioActual?.rol == 'empleado' || this.usuarioActual?.rol == 'cocinero' || this.usuarioActual?.rol == 'mozo' || this.usuarioActual?.rol == 'bartender' || this.usuarioActual?.rol == 'maitre')">
-        <ion-button size="big" routerLink="/login">boton empleado</ion-button>
       </div>
       <!-- mozo cocinero bartender-->
       <div

@@ -15,31 +15,66 @@ ion-content {
 }
 
 .container {
-  --background: #{$dark-blue};
+  --background: #414068;
   height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; // importante para que respete el top-margin del card
   align-items: center;
   justify-content: flex-start;
   padding: 16px;
-  padding-top: 0px;
-
+  padding-top: 30px; // <- ajustá este valor a gusto
   ion-card {
     width: 100%;
     max-width: 500px;
     padding: 10px;
   }
 
-  .errores {
+  .inputs {
     display: flex;
     flex-direction: column;
-    color: red;
-  }
+    gap: 16px;
 
-  @media (min-width: 550px) {
-    ion-card {
-      max-width: 515px;
+    .nombre_apellido {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+
+      .nombre,
+      .apellido {
+        flex: 1;
+        min-width: 45%;
+      }
+    }
+
+    .errores {
+      color: red;
+      font-size: 0.75rem;
     }
   }
+
+  .ion-margin-bottom {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  ion-button[type="submit"] {
+    margin-top: 1rem;
+    --background: #24B4F8;
+    --color: white;
+    --border-radius: 5px;
+    height: 50px;
+    }
+}
+
+small {
+  color: red;
+  font-size: 1rem;
+}
+
+ion-input {
+  --color: white;
+
+  height: 50px;
+  font-size: 20px;
 }

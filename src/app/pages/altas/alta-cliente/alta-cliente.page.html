@@ -1,18 +1,18 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar>
+  <ion-toolbar style="height: 70px; display: flex; align-items: center; justify-content: center;">
     <ion-buttons slot="start">
       <ion-back-button routerLink="/login"></ion-back-button>
     </ion-buttons>
-    <ion-title>Alta cliente</ion-title>
+    <ion-title style="font-size: 2rem;">Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <div class="container">
-    <ion-card style="width: 95%;">
+    <ion-card style="width: 95%; background-color: #414068;">
       <ion-card-header>
-        <ion-card-title>Ingrese sus datos</ion-card-title>
+        <ion-card-title style="color: white; font-size: 3rem;">Ingrese sus datos</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <form [formGroup]="frmCliente" (ngSubmit)="subirCliente()">
@@ -96,8 +96,12 @@
               </div>
             </div>
           </div>
-          <ion-button type="submit" expand="block" color="tertiary" [disabled]="frmCliente.invalid">
-            Agregar cliente
+          <ion-button  
+          style="--background: #24B4F8;
+    --color: white;
+    --border-radius: 5px;"
+          type="submit" expand="block" [disabled]="frmCliente.invalid">
+            Registrarse
           </ion-button>
           <div class="ion-margin-bottom">
             <br>

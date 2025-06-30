@@ -29,3 +29,17 @@ ion-content {
     font-size: 25px;
   }
 }
+
+ion-card{
+  margin-top: 50px;
+  width: 90%;
+  height: fit-content;
+  --background: #414068;
+
+}
+
+ion-button {
+  --background: #039BE6;
+  --color: white;
+  padding: 5px;
+}

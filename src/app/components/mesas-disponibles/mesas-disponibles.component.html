@@ -1,5 +1,5 @@
-<div class="tabla-container">
-  <div class="tabla">
+<div style="height: 100vh; display: flex; justify-content: center; align-items: center; padding: 1rem">
+  <div style="max-height: 50vh; overflow: auto; width: 100%">
     <table *ngIf="mesas.length > 0; else sinMesas">
       <thead>
         <tr>
@@ -8,14 +8,18 @@
           <th id="cantComensales">Comensales</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let mesa of mesas" (click)="selecMesa(mesa)">
-          <td style="text-align: end;">#{{mesa.nroMesa}}</td>
-          <td style="text-align: center;">{{mesa.tipo}}</td>
-          <td style="text-align: start;">{{mesa.cantComensales}}</td>
+          <td style="text-align: center">
+            <button>#{{ mesa.nroMesa }}</button>
+          </td>
+          <td style="text-align: center">{{ mesa.tipo }}</td>
+          <td style="text-align: center">{{ mesa.cantComensales }}</td>
         </tr>
       </tbody>
     </table>
+
     <ng-template #sinMesas>
       <ion-card>
         <ion-card-header>

@@ -1,72 +1,73 @@
-.tabla-container {
-  height: 100vh; // ocupa toda la pantalla (o ajustalo a lo que necesites)
-  display: flex;
-  justify-content: center; // centra horizontalmente
-  align-items: center; // centra verticalmente
-  padding: 1rem; // opcional, para que no quede pegado al borde
+/* —— Tabla —— */
+table {
+  width: 100%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 16px;
+  color: #2a2a2a;
+  background: rgba(207, 220, 150, 0.5);
+  border: 3px solid #dee2e6;
+  max-height: 40vh;
+  border-radius: 20px;
+}
 
-  .tabla {
-    max-height: 50vh;
-    overflow: auto;
+thead {
+  position: sticky;
+  top: 0;
+  background: #2D2D51;
+  color: #fff;
+}
 
-    table {
-      max-height: 40vh;
-      margin: 1rem;
-      border-collapse: collapse;
-      color: #2a2a2a;
-      border: 3px solid #dee2e6;
-      background: rgba(207, 220, 150, 0.5);
-      font-family: "Gill Sans", sans-serif;
-      font-size: 16px;
+th {
+  padding: 10px 5px;
+  text-align: start;
+  font-size: 18px;
+  border-right: 1px solid #2673c0;
+}
 
-      thead {
-        position: sticky;
-        top: 0;
-        background-color: #6c757d;
-        color: #ffffff;
+th:last-child {
+  border-right: none;
+}
 
-        th {
-          border-right: 1px solid #dee2e6;
-          text-align: start;
-          padding: 10px 5px;
-          font-size: 18px;
+th#nroMesa {
+  width: 40%;
+}
 
-          &:last-child {
-            border-right: none;
-          }
+th#tipo {
+  width: 40%;
+}
 
-          &#nroMesa {
-            width: 40%;
-          }
+th#cantComensales {
+  width: 20%;
+}
 
-          &#tipo {
-            width: 40%;
-          }
+tbody tr {
+  height: 3rem;
+}
 
-          &#cantComensales {
-            width: 20%;
-          }
-        }
-      }
+tbody tr:nth-child(odd) {
+  background: #f8f9fa;
+}
 
-      tbody {
-        tr {
-          height: 3rem;
+tbody tr:nth-child(even) {
+  background: #e9ecef;
+}
 
-          &:nth-child(odd) {
-            background-color: #f8f9fa;
-          }
+td {
+  padding: 10px 5px;
+  font-size: 26px;
+  text-align: center;
+}
 
-          &:nth-child(even) {
-            background-color: #e9ecef;
-          }
-        }
-
-        td {
-          padding: 10px 5px;
-          font-size: 16px;
-        }
-      }
-    }
-  }
+/* —— Botón con número de mesa —— */
+button {
+  background: #02a4ff;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
 }

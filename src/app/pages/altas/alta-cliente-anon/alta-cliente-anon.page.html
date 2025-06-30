@@ -9,15 +9,12 @@
 
 <ion-content>
   <div class="container">
-    <ion-card style="width: 95%;">
+    <ion-card style="width: 95%;background-color: #414068;">
       <ion-card-header>
-        <ion-card-title>Alta de Cliente Anónimo</ion-card-title>
+        <ion-card-title style="font-size: 3rem;">Ingresar como cliente anónimo</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div class="ion-margin-bottom">
-          <ion-text>Quiero formar parte de sus clientes!
-            <a routerLink="/alta-cliente">Registrarse</a>.
-          </ion-text>
         </div>
         <form [formGroup]="frmCliente" (ngSubmit)="subirCliente()">
           <div class="nombre">
@@ -28,10 +25,14 @@
               <small *ngIf="frmCliente.controls['nombre'].errors['pattern']">Compruebe el texto ingresado.</small>
             </div>
           </div>
-          <ion-button type="submit" expand="block" color="tertiary" [disabled]="frmCliente.invalid">
+          <ion-button type="submit" expand="block" [disabled]="frmCliente.invalid">
             Ingresar
           </ion-button>
         </form>
+        <br/>
+        <ion-text style="color: white; font-weight: 100;">Quiero formar parte de sus clientes!
+          <a routerLink="/alta-cliente">Registrarse</a>.
+        </ion-text>
       </ion-card-content>
     </ion-card>
   </div>

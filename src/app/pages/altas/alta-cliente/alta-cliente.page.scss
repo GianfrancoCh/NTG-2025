@@ -1,13 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
-  font-weight: bold;
 }
 
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
 
@@ -16,7 +15,7 @@ ion-content {
 }
 
 .container {
-  --background: #{$dark-blue};
+  --background: #414068;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -24,8 +23,7 @@ ion-content {
   align-items: center;
   justify-content: flex-start;
   padding: 16px;
-  padding-top: 0px; // <- ajustá este valor a gusto
-
+  padding-top: 30px; // <- ajustá este valor a gusto
   ion-card {
     width: 100%;
     max-width: 500px;
@@ -62,5 +60,21 @@ ion-content {
 
   ion-button[type="submit"] {
     margin-top: 1rem;
-  }
+    --background: #24B4F8;
+    --color: white;
+    --border-radius: 5px;
+    height: 50px;
+    }
+}
+
+small {
+  color: red;
+  font-size: 1rem;
+}
+
+ion-input {
+  --color: white;
+
+  height: 50px;
+  font-size: 26px;
 }
