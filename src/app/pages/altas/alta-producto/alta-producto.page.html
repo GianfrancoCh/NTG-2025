@@ -7,59 +7,42 @@
       <form [formGroup]="frmProducto" (ngSubmit)="subirProducto()">
         <div class="inputs">
           <div class="nombre">
-            <ion-input
-              label="Nombre"
-              type="text"
-              formControlName="nombre"
-              required
-              ngDefaultControl>
+            <ion-input label="Nombre" type="text" formControlName="nombre" required ngDefaultControl>
             </ion-input>
             <div class="errores" *ngIf="frmProducto.controls['nombre'].dirty && frmProducto.controls['nombre'].errors">
               <small *ngIf="frmProducto.controls['nombre'].errors['required']">Debe rellenar este campo.</small>
             </div>
           </div>
           <div class="descripcion">
-            <ion-input
-              label="Descripción"
-              type="text"
-              formControlName="descripcion"
-              required
-              ngDefaultControl>
+            <ion-input label="Descripción" type="text" formControlName="descripcion" required ngDefaultControl>
             </ion-input>
-            <div class="errores" *ngIf="frmProducto.controls['descripcion'].dirty && frmProducto.controls['descripcion'].errors">
+            <div class="errores"
+              *ngIf="frmProducto.controls['descripcion'].dirty && frmProducto.controls['descripcion'].errors">
               <small *ngIf="frmProducto.controls['descripcion'].errors['required']">Debe rellenar este campo.</small>
             </div>
           </div>
           <div class="tiempo_precio">
             <div class="tiempo">
-              <ion-input
-                label="Minutos"
-                type="number"
-                formControlName="minutos"
-                min="0"
-                required
-                ngDefaultControl>
+              <ion-input label="Minutos" type="number" formControlName="minutos" min="0" required ngDefaultControl>
               </ion-input>
-              <div class="errores" *ngIf="frmProducto.controls['minutos'].dirty && frmProducto.controls['minutos'].errors">
+              <div class="errores"
+                *ngIf="frmProducto.controls['minutos'].dirty && frmProducto.controls['minutos'].errors">
                 <small *ngIf="frmProducto.controls['minutos'].errors['required']">Debe rellenar este campo.</small>
-                <small *ngIf="frmProducto.controls['minutos'].errors['min']">El valor debe ser mayor o igual a 0.</small>
+                <small *ngIf="frmProducto.controls['minutos'].errors['min']">El valor debe ser mayor o igual a
+                  0.</small>
               </div>
             </div>
             <div class="precio">
-              <ion-input
-                label="Precio"
-                type="number"
-                formControlName="precio"
-                min="0.01"
-                required
-                ngDefaultControl>
+              <ion-input label="Precio" type="number" formControlName="precio" min="0.01" required ngDefaultControl>
               </ion-input>
-              <div class="errores" *ngIf="frmProducto.controls['precio'].dirty && frmProducto.controls['precio'].errors">
+              <div class="errores"
+                *ngIf="frmProducto.controls['precio'].dirty && frmProducto.controls['precio'].errors">
                 <small *ngIf="frmProducto.controls['precio'].errors['required']">Debe rellenar este campo.</small>
-                <small *ngIf="frmProducto.controls['precio'].errors['min']">El valor debe ser mayor o igual a 0.01.</small>
+                <small *ngIf="frmProducto.controls['precio'].errors['min']">El valor debe ser mayor o igual a
+                  0.01.</small>
               </div>
             </div>
-             <div class="qr">
+            <div class="qr">
               <ion-card *ngIf="qrData">
                 <ion-card-header>
                   <ion-card-title>Código QR del producto</ion-card-title>
@@ -71,19 +54,20 @@
                   </ion-card>
                 </ion-card-content>
               </ion-card>
-             </div>
+            </div>
           </div>
         </div>
         <ion-label>Seleccione el sector correspondiente:</ion-label>
-        <ion-radio-group id="sector-radio" class="sector-producto" name="sector" required (ionChange)="selecSector($event)">
+        <ion-radio-group id="sector-radio" class="sector-producto" name="sector" required
+          (ionChange)="selecSector($event)">
           <div class="rdb-sector">
-            <ion-radio value="bartender">
+            <ion-radio value="barra">
               <div class="opcion">
                 <label>Bartender</label>
                 <img src="assets/empleado/bartender.png" />
               </div>
             </ion-radio>
-            <ion-radio value="cocinero">
+            <ion-radio value="cocina">
               <div class="opcion">
                 <label>Cocinero</label>
                 <img src="assets/empleado/cocinero.png" />
