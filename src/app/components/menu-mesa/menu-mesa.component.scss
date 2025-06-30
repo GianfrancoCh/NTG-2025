@@ -1,124 +1,114 @@
-/*************  VARIABLES *************/
+/************* VARIABLES *************/
 :host {
-  --azul-claro: #039be6;
+  --azul-claro:  #039be6;
   --azul-oscuro: #2d2d51;
-  --azul-intermedio: #414068;
-  --violeta: #6106b6;
-  --blanco: #ffffff;
+  --azul-int:    #414068;
+  --violeta:     #6106b6;
+  --blanco:      #ffffff;
 }
 
-/*************  HEADER *************/
+/************* HEADER *************/
 .tool-large {
-  height: 120px;               /* Header alto */
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--azul-claro);
+  background: var(--azul-claro);
   color: var(--blanco);
-}
-
-ion-title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
 }
 
-/*************  CONTENIDO *************/
+/************* CONTENIDO *************/
 ion-content {
   --background: var(--azul-oscuro);
   color: var(--blanco);
 }
 
 .container {
-  background-color: var(--azul-oscuro);
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 0.5rem;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-/*************  TARJETA PRINCIPAL *************/
+/************* TARJETA PRINCIPAL *************/
 .accion-card {
-  width: 95%;
+  width: 100%;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 ion-card-header {
-  background-color: var(--azul-claro);
+  background: var(--azul-claro);
+  padding: 1rem;
   text-align: center;
 }
 
 ion-card-title {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 26px;
+  font-weight: 700;
   color: var(--blanco);
 }
 
 ion-card-content {
-  background-color: var(--azul-intermedio);
+  background: var(--azul-claro);
+  padding: 1.25rem 1rem;
 }
 
-/*************  BOTONES PERSONALIZADOS *************/
+/************* BOTONES PERSONALIZADOS *************/
 .btn-custom {
   min-width: 140px;
-  height: 44px;
-  padding: 0 1.25rem;
-  font-size: 1.1rem;
+  height: 46px;
+  padding: 0 1.5rem;
+  font-size: 1.05rem;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   color: var(--blanco);
-  background-color: var(--azul-claro);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: transform 0.15s ease;
+  gap: .25rem;
+  transition: transform .15s ease, filter .15s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
 }
 
-.btn-custom:hover {
-  transform: scale(1.05);
-}
+.btn-custom:hover { transform: scale(1.06); }
 
-/* variantes de color */
-.btn-green { background-color: #28a745; }
-.btn-red   { background-color: #dc3545; }
-.btn-blue  { background-color: var(--azul-claro); }
+.btn-green { background: #28a745; }
+.btn-red   { background: #dc3545; }
+.btn-blue  { background: var(--azul-claro); }
 
-/*************  GRUPO DE BOTONES *************/
+/************* GRUPO BOTONES *************/
 .btn-group {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
   flex-wrap: wrap;
-  margin: 0.5rem 0;
+  gap: .75rem;
 }
 
-/*************  BOTÓN VOLVER *************/
+/************* BOTÓN VOLVER *************/
 .volver-btn {
-  width: 95%;
-  max-width: 500px;
-  margin-bottom: 1rem;
-  height: 46px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  height: 50px;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--blanco);
-  background-color: var(--violeta);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: transform 0.15s ease;
+  background: var(--violeta);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+  transition: transform .15s ease;
 }
 
-.volver-btn:hover {
-  transform: scale(1.05);
-}
+.volver-btn:hover { transform: scale(1.05); }
 
-/*************  ICONOS *************/
-ion-icon {
-  font-size: 22px;
-}
+/************* ICONOS *************/
+ion-icon { font-size: 22px; }

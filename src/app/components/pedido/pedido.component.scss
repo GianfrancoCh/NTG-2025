@@ -1,103 +1,88 @@
-#pedido-container {
-  height: 100vh; // Ocupa toda la altura del modal/pantalla
-  width: 100vw; // Ocupa todo el ancho
-  display: flex;
-  flex-direction: column;
-  justify-content: center; // Centrado vertical
-  align-items: center; // Centrado horizontal
+/* —— Tabla del pedido —— */
+table {
+  width: 100%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 16px;
+  color: #2a2a2a;
+  background: rgba(207, 220, 150, 0.5);
+  border: 3px solid #dee2e6;
+  max-height: 40vh;
+  border-radius: 20px;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background: #2d2d51;
+  color: #fff;
+}
+
+th {
+  padding: 10px 5px;
+  text-align: start;
+  font-size: 18px;
+  border-right: 1px solid #2673c0;
+}
+
+th:last-child {
+  border-right: none;
+}
+
+th#cant {
+  width: 20%;
+}
+
+th#nombre {
+  width: 80%;
+}
+
+tbody tr {
+  height: 3rem;
+}
+
+tbody tr:nth-child(odd) {
+  background: #f8f9fa;
+}
+
+tbody tr:nth-child(even) {
+  background: #e9ecef;
+}
+
+td {
+  padding: 10px 5px;
+  font-size: 22px;
   text-align: center;
-  padding: 1rem;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.4); // Fondo negro con 40% de opacidad
+}
 
-  table#tabla-pedido {
-    width: 100%;
-    max-width: 500px;
-    border-collapse: collapse;
-    background: rgba(207, 220, 150, 0.5);
-    font-size: 16px;
-    color: #2a2a2a;
+/* Cantidad en azul e
 
-    thead {
-      background-color: #6c757d;
-      color: #ffffff;
+gruesa */
+tbody td:first-child {
+  color: #02a4ff;
+  font-weight: 600;
+}
 
-      th {
-        padding: 10px 5px;
-        text-align: start;
-        font-size: 18px;
-        border-right: 1px solid #dee2e6;
-      }
+/* —— Pie de tabla —— */
+tfoot {
+  position: sticky;
+  bottom: 0;
+  background: #f1f1f1;
+  font-weight: bold;
+}
 
-      th:last-child {
-        border-right: none;
-      }
+tfoot td {
+  padding: 10px 5px;
+  font-size: 22px;
+  border-top: 2px solid #dee2e6;
+}
 
-      th#cant {
-        width: 7.5%;
-      }
+.total-label {
+  text-align: right;
+  color: #2a2a2a;
+}
 
-      th#tiempo {
-        width: 10%;
-      }
-    }
-
-    tbody {
-      tr:nth-child(odd) {
-        background-color: #f8f9fa;
-      }
-
-      tr:nth-child(even) {
-        background-color: #e9ecef;
-      }
-
-      td {
-        padding: 10px 5px;
-        font-size: 16px;
-      }
-
-      td.prod-cant {
-        color: #007bff;
-      }
-
-      td.prod-nombre {
-        font-weight: bold;
-      }
-
-      td.prod-tiempo {
-        color: #007bff;
-      }
-    }
-
-    tfoot {
-      position: sticky;
-      bottom: 0;
-      background-color: #f1f1f1;
-      font-weight: bold;
-
-      td {
-        padding: 10px 5px;
-        font-size: 16px;
-        border-top: 2px solid #dee2e6;
-      }
-
-      .total-label {
-        text-align: right;
-        color: #2a2a2a;
-      }
-
-      .total-tiempo {
-        color: #dc3545;
-      }
-    }
-  }
-
-  ion-button {
-    margin-top: 1rem;
-    min-width: 200px;
-  }
-
-  h2 {
-    max-width: 90%;
-  }
+.total-tiempo {
+  color: #dc3545;
 }

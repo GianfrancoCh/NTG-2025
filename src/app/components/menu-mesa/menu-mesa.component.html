@@ -1,17 +1,15 @@
-<!-- Header alto con número de mesa -->
-<ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar class="tool-large" style="background-color: #039be6;">
+<!-- ───────── HEADER ───────── -->
+<ion-header style="--background: var(--azul-claro)">
+  <ion-toolbar class="tool-large">
     <ion-title>Mesa {{ cliente.idMesa }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container">
+    <!-- ───────── TARJETA PRINCIPAL ───────── -->
     <ion-card class="accion-card">
-      <br />
-      <br />
-
-      <!-- Selección dinámica según estado de la mesa -->
+      <!-- Contenido dinámico -->
       @switch (mesa.estado) {
         @case (estados[1]) {
           <ion-card-header>
@@ -19,16 +17,10 @@
           </ion-card-header>
           <ion-card-content>
             <div class="btn-group">
-              <button
-                class="btn-custom btn-green"
-                (click)="modalCtrl.dismiss('pedir-comida')"
-              >
+              <button class="btn-custom btn-green" (click)="modalCtrl.dismiss('pedir-comida')">
                 <ion-icon name="checkmark-circle-outline"></ion-icon>
               </button>
-              <button
-                class="btn-custom btn-red"
-                (click)="modalCtrl.dismiss('salir')"
-              >
+              <button class="btn-custom btn-red" (click)="modalCtrl.dismiss('salir')">
                 <ion-icon name="close-circle-outline"></ion-icon>
               </button>
             </div>
@@ -41,16 +33,10 @@
           </ion-card-header>
           <ion-card-content>
             <div class="btn-group">
-              <button
-                class="btn-custom btn-blue"
-                (click)="modalCtrl.dismiss('pedir-comida')"
-              >
+              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('pedir-comida')">
                 Pedir comida
               </button>
-              <button
-                class="btn-custom btn-blue"
-                (click)="modalCtrl.dismiss('consultar')"
-              >
+              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('consultar')">
                 Consultar
               </button>
             </div>
@@ -58,7 +44,6 @@
         }
 
         @case (estados[4]) {
-          <!-- Solo mostramos si hay pedido -->
           <ion-card-header *ngIf="pedido">
             <ion-card-title>
               Estado de su pedido:<br />
@@ -71,38 +56,23 @@
           <ion-card-header>
             <ion-card-title>Opciones</ion-card-title>
           </ion-card-header>
-
-          <!-- Opciones requieren 'pedido' -->
           <ion-card-content *ngIf="pedido">
             <div class="btn-group">
-              <!-- Encuesta solo si no la completó -->
               <ng-container *ngIf="!hizoEncuesta">
-                <button
-                  class="btn-custom btn-blue"
-                  (click)="modalCtrl.dismiss('alta-encuesta')"
-                >
+                <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
                   Subir encuesta
                 </button>
               </ng-container>
 
-              <button
-                class="btn-custom btn-blue"
-                (click)="modalCtrl.dismiss('lista-encuestas')"
-              >
+              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
                 Lista de encuestas
               </button>
 
-              <button
-                class="btn-custom btn-blue"
-                (click)="modalCtrl.dismiss('jugar')"
-              >
+              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('jugar')">
                 Jugar por descuento
               </button>
 
-              <button
-                class="btn-custom btn-blue"
-                (click)="modalCtrl.dismiss('cuenta')"
-              >
+              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('cuenta')">
                 Pedir cuenta
               </button>
             </div>
@@ -111,11 +81,7 @@
       }
     </ion-card>
 
-    <br /><br />
-
-    <!-- Botón volver -->
-    <button class="volver-btn" (click)="modalCtrl.dismiss('salir')">
-      Volver
-    </button>
+    <!-- ───────── BOTÓN VOLVER ───────── -->
+    <button class="volver-btn" (click)="modalCtrl.dismiss('salir')">Volver</button>
   </div>
 </ion-content>

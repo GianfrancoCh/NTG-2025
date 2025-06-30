@@ -1,13 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
-  font-weight: bold;
 }
 
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
 
@@ -19,4 +18,43 @@ ion-content {
   width: 100%;
   display: flex;
   justify-content: space-between;
+    background-color: #414068; /* color de fondo del card */
+
+}
+ion-card-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff; /* color del texto */
+}
+
+ion-icon {
+  border-radius: 20%; /* bordes redondeados */
+  padding: 0.5rem; /* espacio alrededor del icono */
+  
+}
+
+ion-item {
+  --background: #414068; /* color de fondo del item */
+  color: #fff; /* color del texto */
+  border-top: #fff 1px solid; /* borde superior blanco */
+  border-bottom: #fff 1px solid; /* borde inferior blanco */
+  padding-top: 1rem; /* espacio superior */
+  padding-bottom: 1rem; /* espacio inferior */
+}
+ion-card{
+  margin: 0.5rem;
+  background-color: #414068; /* color de fondo del card */
+}
+
+ion-list {
+  --background: #414068; /* color de fondo de la lista */
+}
+
+ion-label {
+  color: #fff; /* color del texto de las etiquetas */
+  font-size: 25px;
+}
+
+.text {
+  font-size: 20px;
 }
