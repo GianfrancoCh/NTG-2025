@@ -1,9 +1,3 @@
-import {
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  inject,
-  OnInit,
-} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -12,7 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
 import {
   IonContent,
   IonHeader,
@@ -27,21 +20,27 @@ import {
   IonRadio,
   IonButton,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {
+  Colecciones,
+  DatabaseService,
+} from 'src/app/services/database.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { MySwal, ToastError, ToastSuccess } from 'src/app/utils/alerts';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { RangeEstrellasComponent } from 'src/app/components/range-estrellas/range-estrellas.component';
+import { NavController } from '@ionic/angular/standalone';
+import { FotosService } from 'src/app/services/fotos.service';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/clases/cliente';
 import { EncuestaCliente } from 'src/app/clases/encuestas/encuesta-cliente';
 import { Exception, ErrorCodes } from 'src/app/clases/exception';
-import { AuthService } from 'src/app/services/auth.service';
-import {
-  DatabaseService,
-  Colecciones,
-} from 'src/app/services/database.service';
-import { FotosService } from 'src/app/services/fotos.service';
-import { StorageService } from 'src/app/services/storage.service';
-import { MySwal, ToastError, ToastSuccess } from 'src/app/utils/alerts';
-import { RangeEstrellasComponent } from 'src/app/components/range-estrellas/range-estrellas.component';
-import { NavController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-alta-encuesta-cliente',
