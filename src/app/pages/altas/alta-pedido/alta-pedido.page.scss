@@ -1,17 +1,122 @@
 @import "src/theme/variables.scss";
-// @import url("https://fonts.cdnfonts.com/css/cash-currency");
 
 ion-toolbar {
-  --background: #{$blue};
+  --background: #039BE6;
   --color: white;
-  font-weight: bold;
 }
+
 ion-content {
-  --background: #{$dark-blue};
+  --background: #2D2D51;
   color: #fff;
 }
+
 .titulo-header {
   font-weight: bold;
+}
+
+ion-card {
+  --background: #414068;
+  --color: white;
+  --border-radius: 10px;
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+ion-icon{
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.container {
+  --background: #414068;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column; // importante para que respete el top-margin del card
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px;
+  padding-top: 30px; // <- ajustá este valor a gusto
+  ion-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .nombre_apellido {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+
+      .nombre,
+      .apellido {
+        flex: 1;
+        min-width: 45%;
+      }
+    }
+
+    .errores {
+      color: red;
+      font-size: 0.75rem;
+    }
+  }
+
+  .ion-margin-bottom {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  ion-button[type="submit"] {
+    margin-top: 1rem;
+    --background: #24B4F8;
+    --color: white;
+    --border-radius: 5px;
+    height: 50px;
+    }
+}
+
+small {
+  color: red;
+  font-size: 1rem;
+}
+
+ion-input {
+  --color: white;
+
+  height: 50px;
+  font-size: 26px;
+}
+
+ion-card-subtitle {
+  font-size: 40px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+p {
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.total{
+  color: #ffffff;
+  background-color: #b524f8;
+  width: 80%;
+  padding: 1rem;
+  border-radius: 40px;
+}
+
+ion-label {
+  color: #ffffff;
+  font-size: 20px;
 }
 
 .container {

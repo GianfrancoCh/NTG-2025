@@ -1,100 +1,90 @@
-:host {
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-    height: 100vh;         
-    background: linear-gradient(135deg, #7e98f4, #ebb3b3); 
-    overflow: hidden; 
-}
-
 .ahorcado-container {
-    font-family: system-ui;
-    text-align: center;
-    padding: 20px;
-    max-width: 900px;
-    max-height: 600px;
-    margin-top: 50px;
-    background-color: #fff;
-    border-radius: 20px;
-    border: 3px solid #000000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: system-ui;
+  text-align: center;
+  padding: 16px;
+  margin: 1rem auto;
+  background-color: #5623ed;
+  border-radius: 16px;
+  border: 2px solid #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 95%;
+  max-width: 500px;
 }
 
 .imagen-ahorcado img {
-    max-width: 150px;
-    height: auto;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease; 
+  width: 120px;
+  height: 140px;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
 }
 
 .palabra-oculta {
-    font-size: 2.5rem;
-    letter-spacing: 0.3rem;
-    margin-bottom: 30px;
-    color: #333;
-    text-transform: uppercase;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 0.3rem;
+  margin-bottom: 5px;
+  color: #000000;
+  text-transform: uppercase;
+  word-break: break-word;
 }
 
 .intentos {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    color: #666;
+  font-size: 20px;
+  color: #000000;
+  font-weight: bold;
 }
 
 .teclado {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .teclado button {
-    padding: 10px;
-    margin: 5px;
-    font-size: 1.1rem;
-    width: 40px;
-    height: 40px; 
-    border-radius: 10px;
-    background-color: #f4f4f4;
-    border: 2px solid #0e0000;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  margin: 4px;
+  font-size: 24px;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  background-color: #000000;
+  border: 1.5px solid #000;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .teclado button:hover {
-    background-color: #eec1c1;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #eec1c1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .teclado button:disabled {
-    background-color: #d8d8d8;
-    color: #fff;
-    cursor: not-allowed;
+  background-color: #d8d8d8;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
-
 
 button:active {
-    transform: scale(0.98); 
+  transform: scale(0.98);
 }
 
-.boton-reiniciar{
-    background-color: #4c5baf;
-    font-family: system-ui;
-    color: rgb(255, 255, 255);
-    padding: 5px 10px; 
-    font-size: 14px; 
-    border-radius: 5px;
-    border: 1px solid #000000;
-    margin-top: 10px;
+.boton-reiniciar {
+  background-color: #af4ca3;
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: 1px solid #000;
+  padding: 6px 14px;
 }
 
-.palabra-correcta{
-    font-family: system-ui;
-    font-size: 18px; 
-    color: #000000;
+.palabra-correcta {
+  font-size: 1.1rem;
+  color: #000;
+  margin-top: 0.5rem;
 }
