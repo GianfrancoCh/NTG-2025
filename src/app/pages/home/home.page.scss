@@ -1,12 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #039BE6;
+  --background: #039be6;
   --color: white;
 }
 
 ion-content {
-  --background: #2D2D51;
+  --background: #2d2d51;
   color: #fff;
 }
 
@@ -30,7 +30,7 @@ ion-content {
 
 .titulo-inicio {
   font-size: 35px;
-  color: #039BE6;
+  color: #039be6;
   text-align: center;
   width: 100%;
   margin: 0 0 1rem 0;
@@ -92,7 +92,7 @@ ion-content {
   left: 0;
   right: 0;
   z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
-  background-color: #039BE6; /* Color de fondo del header */
+  background-color: #039be6; /* Color de fondo del header */
   height: 40px;
 }
 
@@ -105,7 +105,8 @@ ion-content {
 .fab-wrapper {
   /* Distribuye los dos FAB uno al lado del otro */
   display: flex;
-  gap: 24px;          /* separación entre ellos */
+  gap: 44px; /* separación entre ellos */
+  margin-bottom: 60px;
 }
 
 .fab-btn {
@@ -113,17 +114,17 @@ ion-content {
   width: 120px;
   height: 120px;
   font-size: 60px;
-  --border-radius: 50%;      /* redondos */
+  --border-radius: 50%; /* redondos */
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   --color: #ffffff;
 }
 
 /* Colores de acción distintos (opcional) */
 .fab-logout {
-  --background: #e53935;     /* rojo */
+  --background: #e53935; /* rojo */
 }
 .fab-qr {
-  --background: #039be6;     /* azul */
+  --background: #039be6; /* azul */
 }
 
 /* Si utilizas <img> dentro del FAB */
@@ -132,9 +133,8 @@ ion-content {
   height: 42px;
 }
 
-
 ion-button {
-  --background: #24B4F8;
+  --background: #24b4f8;
   --color: white;
   --border-radius: 40px;
   font-weight: bold;
