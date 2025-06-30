@@ -49,10 +49,30 @@ import { EncuestaCliente } from 'src/app/clases/encuestas/encuesta-cliente';
 export class EncuestaClienteComponent implements OnInit {
   @Input() encuesta!: EncuestaCliente;
   protected cliente!: Cliente;
+  fotosParseadas: string[] = [];
+
   constructor() {}
 
   ngOnInit() {
     if (!this.encuesta) throw new Error('Campo `encuesta` no existe.');
     this.cliente = <Cliente>this.encuesta.autor;
+
+    console.log(
+      'EncuestaClienteComponent: encuesta selecionada ',
+      this.encuesta
+    );
+
+    if (typeof this.encuesta.fotoUrls === 'string') {
+      try {
+        this.fotosParseadas = JSON.parse(this.encuesta.fotoUrls);
+        console.log('Fotos URL parseadas:', this.fotosParseadas);
+      } catch (e) {
+        console.error('Error al parsear fotos_url:', this.encuesta.fotoUrls);
+        this.fotosParseadas = []; // fallback vacío si hay error
+      }
+    } else {
+      console.log('fotosUrls:', this.encuesta.fotoUrls);
+    }
+
   }
 }
