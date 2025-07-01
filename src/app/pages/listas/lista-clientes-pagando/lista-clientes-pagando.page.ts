@@ -93,19 +93,14 @@ export class ListaClientesPagandoPage implements OnInit {
         valor: 'cliente',
       }),
     ]);
-    console.log('Productos:', this.productos);
-    console.log('Clientes:', this.clientes);
 
     const pedidosAll = await this.db.traerColeccion<Pedido>(
       Colecciones.Pedidos
     );
     this.pedidos = pedidosAll.filter((p) => p.estado === 'entregado');
 
-    console.log('Pedidos:', this.pedidos);
-
     const mesasAll = await this.db.traerColeccion<Mesa>(Colecciones.Mesas);
     this.mesas = mesasAll.filter((m) => m.estado === EstadoMesa.Pago);
-    console.log('Mesas:', this.mesas);
 
     this.spinner.hide();
   }
