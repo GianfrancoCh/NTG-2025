@@ -1,81 +1,126 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar style="height: 70px; display: flex; align-items: center; justify-content: center;">
+  <ion-toolbar
+    style="height:70px;display:flex;align-items:center;justify-content:center;"
+  >
     <ion-buttons slot="start">
       <ion-back-button routerLink="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title style="font-size: 2rem;">Realizar pedido</ion-title>
+    <ion-title style="font-size:2rem;">Realizar pedido</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="container background-sec">
-    <ion-card style="width: 95%;">
+<ion-content [fullscreen]="true" class="pedido-content">
+  <div class="container">
+    <!-- ───────── OPCIONES ───────── -->
+    <ion-card style="width:95%;">
       <div id="btn-container">
-        <ion-button fill="clear" size="large" style="font-weight: bold;"
-          (click)="navCtrl.navigateForward('consulta-mozo')">
+        <ion-button
+          fill="clear"
+          size="large"
+          style="font-weight:bold;"
+          (click)="navCtrl.navigateForward('consulta-mozo')"
+        >
           <ion-icon slot="icon-only" name="chatbubble-ellipses-outline"></ion-icon>
           Consultar mozo
         </ion-button>
-        <ion-button fill="clear" size="large" style="font-weight: bold;" (click)="mostrarPedido()"
-          [disabled]="Object.keys(productosElegidos).length < 1">
+
+        <ion-button
+          fill="clear"
+          size="large"
+          style="font-weight:bold;"
+          (click)="mostrarPedido()"
+          [disabled]="Object.keys(productosElegidos).length < 1"
+        >
           <ion-icon slot="icon-only" name="receipt-outline"></ion-icon>
           Mostrar pedido
         </ion-button>
       </div>
-      <ion-card-header>
 
-        
-      </ion-card-header>
+      <ion-card-header></ion-card-header>
+
+      <!-- ───────── LISTA DE PRODUCTOS ───────── -->
       <ion-card-content id="menu-container">
         <ion-accordion-group id="lista-productos">
           @for (item of productos; track $index) {
             <ion-accordion toggleIconSlot="none" [value]="item.nombre">
               <ion-item class="item" color="primary" slot="header">
-                <ion-badge slot="start" color="secondary">
+                <ion-badge slot="start" style="background-color: blueviolet;">
                   @if (!productosElegidos[item.id]) {
                     <ion-icon name="caret-down-outline"></ion-icon>
                   } @else {
-                    {{productosElegidos[item.id]}}
+                    {{ productosElegidos[item.id] }}
                   }
                 </ion-badge>
-                <ion-label>
-                  {{item.nombre}}
-                </ion-label>
-                <ion-text class="precio-prod">{{item.precio | currency}}</ion-text>
+
+                <ion-label style="color: white;">{{ item.nombre }}</ion-label>
+
+                <ion-text style="color: white;" class="precio-prod">
+                  {{ item.precio | currency }}
+                </ion-text>
               </ion-item>
+
               <div class="content" slot="content">
-                <h2>{{item.descripcion}}</h2>
+                <h2>{{ item.descripcion }}</h2>
+
                 <div class="imgs-container">
                   @for (foto of item.fotos_url; track $index) {
-                    <img [attr.src]="foto" alt="foto del producto">
+                    <img [attr.src]="foto" alt="foto del producto" />
                   }
                 </div>
-                <h2>
-                  Tiempo de elaboración: {{item.tiempoElab}} minutos.
-                </h2>
+
+                <h2>Tiempo de elaboración: {{ item.tiempoElab }} minutos.</h2>
+
                 <div class="cont-prod">
-                  <ion-button size="medium" color="danger" expand="fill" (click)="restarProd(item)"
-                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0">
-                  <ion-icon slot="icon-only" aria-label="hidden" name="remove-circle-outline" color="light"></ion-icon>
-                </ion-button>
-                <ion-input type="number" min="0" max="99" color="light" [(ngModel)]="productosElegidos[item.id]"
-                ngDefaultControl></ion-input>
-                <ion-button size="medium" color="success" expand="fill" (click)="sumarProd(item)"
-                [disabled]="productosElegidos[item.id] === 99">
-                <ion-icon slot="icon-only" aria-label="hidden" name="add-circle-outline" color="light"></ion-icon>
-              </ion-button>
-            </div>
-          </div>
-        </ion-accordion>
-      }
-    </ion-accordion-group>
-  </ion-card-content>
-</ion-card>
-<div class="total">
-<p>Total a pagar:</p>
-  <ion-card-subtitle style="font-size: 40px;">
-    {{precio | currency}}
-  </ion-card-subtitle>
-</div>
-</div>
+                  <ion-button
+                    size="medium"
+                    color="danger"
+                    expand="fill"
+                    (click)="restarProd(item)"
+                    [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0"
+                  >
+                    <ion-icon
+                      slot="icon-only"
+                      aria-label="hidden"
+                      name="remove-circle-outline"
+                      color="light"
+                    ></ion-icon>
+                  </ion-button>
+
+                  <ion-input
+                    type="number"
+                    min="0"
+                    max="99"
+                    color="light"
+                    [(ngModel)]="productosElegidos[item.id]"
+                    ngDefaultControl
+                  ></ion-input>
+
+                  <ion-button
+                    size="medium"
+                    color="success"
+                    expand="fill"
+                    (click)="sumarProd(item)"
+                    [disabled]="productosElegidos[item.id] === 99"
+                  >
+                    <ion-icon
+                      slot="icon-only"
+                      aria-label="hidden"
+                      name="add-circle-outline"
+                      color="light"
+                    ></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </ion-accordion>
+          }
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- ───────── TOTAL EN UN SOLO RENGLÓN ───────── -->
+    <div class="total fixed-bottom">
+      <span class="rotulo">Total a pagar:</span>
+      <span class="monto">{{ precio | currency }}</span>
+    </div>
+  </div>
 </ion-content>

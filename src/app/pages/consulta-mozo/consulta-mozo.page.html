@@ -1,53 +1,97 @@
-<div class="container background-pri">
-  <ion-card style="width: 95%">
-    <ion-card-header>
-      <ion-button fill="clear" (click)="navCtrl.back()">
+<!-- chat.component.html -->
+<div
+  class="container"
+  style="background-color:#2d2d51;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;"
+>
+  <ion-card style="width:95%;">
+    <!-- ───────── CABECERA ───────── -->
+    <ion-card-header style="background-color:#039BE6;">
+      <ion-button
+        fill="clear"
+        (click)="navCtrl.back()"
+        style="color:white;font-size:2rem;"
+      >
         <ion-icon slot="start" name="chevron-back-circle-outline" size="large"></ion-icon>
         Volver
       </ion-button>
     </ion-card-header>
-    <ion-card-content>
-     <div id="mensajes" #mensajesDiv>
-      <ng-container *ngIf="mensajes.length > 0">
-        <ng-container *ngFor="let msg of mensajes; trackBy: trackByFn">
-          <div [id]="msg.id" class="msg" [ngClass]="usuario.id === msg.autor.id ? 'enviado' : 'recibido'">
-            <!-- <div *ngIf="msg.autor.rol === 'cliente' && msg.nroMesa" class="info-mesa">
-              <ion-text color="medium" style="font-weight: bold; margin-left: 10px;">
-                Mesa: {{ msg.nroMesa }}
-              </ion-text>
-            </div> -->
-            <div *ngIf="usuario.id !== msg.autor.id" class="alias">
-              <ion-text>
-                {{ msg.autor.rol === 'cliente' && msg.nroMesa ? 'Mesa ' + msg.nroMesa : 'Mozo ' + msg.autor.nombre }}
-              </ion-text>              
-            </div>
-            <ion-text class="texto">{{ msg.mensaje }}</ion-text>
-           <ion-text
-              class="fecha"
-              [ngClass]="{
-                'fecha-izquierda': msg.autor.rol === 'mozo',
-                'fecha-derecha': msg.autor.rol !== 'mozo'
-              }">
-              {{ msg.fecha | date:'dd/MM | HH:mm' }}
-            </ion-text>   
-          </div>
-        </ng-container>
-      </ng-container>
-    </div>
 
-      <form class="card-footer text-muted">
-        <div class="input">
-          <ion-item ngClass='input'>
-            <ion-input type="text" placeholder="Escriba su mensaje" class="form-control" name="mensaje"
-              [(ngModel)]="nuevoMensaje" ngDefaultControl (keyup.enter)="enviarMensaje()"></ion-input>
-            <span>
-              <ion-button fill="clear" [color]="nuevoMensaje.trim() === '' ? 'medium' : 'success'"
-                [disabled]="nuevoMensaje.trim() === ''" (click)="enviarMensaje()">
-                <ion-icon slot="icon-only" name="send-outline" id="enviar" size="large"></ion-icon>
-              </ion-button>
-            </span>
-          </ion-item>
-        </div>
+    <!-- ───────── CUERPO ───────── -->
+    <ion-card-content>
+      <!-- LISTA DE MENSAJES -->
+      <div id="mensajes" #mensajesDiv>
+        <ng-container *ngIf="mensajes.length > 0">
+          <ng-container *ngFor="let msg of mensajes; trackBy: trackByFn">
+            <div
+              [id]="msg.id"
+              class="msg"
+              [ngClass]="usuario.id === msg.autor.id ? 'enviado' : 'recibido'"
+            >
+              <!-- Alias (solo si el mensaje NO es del usuario) -->
+              <div *ngIf="usuario.id !== msg.autor.id" class="alias">
+                <ion-text>
+                  {{ msg.autor.rol === 'cliente' && msg.nroMesa
+                      ? 'Mesa ' + msg.nroMesa
+                      : 'Mozo ' + msg.autor.nombre }}
+                </ion-text>
+              </div>
+
+              <!-- Texto del mensaje -->
+              <ion-text class="texto">{{ msg.mensaje }}</ion-text>
+
+              <!-- Fecha -->
+              <ion-text
+                class="fecha"
+                [ngClass]="{
+                  'fecha-izquierda': msg.autor.rol === 'mozo',
+                  'fecha-derecha': msg.autor.rol !== 'mozo'
+                }"
+              >
+                {{ msg.fecha | date:'dd/MM | HH:mm' }}
+              </ion-text>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <!-- ───────── INPUT + BOTÓN ENVIAR ───────── -->
+      <!--
+        El fondo ahora se controla con la variable --background,
+        que SÍ atraviesa el Shadow DOM de ion-item.
+      -->
+      <form class="card-footer">
+        <ion-item
+          class="input"
+          lines="none"
+          style="
+            --background:#2d2d51;
+            --border-radius:8px;
+            --padding-start:12px;
+            --inner-padding-end:0;
+          "
+        >
+          <ion-input
+            type="text"
+            placeholder="Escriba su mensaje"
+            class="form-control"
+            name="mensaje"
+            [(ngModel)]="nuevoMensaje"
+            ngDefaultControl
+            (keyup.enter)="enviarMensaje()"
+            style="color:white;"
+          ></ion-input>
+
+          <ion-button
+            slot="end"
+            fill="clear"
+            [color]="nuevoMensaje.trim() === '' ? 'medium' : 'success'"
+            [disabled]="nuevoMensaje.trim() === ''"
+            (click)="enviarMensaje()"
+            style="--color:#039BE6;"
+          >
+            <ion-icon slot="icon-only" name="send-outline" size="large"></ion-icon>
+          </ion-button>
+        </ion-item>
       </form>
     </ion-card-content>
   </ion-card>
