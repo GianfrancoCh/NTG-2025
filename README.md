@@ -35,32 +35,31 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 | **Códigos QR**        |                                                        |                      |             |
 | F                     | QR Ingreso al local                                    | Nahuel Borquez       | Finalizado  |
 | G                     | QR de la Mesa                                          | Gianfranco Chiarizia | Finalizado  |
-| H                     | QR de la propina                                       | Aguirre Antonio      | —           |
+| H                     | QR de la propina                                       | Aguirre Antonio      | Finalizado  |
 | **Encuestas**         |                                                        |                      |             |
-| I                     | Encuesta Clientes                                      | Nahuel Borquez       | Pendiente   |
+| I                     | Encuesta Clientes                                      | Nahuel Borquez       | Finalizado  |
 | J                     | Encuesta Empleados                                     | Gianfranco Chiarizia | Pendiente   |
 | K                     | Encuesta Supervisor                                    | Aguirre Antonio      | Pendiente   |
 | **Gestión**           |                                                        |                      |             |
-| L                     | Gestión - Agregar nuevo cliente                        | Nahuel Borquez       | Pendiente   |
-| M                     | Ingresar al local                                      | Gianfranco Chiarizia | Pendiente   |
-| N                     | Realizar pedidos                                       | Aguirre Antonio      | Pendiente   |
-| O                     | Confirmar Pedidos                                      | Nahuel Borquez       | Pendiente   |
+| L                     | Gestión - Agregar nuevo cliente                        | Nahuel Borquez       | Finalizado  |
+| M                     | Ingresar al local                                      | Gianfranco Chiarizia | Finalizado  |
+| N                     | Realizar pedidos                                       | Aguirre Antonio      | Finalizado  |
+| O                     | Confirmar Pedidos                                      | Nahuel Borquez       | Finalizado  |
 | P                     | Generar reservas agendadas                             | Gianfranco Chiarizia | Pendiente   |
 | **Push Notification** |                                                        |                      |             |
 | Q                     | Push - Agregar cliente nuevo                           | Nahuel Borquez       | Finalizado  |
 | R                     | Push - Ingreso al local                                | Gianfranco Chiarizia | Finalizado  |
-| S                     | Push - Consultar al mozo                               | Aguirre Antonio      | Pendiente   |
-| T                     | Push - Confirmar pedido (parte del mozo)               | Nahuel Borquez       | Pendiente   |
-| U                     | Push - Confirmar pedido (parte del cocinero/bartender) | Gianfranco Chiarizia | Pendiente   |
+| S                     | Push - Consultar al mozo                               | Aguirre Antonio      | Finalizado  |
+| T                     | Push - Confirmar pedido (parte del mozo)               | Nahuel Borquez       | Finalizado  |
+| U                     | Push - Confirmar pedido (parte del cocinero/bartender) | Gianfranco Chiarizia | Finalizado  |
 | V                     | Generar reservas agendadas / Delivery                  | Aguirre Antonio      | —           |
 | **Delivery**          |                                                        |                      |             |
 | W                     | Delivery - Realizar Pedido con GPS o Dirección         | Nahuel Borquez       | —           |
 | X                     | Mapa Ruta hasta domicilio entrega                      | Gianfranco Chiarizia | —           |
 | **Juegos**            |                                                        |                      |             |
-| Y                     | Juego 10% descuento                                    | Aguirre Antonio      | Pendiente   |
-| Z                     | Juego 15% descuento                                    | Nahuel Borquez       | Pendiente   |
-| AA                    | Juego 20% descuento                                    | Gianfranco Chiarizia | Pendiente   |
-
+| Y                     | Juego 10% descuento                                    | Aguirre Antonio      | Finalizado  |
+| Z                     | Juego 15% descuento                                    | Nahuel Borquez       | —           |
+| AA                    | Juego 20% descuento                                    | Gianfranco Chiarizia | —           |
 ---
 
 ## 📲 Códigos QR
