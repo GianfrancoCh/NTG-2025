@@ -111,7 +111,7 @@ export class ListaEncuestasClientePage implements OnInit {
   /** Devuelve 0-5 valorando distintos campos posibles */
   rating(enc: EncuestaCliente): number {
     const r =
-      (enc as any).calificacionGeneral ??
+      (enc as any).puntuacionGeneral ??
       (enc as any).promedio ??
       (enc as any).puntaje ??
       0;

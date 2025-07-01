@@ -48,12 +48,12 @@
       </div>
       <!-- CLIENTE -->
       <div *ngIf="
-     user &&
-     (usuarioActual?.rol == 'cliente' || usuarioActual?.rol == 'clienteAnonimo')
-">
+            user &&
+            (usuarioActual?.rol == 'cliente' || usuarioActual?.rol == 'clienteAnonimo')
+        ">
         <!-- <ion-button size="big" (click)="pruebaMesa()">boton ej cliente</ion-button> -->
-        <ion-button size="big" routerLink="/juego">boton ej cliente</ion-button>
-        <ion-button size="big" (click)="pruebaMesa()">boton ej cliente</ion-button>
+        <!-- <ion-button size="big" routerLink="/juego">boton ej cliente</ion-button>
+        <ion-button size="big" (click)="pruebaMesa()">boton ej cliente</ion-button> -->
 
       </div>
     </div>

@@ -21,10 +21,9 @@
       </div>
 
       <div *ngIf="encuesta.atencion; else ningunAspecto" class="buenosAspectos">
-        <ion-text>Calificacion de la atención:</ion-text>
+        <ion-text class="seccion-titulo">Calificación de la atención:</ion-text>
         <div class="aspectos">
-          <span>
-            {{encuesta.atencion}}</span>
+          <span>{{ encuesta.atencion }}</span>
         </div>
       </div>
       <ng-template #ningunAspecto>
@@ -32,8 +31,10 @@
       </ng-template>
 
       <div class="comentarios">
-        Comentarios del cliente:
-        <p style="font-size: 30px;">{{encuesta.comentarios}}</p>
+        <ion-text class="seccion-titulo">Comentarios del cliente:</ion-text>
+        <p class="comentario-texto">
+          {{ encuesta.comentarios }}
+        </p>
       </div>
     </ion-card-content>
   </ion-card>
