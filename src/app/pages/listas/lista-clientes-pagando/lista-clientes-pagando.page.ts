@@ -85,7 +85,7 @@ export class ListaClientesPagandoPage implements OnInit {
       this.db.traerColeccion<Producto>(Colecciones.Productos),
       this.db.traerCoincidencias<Cliente>(Colecciones.Usuarios, {
         campo: 'rol',
-        operacion: '==',
+        operacion: 'eq',
         valor: 'cliente',
       }),
     ]);
