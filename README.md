@@ -75,17 +75,18 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 ### QRs por mesa
 
 <p align="center">
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true" alt="QR Mesa 1" width="120" style="margin: 0 10px;" />
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-2.png?raw=true" alt="QR Mesa 2" width="120" style="margin: 0 10px;" />
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-3.png?raw=true" alt="QR Mesa 3" width="120" style="margin: 0 10px;" />
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" style="margin: 0 10px;" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true" alt="QR Mesa 1" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-2.png?raw=true" alt="QR Mesa 2" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-3.png?raw=true" alt="QR Mesa 3" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" />
 </p>
 
 ### QRs Propina
 
 <p align="center">
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-5.png?raw=true" alt="QR Propina 5"width="120" style="margin: 0 10px;"  />
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-10.png?raw=true" alt="QR Propina 10" width="120" style="margin: 0 10px;" />
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-15.png?raw=true" alt="QR Propina 15" width="120" style="margin: 0 10px;" />
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-20.png?raw=true" alt="QR Propina 20" width="120" style="margin: 0 10px;" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-0.png?raw=true" alt="QR Propina 0"width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-5.png?raw=true" alt="QR Propina 5"width="120"  />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-10.png?raw=true" alt="QR Propina 10" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-15.png?raw=true" alt="QR Propina 15" width="120" />
+  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-20.png?raw=true" alt="QR Propina 20" width="120"  />
 </p>
