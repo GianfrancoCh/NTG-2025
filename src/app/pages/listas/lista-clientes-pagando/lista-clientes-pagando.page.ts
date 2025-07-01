@@ -79,28 +79,29 @@ export class ListaClientesPagandoPage implements OnInit {
   }
 
   async ngOnInit() {
+    await this.cargarDatos();
+  }
+
+  async cargarDatos() {
     this.spinner.show();
 
     [this.productos, this.clientes] = await Promise.all([
       this.db.traerColeccion<Producto>(Colecciones.Productos),
       this.db.traerCoincidencias<Cliente>(Colecciones.Usuarios, {
         campo: 'rol',
-        operacion: '==',
+        operacion: 'eq',
         valor: 'cliente',
       }),
     ]);
 
-    this.db.escucharColeccion<Pedido>(
-      Colecciones.Pedidos,
-      this.pedidos,
-      (pedido) => pedido.estado == 'entregado'
+    const pedidosAll = await this.db.traerColeccion<Pedido>(
+      Colecciones.Pedidos
     );
+    this.pedidos = pedidosAll.filter((p) => p.estado === 'entregado');
 
-    this.db.escucharColeccion<Mesa>(
-      Colecciones.Mesas,
-      this.mesas,
-      (mesa) => mesa.estado === EstadoMesa.Pago
-    );
+    const mesasAll = await this.db.traerColeccion<Mesa>(Colecciones.Mesas);
+    this.mesas = mesasAll.filter((m) => m.estado === EstadoMesa.Pago);
+
     this.spinner.hide();
   }
 
@@ -121,6 +122,9 @@ export class ListaClientesPagandoPage implements OnInit {
 
     this.spinner.hide();
     ToastSuccess.fire('La mesa ya está disponible');
+
+    // 🔁 Volver a cargar la lista actualizada
+    await this.cargarDatos();
   }
 
   async mostrarPedido(pedido: Pedido) {
