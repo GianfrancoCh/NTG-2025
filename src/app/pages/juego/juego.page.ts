@@ -5,13 +5,16 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonRow, IonText
 import { AuthService } from 'src/app/services/auth.service';
 import { Cliente } from 'src/app/clases/cliente';
 import { Colecciones, DatabaseService } from 'src/app/services/database.service';
+import { ModalController } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-juego',
   templateUrl: './juego.page.html',
   styleUrls: ['./juego.page.scss'],
   standalone: true,
-  imports: [IonImg, IonGrid, IonCol, IonText, IonRow, IonButton, IonContent, IonHeader, IonTitle, IonRow, IonToolbar, CommonModule, FormsModule]
+  imports: [IonImg, IonGrid, IonCol, IonText, IonRow, IonButton, IonContent, IonHeader, IonTitle, IonRow, IonToolbar, CommonModule, FormsModule],
+  providers: [ModalController]
 })
 export class JuegoPage implements OnInit {
 
@@ -39,7 +42,7 @@ export class JuegoPage implements OnInit {
     'assets/ahorcado/ahorcado6.jpg'
   ];
 
-  constructor(private auth: AuthService, private db: DatabaseService) { }
+  constructor(private auth: AuthService, private db: DatabaseService, protected modalCtrl: ModalController, private router: Router) { }
 
 
   async ngOnInit(): Promise<void> {
@@ -127,6 +130,10 @@ export class JuegoPage implements OnInit {
 
   obtenerImagenAhorcado(): string {
     return this.imagenesAhorcado[this.intentos]; 
+  }
+
+  cerrar() {
+    this.router.navigate(['/home']); // o a donde quieras ir
   }
 
 

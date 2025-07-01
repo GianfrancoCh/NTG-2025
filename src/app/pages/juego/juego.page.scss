@@ -88,3 +88,17 @@ button:active {
   color: #000;
   margin-top: 0.5rem;
 }
+
+.boton-cerrar {
+  --border-radius: 50%;
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1.5rem auto 0; /* margen arriba, centrado horizontal */
+  display: block; /* para que margin auto funcione */
+  min-width: unset !important;
+  --background: #dc3545;
+  --color: white;
+}

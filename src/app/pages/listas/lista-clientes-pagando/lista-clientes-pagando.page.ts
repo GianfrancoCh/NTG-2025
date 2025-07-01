@@ -90,12 +90,15 @@ export class ListaClientesPagandoPage implements OnInit {
       }),
     ]);
 
+
     this.db.escucharColeccion<Pedido>(
       Colecciones.Pedidos,
       this.pedidos,
       (pedido) => pedido.estado == 'entregado'
     );
 
+    console.log(this.pedidos);
+    
     this.db.escucharColeccion<Mesa>(
       Colecciones.Mesas,
       this.mesas,

@@ -1,104 +1,159 @@
 #cuenta-container {
   max-height: 75vh;
-  padding: 0.5rem;
-  background-color: aliceblue;
-  color: #1f1f1f;
+  padding: 1rem;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  .ticket {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+    margin: 0.25rem 0;
+  }
+
+  small {
+    font-size: 0.8rem;
+    color: #666;
+  }
 
   .tabla-container {
     height: 40vh;
     overflow-y: auto;
+    margin-top: 1rem;
 
     table#tabla-ticket {
       width: 100%;
       border-collapse: collapse;
-      color: #2a2a2a;
-      background: rgba(207, 220, 150, 0.5);
-      font-family: "Gill Sans", sans-serif;
-      font-size: 16px;
+      font-size: 16px; // Subido de 14px a 16px
 
       thead {
-        background-color: #6c757d;
-        color: #ffffff;
+        background-color: #007bff;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 1;
 
         th {
-          border-right: 1px solid #dee2e6;
+          padding: 12px;
           text-align: start;
-          padding: 10px 5px;
-          font-size: 18px;
-        }
-
-        th:last-child {
-          border-right: none;
+          font-size: 18px; // Números de encabezado más grandes
         }
 
         th#cant {
-          width: 7.5%;
+          width: 10%;
         }
 
         th#nombre {
-          width: 57.5%;
+          width: 50%;
         }
 
-        th#precio {
-          width: 35%;
+        th#precio-un,
+        th#precio-total {
+          width: 20%;
+          text-align: right;
         }
       }
 
       tbody {
         tr:nth-child(odd) {
-          background-color: #f8f9fa;
+          background-color: #f1f1f1;
         }
 
         tr:nth-child(even) {
-          background-color: #e9ecef;
+          background-color: #e3e3e3;
         }
 
         td {
-          padding: 10px 5px;
-          font-size: 16px;
+          padding: 12px;
+          vertical-align: middle;
+          font-size: 17px; // Celdas generales más grandes
         }
 
         td.prod-cant {
-          color: #007bff;
+          color: #17a2b8;
+          font-weight: bold;
+          font-size: 18px;
         }
 
         td.prod-nombre {
-          font-weight: bold;
+          font-weight: 600;
+          font-size: 17px;
         }
 
-        td.prod-precio {
-          padding-right: 0;
-          color: #dc3545;
-        }
-      }
-
-      tfoot {
-        position: sticky;
-        bottom: 0;
-        background-color: #f1f1f1;
-        font-weight: bold;
-
-        td {
-          padding: 10px 5px;
-          font-size: 16px;
-          border-top: 2px solid #dee2e6;
-        }
-
-        .total-label {
+        td.prod-precio,
+        td.total-precio {
           text-align: right;
-          color: #2a2a2a;
-        }
-
-        .total-precio {
-          padding-right: 0;
-          color: #dc3545;
+          color: #495057;
+          font-size: 18px; // Números más grandes
+          font-weight: bold;
         }
       }
     }
   }
 
+  .total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; // Esto alinea todos los elementos a la derecha
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px dashed #ccc;
+
+    h2 {
+      font-size: 1.4rem;
+      margin: 0.2rem 0;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #6c757d;
+      margin: 0.2rem 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #28a745;
+      font-weight: bold;
+      margin: 0.2rem 0;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #888;
+  }
+
   ion-button {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    --background: #28a745;
+    --color: white;
+    --border-radius: 10px;
     position: sticky;
     bottom: 0;
   }
+  .boton-cerrar {
+    --border-radius: 50%;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    position: static;
+    margin: 1rem auto 0;
+    display: block;
+    min-width: unset !important;
+    --background: #dc3545;
+    --color: white;
+  }
+  
 }

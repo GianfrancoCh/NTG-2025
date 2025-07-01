@@ -30,6 +30,7 @@ import {
   Colecciones,
   DatabaseService,
 } from 'src/app/services/database.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-mesa',
@@ -71,13 +72,14 @@ export class MenuMesaComponent implements OnInit {
 
   constructor(
     protected modalCtrl: ModalController,
-    private db: DatabaseService
+    private db: DatabaseService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
     /* Si todavía no hay pedido, no hay nada que verificar */
     if (!this.pedido) return;
-
+    
     /* Comprobar si existe encuesta asociada al pedido */
     const encuestas = await this.db.traerCoincidencias<EncuestaCliente>(
       Colecciones.EncuestasCliente,
@@ -88,7 +90,10 @@ export class MenuMesaComponent implements OnInit {
       }
     );
     this.hizoEncuesta = encuestas.length > 0;
+  }
 
-    console.log('estado de la mesa:', this.mesa.estado);
+  async goToJuego() {
+    await this.modalCtrl.dismiss();  // Cierra el modal primero
+    this.router.navigate(['/juego']); // Luego navega a la página juego
   }
 }

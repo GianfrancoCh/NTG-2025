@@ -1,7 +1,7 @@
 <div id="cuenta-container">
   <div class="ticket">
-    <h1>Restaurante Los Yourdonistas</h1>
-    <h2>Ticket de Compra <small>{{fechaHoy() | date: 'dd/MM/YY - HH:mm'}}</small></h2>
+    <h1>Restaurante NTG</h1>
+    <h2>Ticket de Compra {{fechaHoy() | date: 'dd/MM/YY - HH:mm'}}</h2>
     <div class="tabla-container">
       <table id="tabla-ticket">
         <thead>
@@ -23,12 +23,26 @@
       </table>
     </div>
     <div class="total ion-text-end">
-      <h3>Propina: {{propinaTotal | currency}}</h3>
-      <h1>Total: {{valorTotal | currency}}</h1>
+      <h2>Subtotal: {{ precioOriginal | currency }}</h2>
+      <ng-container *ngIf="tieneDescuentoJuego">
+        <h2>Descuento por juego 15%: -{{ descuentoTotal | currency }}</h2>
+      </ng-container>
+      <h2>Propina: {{ propinaTotal | currency }}</h2>
+      <h1>Total: {{ valorTotal | currency }}</h1>
     </div>
     <div class="footer">
-      <p>¡Gracias por su visita!</p>
+      <h2>¡Gracias por su visita!</h2>
     </div>
   </div>
   <ion-button expand="block" (click)="modalCtrl.dismiss(undefined, 'success')">PAGAR</ion-button>
+   <ion-button
+    color="danger"
+    shape="round"
+    fill="solid"
+    class="boton-cerrar"
+    (click)="modalCtrl.dismiss()"
+  >
+    X
+  </ion-button>
+   
 </div>
