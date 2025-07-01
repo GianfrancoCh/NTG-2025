@@ -37,7 +37,7 @@ ion-content {
 
     .nombre_apellido {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 16px;
 
       .nombre,
@@ -76,5 +76,5 @@ ion-input {
   --color: white;
 
   height: 50px;
-  font-size: 26px;
+  font-size: 16px;
 }

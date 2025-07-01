@@ -1,0 +1,12 @@
+@import "src/theme/variables.scss";
+
+ion-content {
+  --background:#2D2D51;
+  color:#fff;
+}
+
+/* Contenedor principal */
+ion-card {
+  margin:0.5rem;
+  background-color:#414068;
+}
