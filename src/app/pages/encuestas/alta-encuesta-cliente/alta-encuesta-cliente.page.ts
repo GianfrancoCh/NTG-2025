@@ -21,6 +21,7 @@ import {
   IonButton,
   IonRange,
   IonCheckbox,
+  IonSelect,
 } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -55,6 +56,7 @@ import { Exception, ErrorCodes } from 'src/app/clases/exception';
     IonLabel,
     IonItem,
     IonRange,
+    IonSelect,
     IonCheckbox,
     IonCardContent,
     IonCardTitle,
@@ -75,6 +77,14 @@ export class AltaEncuestaClientePage {
   frmEncuesta: FormGroup;
   fotos: { archivo: File | null; url: string | null }[] = [];
   idPedido: string;
+
+  estrellas = [
+    { valor: 1, label: '⭐' },
+    { valor: 2, label: '⭐⭐' },
+    { valor: 3, label: '⭐⭐⭐' },
+    { valor: 4, label: '⭐⭐⭐⭐' },
+    { valor: 5, label: '⭐⭐⭐⭐⭐' },
+  ];
 
   constructor(
     private auth: AuthService,

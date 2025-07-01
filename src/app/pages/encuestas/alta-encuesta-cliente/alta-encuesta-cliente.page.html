@@ -14,8 +14,19 @@
         <form [formGroup]="frmEncuesta" (ngSubmit)="subirEncuesta()">
 
           <div id="puntuacionGeneral" class="control">
-            <app-range-estrellas titulo="Puntuación General" idEstrellas="puntuacionGeneral"
-              (cambioValor)="frmEncuesta.controls['puntuacionGeneral'].setValue($event)"></app-range-estrellas>
+            <!-- <app-range-estrellas titulo="Puntuación General" idEstrellas="puntuacionGeneral"
+              (cambioValor)="frmEncuesta.controls['puntuacionGeneral'].setValue($event)"></app-range-estrellas> -->
+
+            <!-- Select -->
+            <div class="label">
+              <ion-label>Puntuación General</ion-label>
+            </div>
+
+            <ion-select interface="popover" formControlName="puntuacionGeneral" placeholder="Seleccione una opción">
+              <ion-select-option *ngFor="let estrella of estrellas" [value]="estrella.valor">
+                {{ estrella.label }}
+              </ion-select-option>
+            </ion-select>
           </div>
 
           <div id="comida" class="control">

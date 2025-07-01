@@ -1,8 +1,9 @@
 @import "src/theme/variables.scss";
 
 .encuesta-container {
-  max-height: 75vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
   ion-card {
     border-radius: 8px;
