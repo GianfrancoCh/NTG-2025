@@ -58,11 +58,12 @@ ion-card-title {
   .nombre {
     font-size:1.2rem;
     font-weight:600;
+    color: #fff;
   }
 
   .fecha  {
     font-size:0.85rem;
-    color:#cfcfcf;
+    color:#ffffff;
   }
 }
 
@@ -76,3 +77,10 @@ ion-card-title {
 /* Tarjeta “vacío” */
 .vacio       { text-align:center; }
 .texto-vacio { color:#fff; font-size:1.1rem; }
+
+.btns { display:flex; gap:0.5rem;
+  margin-bottom:1rem;
+  justify-content:space-between;
+  color: #fff;
+}
+.btns ion-button { flex:1; }

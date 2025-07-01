@@ -1,18 +1,18 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="header-fix">
   <ion-toolbar>
     <ion-title>lista-clientes-pagando</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="container background-pri">
+  <div class="container">
     <ion-card style="width: 95%">
       <ion-card-header>
         <ion-card-title>Pagos a confirmar</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
-        <ion-list id="lista">
+        <ion-list id="lista" style="background-color:#414068">
           @for (pedido of pedidos; track $index) {
           @for (cliente of clientes; track $index) {
           @if (pedido.idCliente == cliente.id) {
@@ -20,9 +20,16 @@
           @if (mesa.id == cliente.idMesa) {
           <ion-item>
             <div class="pedido">
-              <ion-button fill="clear" size="large" (click)="mostrarPedido(pedido)">
-                <ion-icon slot="icon-only" name="receipt-outline" color="medium"></ion-icon>
-              </ion-button>
+              <ion-button
+                              style="background-color:#039BE6;border-radius:15px;"
+                              expand="fill"
+                              fill="clear"
+                              size="large"
+                              (click)="mostrarPedido(pedido)"
+                            >
+                              <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
+                              <p style="margin-right:10px;color:white;">Ver pedido</p>
+                            </ion-button>
 
               <div class="text">
                 <ion-label>Mesa Nro{{mesa.nroMesa}}</ion-label>
