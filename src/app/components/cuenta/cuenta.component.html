@@ -1,3 +1,34 @@
-<p>
-  cuenta works!
-</p>
+<div id="cuenta-container">
+  <div class="ticket">
+    <h1>Restaurante Los Yourdonistas</h1>
+    <h2>Ticket de Compra <small>{{fechaHoy() | date: 'dd/MM/YY - HH:mm'}}</small></h2>
+    <div class="tabla-container">
+      <table id="tabla-ticket">
+        <thead>
+          <tr>
+            <th id="cant">Cant</th>
+            <th id="nombre">Descripción</th>
+            <th id="precio-un">Precio</th>
+            <th id="precio-total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prodCant of pedidoProds">
+            <td class="prod-cant">{{prodCant.cantidad}}</td>
+            <td class="prod-nombre">{{prodCant.producto.nombre}}</td>
+            <td class="prod-precio">{{prodCant.producto.precio | currency}}</td>
+            <td class="total-precio">{{prodCant.producto.precio * prodCant.cantidad | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total ion-text-end">
+      <h3>Propina: {{propinaTotal | currency}}</h3>
+      <h1>Total: {{valorTotal | currency}}</h1>
+    </div>
+    <div class="footer">
+      <p>¡Gracias por su visita!</p>
+    </div>
+  </div>
+  <ion-button expand="block" (click)="modalCtrl.dismiss(undefined, 'success')">PAGAR</ion-button>
+</div>

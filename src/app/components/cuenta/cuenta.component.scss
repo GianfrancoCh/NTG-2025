@@ -1,0 +1,104 @@
+#cuenta-container {
+  max-height: 75vh;
+  padding: 0.5rem;
+  background-color: aliceblue;
+  color: #1f1f1f;
+
+  .tabla-container {
+    height: 40vh;
+    overflow-y: auto;
+
+    table#tabla-ticket {
+      width: 100%;
+      border-collapse: collapse;
+      color: #2a2a2a;
+      background: rgba(207, 220, 150, 0.5);
+      font-family: "Gill Sans", sans-serif;
+      font-size: 16px;
+
+      thead {
+        background-color: #6c757d;
+        color: #ffffff;
+
+        th {
+          border-right: 1px solid #dee2e6;
+          text-align: start;
+          padding: 10px 5px;
+          font-size: 18px;
+        }
+
+        th:last-child {
+          border-right: none;
+        }
+
+        th#cant {
+          width: 7.5%;
+        }
+
+        th#nombre {
+          width: 57.5%;
+        }
+
+        th#precio {
+          width: 35%;
+        }
+      }
+
+      tbody {
+        tr:nth-child(odd) {
+          background-color: #f8f9fa;
+        }
+
+        tr:nth-child(even) {
+          background-color: #e9ecef;
+        }
+
+        td {
+          padding: 10px 5px;
+          font-size: 16px;
+        }
+
+        td.prod-cant {
+          color: #007bff;
+        }
+
+        td.prod-nombre {
+          font-weight: bold;
+        }
+
+        td.prod-precio {
+          padding-right: 0;
+          color: #dc3545;
+        }
+      }
+
+      tfoot {
+        position: sticky;
+        bottom: 0;
+        background-color: #f1f1f1;
+        font-weight: bold;
+
+        td {
+          padding: 10px 5px;
+          font-size: 16px;
+          border-top: 2px solid #dee2e6;
+        }
+
+        .total-label {
+          text-align: right;
+          color: #2a2a2a;
+        }
+
+        .total-precio {
+          padding-right: 0;
+          color: #dc3545;
+        }
+      }
+    }
+  }
+
+  ion-button {
+    position: sticky;
+    bottom: 0;
+  }
+}

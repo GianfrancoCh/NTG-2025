@@ -160,4 +160,11 @@ export const routes: Routes = [
         './pages/encuestas/alta-encuesta-cliente/alta-encuesta-cliente.page'
       ).then((m) => m.AltaEncuestaClientePage),
   },
+  {
+    path: 'lista-clientes-pagando',
+    loadComponent: () =>
+      import(
+        './pages/listas/lista-clientes-pagando/lista-clientes-pagando.page'
+      ).then((m) => m.ListaClientesPagandoPage),
+  },
 ];
