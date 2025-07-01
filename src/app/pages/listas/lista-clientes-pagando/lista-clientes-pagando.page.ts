@@ -94,32 +94,14 @@ export class ListaClientesPagandoPage implements OnInit {
       }),
     ]);
 
-<<<<<<< HEAD
-
-    this.db.escucharColeccion<Pedido>(
-      Colecciones.Pedidos,
-      this.pedidos,
-      (pedido) => pedido.estado == 'entregado'
-=======
     const pedidosAll = await this.db.traerColeccion<Pedido>(
       Colecciones.Pedidos
->>>>>>> 4126c2e749fe4f6efb0886f017098cac69d09b5a
     );
     this.pedidos = pedidosAll.filter((p) => p.estado === 'entregado');
 
     const mesasAll = await this.db.traerColeccion<Mesa>(Colecciones.Mesas);
     this.mesas = mesasAll.filter((m) => m.estado === EstadoMesa.Pago);
 
-<<<<<<< HEAD
-    console.log(this.pedidos);
-    
-    this.db.escucharColeccion<Mesa>(
-      Colecciones.Mesas,
-      this.mesas,
-      (mesa) => mesa.estado === EstadoMesa.Pago
-    );
-=======
->>>>>>> 4126c2e749fe4f6efb0886f017098cac69d09b5a
     this.spinner.hide();
   }
 
