@@ -1,5 +1,4 @@
-
-
+/* chat.component.scss */
 .container {
   align-content: center;
 
@@ -12,13 +11,7 @@
   }
 
   ion-card-content {
-    background-color: #1f1f1f;
-    // background: url('../../../assets/chat-bg.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
+    background-color: #414068;
     display: flex;
     flex-direction: column;
     height: 75vh;
@@ -32,26 +25,27 @@
         flex-direction: column;
         min-width: 50.01%;
         max-width: 80%;
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         border-radius: 10px;
-        padding-left: 10px;
         margin: 5px;
 
         &.enviado {
-          align-self: flex-end;
+          /* Mensajes propios */
+          align-self: flex-end; /* Se alinea al final del eje principal (derecha) */
+          margin-left: auto;    /* Pega la burbuja al margen derecho */
           text-align: right;
-          background-color: rgb(35, 159, 23);
+          background-color: #039be6; /* Azul */
         }
 
         &.recibido {
           align-self: flex-start;
           text-align: left;
-          background-color: rgb(107, 107, 107);
+          background-color: #6b6b6b;
         }
 
         ion-text {
           word-wrap: break-word;
-          color: #1f1f1f;
+          color: #ffffff;
         }
 
         .alias {
@@ -72,11 +66,11 @@
         .fecha-izquierda {
           align-self: flex-start;
         }
-
       }
     }
+
     .info-mesa {
-      color: #333;
+      color: #ffffff;
       font-weight: bold;
       padding-bottom: 1px;
       margin-bottom: 1px;
@@ -93,7 +87,8 @@
       position: fixed;
       width: 90%;
       bottom: 0;
-      color: rgb(94, 5, 94);
+          background-color: #414068;
+
 
       #enviar:active {
         transform: scale(0.7);
@@ -101,3 +96,4 @@
     }
   }
 }
+

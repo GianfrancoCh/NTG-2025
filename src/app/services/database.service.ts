@@ -20,6 +20,7 @@ export enum Colecciones {
   ListaDeEspera = 'lista-de-espera',
   Pedidos = 'pedidos',
   Mensajes = 'mensajes',
+  DescuentosJuegos = 'descuentos-juego',
 }
 
 @Injectable({
@@ -441,5 +442,34 @@ export class DatabaseService {
         (payload) => cb(payload.new as Pedido)
       )
       .subscribe();
+  };
+
+  async verificarDescuentoJugador(id: string): Promise<boolean> {
+    const { data, error } = await this.supabase
+      .from(Colecciones.DescuentosJuegos)
+      .select('*')
+      .eq('id_usuario', id)
+      .eq('descuento', true)
+      .maybeSingle();
+
+    if (error) {
+      console.error('Error al verificar descuento del jugador:', error.message);
+      return false;
+    }
+
+    return !!data;
+  };
+
+  async guardarDescuentoJugador(id: string): Promise<void> {
+    const { error } = await this.supabase
+      .from(Colecciones.DescuentosJuegos)
+      .insert([{ id_usuario: id, descuento: true }]);
+
+    if (error) {
+      console.error('Error al guardar descuento del jugador:', error.message);
+    } else {
+      console.log('Descuento guardado correctamente');
+    }
   }
+
 }
