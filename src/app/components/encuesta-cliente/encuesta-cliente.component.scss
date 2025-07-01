@@ -4,15 +4,19 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-
+  margin-top: 40px;
+  color: #fff;
+  
   ion-card {
     border-radius: 8px;
+    background-color: #414068;
   }
 
   ion-card-header {
     font-weight: bold;
     padding: 12px;
-    font-size: 18px;
+    font-size: 40px;
+    color: #fff;
   }
 
   ion-card-header ion-text {
@@ -25,6 +29,7 @@
   ion-card-content {
     font-size: 1.15rem;
     line-height: 1.5;
+    color: #fff;
   }
 
   .fotos-container {
@@ -60,9 +65,12 @@
 
       span {
         padding: 2px 10px;
-        border-radius: 20px;
-        color: #1f1f1f;
-        background-color: $dark-blue;
+        border-radius: 30px;
+        color: #fff;
+        background-color: #039BE6;
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 30px;
       }
     }
   }

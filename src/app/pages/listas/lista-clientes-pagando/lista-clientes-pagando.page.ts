@@ -15,8 +15,7 @@ import {
   IonCardContent,
   IonList,
   IonAvatar,
-  IonIcon,
-} from '@ionic/angular/standalone';
+  IonIcon, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   checkmarkCircleOutline,
@@ -43,7 +42,7 @@ import { Producto } from 'src/app/clases/producto';
   templateUrl: './lista-clientes-pagando.page.html',
   styleUrls: ['./lista-clientes-pagando.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonBackButton, IonButtons, 
     IonIcon,
     IonAvatar,
     IonList,
