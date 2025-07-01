@@ -28,12 +28,14 @@
         {{ letra | uppercase }}
       </button>
     </div>
-
     <div *ngIf="juegoTerminado">
       <p *ngIf="intentos >= maxIntentos" class="palabra-correcta">
         ¡Has perdido! La palabra era: <strong>{{ palabra }}</strong>
       </p>
       <p *ngIf="intentos < maxIntentos && !palabraOculta.includes('_')">¡Has ganado!</p>
+      <!-- <p *ngIf="ganoConDescuento" class="palabra-correcta">
+        ¡Ganaste en el primer intento! 🎉 ¡Tenés un <strong>descuento especial</strong>!
+      </p> -->
       <button (click)="reiniciar()" class="boton-reiniciar">Reiniciar</button>
     </div>
   </div>
