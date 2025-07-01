@@ -15,9 +15,9 @@
         <ion-list id="lista">
           @for (pedido of pedidos; track $index) {
           @for (cliente of clientes; track $index) {
-          @if (pedido.idCliente === cliente.id) {
+          @if (pedido.idCliente == cliente.id) {
           @for (mesa of mesas; track $index) {
-          @if (mesa.id === cliente.idMesa) {
+          @if (mesa.id == cliente.idMesa) {
           <ion-item>
             <div class="pedido">
               <ion-button fill="clear" size="large" (click)="mostrarPedido(pedido)">
