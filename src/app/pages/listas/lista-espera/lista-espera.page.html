@@ -1,15 +1,17 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar>
+  <ion-toolbar color="primary"
+    style="background-color:#039BE6;color:black;height:70px;display:flex;align-items:center;justify-content:center;">
     <ion-buttons slot="start">
       <ion-back-button routerLink="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Lista de clientes en espera</ion-title>
+    <ion-title style="font-size:2rem;">Clientes en espera</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container" style="background-color: #2D2D51;">
-    <ion-list *ngIf="clientesEsperando.length > 0; else noClientes" class="ion-padding-vertical" style="background-color: #2D2D51;">
+    <ion-list *ngIf="clientesEsperando.length > 0; else noClientes" class="ion-padding-vertical"
+      style="background-color: #2D2D51;">
       <ion-card *ngFor="let cliEspera of clientesEsperando"
         class="item-card ion-no-margin ion-margin-bottom ion-no-padding">
         <ion-card-header class="ion-text-center">
@@ -18,13 +20,10 @@
           </div>
         </ion-card-header>
         <ion-card-content>
-          <ion-card-title >
+          <ion-card-title style="text-align: center;">
             {{cliEspera.nombre}} {{cliEspera.tipo === 'anonimo' ? '(Anónimo)' :
             cliEspera.apellido}}
           </ion-card-title>
-          <ion-card-subtitle *ngIf="cliEspera.tipo !== 'anonimo'">
-            {{cliEspera.email}}
-          </ion-card-subtitle>
           <ion-button expand="block" (click)="selecCliente(cliEspera)">ASIGNAR</ion-button>
         </ion-card-content>
       </ion-card>
