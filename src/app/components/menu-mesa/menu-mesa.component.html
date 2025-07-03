@@ -1,131 +1,124 @@
-<!-- menu-mesa.component.html -->
-<!-- ───────── HEADER ───────── -->
-<ion-header color="primary">
-  <ion-toolbar class="tool-large" color="primary">
-    <ion-title>Mesa {{ cliente.idMesa }}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="container">
 
-<ion-content [fullscreen]="true">
-  <div class="container">
-    <!-- ───────── TARJETA PRINCIPAL ───────── -->
-    <ion-card class="accion-card">
-      <!-- Contenido dinámico según el estado de la mesa -->
-      @switch (mesa.estado) {
-        @case (estados[1]) {
-          <ion-card-header>
-            <ion-card-title>¿Ya desea realizar su pedido?</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <div class="btn-group">
-              <button class="btn-custom btn-green" (click)="modalCtrl.dismiss('pedir-comida')">
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-              </button>
-              <button class="btn-custom btn-red" (click)="modalCtrl.dismiss('salir')">
-                <ion-icon name="close-circle-outline"></ion-icon>
-              </button>
-            </div>
-          </ion-card-content>
-        }
+  <ion-card class="accion-card">
+    <div class="titulo-mesa">
+      <h1>Mesa {{ cliente.idMesa }}</h1>
+    </div>
+    <!-- Contenido dinámico según el estado de la mesa -->
+    @switch (mesa.estado) {
+    @case (estados[1]) {
+    <ion-card-header>
+      <ion-card-title>¿Ya desea realizar su pedido?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="btn-group">
+        <button class="btn-custom btn-green" (click)="modalCtrl.dismiss('pedir-comida')">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </button>
+        <button class="btn-custom btn-red" (click)="modalCtrl.dismiss('salir')">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+    }
 
-        @case (estados[2]) {
-          <ion-card-header>
-            <ion-card-title>¿Qué desea hacer?</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <div class="btn-group">
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('pedir-comida')">
-                Pedir comida
-              </button>
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('consultar')">
-                Consultar
-              </button>
-            </div>
-          </ion-card-content>
-        }
+    @case (estados[2]) {
+    <ion-card-header>
+      <ion-card-title>¿Qué desea hacer?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="btn-group">
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('pedir-comida')">
+          Pedir comida
+        </button>
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('consultar')">
+          Consultar
+        </button>
+      </div>
+    </ion-card-content>
+    }
 
-        @case (estados[4]) {
-          <ion-card-header *ngIf="pedido">
-            <ion-card-title>
-              Estado de su pedido:<br />
-              <b>{{ pedido.estado }}</b>
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content *ngIf="pedido">
-            <div class="btn-group">
-              <ng-container *ngIf="!hizoEncuesta">
-                <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
-                  Subir encuesta
-                </button>
-              </ng-container>
+    @case (estados[4]) {
+    <ion-card-header *ngIf="pedido">
+      <ion-card-title>
+        Estado de su pedido:<br />
+        <b>{{ pedido.estado }}</b>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="pedido">
+      <div class="btn-group">
+        <ng-container *ngIf="!hizoEncuesta">
+          <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
+            Subir encuesta
+          </button>
+        </ng-container>
 
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
-                Lista de encuestas
-              </button>
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
+          Lista de encuestas
+        </button>
 
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('juego')">
-                Jugar por descuento
-              </button>
-            </div>
-          </ion-card-content>
-        }
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('juego')">
+          Jugar por descuento
+        </button>
+      </div>
+    </ion-card-content>
+    }
 
-        @case (estados[5]) {
-          <ion-card-header>
-            <ion-card-title>Opciones</ion-card-title>
-          </ion-card-header>
-          <ion-card-content *ngIf="pedido">
-            <div class="btn-group">
-              <ng-container *ngIf="!hizoEncuesta">
-                <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
-                  Subir encuesta
-                </button>
-              </ng-container>
+    @case (estados[5]) {
+    <ion-card-header>
+      <ion-card-title>Opciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="pedido">
+      <div class="btn-group">
+        <ng-container *ngIf="!hizoEncuesta">
+          <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
+            Subir encuesta
+          </button>
+        </ng-container>
 
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
-                Lista de encuestas
-              </button>
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
+          Lista de encuestas
+        </button>
 
-              <button class="btn-custom btn-blue" (click)="goToJuego()">
-                Jugar por descuento
-              </button>
+        <button class="btn-custom btn-blue" (click)="goToJuego()">
+          Jugar por descuento
+        </button>
 
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('cuenta')">
-                Pedir cuenta
-              </button>
-            </div>
-          </ion-card-content>
-        }
-        @case (estados[6]) {
-          <ion-card-header>
-            <ion-card-title>Opciones</ion-card-title>
-          </ion-card-header>
-          <ion-card-content *ngIf="pedido">
-            <div class="btn-group">
-              <ng-container *ngIf="!hizoEncuesta">
-                <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
-                  Subir encuesta
-                </button>
-              </ng-container>
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('cuenta')">
+          Pedir cuenta
+        </button>
+      </div>
+    </ion-card-content>
+    }
+    @case (estados[6]) {
+    <ion-card-header>
+      <ion-card-title>Opciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="pedido">
+      <div class="btn-group">
+        <ng-container *ngIf="!hizoEncuesta">
+          <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
+            Subir encuesta
+          </button>
+        </ng-container>
 
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
-                Lista de encuestas
-              </button>
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
+          Lista de encuestas
+        </button>
 
-              <button class="btn-custom btn-blue" (click)="goToJuego()">
-                Jugar por descuento
-              </button>
+        <button class="btn-custom btn-blue" (click)="goToJuego()">
+          Jugar por descuento
+        </button>
 
-              <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('cuenta')">
-                Pedir cuenta
-              </button>
-            </div>
-          </ion-card-content>
-        }
-      }
-    </ion-card>
+        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('cuenta')">
+          Pedir cuenta
+        </button>
+      </div>
+    </ion-card-content>
+    }
+    }
+  </ion-card>
 
-    <!-- ───────── BOTÓN VOLVER ───────── -->
-    <button class="volver-btn" (click)="modalCtrl.dismiss('salir')">Volver</button>
-  </div>
-</ion-content>
+  <!-- ───────── BOTÓN VOLVER ───────── -->
+  <button class="volver-btn" (click)="modalCtrl.dismiss('salir')">Volver</button>
+</div>
