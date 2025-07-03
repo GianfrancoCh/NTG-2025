@@ -1,7 +1,6 @@
 <ion-header [translucent]="true" class="header-fix">
   <ion-toolbar color="primary"
-    style="background-color:#039BE6;color:white;height:70px;display:flex;align-items:center;justify-content:center;"
-  >
+    style="background-color:#039be6;color:black;height:70px;display:flex;align-items:center;justify-content:center;">
     <ion-buttons slot="start">
       <ion-back-button routerLink="/home"></ion-back-button>
     </ion-buttons>
@@ -12,26 +11,20 @@
 <ion-content [fullscreen]="true">
   <div class="container background-pri">
     <ion-card style="width:95%;">
-      <ion-card-header>
+      <!-- <ion-card-header>
         <ion-card-title>Todas las encuestas</ion-card-title>
-      </ion-card-header>
+      </ion-card-header> -->
 
       <ion-card-content>
         <div class="encuestas-wrapper">
           <!-- ═════ Tarjeta por encuesta ═════ -->
-          <ion-card
-            class="encuesta-card"
-            *ngFor="let enc of encuestas; trackBy: trackById"
-            (click)="mostrarEncuesta(enc)"
-          >
+          <ion-card class="encuesta-card" *ngFor="let enc of encuestas; trackBy: trackById"
+            (click)="mostrarEncuesta(enc)">
             <div class="encuesta-row">
               <!-- FOTO + NOMBRE -->
               <div class="autor">
                 <ion-avatar>
-                  <img
-                    [src]="enc.autor.foto_url || defaultAvatar"
-                    alt="avatar cliente"
-                  />
+                  <img [src]="enc.autor.foto_url || defaultAvatar" alt="avatar cliente" />
                 </ion-avatar>
 
                 <div class="info">
@@ -46,10 +39,8 @@
 
               <!-- ESTRELLAS -->
               <div class="rating">
-                <ion-icon
-                  *ngFor="let _ of stars; let i = index"
-                  [name]="i < rating(enc) ? 'star' : 'star-outline'"
-                ></ion-icon>
+                <ion-icon *ngFor="let _ of stars; let i = index"
+                  [name]="i < rating(enc) ? 'star' : 'star-outline'"></ion-icon>
               </div>
             </div>
           </ion-card>
@@ -64,25 +55,13 @@
       </ion-card-content>
     </ion-card>
     <div class="btns" style="margin-top:1.2rem;">
-          <ion-button
-            expand="block"
-            fill="solid"
-            color="secondary"
-            routerLink="/grafico-clientes"
-          >
-            <ion-icon slot="start" name="stats-chart"></ion-icon>
-            Ver gráficos
-          </ion-button>
+      <ion-button size="large" class="ion-margin" fill="solid" color="secondary" routerLink="/grafico-clientes">
+        <ion-icon slot="icon-only" name="stats-chart"></ion-icon>
+      </ion-button>
 
-          <ion-button
-            expand="block"
-            fill="solid"
-            color="primary"
-            routerLink="/home"
-          >
-            <ion-icon slot="start" name="home"></ion-icon>
-            Volver a Home
-          </ion-button>
-        </div>
+      <ion-button size="large" class="ion-margin" fill="solid" color="primary" routerLink="/home">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+    </div>
   </div>
 </ion-content>

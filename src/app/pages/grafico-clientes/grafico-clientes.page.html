@@ -1,50 +1,46 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>Gráficos</ion-title>
+<ion-header [translucent]="true" class="header-fix">
+  <ion-toolbar color="primary"
+    style="background-color:#039BE6;color:black;height:70px;display:flex;align-items:center;justify-content:center;">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="navCtrl.navigateRoot('lista-encuestas-cliente')"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size:2rem;">Gráficos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container">
     <ion-card style="width: 95%;">
-      <ion-card-header>
-        <ion-button fill="clear" (click)="navCtrl.navigateRoot('lista-encuestas-cliente')">
-          <ion-icon slot="start" name="chevron-back-circle-outline" size="large"></ion-icon>
-          Volver
-        </ion-button>
-      </ion-card-header>
       <ion-card-content>
+        <br>
         <div class="button-container">
-          <ion-button expand="block" fill="clear" (click)="mostrarGrafico1()">
-            <ion-icon name="bar-chart-outline"></ion-icon>
-            <ion-label>Gráfico de la puntuación total</ion-label>
+          <ion-button class="custom-icon-button" (click)="mostrarGrafico1()">
+            <ion-icon slot="icon-only" name="bar-chart-outline"></ion-icon>
           </ion-button>
 
-          <ion-button expand="block" fill="clear" (click)="mostrarGrafico2()">
-            <ion-icon name="analytics"></ion-icon>
-            <ion-label>Gráfico de la calidad de nuestra atención </ion-label>
+          <ion-button class="custom-icon-button" (click)="mostrarGrafico2()">
+            <ion-icon slot="icon-only" name="analytics"></ion-icon>
           </ion-button>
 
-          <ion-button expand="block" fill="clear" (click)="mostrarGrafico3()">
-            <ion-icon name="pie-chart-outline"></ion-icon>
-            <ion-label>Gráfico de la recomendación de los clientes</ion-label>
+          <ion-button class="custom-icon-button" (click)="mostrarGrafico3()">
+            <ion-icon slot="icon-only" name="pie-chart-outline"></ion-icon>
           </ion-button>
         </div>
-
+        <br>
         <div *ngIf="mostrarGraficoBarras===true">
-          <div style="height: 500px; width: 100%; background-color: #ffffff; border-radius: 30px;">
+          <div style="height: 500px; width: 100%; background-color: #2D2D51; border-radius: 30px;">
             <canvas #barChart></canvas>
           </div>
         </div>
 
         <div *ngIf="mostrarGraficoLineas===true">
-          <div style="height: 500px; width: 100%; background-color: #ffffff; border-radius: 30px;">
+          <div style="height: 500px; width: 100%; background-color: #2D2D51; border-radius: 30px;">
             <canvas #lineChart></canvas>
           </div>
         </div>
 
         <div *ngIf="mostrarGraficoTorta===true">
-          <div style="height: 500px; width: 100%; background-color: #ffffff; border-radius: 30px;">
+          <div style="height: 500px; width: 100%; background-color: #2D2D51; border-radius: 30px;">
             <canvas #doughnutChart></canvas>
           </div>
         </div>

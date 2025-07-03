@@ -13,6 +13,7 @@ ion-content {
 .titulo-header {
   font-weight: bold;
   font-size: 35px;
+  color: black;
 }
 
 .container {
@@ -157,8 +158,8 @@ ion-button {
   width: 120px;
   height: 120px;
   margin-bottom: 16px;
-  border: 3px solid #039BE6;
-  border-radius: 50%;  /* por si no usas IonAvatar */
+  border: 3px solid #039be6;
+  border-radius: 50%; /* por si no usas IonAvatar */
   overflow: hidden;
 
   img {

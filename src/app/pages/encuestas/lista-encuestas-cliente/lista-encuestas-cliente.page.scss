@@ -1,86 +1,95 @@
 @import "src/theme/variables.scss";
 
 ion-content {
-  --background:#2D2D51;
-  color:#fff;
+  --background: #2d2d51;
+  color: #fff;
 }
 
 /* Contenedor principal */
 ion-card {
-  margin:0.5rem;
-  background-color:#414068;
+  margin: 0.5rem;
+  background-color: #414068;
 }
 
 ion-card-title {
-  font-size:30px;
-  font-weight:bold;
-  color:#fff;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
 }
 
 /* ---------- Tarjetas de encuesta ---------- */
 .encuestas-wrapper {
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .encuesta-card {
-  --background:#2D2D51;
-  border-radius:15px;
-  box-shadow:0 4px 8px rgba(0,0,0,0.25);
-  padding:0.8rem;
-  cursor:pointer;
+  --background: #2d2d51;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  padding: 0.8rem;
+  cursor: pointer;
 }
 
 .encuesta-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* FOTO + NOMBRE */
 .autor {
-  display:flex;
-  align-items:center;
-  gap:0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 
   ion-avatar {
-    width:56px;
-    height:56px;
-    border:3px solid #039BE6;
+    width: 56px;
+    height: 56px;
+    border: 3px solid #039be6;
   }
 
   .info {
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
   }
 
   .nombre {
-    font-size:1.2rem;
-    font-weight:600;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: #fff;
   }
 
-  .fecha  {
-    font-size:0.85rem;
-    color:#ffffff;
+  .fecha {
+    font-size: 0.85rem;
+    color: #ffffff;
   }
 }
 
 /* Estrellas */
 .rating ion-icon {
-  font-size:1.2rem;
-  color:#ffc107;
-  margin-left:2px;
+  font-size: 1.2rem;
+  color: #ffc107;
+  margin-left: 2px;
 }
 
 /* Tarjeta “vacío” */
-.vacio       { text-align:center; }
-.texto-vacio { color:#fff; font-size:1.1rem; }
+.vacio {
+  text-align: center;
+}
+.texto-vacio {
+  color: #fff;
+  font-size: 1.1rem;
+}
 
-.btns { display:flex; gap:0.5rem;
-  margin-bottom:1rem;
-  justify-content:space-between;
+.btns {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: space-between;
   color: #fff;
 }
-.btns ion-button { flex:1; }
+.btns ion-button {
+  flex: 1;
+}

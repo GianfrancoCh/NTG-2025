@@ -1,12 +1,35 @@
 @import "src/theme/variables.scss";
 
 ion-content {
-  --background:#2D2D51;
-  color:#fff;
+  --background: #2d2d51;
+  color: #fff;
 }
 
 /* Contenedor principal */
 ion-card {
-  margin:0.5rem;
-  background-color:#414068;
+  margin: 0.5rem;
+  background-color: #414068;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px; /* espacio entre botones */
+  margin-bottom: 1rem;
+}
+
+.custom-icon-button {
+  width: 90px;
+  height: 90px;
+  --background: #039be6; /* fondo del botón */
+  --color: black; /* color del ícono */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.custom-icon-button ion-icon {
+  font-size: 40px;
 }

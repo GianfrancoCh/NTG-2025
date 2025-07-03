@@ -18,8 +18,7 @@ import {
   IonButton,
   IonCardContent,
   IonCard,
-  IonCardHeader,
-} from '@ionic/angular/standalone';
+  IonCardHeader, IonBackButton, IonButtons } from '@ionic/angular/standalone';
 import { EncuestaCliente } from 'src/app/clases/encuestas/encuesta-cliente';
 import {
   Colecciones,
@@ -41,7 +40,7 @@ import { Chart } from 'chart.js/auto';
   templateUrl: './grafico-clientes.page.html',
   styleUrls: ['./grafico-clientes.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonButtons, IonBackButton, 
     IonCardHeader,
     IonCard,
     IonCardContent,

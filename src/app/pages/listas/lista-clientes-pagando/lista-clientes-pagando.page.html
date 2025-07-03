@@ -23,16 +23,11 @@
           @if (mesa.id == cliente.idMesa) {
           <ion-item>
             <div class="pedido">
-              <ion-button
-                              style="background-color:#039BE6;border-radius:15px;"
-                              expand="fill"
-                              fill="clear"
-                              size="large"
-                              (click)="mostrarPedido(pedido)"
-                            >
-                              <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
-                              <p style="margin-right:10px;color:white;">Ver pedido</p>
-                            </ion-button>
+              <ion-button style="background-color:#039BE6;border-radius:15px;" expand="fill" fill="clear" size="large"
+                (click)="mostrarPedido(pedido)">
+                <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
+                <p style="margin-right:10px;color:white;">Ver pedido</p>
+              </ion-button>
 
               <div class="text">
                 <ion-label>Mesa Nro{{mesa.nroMesa}}</ion-label>
