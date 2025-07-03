@@ -15,15 +15,20 @@ table {
 thead {
   position: sticky;
   top: 0;
-  background: #2D2D51;
+  background: #2d2d51;
   color: #fff;
 }
 
 th {
   padding: 10px 5px;
-  text-align: start;
+  text-align: center;
   font-size: 18px;
   border-right: 1px solid #2673c0;
+}
+
+th,
+td {
+  vertical-align: middle;
 }
 
 th:last-child {
@@ -63,7 +68,7 @@ td {
 /* —— Botón con número de mesa —— */
 button {
   background: #02a4ff;
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: 12px;
   padding: 6px 12px;
