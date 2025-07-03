@@ -85,8 +85,12 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 
 <p align="center">
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-0.png?raw=true" alt="QR Propina 0"width="120" />
+  5
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-5.png?raw=true" alt="QR Propina 5"width="120"  />
+  10
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-10.png?raw=true" alt="QR Propina 10" width="120" />
+  15
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-15.png?raw=true" alt="QR Propina 15" width="120" />
+  20
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-20.png?raw=true" alt="QR Propina 20" width="120"  />
 </p>
