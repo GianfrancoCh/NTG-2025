@@ -1,26 +1,31 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button routerLink="/home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Sala de espera</ion-title>
+  <ion-toolbar color="primary"
+    style="background-color:#039BE6;color:black;height:70px;display:flex;align-items:center;justify-content:center;">
+    <ion-title style="font-size:2rem;">Sala de espera</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container background-for">
     <ion-card>
-      <ion-card-header>
-        <ion-card-title>Usted esta en la lista de Espera</ion-card-title>
+      <ion-card-header style="font-weight: bold; text-align: center; color: #fff;">
+        <ion-card-title>Usted esta en la</ion-card-title>
+        <br>
+        <ion-card-title style="font-weight: bold;">Lista de Espera</ion-card-title>
       </ion-card-header>
       <br>
-      <ion-card-content>
-        <p>Espere a que el <i>maitre</i> le indique dónde sentarse.</p>
+
+      <div>
+        <img src="../../../assets/spinner.gif" alt="" style="width: 330px; display: block; margin: 0 auto;">
+      </div>
+      <br>
+      <ion-card-content style="text-align: center; color: #fff;">
+        <p>Espere a que el <i>maitre</i> le asigne una mesa.</p>
       </ion-card-content>
     </ion-card>
 
     <ion-button (click)="salirDeListaEspera()" expand="block" fill="clear" shape="round">
-      Salir de la lista de espera
+      Salir de la lista
     </ion-button>
 
   </div>

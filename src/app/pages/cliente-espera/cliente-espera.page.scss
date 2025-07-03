@@ -1,12 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #039BE6;
+  --background: #039be6;
   --color: white;
 }
 
 ion-content {
-  --background: #2D2D51;
+  --background: #2d2d51;
   color: #fff;
 }
 
@@ -30,16 +30,16 @@ ion-content {
   }
 }
 
-ion-card{
+ion-card {
   margin-top: 50px;
   width: 90%;
   height: fit-content;
   --background: #414068;
-
 }
 
 ion-button {
-  --background: #039BE6;
-  --color: white;
+  --background: #039be6;
+  --color: black;
+  font-weight: bold;
   padding: 5px;
 }
