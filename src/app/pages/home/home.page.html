@@ -23,7 +23,7 @@
 
     <div *ngIf="user" class="botones-inicio">
       <h1>Bienvenido/a</h1>
-      <h1 class="titulo-inicio">{{usuarioActual?.nombre}} {{usuarioActual?.apellido}}</h1>
+      <h1 class="titulo-inicio">{{this.usuarioActual?.nombre}} {{this.usuarioActual?.apellido}}</h1>
       <h1 class="titulo-mail">Ingresaste como {{ user.email }}</h1>
       <!-- JEFE -->
       <div *ngIf="user && this.usuarioActual?.rol == 'jefe'">
@@ -51,10 +51,10 @@
             user &&
             (usuarioActual?.rol == 'cliente' || usuarioActual?.rol == 'clienteAnonimo')
         ">
-        <!-- <ion-button size="big" (click)="pruebaMesa()">boton ej cliente</ion-button> -->
-        <!-- <ion-button size="big" routerLink="/juego">boton ej cliente</ion-button>
-        <ion-button size="big" (click)="pruebaMesa()">boton ej cliente</ion-button> -->
-
+        <div>
+          <img class="img-usuario" [src]="usuarioActual?.foto_url" alt="imagen usuario" width="160"
+            style="border-radius: 50%" />
+        </div>
       </div>
     </div>
 

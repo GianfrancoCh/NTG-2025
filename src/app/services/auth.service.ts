@@ -300,8 +300,9 @@ export class AuthService {
         throw new Error('auth-error: db-error ' + insertError.message);
       }
 
-      //anonimo se carga en usuarioActual
-      this.cargarDatosUsuario(email);
+      // Esperá que se cargue el usuario antes de continuar
+      await this.cargarDatosUsuario(email);
+
       console.log(usuarioAnonimo);
     } catch (error: any) {
       throw new Error('auth-error: ' + error.message);
