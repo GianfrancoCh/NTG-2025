@@ -26,10 +26,7 @@
           <h2 class="saludo">Bienvenido/a</h2>
 
           <div class="avatar-blanco">
-            <img
-              [src]="usuarioActual?.foto_url || 'assets/imagen-por-defecto.png'"
-              alt="Foto de usuario"
-            />
+            <img [src]="usuarioActual?.foto_url || 'assets/imagen-por-defecto.png'" alt="Foto de usuario" />
           </div>
 
           <h2 class="nombre-usuario">
@@ -56,24 +53,20 @@
       </div>
 
       <!-- EMPLEADO -->
-      <div
-        *ngIf="
+      <div *ngIf="
           usuarioActual?.rol === 'empleado' ||
           usuarioActual?.rol === 'cocinero' ||
           usuarioActual?.rol === 'mozo' ||
           usuarioActual?.rol === 'bartender' ||
           usuarioActual?.rol === 'maitre'
-        "
-      ></div>
+        "></div>
 
       <!-- CO-CI-MO -->
-      <div
-        *ngIf="
+      <div *ngIf="
           usuarioActual?.rol === 'cocinero' ||
           usuarioActual?.rol === 'mozo' ||
           usuarioActual?.rol === 'bartender'
-        "
-      >
+        ">
         <ion-button size="small" routerLink="/lista-pedidos-pendiente">
           Pedidos pendientes
         </ion-button>
@@ -89,7 +82,7 @@
       <!-- MAÎTRE -->
       <div *ngIf="usuarioActual?.rol === 'maitre'">
         <ion-button size="big" routerLink="/lista-espera">
-          Lista de clientes en espera
+          Clientes en espera
         </ion-button>
       </div>
     </div>
