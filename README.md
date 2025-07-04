@@ -75,7 +75,7 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 ### QRs por mesa
 
 <p align="center">
-  
+<div align="center">
 **Mesa 1**  
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true" alt="QR Mesa 1" width="120" />
 **Mesa 2** 
@@ -85,7 +85,7 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 **Mesa 4** 
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" />
 </p>
-
+</div>
 ### QRs Propina
 
 <div align="center">
