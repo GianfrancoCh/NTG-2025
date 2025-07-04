@@ -92,6 +92,14 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
     <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" />
   </p>
 
+  <p><strong>Mesa 5</strong><br/>
+    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-5.png?raw=true" alt="QR Mesa 4" width="120" />
+  </p>
+
+  <p><strong>Mesa 6</strong><br/>
+    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-6.png?raw=true" alt="QR Mesa 4" width="120" />
+  </p>
+
 </div>
 ### QRs Propina
 
