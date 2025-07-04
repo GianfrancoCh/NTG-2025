@@ -113,14 +113,20 @@ ion-icon {
 
       .imgs-container {
         display: flex;
+        flex-direction: row;
         overflow-x: auto;
+        scroll-snap-type: x mandatory; // activa el "snap" horizontal
+        scroll-behavior: auto; //smooth
         gap: 1rem;
         margin: 1rem 0;
 
         img {
-          border-radius: 12px;
-          border: 2px solid white;
+          flex: 0 0 100%; // ocupa el 100% del contenedor visible
           max-width: 100%;
+          height: auto;
+          scroll-snap-align: center; // centra la imagen al hacer scroll
+          border-radius: 12px;
+          border: 2px solid #fff;
           object-fit: contain;
         }
       }

@@ -1,43 +1,45 @@
 <div id="cuenta-container">
-  <div class="ticket">
-    <h1>Restaurante NTG</h1>
-    <h3>Ticket de Compra </h3>
-    <h3>{{fechaHoy() | date: 'dd/MM/YY - HH:mm'}}</h3>
-    <div class="tabla-container">
-      <table id="tabla-ticket">
-        <thead>
-          <tr>
-            <th id="cant">Cant</th>
-            <th id="nombre">Descripción</th>
-            <!-- <th id="precio-un">Precio</th> -->
-            <th id="precio-total">Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let prodCant of pedidoProds">
-            <td class="prod-cant">{{prodCant.cantidad}}</td>
-            <td class="prod-nombre">{{prodCant.producto.nombre}}</td>
-            <!-- <td class="prod-precio">{{prodCant.producto.precio | currency}}</td> -->
-            <td class="total-precio">{{prodCant.producto.precio * prodCant.cantidad | currency}}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="ticket-scroll">
+    <div class="ticket">
+      <h1 style="color: white;">Restaurante NTG</h1>
+      <h3 style="color: white;">Ticket de Compra </h3>
+      <h3 style="color: white;"> {{fechaHoy() | date: 'dd/MM/YY - HH:mm'}}</h3>
+      <div class="tabla-container">
+        <table id="tabla-ticket">
+          <thead>
+            <tr>
+              <th id="cant">Cant</th>
+              <th id="nombre">Descripción</th>
+              <!-- <th id="precio-un">Precio</th> -->
+              <th id="precio-total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prodCant of pedidoProds">
+              <td class="prod-cant">{{prodCant.cantidad}}</td>
+              <td class="prod-nombre">{{prodCant.producto.nombre}}</td>
+              <!-- <td class="prod-precio">{{prodCant.producto.precio | currency}}</td> -->
+              <td class="total-precio">{{prodCant.producto.precio * prodCant.cantidad | currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="total ion-text-end">
+        <h3>Subtotal: {{ precioOriginal | currency }}</h3>
+        <ng-container *ngIf="tieneDescuentoJuego">
+          <h3>Descuento por juego 15%: -{{ descuentoTotal | currency }}</h3>
+        </ng-container>
+        <h3>Propina: {{ propinaTotal | currency }}</h3>
+        <h1>Total: {{ valorTotal | currency }}</h1>
+      </div>
+      <div class="footer">
+        <h2 style="color: white;">¡Gracias por su visita!</h2>
+      </div>
     </div>
-    <div class="total ion-text-end">
-      <h3>Subtotal: {{ precioOriginal | currency }}</h3>
-      <ng-container *ngIf="tieneDescuentoJuego">
-        <h3>Descuento por juego 15%: -{{ descuentoTotal | currency }}</h3>
-      </ng-container>
-      <h3>Propina: {{ propinaTotal | currency }}</h3>
-      <h1>Total: {{ valorTotal | currency }}</h1>
-    </div>
-    <div class="footer">
-      <h2>¡Gracias por su visita!</h2>
+    <div class="botones-acciones">
+      <ion-button expand="block" (click)="modalCtrl.dismiss(undefined, 'success')">PAGAR</ion-button>
+      <ion-button color="danger" shape="round" fill="solid" class="boton-cerrar" (click)="modalCtrl.dismiss()">
+        X
+      </ion-button>
     </div>
   </div>
-  <ion-button expand="block" (click)="modalCtrl.dismiss(undefined, 'success')">PAGAR</ion-button>
-  <ion-button color="danger" shape="round" fill="solid" class="boton-cerrar" (click)="modalCtrl.dismiss()">
-    X
-  </ion-button>
-
-</div>
