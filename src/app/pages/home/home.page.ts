@@ -91,6 +91,8 @@ export class HomePage implements OnInit {
   usuarioActual: Persona | null = null;
   mensajeMesa = 'Sin mesa asignada';
   private mesaSub!: RealtimeChannel; 
+  private canalUsuario!: RealtimeChannel;
+
 
   constructor(
     private router: Router,
@@ -104,20 +106,38 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    /* 1) Usuario auth */
     this.authService.getCurrentUser().subscribe(async (user) => {
-      this.user = user;
-      this.usuarioActual = this.authService.UsuarioEnSesion;
+  this.user = user;
+  this.usuarioActual = this.authService.UsuarioEnSesion;
 
-      /* 2) Mensaje inicial */
-      this.actualizarMensajeMesa(this.usuarioActual);
+  if (user && this.usuarioActual?.rol === 'cliente') {
+    /* 1) Mensaje inicial (puede que el metre ya haya asignado) */
+    this.setMensajeMesa((this.usuarioActual as any).idMesa ?? null);
 
-      /* 3) Suscripción realtime (solo clientes) */
-      if (user && this.usuarioActual?.rol === 'cliente') {
-        this.subscribeMesaRealtime(user.id);
+    /* 2) Suscripción realtime usando la MISMA función del otro componente */
+    this.canalUsuario = this.db.escucharUsuario(
+      user.id,                                // id numérico de la tabla
+      (clienteActualizado: Cliente) => {
+        this.setMensajeMesa(clienteActualizado.idMesa ?? null);
+
+        /* Mantén sincronizado el objeto en memoria */
+        (this.usuarioActual as any).idMesa = clienteActualizado.idMesa;
       }
-    });
+    );
+  } else {
+    /* no es cliente → oculta cartel */
+    this.setMensajeMesa(null);
   }
+});
+
+
+
+  }
+private setMensajeMesa(idMesa: string | null) {
+  this.mensajeMesa = idMesa
+    ? `Mesa asignada Nº ${idMesa}`
+    : 'Sin mesa asignada';
+}
 
   ngOnDestroy(): void {
     this.mesaSub?.unsubscribe();
@@ -147,6 +167,8 @@ export class HomePage implements OnInit {
       .subscribe();
   }
 
+  
+
   /* -------- MENSAJE -------- */
   private actualizarMensajeMesa(usuario?: Persona | null) {
     if (!usuario || usuario.rol !== 'cliente') {
@@ -159,6 +181,32 @@ export class HomePage implements OnInit {
       ? `Mesa asignada Nº ${idMesa}`
       : 'Sin mesa asignada';
   }
+
+  // ► ELIMINA o ignora subscribeMesaRealtime()
+// ► AGREGA esta nueva versión:
+private subscribeMesaRealtimeMesas(idUsuario: string) {
+  /* Cancela previa (útil en hot-reload) */
+  this.mesaSub?.unsubscribe();
+
+  this.mesaSub = this.db.supabase
+    .channel(`mesas-asign-${idUsuario}`)
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'mesas',
+        filter: `id_cliente=eq.${idUsuario}`,   // 👍 escucha SOLO las filas del cliente
+      },
+      (payload) => {
+        const mesa = payload.new as any;        // nroMesa o nro_mesa según tu esquema
+        const nroMesa = mesa.nroMesa ?? mesa.nro_mesa ?? null;
+        this.setMensajeMesa(nroMesa);
+      }
+    )
+    .subscribe();
+}
+
 
   goToLogin() {
     this.navCtrl.navigateForward('/login');
@@ -636,4 +684,14 @@ export class HomePage implements OnInit {
         
     
   }
+
+  private async obtenerMesaAsignada(idUsuario: string): Promise<number | null> {
+  const mesas = await this.db.traerCoincidencias<Mesa>(Colecciones.Mesas, {
+    campo: 'idCliente',       // ← tu campo FK
+    operacion: 'eq',
+    valor: idUsuario,
+  });
+  return mesas.length ? mesas[0].nroMesa : null;
+}
+
 }
