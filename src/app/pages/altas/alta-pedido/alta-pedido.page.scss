@@ -1,12 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #039BE6;
+  --background: #039be6;
   --color: white;
 }
 
 ion-content {
-  --background: #2D2D51;
+  --background: #2d2d51;
   color: #fff;
 }
 
@@ -21,7 +21,7 @@ ion-card {
   --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-ion-icon{
+ion-icon {
   color: #ffffff;
   font-size: 1.5rem;
   margin-right: 10px;
@@ -29,8 +29,6 @@ ion-icon{
 
 .container {
   --background: #414068;
-  height: 100vh;
-  width: 100%;
   display: flex;
   flex-direction: column; // importante para que respete el top-margin del card
   align-items: center;
@@ -73,11 +71,10 @@ ion-icon{
   }
 
   ion-button[type="submit"] {
-    // margin-top: 1rem;
-    --background: #24B4F8;
+    margin-top: 1rem;
     --color: white;
     --border-radius: 5px;
-    }
+  }
 }
 
 small {
@@ -106,7 +103,7 @@ p {
   margin-top: 20px;
 }
 
-.total{
+.total {
   color: #ffffff;
   background-color: #b524f8;
   width: 80%;
@@ -181,161 +178,139 @@ ion-label {
 
   /* …todo tu SCSS previo… */
 
-/* --------------- LISTA DE PRODUCTOS --------------- */
-ion-card-content#menu-container {
-  margin-top: 0;
-  padding-top: 4px; 
-  color: #fff;
-  /* Anchura y scrolling del listado */
-  ion-accordion-group#lista-productos {
-    max-height: 62.5vh;
-    overflow-y: auto;
-  }
-
-  /* ---------- Cabecera de cada producto ---------- */
-  ion-item.big {
-    --background: #61618d;          /* combina con tu paleta             */
-    --padding-start: 10px;
-    --inner-padding-end: 20px;
-    font-size: 1.4rem;              /* agranda texto interno por defecto */
-    border-radius: 10px;            /* esquinas redondeadas              */
-  }
-
-  ion-item.big ion-label.nombre {
-    font-size: 1.6rem;
-    font-weight: 600;
+  /* --------------- LISTA DE PRODUCTOS --------------- */
+  ion-card-content#menu-container {
     color: #fff;
-  }
-
-  ion-item.big ion-badge {
-    color: #2d2d51;
-    background: #ffc107;
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  ion-item.big .precio-prod {
-    margin-left: auto;
-    font-size: 1.6rem;
-    font-family: "Cash Currency", sans-serif;
-    color: #000;
-  }
-
-  /* ---------- Contenido desplegable ---------- */
-  .content {
-    background-color: #33267c;
-    padding: 1.2rem;
-    border-radius: 10px;
-    color: #fff;
-
-    h2.descripcion,
-    h2.tiempo {
-      font-size: 1.4rem;
-      margin: 0.8rem 0;
+    /* Anchura y scrolling del listado */
+    ion-accordion-group#lista-productos {
+      max-height: 62.5vh;
+      overflow-y: auto;
     }
 
-    .imgs-container {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      gap: 1rem;
-      margin: 1rem 0;
-
-      img {
-        flex: 0 0 100%;           // 🔄 volver a 100%
-        max-width: 100%;
-        max-height: 200px;        // 🔽 limitar el alto
-        height: auto;
-        scroll-snap-align: center;
-        border-radius: 12px;
-        border: 2px solid #fff;
-        object-fit: cover;        // o 'contain' si querés que no recorte nada
-      }
+    /* ---------- Cabecera de cada producto ---------- */
+    ion-item.big {
+      --background: #61618d; /* combina con tu paleta             */
+      --padding-start: 20px;
+      --inner-padding-end: 20px;
+      font-size: 1.4rem; /* agranda texto interno por defecto */
+      border-radius: 10px; /* esquinas redondeadas              */
     }
-  
 
-    /* -------- Contador de producto -------- */
-    .cont-prod {
+    ion-item.big ion-label.nombre {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    ion-item.big ion-badge {
+      color: #2d2d51;
+      background: #ffc107;
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.8rem;
-      margin-top: 1rem;
+    }
 
-      ion-button {
-        --border-radius: 50%;
-        --background: #1f8ef1;
-        width: 48px;
-        height: 48px;
+    ion-item.big .precio-prod {
+      margin-left: auto;
+      font-size: 1.6rem;
+      font-family: "Cash Currency", sans-serif;
+      color: #000;
+    }
+
+    /* ---------- Contenido desplegable ---------- */
+    .content {
+      background-color: #33267c;
+      padding: 1.2rem;
+      border-radius: 10px;
+      color: #fff;
+
+      h2.descripcion,
+      h2.tiempo {
+        font-size: 1.4rem;
+        margin: 0.8rem 0;
+      }
+
+      .imgs-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory; // activa el "snap" horizontal
+        scroll-behavior: smooth;
+        gap: 1rem;
+        margin: 1rem 0;
 
-        ion-icon {
-          font-size: 1.8rem;
-          margin: 0;
-          padding: 0;
+        img {
+          flex: 0 0 100%; // ocupa el 100% del contenedor visible
+          max-width: 100%;
+          height: auto;
+          scroll-snap-align: center; // centra la imagen al hacer scroll
+          border-radius: 12px;
+          border: 2px solid #fff;
+          object-fit: contain;
         }
       }
 
-      ion-input {
-        max-width: 60px;
-        height: 48px;
-        font-size: 1.5rem;
-        text-align: center;
-        font-weight: bold;
-        background-color: #414068;
-        border-radius: 10px;
-        color: white;
-        --padding-start: 0;
-        --padding-end: 0;
-        --highlight-height: 0; // quita subrayado
+      /* -------- Contador de producto -------- */
+      .cont-prod {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-top: 1rem;
+
+        ion-button {
+          --border-radius: 50%;
+          font-size: 3rem;
+        }
+
+        ion-input {
+          --background: #61618d;
+          --padding-start: 0;
+          --padding-end: 0;
+          text-align: center;
+          font-size: 2.5rem;
+          color: #fff;
+          border-radius: 10px;
+        }
       }
     }
   }
-}
 
-/* --------------- TOTAL --------------- */
-.total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
+  /* --------------- TOTAL --------------- */
+  .total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
 
-  width: 80%;
-  margin: 1.5rem auto;
-  // padding: 0.6rem 1.2rem;
-  padding-bottom: 6px;
+    width: 80%;
+    margin: 1.5rem auto;
+    padding: 0.6rem 1.2rem;
 
-  background-color: #b524f8;
-  color: #ffffff;
-  border-radius: 40px;
-}
+    background-color: #b524f8;
+    color: #ffffff;
+    border-radius: 40px;
+  }
 
-.total .rotulo {
-  font-size: 1.25rem;
-}
+  .total .rotulo {
+    font-size: 1.25rem;
+  }
 
-.total .monto {
-  font-size: 2.5rem;
-  font-weight: bold;
-  font-family: "Cash Currency", sans-serif;
-  line-height: 1;
-  white-space: nowrap;
-}
+  .total .monto {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: "Cash Currency", sans-serif;
+    line-height: 1;
+    white-space: nowrap;
+  }
 }
 /* …todo tu SCSS previo… */
 
 /* --------------- TOTAL --------------- */
 .total {
-  display: flex;                 /* ① todo en un solo renglón            */
+  display: flex; /* ① todo en un solo renglón            */
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
@@ -358,7 +333,7 @@ ion-card-content#menu-container {
   font-weight: bold;
   font-family: "Cash Currency", sans-serif;
   line-height: 1;
-  white-space: nowrap;           /* ② evita que se parta en dos líneas   */
+  white-space: nowrap; /* ② evita que se parta en dos líneas   */
 }
 
 /* …todo tu SCSS previo… */
@@ -377,12 +352,12 @@ ion-card-content#menu-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 
-  width: calc(100% - 32px);   /* 16 px de margen a cada lado */
-  max-width: 500px;           /* coincide con el ancho de tu card */
-  margin: 0 auto;             /* centrado horizontal */
-  padding: .8rem 1.4rem;
+  width: calc(100% - 32px); /* 16 px de margen a cada lado */
+  max-width: 500px; /* coincide con el ancho de tu card */
+  margin: 0 auto; /* centrado horizontal */
+  padding: 0.8rem 1.4rem;
 
   background-color: #b524f8;
   color: #fff;
@@ -390,16 +365,21 @@ ion-card-content#menu-container {
   font-weight: bold;
 }
 
-.total .rotulo { font-size: 1.3rem; }
-.total .monto  { font-size: 2.6rem; font-family: "Cash Currency", sans-serif; }
+.total .rotulo {
+  font-size: 1.3rem;
+}
+.total .monto {
+  font-size: 2.6rem;
+  font-family: "Cash Currency", sans-serif;
+}
 
 /* --- NUEVA CLASE PARA POSICIÓN FIJA --- */
 .fixed-bottom {
   position: fixed;
-  bottom: 12px;              /* separación del borde inferior */
+  bottom: 12px; /* separación del borde inferior */
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;             /* por encima del contenido scrollable */
+  z-index: 1000; /* por encima del contenido scrollable */
 }
 
 ion-text.seccion-title h2 {
@@ -482,5 +462,19 @@ img {
     color: white;
     border-radius: 12px;
     font-size: 1rem;
+  }
+}
+
+.fab-carrito {
+  --background: #28a745; // verde
+  --color: black; // ícono en negro
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 28px;
+
+  ion-icon {
+    font-size: 28px;
   }
 }

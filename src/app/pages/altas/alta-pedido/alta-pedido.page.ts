@@ -24,6 +24,8 @@ import {
   IonBadge,
   IonButtons,
   IonBackButton,
+  IonFab,
+  IonFabButton,
 } from '@ionic/angular/standalone';
 import { ModalController, NavController } from '@ionic/angular/standalone';
 import { PedidoComponent } from 'src/app/components/pedido/pedido.component';
@@ -35,6 +37,8 @@ import {
   chatboxEllipsesOutline,
   caretDownOutline,
   chatbubbleEllipsesOutline,
+  cartOutline,
+  add,
 } from 'ionicons/icons';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Cliente } from 'src/app/clases/cliente';
@@ -55,6 +59,8 @@ import { each } from 'chart.js/dist/helpers/helpers.core';
   styleUrls: ['./alta-pedido.page.scss'],
   standalone: true,
   imports: [
+    IonFabButton,
+    IonFab,
     IonBackButton,
     IonButtons,
     IonBadge,
@@ -107,30 +113,32 @@ export class AltaPedidoPage {
         if (typeof prod.fotos_url === 'string') {
           try {
             prod.fotos_url = JSON.parse(prod.fotos_url);
-            console.log(prod)
+            console.log(prod);
           } catch (e) {
             console.error('Error al parsear fotos_url:', prod.fotos_url);
             prod.fotos_url = []; // fallback vacío si hay error
           }
         }
-         if (prod.tipo === 'bebida') this.bebidas.push(prod);
+        if (prod.tipo === 'bebida') this.bebidas.push(prod);
         else if (prod.tipo === 'comida') this.comidas.push(prod);
         else if (prod.tipo === 'postre') this.postres.push(prod);
       });
     });
 
     addIcons({
-      chatbubbleEllipsesOutline,
-      receiptOutline,
+      chatboxEllipsesOutline,
+      cartOutline,
       caretDownOutline,
       removeCircleOutline,
       addCircleOutline,
-      chatboxEllipsesOutline,
+      add,
+      receiptOutline,
+      chatbubbleEllipsesOutline,
     });
-  };
-  
+  }
+
   filtrarPorTipo(tipo: string): Producto[] {
-    return this.productos.filter(p => p.tipo === tipo);
+    return this.productos.filter((p) => p.tipo === tipo);
   }
 
   restarProd(prod: Producto) {
