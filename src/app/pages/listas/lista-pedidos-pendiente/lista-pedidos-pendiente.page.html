@@ -1,10 +1,10 @@
 <!-- pedidos.page.html (completo) -->
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar style="background-color:#039BE6;color:white;padding-top:20px;">
+  <ion-toolbar style="background-color:#039BE6;color:rgb(0, 0, 0);padding-top:20px;">
     <ion-buttons slot="start">
       <ion-back-button routerLink="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title style="font-size:2rem;">Pedidos</ion-title>
+    <ion-title style="font-size:2rem; font-weight: bold">Pedidos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,11 +14,11 @@
     <ion-card style="width:95%;">
       <ion-card-header>
         <ion-card-title>
-          Pedidos
+
           @if (this.empleado.tipo === 'mozo') {
-            pendientes de confirmacion
+          Esperando confirmación
           } @else {
-            a realizar
+          A realizar
           }
         </ion-card-title>
       </ion-card-header>
@@ -26,48 +26,37 @@
       <ion-card-content>
         <ion-list id="lista" style="background-color:#414068;">
           @for (pedido of pedidos; track $index) {
-            @for (cliente of clientes; track $index) {
-              @if (pedido.idCliente == cliente.id) {
-                @if (pedido.estado != 'listo') {
-                  @for (mesa of mesas; track $index) {
-                    @if (mesa.id == cliente.idMesa) {
-                      <ion-item style="background-color:#414068;">
-                        <div class="pedido">
-                          <ion-button
-                            style="background-color:#039BE6;border-radius:15px;"
-                            expand="fill"
-                            fill="clear"
-                            size="large"
-                            (click)="mostrarPedido(pedido)"
-                          >
-                            <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
-                            <p style="margin-right:10px;color:white;">Ver pedido</p>
-                          </ion-button>
+          @for (cliente of clientes; track $index) {
+          @if (pedido.idCliente == cliente.id) {
+          @if (pedido.estado != 'listo') {
+          @for (mesa of mesas; track $index) {
+          @if (mesa.id == cliente.idMesa) {
+          <ion-item style="background-color:#414068;">
+            <div class="pedido">
+              <ion-button style="background-color:#1e1e1e;border-radius:15px;border: 2px solid white;" expand="fill"
+                fill="clear" size="large" (click)="mostrarPedido(pedido)">
+                <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
+              </ion-button>
 
-                          <div class="text">
-                            <ion-label style="font-size:25px;">Mesa {{ mesa.nroMesa }}</ion-label>
-                            <ion-label><small>{{ accionPedido(pedido) }}</small></ion-label>
-                          </div>
+              <div class="text">
+                <ion-label style="font-size:25px;">Mesa {{ mesa.nroMesa }}</ion-label>
+                <ion-label><small>{{ accionPedido(pedido) }}</small></ion-label>
+              </div>
 
-                          <div part="content" class="content">
-                            <div class="cont-prod">
-                              <ion-button
-                                size="large"
-                                color="success"
-                                expand="fill"
-                                (click)="manejarEstadoPedido(pedido)"
-                              >
-                                <ion-icon slot="icon-only" name="checkmark-circle-outline" color="light"></ion-icon>
-                              </ion-button>
-                            </div>
-                          </div>
-                        </div>
-                      </ion-item>
-                    }
-                  }
-                }
-              }
-            }
+              <div part="content" class="content">
+                <div class="cont-prod">
+                  <ion-button size="large" color="success" expand="fill" (click)="manejarEstadoPedido(pedido)">
+                    <ion-icon slot="icon-only" name="checkmark-circle-outline" color="light"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+          }
+          }
+          }
+          }
+          }
           }
         </ion-list>
       </ion-card-content>
@@ -76,61 +65,50 @@
 
   <!-- ▸ LISTA DE PENDIENTES DE ENTREGA (solo mozo) ---------------------- -->
   @if (this.empleado.tipo === 'mozo') {
-    <div class="container background-pri">
-      <ion-card style="width:95%;">
-        <ion-card-header>
-          <ion-card-title>Pedidos pendientes de entrega</ion-card-title>
-        </ion-card-header>
+  <div class="container background-pri">
+    <ion-card style="width:95%;">
+      <ion-card-header>
+        <ion-card-title>Listos para entregar</ion-card-title>
+      </ion-card-header>
 
-        <ion-card-content>
-          <ion-list id="lista" style="background-color:#414068;">
-            @for (pedido of pedidos; track $index) {
-              @for (cliente of clientes; track $index) {
-                @if (pedido.idCliente == cliente.id) {
-                  @if (pedido.estado == 'listo') {
-                    @for (mesa of mesas; track $index) {
-                      @if (mesa.id == cliente.idMesa) {
-                        <ion-item style="background-color:#414068;">
-                          <div class="pedido">
-                            <ion-button
-                              style="background-color:#039BE6;border-radius:15px;"
-                              expand="fill"
-                              fill="clear"
-                              size="large"
-                              (click)="mostrarPedido(pedido)"
-                            >
-                              <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
-                              <p style="margin-right:10px;color:white;">Ver pedido</p>
-                            </ion-button>
+      <ion-card-content>
+        <ion-list id="lista" style="background-color:#414068;">
+          @for (pedido of pedidos; track $index) {
+          @for (cliente of clientes; track $index) {
+          @if (pedido.idCliente == cliente.id) {
+          @if (pedido.estado == 'listo') {
+          @for (mesa of mesas; track $index) {
+          @if (mesa.id == cliente.idMesa) {
+          <ion-item style="background-color:#414068;">
+            <div class="pedido">
+              <ion-button style="background-color:#1e1e1e;border-radius:15px;border: 2px solid white;" expand="fill"
+                fill="clear" size="large" (click)="mostrarPedido(pedido)">
+                <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
+              </ion-button>
 
-                            <div class="text">
-                              <ion-label style="font-size:25px;">Mesa {{ mesa.nroMesa }}</ion-label>
-                              <ion-label><small>{{ accionPedido(pedido) }}</small></ion-label>
-                            </div>
+              <div class="text">
+                <ion-label style="font-size:25px;">Mesa {{ mesa.nroMesa }}</ion-label>
+                <ion-label><small>{{ accionPedido(pedido) }}</small></ion-label>
+              </div>
 
-                            <div part="content" class="content">
-                              <div class="cont-prod">
-                                <ion-button
-                                  size="large"
-                                  color="success"
-                                  expand="fill"
-                                  (click)="entregarPedido(pedido)"
-                                >
-                                  <ion-icon slot="icon-only" name="checkmark-circle-outline" color="light"></ion-icon>
-                                </ion-button>
-                              </div>
-                            </div>
-                          </div>
-                        </ion-item>
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
-    </div>
+              <div part="content" class="content">
+                <div class="cont-prod">
+                  <ion-button size="large" color="success" expand="fill" (click)="entregarPedido(pedido)">
+                    <ion-icon slot="icon-only" name="checkmark-circle-outline" color="light"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+          }
+          }
+          }
+          }
+          }
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
   }
 </ion-content>
