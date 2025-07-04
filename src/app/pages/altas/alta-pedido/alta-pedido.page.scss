@@ -10,10 +10,6 @@ ion-content {
   color: #fff;
 }
 
-.titulo-header {
-  font-weight: bold;
-}
-
 ion-card {
   --background: #414068;
   --color: white;
@@ -23,172 +19,96 @@ ion-card {
 
 ion-icon {
   color: #ffffff;
-  font-size: 1.5rem;
-  margin-right: 10px;
 }
 
 .container {
-  --background: #414068;
   display: flex;
-  flex-direction: column; // importante para que respete el top-margin del card
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 16px;
-  padding-top: 30px; // <- ajustá este valor a gusto
+  padding: 30px 16px 16px;
+
   ion-card {
     width: 100%;
     max-width: 500px;
     padding: 10px;
   }
 
-  .inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    .nombre_apellido {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-
-      .nombre,
-      .apellido {
-        flex: 1;
-        min-width: 45%;
-      }
-    }
-
-    .errores {
-      color: red;
-      font-size: 0.75rem;
-    }
-  }
-
-  .ion-margin-bottom {
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-
-  ion-button[type="submit"] {
-    margin-top: 1rem;
-    --color: white;
-    --border-radius: 5px;
-  }
-}
-
-small {
-  color: red;
-  font-size: 1rem;
-}
-
-ion-input {
-  --color: white;
-
-  height: 50px;
-  font-size: 26px;
-}
-
-ion-card-subtitle {
-  font-size: 40px;
-  text-align: center;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-p {
-  font-size: 20px;
-  color: #ffffff;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.total {
-  color: #ffffff;
-  background-color: #b524f8;
-  width: 80%;
-  border-radius: 40px;
-}
-
-ion-label {
-  color: #ffffff;
-  font-size: 20px;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-
   ion-card-header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
     ion-card-subtitle {
       font-family: "Cash Currency", sans-serif;
       font-size: xx-large;
+      font-weight: bold;
+      color: white;
     }
 
-    #btn-container ion-icon {
-      font-size: 3.5rem;
+    #btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+
+      .btn-icono {
+        --background: transparent;
+        --box-shadow: none;
+        --padding-start: 0;
+        --padding-end: 0;
+        --color: white;
+        font-size: 2rem;
+      }
+
+      ion-icon {
+        font-size: 2.5rem;
+      }
     }
   }
 
-  /* …todo tu SCSS previo… */
-
-  /* --------------- LISTA DE PRODUCTOS --------------- */
   ion-card-content#menu-container {
-    color: #fff;
-    /* Anchura y scrolling del listado */
     ion-accordion-group#lista-productos {
       max-height: 62.5vh;
       overflow-y: auto;
     }
 
-    /* ---------- Cabecera de cada producto ---------- */
-    ion-item.big {
-      --background: #61618d; /* combina con tu paleta             */
-      --padding-start: 20px;
-      --inner-padding-end: 20px;
-      font-size: 1.4rem; /* agranda texto interno por defecto */
-      border-radius: 10px; /* esquinas redondeadas              */
+    ion-item.item {
+      --background: linear-gradient(to right, #3c3b6e, #2d2d51);
+      --color: white;
+      font-size: 1.1rem;
     }
 
-    ion-item.big ion-label.nombre {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #fff;
+    ion-badge {
+      font-size: 1rem !important;
+      padding: 10px;
+      border-radius: 50%;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      background-color: blueviolet;
     }
 
-    ion-item.big ion-badge {
-      color: #2d2d51;
-      background: #ffc107;
-      width: 3rem;
-      height: 3rem;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    ion-label {
+      color: white;
+      font-size: 1.2rem;
     }
 
-    ion-item.big .precio-prod {
+    .precio-prod {
       margin-left: auto;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       font-family: "Cash Currency", sans-serif;
-      color: #000;
+      color: white;
     }
 
-    /* ---------- Contenido desplegable ---------- */
     .content {
       background-color: #33267c;
       padding: 1.2rem;
       border-radius: 10px;
-      color: #fff;
+      color: white;
 
-      h2.descripcion,
-      h2.tiempo {
-        font-size: 1.4rem;
-        margin: 0.8rem 0;
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
       }
 
       .imgs-container {
@@ -196,7 +116,7 @@ ion-label {
         flex-direction: row;
         overflow-x: auto;
         scroll-snap-type: x mandatory; // activa el "snap" horizontal
-        scroll-behavior: smooth;
+        scroll-behavior: auto; //smooth
         gap: 1rem;
         margin: 1rem 0;
 
@@ -211,7 +131,6 @@ ion-label {
         }
       }
 
-      /* -------- Contador de producto -------- */
       .cont-prod {
         display: flex;
         align-items: center;
@@ -225,199 +144,84 @@ ion-label {
 
         ion-input {
           --background: #61618d;
-          --padding-start: 0;
-          --padding-end: 0;
           text-align: center;
           font-size: 2.5rem;
-          color: #fff;
+          color: white;
           border-radius: 10px;
+          max-width: 60px;
+          height: 48px;
         }
       }
     }
   }
 
-  /* --------------- TOTAL --------------- */
-  .total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-
-    width: 80%;
-    margin: 1.5rem auto;
-    padding: 0.6rem 1.2rem;
-
-    background-color: #b524f8;
-    color: #ffffff;
-    border-radius: 40px;
+  ion-text.seccion-title h2 {
+    margin: 24px 0 12px 8px;
+    font-size: 1.5rem;
+    color: #ffd700;
+    font-weight: 600;
+    border-left: 5px solid #ffd700;
+    padding-left: 10px;
   }
 
-  .total .rotulo {
-    font-size: 1.25rem;
-  }
-
-  .total .monto {
-    font-size: 2.5rem;
-    font-weight: bold;
-    font-family: "Cash Currency", sans-serif;
-    line-height: 1;
-    white-space: nowrap;
+  ion-accordion {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 }
-/* …todo tu SCSS previo… */
 
-/* --------------- TOTAL --------------- */
-.total {
-  display: flex; /* ① todo en un solo renglón            */
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-
-  width: 80%;
-  margin: 1.5rem auto;
-  padding: 0.6rem 1.2rem;
-
-  background-color: #b524f8;
-  color: #ffffff;
-  border-radius: 40px;
-}
-
-.total .rotulo {
-  font-size: 1.25rem;
-}
-
-.total .monto {
-  font-size: 2.5rem;
-  font-weight: bold;
-  font-family: "Cash Currency", sans-serif;
-  line-height: 1;
-  white-space: nowrap; /* ② evita que se parta en dos líneas   */
-}
-
-/* …todo tu SCSS previo… */
-
-/* --------------- CONTENIDO SCROLLABLE --------------- */
 .pedido-content {
   --background: #2d2d51;
-  padding-bottom: 120px; /* ⬅ deja espacio para el cartel fijo (alto ≈ 100 px) */
-}
-
-/* --------------- TOTAL (FIJO ABAJO) --------------- */
-.total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-
-  width: calc(100% - 32px); /* 16 px de margen a cada lado */
-  max-width: 500px; /* coincide con el ancho de tu card */
-  margin: 0 auto; /* centrado horizontal */
-  padding: 0.8rem 1.4rem;
-
-  background-color: #b524f8;
-  color: #fff;
-  border-radius: 40px;
-  font-weight: bold;
-}
-
-.total .rotulo {
-  font-size: 1.3rem;
-}
-.total .monto {
-  font-size: 2.6rem;
-  font-family: "Cash Currency", sans-serif;
-}
-
-/* --- NUEVA CLASE PARA POSICIÓN FIJA --- */
-.fixed-bottom {
-  position: fixed;
-  bottom: 12px; /* separación del borde inferior */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000; /* por encima del contenido scrollable */
-}
-
-ion-text.seccion-title h2 {
-  margin: 24px 0 12px 8px;
-  font-size: 1.5rem;
-  color: #ffd700;
-  font-weight: 600;
-  border-left: 5px solid #ffd700;
-  padding-left: 10px;
-}
-
-ion-accordion {
-  margin-bottom: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-ion-item.item {
-  --background: linear-gradient(to right, #3c3b6e, #2d2d51);
-  --color: white;
-  font-size: 1.1rem;
-}
-
-ion-badge {
-  font-size: 1rem !important;
-  padding: 10px;
-  border-radius: 50%;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-}
-
-img {
-  border-radius: 12px;
-  border: 2px solid #fff;
-}
-
-.content h2 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-}
-
-.cont-prod ion-input {
-  max-width: 60px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.4rem;
-  background: #414068;
-  border-radius: 8px;
-  height: 48px;
-  line-height: 48px;
-  padding: 0 5px;
-}
-
-.cont-prod ion-button {
-  --padding-start: 12px;
-  --padding-end: 12px;
-}
-
-#btn-container {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 10px 0;
-  gap: 10px;
-
-  ion-button {
-    --background: #1f8ef1;
-    color: white;
-    border-radius: 12px;
-    font-size: 1rem;
-  }
+  padding-bottom: 120px;
 }
 
 .fab-carrito {
-  --background: #28a745; // verde
-  --color: black; // ícono en negro
+  --background: #28a745;
+  --color: black;
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  font-size: 28px;
 
   ion-icon {
-    font-size: 28px;
+    font-size: 58px;
+    color: black;
+  }
+}
+
+ion-card-header.header-precio-chat,
+ion-card-header {
+  padding: 10px 0;
+
+  .fila-precio-chat,
+  #btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ion-card-subtitle {
+      font-family: "Cash Currency", sans-serif;
+      font-size: xx-large;
+      font-weight: bold;
+      color: white;
+      padding-left: 12px; // 👈 espaciado izquierdo del precio
+    }
+
+    .btn-icono {
+      --background: transparent;
+      --box-shadow: none;
+      --padding-start: 0;
+      --padding-end: 0;
+      --color: white;
+      font-size: 2rem;
+
+      ion-icon {
+        font-size: 2.5rem;
+        color: white !important; // reforzamos blanco
+      }
+    }
   }
 }

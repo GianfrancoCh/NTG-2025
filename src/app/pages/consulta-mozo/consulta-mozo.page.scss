@@ -32,7 +32,7 @@
         &.enviado {
           /* Mensajes propios */
           align-self: flex-end; /* Se alinea al final del eje principal (derecha) */
-          margin-left: auto;    /* Pega la burbuja al margen derecho */
+          margin-left: auto; /* Pega la burbuja al margen derecho */
           text-align: right;
           background-color: #039be6; /* Azul */
         }
@@ -85,10 +85,10 @@
 
     .card-footer {
       position: fixed;
+      padding-bottom: 20px;
       width: 90%;
       bottom: 0;
-          background-color: #414068;
-
+      background-color: #414068;
 
       #enviar:active {
         transform: scale(0.7);
@@ -96,4 +96,3 @@
     }
   }
 }
-

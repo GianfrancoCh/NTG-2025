@@ -15,7 +15,10 @@ import {
   IonCardContent,
   IonList,
   IonAvatar,
-  IonIcon, IonButtons, IonBackButton } from '@ionic/angular/standalone';
+  IonIcon,
+  IonButtons,
+  IonBackButton,
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   checkmarkCircleOutline,
@@ -42,7 +45,9 @@ import { Producto } from 'src/app/clases/producto';
   templateUrl: './lista-clientes-pagando.page.html',
   styleUrls: ['./lista-clientes-pagando.page.scss'],
   standalone: true,
-  imports: [IonBackButton, IonButtons, 
+  imports: [
+    IonBackButton,
+    IonButtons,
     IonIcon,
     IonAvatar,
     IonList,
@@ -137,6 +142,7 @@ export class ListaClientesPagandoPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: PedidoComponent,
       id: 'pedido-modal',
+      cssClass: 'modal-transparente',
       componentProps: { pedido: productosCant },
     });
     await modal.present();
