@@ -1,7 +1,5 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar
-    style="height:70px;display:flex;align-items:center;justify-content:center;"
-  >
+  <ion-toolbar style="height:70px;display:flex;align-items:center;justify-content:center;">
     <ion-buttons slot="start">
       <ion-back-button routerLink="/home"></ion-back-button>
     </ion-buttons>
@@ -14,44 +12,35 @@
     <!-- ───────── OPCIONES ───────── -->
     <ion-card style="width:95%;">
       <div id="btn-container">
-        <ion-button
-          fill="clear"
-          size="large"
-          style="font-weight:bold;"
-          (click)="navCtrl.navigateForward('consulta-mozo')"
-        >
+        <ion-button fill="clear" size="large" style="font-weight:bold;"
+          (click)="navCtrl.navigateForward('consulta-mozo')">
           <ion-icon slot="icon-only" name="chatbubble-ellipses-outline"></ion-icon>
-          Consultar mozo
         </ion-button>
 
-        <ion-button
-          fill="clear"
-          size="large"
-          style="font-weight:bold;"
-          (click)="mostrarPedido()"
-          [disabled]="Object.keys(productosElegidos).length < 1"
-        >
+        <ion-button fill="clear" size="large" style="font-weight:bold;" (click)="mostrarPedido()"
+          [disabled]="Object.keys(productosElegidos).length < 1">
           <ion-icon slot="icon-only" name="receipt-outline"></ion-icon>
-          Mostrar pedido
         </ion-button>
       </div>
 
       <ion-card-header></ion-card-header>
-      
+
       <!-- ───────── LISTA DE PRODUCTOS ───────── -->
       <ion-card-content id="menu-container">
-      <ion-accordion-group id="lista-productos">
+        <ion-accordion-group id="lista-productos">
 
-        <!-- Bebidas -->
-        <ion-text class="seccion-title"><h2>Bebidas</h2></ion-text>
-        @for (item of filtrarPorTipo('bebida'); track $index) {
+          <!-- Bebidas -->
+          <ion-text class="seccion-title">
+            <h2>Bebidas</h2>
+          </ion-text>
+          @for (item of filtrarPorTipo('bebida'); track $index) {
           <ion-accordion toggleIconSlot="none" [value]="item.nombre">
             <ion-item class="item" color="primary" slot="header">
               <ion-badge slot="start" style="background-color: blueviolet;">
                 @if (!productosElegidos[item.id]) {
-                  <ion-icon name="caret-down-outline"></ion-icon>
+                <ion-icon name="caret-down-outline"></ion-icon>
                 } @else {
-                  {{ productosElegidos[item.id] }}
+                {{ productosElegidos[item.id] }}
                 }
               </ion-badge>
               <ion-label style="color: white;">{{ item.nombre }}</ion-label>
@@ -64,64 +53,40 @@
               <h2>{{ item.descripcion }}</h2>
               <div class="imgs-container">
                 @for (foto of item.fotos_url; track $index) {
-                  <img [attr.src]="foto" alt="foto del producto" />
+                <img [attr.src]="foto" alt="foto del producto" />
                 }
               </div>
               <h2>Tiempo de elaboración: {{ item.tiempoElab }} minutos.</h2>
               <div class="cont-prod">
-                <ion-button
-                  size="medium"
-                  color="danger"
-                  expand="fill"
-                  (click)="restarProd(item)"
-                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0"
-                >
-                  <ion-icon
-                    slot="icon-only"
-                    aria-label="hidden"
-                    name="remove-circle-outline"
-                    color="light"
-                  ></ion-icon>
+                <ion-button size="medium" color="danger" expand="fill" (click)="restarProd(item)"
+                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="remove-circle-outline" color="light"></ion-icon>
                 </ion-button>
 
-                <ion-input
-                  type="number"
-                  min="0"
-                  max="99"
-                  color="light"
-                  [(ngModel)]="productosElegidos[item.id]"
-                  ngDefaultControl
-                ></ion-input>
+                <ion-input type="number" min="0" max="99" color="light" [(ngModel)]="productosElegidos[item.id]"
+                  ngDefaultControl></ion-input>
 
-                <ion-button
-                  size="medium"
-                  color="success"
-                  expand="fill"
-                  (click)="sumarProd(item)"
-                  [disabled]="productosElegidos[item.id] === 99"
-                >
-                  <ion-icon
-                    slot="icon-only"
-                    aria-label="hidden"
-                    name="add-circle-outline"
-                    color="light"
-                  ></ion-icon>
+                <ion-button size="medium" color="success" expand="fill" (click)="sumarProd(item)"
+                  [disabled]="productosElegidos[item.id] === 99">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="add-circle-outline" color="light"></ion-icon>
                 </ion-button>
               </div>
             </div>
           </ion-accordion>
-        }
+          }
 
-        <!-- Comidas -->
-        <ion-text class="seccion-title"><h2>Comidas</h2></ion-text>
-        @for (item of filtrarPorTipo('comida'); track $index) {
+          <!-- Comidas -->
+          <ion-text class="seccion-title">
+            <h2>Comidas</h2>
+          </ion-text>
+          @for (item of filtrarPorTipo('comida'); track $index) {
           <ion-accordion toggleIconSlot="none" [value]="item.nombre">
             <ion-item class="item" color="primary" slot="header">
               <ion-badge slot="start" style="background-color: blueviolet;">
                 @if (!productosElegidos[item.id]) {
-                  <ion-icon name="caret-down-outline"></ion-icon>
+                <ion-icon name="caret-down-outline"></ion-icon>
                 } @else {
-                  {{ productosElegidos[item.id] }}
+                {{ productosElegidos[item.id] }}
                 }
               </ion-badge>
               <ion-label style="color: white;">{{ item.nombre }}</ion-label>
@@ -134,64 +99,40 @@
               <h2>{{ item.descripcion }}</h2>
               <div class="imgs-container">
                 @for (foto of item.fotos_url; track $index) {
-                  <img [attr.src]="foto" alt="foto del producto" />
+                <img [attr.src]="foto" alt="foto del producto" />
                 }
               </div>
               <h2>Tiempo de elaboración: {{ item.tiempoElab }} minutos.</h2>
               <div class="cont-prod">
-                <ion-button
-                  size="medium"
-                  color="danger"
-                  expand="fill"
-                  (click)="restarProd(item)"
-                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0"
-                >
-                  <ion-icon
-                    slot="icon-only"
-                    aria-label="hidden"
-                    name="remove-circle-outline"
-                    color="light"
-                  ></ion-icon>
+                <ion-button size="medium" color="danger" expand="fill" (click)="restarProd(item)"
+                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="remove-circle-outline" color="light"></ion-icon>
                 </ion-button>
 
-                <ion-input
-                  type="number"
-                  min="0"
-                  max="99"
-                  color="light"
-                  [(ngModel)]="productosElegidos[item.id]"
-                  ngDefaultControl
-                ></ion-input>
+                <ion-input type="number" min="0" max="99" color="light" [(ngModel)]="productosElegidos[item.id]"
+                  ngDefaultControl></ion-input>
 
-                <ion-button
-                  size="medium"
-                  color="success"
-                  expand="fill"
-                  (click)="sumarProd(item)"
-                  [disabled]="productosElegidos[item.id] === 99"
-                >
-                  <ion-icon
-                    slot="icon-only"
-                    aria-label="hidden"
-                    name="add-circle-outline"
-                    color="light"
-                  ></ion-icon>
+                <ion-button size="medium" color="success" expand="fill" (click)="sumarProd(item)"
+                  [disabled]="productosElegidos[item.id] === 99">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="add-circle-outline" color="light"></ion-icon>
                 </ion-button>
               </div>
             </div>
           </ion-accordion>
-        }
+          }
 
-        <!--  Postres -->
-          <ion-text class="seccion-title"><h2>Postres</h2></ion-text>
-        @for (item of filtrarPorTipo('postre'); track $index) {
-         <ion-accordion toggleIconSlot="none" [value]="item.nombre">
+          <!--  Postres -->
+          <ion-text class="seccion-title">
+            <h2>Postres</h2>
+          </ion-text>
+          @for (item of filtrarPorTipo('postre'); track $index) {
+          <ion-accordion toggleIconSlot="none" [value]="item.nombre">
             <ion-item class="item" color="primary" slot="header">
               <ion-badge slot="start" style="background-color: blueviolet;">
                 @if (!productosElegidos[item.id]) {
-                  <ion-icon name="caret-down-outline"></ion-icon>
+                <ion-icon name="caret-down-outline"></ion-icon>
                 } @else {
-                  {{ productosElegidos[item.id] }}
+                {{ productosElegidos[item.id] }}
                 }
               </ion-badge>
               <ion-label style="color: white;">{{ item.nombre }}</ion-label>
@@ -204,56 +145,30 @@
               <h2>{{ item.descripcion }}</h2>
               <div class="imgs-container">
                 @for (foto of item.fotos_url; track $index) {
-                  <img [attr.src]="foto" alt="foto del producto" />
+                <img [attr.src]="foto" alt="foto del producto" />
                 }
               </div>
               <h2>Tiempo de elaboración: {{ item.tiempoElab }} minutos.</h2>
               <div class="cont-prod">
-                <ion-button
-                  size="medium"
-                  color="danger"
-                  expand="fill"
-                  (click)="restarProd(item)"
-                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0"
-                >
-                  <ion-icon
-                    slot="icon-only"
-                    aria-label="hidden"
-                    name="remove-circle-outline"
-                    color="light"
-                  ></ion-icon>
+                <ion-button size="medium" color="danger" expand="fill" (click)="restarProd(item)"
+                  [disabled]="!productosElegidos[item.id] || productosElegidos[item.id] === 0">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="remove-circle-outline" color="light"></ion-icon>
                 </ion-button>
 
-                <ion-input
-                  type="number"
-                  min="0"
-                  max="99"
-                  color="light"
-                  [(ngModel)]="productosElegidos[item.id]"
-                  ngDefaultControl
-                ></ion-input>
+                <ion-input type="number" min="0" max="99" color="light" [(ngModel)]="productosElegidos[item.id]"
+                  ngDefaultControl></ion-input>
 
-                <ion-button
-                  size="medium"
-                  color="success"
-                  expand="fill"
-                  (click)="sumarProd(item)"
-                  [disabled]="productosElegidos[item.id] === 99"
-                >
-                  <ion-icon
-                    slot="icon-only"
-                    aria-label="hidden"
-                    name="add-circle-outline"
-                    color="light"
-                  ></ion-icon>
+                <ion-button size="medium" color="success" expand="fill" (click)="sumarProd(item)"
+                  [disabled]="productosElegidos[item.id] === 99">
+                  <ion-icon slot="icon-only" aria-label="hidden" name="add-circle-outline" color="light"></ion-icon>
                 </ion-button>
               </div>
             </div>
           </ion-accordion>
-        }
+          }
 
-      </ion-accordion-group>
-    </ion-card-content>
+        </ion-accordion-group>
+      </ion-card-content>
     </ion-card>
 
     <!-- ───────── TOTAL EN UN SOLO RENGLÓN ───────── -->
