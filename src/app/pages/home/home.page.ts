@@ -106,7 +106,6 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-
     //mesa service
     this.mesaService.mensajeMesa$.subscribe((mensaje) => {
       this.mensajeMesa = mensaje;
@@ -130,6 +129,12 @@ export class HomePage implements OnInit {
             (this.usuarioActual as any).idMesa = clienteActualizado.idMesa;
           }
         );
+
+        // también escuchar la mesa directamente si ya tiene una al iniciar
+        const idMesaInicial = (this.usuarioActual as Cliente).idMesa;
+        if (idMesaInicial) {
+          this.escucharLiberacionMesa(idMesaInicial);
+        }
       } else {
         /* no es cliente → oculta cartel */
         this.setMensajeMesa(null);
@@ -692,5 +697,33 @@ export class HomePage implements OnInit {
       valor: idUsuario,
     });
     return mesas.length ? mesas[0].nroMesa : null;
+  }
+
+  private escucharLiberacionMesa(idMesa: string) {
+    this.mesaSub?.unsubscribe();
+
+    this.mesaSub = this.db.supabase
+      .channel(`mesa-liberada-${idMesa}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'mesas',
+          filter: `id=eq.${idMesa}`,
+        },
+        (payload) => {
+          const mesaActualizada = payload.new as Mesa;
+
+          if (mesaActualizada.estado === EstadoMesa.Disponible) {
+            // Estado actualizado: mesa liberada → cliente puede volver a la espera
+            this.setMensajeMesa(null);
+            if (this.usuarioActual) {
+              (this.usuarioActual as Cliente).idMesa = null;
+            }
+          }
+        }
+      )
+      .subscribe();
   }
 }
