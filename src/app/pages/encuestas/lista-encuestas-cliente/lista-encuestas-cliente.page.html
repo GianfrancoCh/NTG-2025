@@ -11,10 +11,15 @@
 <ion-content [fullscreen]="true">
   <div class="container background-pri">
     <ion-card style="width:95%;">
-      <!-- <ion-card-header>
-        <ion-card-title>Todas las encuestas</ion-card-title>
-      </ion-card-header> -->
+      <div class="btns" style="margin-top:1.2rem;">
+        <ion-button size="large" class="ion-margin" fill="solid" color="secondary" routerLink="/grafico-clientes">
+          <ion-icon slot="icon-only" name="stats-chart"></ion-icon>
+        </ion-button>
 
+        <ion-button size="large" class="ion-margin" fill="solid" color="primary" routerLink="/home">
+          <ion-icon slot="icon-only" name="home"></ion-icon>
+        </ion-button>
+      </div>
       <ion-card-content>
         <div class="encuestas-wrapper">
           <!-- ═════ Tarjeta por encuesta ═════ -->
@@ -54,14 +59,6 @@
         </div>
       </ion-card-content>
     </ion-card>
-    <div class="btns" style="margin-top:1.2rem;">
-      <ion-button size="large" class="ion-margin" fill="solid" color="secondary" routerLink="/grafico-clientes">
-        <ion-icon slot="icon-only" name="stats-chart"></ion-icon>
-      </ion-button>
 
-      <ion-button size="large" class="ion-margin" fill="solid" color="primary" routerLink="/home">
-        <ion-icon slot="icon-only" name="home"></ion-icon>
-      </ion-button>
-    </div>
   </div>
 </ion-content>
