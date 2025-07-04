@@ -1,37 +1,46 @@
 .ahorcado-container {
-  font-family: system-ui;
+  font-family: system-ui, sans-serif;
   text-align: center;
   padding: 16px;
   margin: 1rem auto;
-  background-color: #5623ed;
+  background: #1e1e2f; /* Fondo más oscuro */
   border-radius: 16px;
-  border: 2px solid #000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1.5px solid #444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   width: 95%;
   max-width: 500px;
+}
+
+.titulo {
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
 
 .imagen-ahorcado img {
   width: 120px;
   height: 140px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   transition: transform 0.3s ease;
+  filter: brightness(0.9);
 }
 
 .palabra-oculta {
   font-size: 36px;
   font-weight: bold;
   letter-spacing: 0.3rem;
-  margin-bottom: 5px;
-  color: #000000;
+  margin-bottom: 8px;
+  color: #ffffff;
   text-transform: uppercase;
   word-break: break-word;
 }
 
 .intentos {
   font-size: 20px;
-  color: #000000;
+  color: #ffdd57;
   font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .teclado {
@@ -42,26 +51,27 @@
 }
 
 .teclado button {
-  padding: 8px;
+  padding: 10px;
   margin: 4px;
-  font-size: 24px;
+  font-size: 22px;
   width: 45px;
   height: 45px;
-  border-radius: 8px;
-  background-color: #000000;
-  border: 1.5px solid #000;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #303050;
+  color: #fff;
+  border: 1.5px solid #555;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .teclado button:hover {
-  background-color: #eec1c1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #5c4db1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .teclado button:disabled {
-  background-color: #d8d8d8;
-  color: #fff;
+  background-color: #444;
+  color: #aaa;
   cursor: not-allowed;
 }
 
@@ -70,22 +80,28 @@ button {
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .boton-reiniciar {
   background-color: #af4ca3;
   color: #fff;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #000;
-  padding: 6px 14px;
+  padding: 8px 16px;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.boton-reiniciar:hover {
+  background-color: #d176ca;
 }
 
 .palabra-correcta {
   font-size: 1.1rem;
-  color: #000;
+  color: #fff;
   margin-top: 0.5rem;
 }
 
@@ -96,8 +112,8 @@ button:active {
   padding: 0;
   font-size: 1rem;
   font-weight: bold;
-  margin: 1.5rem auto 0; /* margen arriba, centrado horizontal */
-  display: block; /* para que margin auto funcione */
+  margin: 1.5rem auto 0;
+  display: block;
   min-width: unset !important;
   --background: #dc3545;
   --color: white;
