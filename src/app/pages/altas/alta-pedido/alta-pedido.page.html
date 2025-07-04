@@ -9,16 +9,13 @@
 
 <ion-content [fullscreen]="true" class="pedido-content">
   <div class="container">
-    <!-- ───────── OPCIONES ───────── -->
-    <ion-card style="width:97%;">
+    <ion-card>
 
-      <ion-card-header>
-        <ion-card-subtitle>
-          {{precio | currency}}
-        </ion-card-subtitle>
-        <div id="btn-container">
-          <ion-button fill="clear" size="large" (click)="navCtrl.navigateForward('consulta-mozo')">
-            <ion-icon slot="icon-only" name="chatbox-ellipses-outline" color="medium"></ion-icon>
+      <ion-card-header class="header-precio-chat">
+        <div class="fila-precio-chat">
+          <ion-card-subtitle>{{ precio | currency }}</ion-card-subtitle>
+          <ion-button fill="clear" size="small" (click)="navCtrl.navigateForward('consulta-mozo')" class="btn-icono">
+            <ion-icon slot="icon-only" name="chatbox-ellipses-outline" style="color: white;"></ion-icon>
           </ion-button>
         </div>
       </ion-card-header>
