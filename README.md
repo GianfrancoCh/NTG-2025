@@ -74,17 +74,24 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 
 ### QRs por mesa
 
-<p align="center">
 <div align="center">
-**Mesa 1**  
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true" alt="QR Mesa 1" width="120" />
-**Mesa 2** 
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-2.png?raw=true" alt="QR Mesa 2" width="120" />
-**Mesa 3** 
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-3.png?raw=true" alt="QR Mesa 3" width="120" />
-**Mesa 4** 
-  <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" />
-</p>
+
+  <p><strong>Mesa 1</strong><br/>
+    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true" alt="QR Mesa 1" width="120" />
+  </p>
+
+  <p><strong>Mesa 2</strong><br/>
+    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-2.png?raw=true" alt="QR Mesa 2" width="120" />
+  </p>
+
+  <p><strong>Mesa 3</strong><br/>
+    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-3.png?raw=true" alt="QR Mesa 3" width="120" />
+  </p>
+
+  <p><strong>Mesa 4</strong><br/>
+    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" />
+  </p>
+
 </div>
 ### QRs Propina
 
