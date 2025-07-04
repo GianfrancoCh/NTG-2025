@@ -18,7 +18,10 @@ import {
   IonButton,
   IonCardContent,
   IonCard,
-  IonCardHeader, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+  IonCardHeader,
+  IonBackButton,
+  IonButtons,
+} from '@ionic/angular/standalone';
 import { EncuestaCliente } from 'src/app/clases/encuestas/encuesta-cliente';
 import {
   Colecciones,
@@ -40,7 +43,9 @@ import { Chart } from 'chart.js/auto';
   templateUrl: './grafico-clientes.page.html',
   styleUrls: ['./grafico-clientes.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonBackButton, 
+  imports: [
+    IonButtons,
+    IonBackButton,
     IonCardHeader,
     IonCard,
     IonCardContent,
@@ -201,12 +206,26 @@ export class GraficoClientesPage implements AfterViewInit {
               title: {
                 display: true,
                 text: 'Cantidad',
+                color: 'white', // ✅ color del título del eje X
+              },
+              ticks: {
+                color: 'white', // ✅ color de los números del eje X
+              },
+              grid: {
+                color: '#555', // opcional, color de las líneas de grilla
               },
             },
             y: {
               title: {
                 display: true,
                 text: 'Puntuación General',
+                color: 'white', // ✅ título del eje Y
+              },
+              ticks: {
+                color: 'white', // ✅ números del eje Y
+              },
+              grid: {
+                color: '#555',
               },
             },
           },
@@ -288,6 +307,13 @@ export class GraficoClientesPage implements AfterViewInit {
               title: {
                 display: true,
                 text: 'Tipo de Atención',
+                color: 'white', // ✅ título del eje X
+              },
+              ticks: {
+                color: 'white', // ✅ números del eje X
+              },
+              grid: {
+                color: '#555',
               },
             },
             y: {
@@ -295,6 +321,13 @@ export class GraficoClientesPage implements AfterViewInit {
               title: {
                 display: true,
                 text: 'Cantidad',
+                color: 'white', // ✅ título del eje Y
+              },
+              ticks: {
+                color: 'white', // ✅ números del eje Y
+              },
+              grid: {
+                color: '#555',
               },
             },
           },
@@ -358,6 +391,7 @@ export class GraficoClientesPage implements AfterViewInit {
               position: 'bottom',
               labels: {
                 usePointStyle: true,
+                color: 'white', // ✅ texto de la leyenda en blanco
               },
             },
           },
