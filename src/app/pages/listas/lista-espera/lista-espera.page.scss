@@ -54,12 +54,18 @@ ion-content {
     height: 100%;
     align-items: center;
     justify-content: center;
+    margin-top: 100px;
 
     ion-card-title {
       font-size: 4rem;
     }
 
-    p,
+    p {
+      text-align: center;
+      color: #fff;
+      font-size: 1.7rem;
+      margin: 60px 0;
+    }
     ion-button {
       font-size: 2rem;
     }
