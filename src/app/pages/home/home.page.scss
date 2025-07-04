@@ -1,5 +1,6 @@
 @import "src/theme/variables.scss";
 
+/* --- Colores y tipografía genéricos ----------------------------------- */
 ion-toolbar {
   --background: #039be6;
   --color: white;
@@ -10,43 +11,72 @@ ion-content {
   color: #fff;
 }
 
-.titulo-header {
-  font-weight: bold;
-  font-size: 35px;
-  color: black;
-}
-
 .container {
   display: flex;
-  justify-content: start;
+  flex-direction: column;
   align-items: center;
   padding: 8px;
 }
 
-.boton-logout {
-  font-weight: bold;
-  font-size: 20px;
-  color: rgb(255, 255, 255);
+/* --- Card celeste con datos de perfil --------------------------------- */
+.perfil-card {
+  width: 100%;
+  max-width: 380px;
+  --background: #039be6;     /* celeste suave */
+  --border-radius: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-.titulo-inicio {
-  font-size: 35px;
-  color: #039be6;
-  text-align: center;
-  width: 100%;
-  margin: 0 0 1rem 0;
-  font-family: "system-ui", sans-serif;
+.perfil-card ion-card-content {
+  padding: 24px 16px;
+}
+
+.saludo {
+  font-size: 28px;
   font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.nombre-usuario {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 12px 0 6px;
 }
 
 .titulo-mail {
-  font-size: 20px;
-  color: #aaaaaa;
+  font-size: 18px;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* --- Avatar ----------------------------------------------------------- */
+.avatar-blanco {
+  width: 160px;
+  height: 160px;
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 12px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* --- Botones y otros estilos previos ---------------------------------- */
+.titulo-inicio {
+  font-size: 35px;
+  color: #ffffff;
   text-align: center;
   width: 100%;
-  margin: 0 0 10x 0;
+  margin: 0 0 1rem;
   font-family: "system-ui", sans-serif;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .descripcion-inicio {
@@ -54,84 +84,9 @@ ion-content {
   color: #639d4c;
   text-align: center;
   width: 100%;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   font-family: "system-ui", sans-serif;
   font-weight: bold;
-}
-
-/* Nuevos estilos para el contenedor QR */
-.qr-container {
-  width: 100%;
-  padding: 30px 0;
-  display: flex;
-  justify-content: center;
-  background: transparent;
-}
-
-.btn_qr {
-  width: 98%;
-  height: 50px;
-  margin: 0;
-  --border-radius: 8px; /* Opcional: bordes redondeados */
-}
-
-.img_qr {
-  width: 24px; /* Tamaño ajustado para mejor proporción */
-  height: 24px;
-}
-/* Estilos para el header */
-.header-fix ion-toolbar {
-  --border-width: 0;
-  height: 80px;
-  display: flex;
-  align-items: center;
-}
-
-.header-fix {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
-  background-color: #039be6; /* Color de fondo del header */
-  height: 40px;
-}
-
-.header-fix ion-title {
-  font-size: 35px;
-  font-weight: bold;
-}
-
-/* Botones flotantes grandes */
-.fab-wrapper {
-  /* Distribuye los dos FAB uno al lado del otro */
-  display: flex;
-  gap: 44px; /* separación entre ellos */
-  margin-bottom: 60px;
-}
-
-.fab-btn {
-  /* Diámetro y tipografía grandes */
-  width: 120px;
-  height: 120px;
-  font-size: 60px;
-  --border-radius: 50%; /* redondos */
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --color: #ffffff;
-}
-
-/* Colores de acción distintos (opcional) */
-.fab-logout {
-  --background: #e53935; /* rojo */
-}
-.fab-qr {
-  --background: #039be6; /* azul */
-}
-
-/* Si utilizas <img> dentro del FAB */
-.fab-img {
-  width: 42px;
-  height: 42px;
 }
 
 ion-button {
@@ -148,56 +103,58 @@ ion-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 1px; /* Espacio entre los botones */
+  gap: 1rem;
 }
 
-/* …tus estilos previos… */
+/* FABs, header, cartel mesa … (se mantienen igual) */
+.header-fix ion-toolbar {
+  --border-width: 0;
+  height: 80px;
+}
 
-.avatar {
+.header-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #039be6;
+}
+
+.fab-wrapper {
+  display: flex;
+  gap: 44px;
+  margin-bottom: 60px;
+}
+
+.fab-btn {
   width: 120px;
   height: 120px;
-  margin-bottom: 16px;
-  border: 3px solid #039be6;
-  border-radius: 50%; /* por si no usas IonAvatar */
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  font-size: 60px;
+  --border-radius: 50%;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --color: #ffffff;
 }
 
-.avatar-blanco {
-  width: 160px;
-  height: 160px;
-  border: 4px solid white;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 10px;
+.fab-logout {
+  --background: #e53935;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.fab-qr {
+  --background: #039be6;
 }
 
 .cartel-mesa {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 12px;
 }
 
 .cartel-borde-azul {
   --color: #039be6;
   --border-color: #039be6;
-  --border-radius: 25px;
+  --border-radius: 50px;
   --background: transparent;
   --box-shadow: none;
   font-size: 25px;
   font-weight: bold;
   text-transform: none;
 }
-
-

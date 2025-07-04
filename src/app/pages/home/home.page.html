@@ -1,43 +1,49 @@
 <ion-header [translucent]="true" class="header-fix">
   <ion-toolbar>
-    <ion-title class="titulo-header" style="color: white;">Página Principal</ion-title>
+    <ion-title class="titulo-header">Página Principal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content id="main-content">
-  <div
-    class="container"
-    style="font-size: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
-  >
+  <div class="container">
     <!-- Visitante -->
     <div *ngIf="!user">
-      <h1 class="titulo-inicio" style="margin-top: 40px; font-size: 40px;">Bienvenido</h1>
-      <p class="descripcion-inicio">Debes estar registrado para poder utilizar la app.</p>
+      <h1 class="titulo-inicio">Bienvenido</h1>
+      <p class="descripcion-inicio">
+        Debes estar registrado para poder utilizar la app.
+      </p>
 
-      <ion-button size="big" style="height: 70px;" (click)="goToLogin()">Iniciar Sesión</ion-button>
+      <ion-button size="big" (click)="goToLogin()">Iniciar Sesión</ion-button>
       <br />
-      <ion-button size="big" style="height: 70px;" (click)="goToRegister()">Crear una Cuenta</ion-button>
+      <ion-button size="big" (click)="goToRegister()">Crear una Cuenta</ion-button>
     </div>
 
     <!-- Usuario logueado -->
     <div *ngIf="user" class="botones-inicio">
-      <h1>Bienvenido/a</h1>
+      <!-- 🔵 Card celeste con datos de perfil --------------------------- -->
+      <ion-card class="perfil-card" style="border-radius: 30px;">
+        <ion-card-content>
+          <h2 class="saludo">Bienvenido/a</h2>
 
-      <div class="avatar-blanco">
-        <img [src]="usuarioActual?.foto_url" alt="imagen usuario" />
-      </div>
+          <div class="avatar-blanco">
+            <img
+              [src]="usuarioActual?.foto_url || 'assets/imagen-por-defecto.png'"
+              alt="Foto de usuario"
+            />
+          </div>
 
-      <h1 class="titulo-inicio">
-        {{ usuarioActual?.nombre }} {{ usuarioActual?.apellido }}
-      </h1>
-      <h1 class="titulo-mail">Ingresaste como {{ user.email }}</h1>
+          <h2 class="nombre-usuario">
+            {{ usuarioActual?.nombre }} {{ usuarioActual?.apellido }}
+          </h2>
+
+          <p class="titulo-mail">Ingresaste como {{ user.email }}</p>
+        </ion-card-content>
+      </ion-card>
+      <!-- -------------------------------------------------------------- -->
 
       <!-- Cartel de mesa (solo clientes) -->
       <div *ngIf="usuarioActual?.rol === 'cliente'" class="cartel-mesa">
-        <ion-button
-          fill="outline"
-          class="cartel-borde-azul"
-        >
+        <ion-button fill="outline" class="cartel-borde-azul">
           {{ mensajeMesa }}
         </ion-button>
       </div>
@@ -58,8 +64,7 @@
           usuarioActual?.rol === 'bartender' ||
           usuarioActual?.rol === 'maitre'
         "
-      >
-      </div>
+      ></div>
 
       <!-- CO-CI-MO -->
       <div
