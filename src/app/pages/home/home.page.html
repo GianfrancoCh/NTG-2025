@@ -74,14 +74,14 @@
           usuarioActual?.rol === 'bartender'
         "
       >
-        <ion-button size="big" routerLink="/lista-pedidos-pendiente">
+        <ion-button size="small" routerLink="/lista-pedidos-pendiente">
           Pedidos pendientes
         </ion-button>
       </div>
 
       <!-- MOZO extra -->
       <div *ngIf="usuarioActual?.rol === 'mozo'">
-        <ion-button size="big" routerLink="/lista-clientes-pagando">
+        <ion-button size="small" routerLink="/lista-clientes-pagando">
           Clientes pagando
         </ion-button>
       </div>
