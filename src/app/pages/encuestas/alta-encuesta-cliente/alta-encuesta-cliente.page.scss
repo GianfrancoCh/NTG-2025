@@ -1,15 +1,14 @@
-
 @import "src/theme/variables.scss";
 
 ion-content {
-  --background:#2D2D51;
-  color:#fff;
+  --background: #2d2d51;
+  color: #fff;
 }
 
 /* Contenedor principal */
 ion-card {
-  margin:0.5rem;
-  background-color:#414068;
+  margin: 0.5rem;
+  background-color: #414068;
 }
 
 .container {
@@ -26,9 +25,14 @@ ion-card {
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ffffff44;
 
     .label {
-      font-size: 1.25rem;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 500;
     }
 
     .input,

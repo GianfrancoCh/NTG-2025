@@ -1,9 +1,9 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar>
+  <ion-toolbar style="background-color:#039BE6;color:rgb(0, 0, 0);padding-top:20px;">
     <ion-buttons slot="start">
       <ion-back-button routerLink="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>lista-clientes-pagando</ion-title>
+    <ion-title style="font-size:1.6rem; font-weight: bold">Clientes pagando</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,15 +23,14 @@
           @if (mesa.id == cliente.idMesa) {
           <ion-item>
             <div class="pedido">
-              <ion-button style="background-color:#039BE6;border-radius:15px;" expand="fill" fill="clear" size="large"
-                (click)="mostrarPedido(pedido)">
+              <ion-button style="background-color:#1e1e1e;border-radius:15px;border: 2px solid white;" expand="fill"
+                fill="clear" size="large" (click)="mostrarPedido(pedido)">
                 <ion-icon slot="icon-only" name="receipt-outline" style="color:white;"></ion-icon>
-                <p style="margin-right:10px;color:white;">Ver pedido</p>
               </ion-button>
 
               <div class="text">
                 <ion-label>Mesa Nro{{mesa.nroMesa}}</ion-label>
-                <ion-label><small>aprobar pedido</small></ion-label>
+                <ion-label><small>Confirmar pago</small></ion-label>
               </div>
 
               <div part="content" class="content">

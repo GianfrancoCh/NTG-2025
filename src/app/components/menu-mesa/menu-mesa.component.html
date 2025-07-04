@@ -47,17 +47,17 @@
     </ion-card-header>
     <ion-card-content *ngIf="pedido">
       <div class="btn-group">
-        <ng-container *ngIf="!hizoEncuesta">
+        <!-- <ng-container *ngIf="!hizoEncuesta">
           <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('alta-encuesta')">
             Subir encuesta
           </button>
-        </ng-container>
+        </ng-container> -->
 
         <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('lista-encuestas')">
           Lista de encuestas
         </button>
 
-        <button class="btn-custom btn-blue" (click)="modalCtrl.dismiss('juego')">
+        <button class="btn-custom btn-blue" (click)="goToJuego()">
           Jugar por descuento
         </button>
       </div>

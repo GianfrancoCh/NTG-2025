@@ -1,24 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>
-      Nueva encuesta
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <div class="container" style="--background-color: #2D2D51;">
     <ion-card style="width: 95%;">
       <ion-card-header>
-        <ion-card-title>Encuesta de Cliente</ion-card-title>
+        <ion-card-title style="font-size: 30px;font-weight: bold;">Encuesta de Cliente</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <form [formGroup]="frmEncuesta" (ngSubmit)="subirEncuesta()">
 
           <div id="puntuacionGeneral" class="control">
-            <!-- <app-range-estrellas titulo="Puntuación General" idEstrellas="puntuacionGeneral"
-              (cambioValor)="frmEncuesta.controls['puntuacionGeneral'].setValue($event)"></app-range-estrellas> -->
-
             <!-- Select -->
             <div class="label">
               <ion-label>Puntuación General</ion-label>
@@ -46,7 +35,10 @@
           </div>
 
           <div id="atencion" class="control">
-            <ion-label>Atención</ion-label>
+
+            <div class="label">
+              <ion-label>Atención</ion-label>
+            </div>
             <ion-radio-group formControlName="atencion" (ionChange)="onAtencionChange($event)" required
               ngDefaultControl>
               <ion-item>
