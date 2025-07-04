@@ -6,6 +6,7 @@ export class Producto {
   precio: number;
   sector: 'cocina' | 'barra';
   fotos_url: string[];
+  tipo?: 'bebida' | 'comida' | 'postre';
 
   constructor(
     nombre: string,
@@ -13,7 +14,8 @@ export class Producto {
     tiempoElab: number,
     precio: number,
     sector: 'cocina' | 'barra',
-    fotos_url: string[]
+    fotos_url: string[],
+    tipo?: 'bebida' | 'comida' | 'postre'
   ) {
     this.id = '';
     this.nombre = nombre;
@@ -22,5 +24,6 @@ export class Producto {
     this.precio = precio;
     this.sector = sector;
     this.fotos_url = fotos_url;
+    this.tipo = tipo;
   }
 }

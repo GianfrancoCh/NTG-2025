@@ -87,6 +87,9 @@ export class AltaPedidoPage {
   precio: number = 0;
   productosElegidos: { [id: string]: number } = {};
   productos: Producto[] = [];
+  bebidas: Producto[] = [];
+  comidas: Producto[] = [];
+  postres: Producto[] = [];
   constructor(
     private db: DatabaseService,
     private spinner: NgxSpinnerService,
@@ -104,12 +107,15 @@ export class AltaPedidoPage {
         if (typeof prod.fotos_url === 'string') {
           try {
             prod.fotos_url = JSON.parse(prod.fotos_url);
-            console.log('Fotos URL parseadas:', prod.fotos_url);
+            console.log(prod)
           } catch (e) {
             console.error('Error al parsear fotos_url:', prod.fotos_url);
             prod.fotos_url = []; // fallback vacío si hay error
           }
         }
+         if (prod.tipo === 'bebida') this.bebidas.push(prod);
+        else if (prod.tipo === 'comida') this.comidas.push(prod);
+        else if (prod.tipo === 'postre') this.postres.push(prod);
       });
     });
 
@@ -121,6 +127,10 @@ export class AltaPedidoPage {
       addCircleOutline,
       chatboxEllipsesOutline,
     });
+  };
+  
+  filtrarPorTipo(tipo: string): Producto[] {
+    return this.productos.filter(p => p.tipo === tipo);
   }
 
   restarProd(prod: Producto) {

@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="end">
     </ion-buttons>
-    <ion-title class="titulo-header">Pagina principal</ion-title>
+    <ion-title class="titulo-header">Página Principal</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -48,6 +48,7 @@
             user &&
             (usuarioActual?.rol == 'cliente' || usuarioActual?.rol == 'clienteAnonimo')
         ">
+          <!-- <ion-button size="big" (click)="pruebaMesa()">prueba cliente</ion-button> -->
         <div>
           <img class="img-usuario" [src]="usuarioActual?.foto_url" alt="imagen usuario" width="160"
             style="border-radius: 50%" />
