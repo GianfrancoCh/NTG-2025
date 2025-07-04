@@ -1,9 +1,6 @@
 <ion-header [translucent]="true" class="header-fix">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button routerLink="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Alta cliente anonimo</ion-title>
+  <ion-toolbar style="display: flex; justify-content: center; align-items: center;">
+    <ion-title class="titulo-header">Alta cliente anónimo</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -29,9 +26,10 @@
             Ingresar
           </ion-button>
         </form>
-        <br/>
-        <ion-text style="color: white; font-weight: 100;">Quiero formar parte de sus clientes!
-          <a routerLink="/alta-cliente">Registrarse</a>.
+        <br />
+        <ion-text style="color: white; font-weight: 100;font-size: 15px; font-weight: bold;">Quiero formar parte de sus
+          clientes!
+          <a style="font-size: 15px;font-weight: bold;" routerLink="/alta-cliente">Registrarse</a>.
         </ion-text>
       </ion-card-content>
     </ion-card>

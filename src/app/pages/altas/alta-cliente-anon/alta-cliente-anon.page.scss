@@ -1,12 +1,12 @@
 @import "src/theme/variables.scss";
 
 ion-toolbar {
-  --background: #039BE6;
+  --background: #039be6;
   --color: white;
 }
 
 ion-content {
-  --background: #2D2D51;
+  --background: #2d2d51;
   color: #fff;
 }
 
@@ -60,11 +60,11 @@ ion-content {
 
   ion-button[type="submit"] {
     margin-top: 1rem;
-    --background: #24B4F8;
+    --background: #24b4f8;
     --color: white;
     --border-radius: 5px;
     height: 50px;
-    }
+  }
 }
 
 small {
