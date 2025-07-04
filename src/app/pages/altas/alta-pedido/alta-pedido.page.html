@@ -21,7 +21,6 @@
           (click)="navCtrl.navigateForward('consulta-mozo')"
         >
           <ion-icon slot="icon-only" name="chatbubble-ellipses-outline"></ion-icon>
-          Consultar mozo
         </ion-button>
 
         <ion-button
@@ -32,11 +31,10 @@
           [disabled]="Object.keys(productosElegidos).length < 1"
         >
           <ion-icon slot="icon-only" name="receipt-outline"></ion-icon>
-          Mostrar pedido
         </ion-button>
       </div>
 
-      <ion-card-header></ion-card-header>
+      <!-- <ion-card-header></ion-card-header> -->
       
       <!-- ───────── LISTA DE PRODUCTOS ───────── -->
       <ion-card-content id="menu-container">
