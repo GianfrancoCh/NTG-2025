@@ -197,7 +197,6 @@ export class LoginPage {
       password: this.password,
     });
 
-    this.login();
   }
 
   volverAlHome() {

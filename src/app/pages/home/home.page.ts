@@ -51,6 +51,8 @@ import { PushNotificationService } from 'src/app/services/push-notification.serv
 import { MenuMesaComponent } from 'src/app/components/menu-mesa/menu-mesa.component';
 import { Pedido, PorcPropina } from 'src/app/clases/pedido';
 import { CuentaComponent } from 'src/app/components/cuenta/cuenta.component';
+import { RealtimeChannel } from '@supabase/supabase-js';          // ⬅️ NUEVO
+
 
 @Component({
   selector: 'app-home',
@@ -84,8 +86,11 @@ import { CuentaComponent } from 'src/app/components/cuenta/cuenta.component';
 })
 export class HomePage implements OnInit {
   user: User | null = null;
+  
   isLoggedIn = false;
   usuarioActual: Persona | null = null;
+  mensajeMesa = 'Sin mesa asignada';
+  private mesaSub!: RealtimeChannel; 
 
   constructor(
     private router: Router,
@@ -99,12 +104,60 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe((user) => {
+    /* 1) Usuario auth */
+    this.authService.getCurrentUser().subscribe(async (user) => {
       this.user = user;
-      console.log('Usuario en home:', user);
+      this.usuarioActual = this.authService.UsuarioEnSesion;
+
+      /* 2) Mensaje inicial */
+      this.actualizarMensajeMesa(this.usuarioActual);
+
+      /* 3) Suscripción realtime (solo clientes) */
+      if (user && this.usuarioActual?.rol === 'cliente') {
+        this.subscribeMesaRealtime(user.id);
+      }
     });
-    this.usuarioActual = this.authService.UsuarioEnSesion;
-    console.log('Usuario actual:', this.usuarioActual);
+  }
+
+  ngOnDestroy(): void {
+    this.mesaSub?.unsubscribe();
+  }
+
+  /* -------- SUSCRIPCIÓN REALTIME -------- */
+  private subscribeMesaRealtime(idUsuario: string) {
+    /* Cancela previa (por seguridad en hot-reload) */
+    this.mesaSub?.unsubscribe();
+
+    this.mesaSub = this.db.supabase
+      .channel(`mesa-updates-${idUsuario}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'usuarios',
+          filter: `id=eq.${idUsuario}`,
+        },
+        (payload) => {
+          // La fila actualizada viene en payload.new
+          const fila = payload.new as { idMesa: number | null };
+          this.actualizarMensajeMesa({ ...this.usuarioActual!, idMesa: fila.idMesa } as Persona);
+        }
+      )
+      .subscribe();
+  }
+
+  /* -------- MENSAJE -------- */
+  private actualizarMensajeMesa(usuario?: Persona | null) {
+    if (!usuario || usuario.rol !== 'cliente') {
+      this.mensajeMesa = '';
+      return;
+    }
+
+    const idMesa = (usuario as any).idMesa; // Cliente extiende Persona
+    this.mensajeMesa = idMesa
+      ? `Mesa asignada Nº ${idMesa}`
+      : 'Sin mesa asignada';
   }
 
   goToLogin() {

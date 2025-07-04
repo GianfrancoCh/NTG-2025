@@ -1,14 +1,15 @@
 <ion-header [translucent]="true" class="header-fix">
   <ion-toolbar>
-    <ion-buttons slot="end">
-    </ion-buttons>
-    <ion-title class="titulo-header">Página Principal</ion-title>
+    <ion-title class="titulo-header" style="color: white;">Página Principal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content id="main-content">
-  <div class="container"
-    style="font-size: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <div
+    class="container"
+    style="font-size: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
+  >
+    <!-- Visitante -->
     <div *ngIf="!user">
       <h1 class="titulo-inicio" style="margin-top: 40px; font-size: 40px;">Bienvenido</h1>
       <p class="descripcion-inicio">Debes estar registrado para poder utilizar la app.</p>
@@ -18,63 +19,86 @@
       <ion-button size="big" style="height: 70px;" (click)="goToRegister()">Crear una Cuenta</ion-button>
     </div>
 
+    <!-- Usuario logueado -->
     <div *ngIf="user" class="botones-inicio">
       <h1>Bienvenido/a</h1>
-      <h1 class="titulo-inicio">{{this.usuarioActual?.nombre}} {{this.usuarioActual?.apellido}}</h1>
-      <h1 class="titulo-mail">Ingresaste como {{ user.email }}</h1>
-      <!-- JEFE -->
-      <div *ngIf="user && this.usuarioActual?.rol == 'jefe'">
-        <ion-button size="big" routerLink="/lista-clientes-pendientes">Lista clientes pendientes</ion-button>
+
+      <div class="avatar-blanco">
+        <img [src]="usuarioActual?.foto_url" alt="imagen usuario" />
       </div>
+
+      <h1 class="titulo-inicio">
+        {{ usuarioActual?.nombre }} {{ usuarioActual?.apellido }}
+      </h1>
+      <h1 class="titulo-mail">Ingresaste como {{ user.email }}</h1>
+
+      <!-- Cartel de mesa (solo clientes) -->
+      <div *ngIf="usuarioActual?.rol === 'cliente'" class="cartel-mesa">
+        <ion-button
+          fill="outline"
+          class="cartel-borde-azul"
+        >
+          {{ mensajeMesa }}
+        </ion-button>
+      </div>
+
+      <!-- JEFE -->
+      <div *ngIf="usuarioActual?.rol === 'jefe'">
+        <ion-button size="big" routerLink="/lista-clientes-pendientes">
+          Lista clientes pendientes
+        </ion-button>
+      </div>
+
       <!-- EMPLEADO -->
       <div
-        *ngIf="user && (this.usuarioActual?.rol == 'empleado' || this.usuarioActual?.rol == 'cocinero' || this.usuarioActual?.rol == 'mozo' || this.usuarioActual?.rol == 'bartender' || this.usuarioActual?.rol == 'maitre')">
+        *ngIf="
+          usuarioActual?.rol === 'empleado' ||
+          usuarioActual?.rol === 'cocinero' ||
+          usuarioActual?.rol === 'mozo' ||
+          usuarioActual?.rol === 'bartender' ||
+          usuarioActual?.rol === 'maitre'
+        "
+      >
       </div>
-      <!-- mozo cocinero bartender-->
+
+      <!-- CO-CI-MO -->
       <div
-        *ngIf="user && (this.usuarioActual?.rol == 'cocinero' || this.usuarioActual?.rol == 'mozo' || this.usuarioActual?.rol == 'bartender')">
-        <ion-button size="big" routerLink="/lista-pedidos-pendiente">Pedidos pendientes</ion-button>
+        *ngIf="
+          usuarioActual?.rol === 'cocinero' ||
+          usuarioActual?.rol === 'mozo' ||
+          usuarioActual?.rol === 'bartender'
+        "
+      >
+        <ion-button size="big" routerLink="/lista-pedidos-pendiente">
+          Pedidos pendientes
+        </ion-button>
       </div>
-      <br>
-      <div *ngIf="user && this.usuarioActual?.rol == 'mozo'">
-        <ion-button size="big" routerLink="/lista-clientes-pagando">Clientes pagando</ion-button>
+
+      <!-- MOZO extra -->
+      <div *ngIf="usuarioActual?.rol === 'mozo'">
+        <ion-button size="big" routerLink="/lista-clientes-pagando">
+          Clientes pagando
+        </ion-button>
       </div>
-      <!-- maitre -->
-      <div *ngIf="user && this.usuarioActual?.rol == 'maitre'">
-        <ion-button size="big" routerLink="/lista-espera">Lista de clientes en espera</ion-button>
-      </div>
-      <!-- CLIENTE -->
-      <div *ngIf="
-            user &&
-            (usuarioActual?.rol == 'cliente' || usuarioActual?.rol == 'clienteAnonimo')
-        ">
-          <!-- <ion-button size="big" (click)="pruebaMesa()">prueba cliente</ion-button> -->
-        <div>
-          <img class="img-usuario" [src]="usuarioActual?.foto_url" alt="imagen usuario" width="160"
-            style="border-radius: 50%" />
-        </div>
+
+      <!-- MAÎTRE -->
+      <div *ngIf="usuarioActual?.rol === 'maitre'">
+        <ion-button size="big" routerLink="/lista-espera">
+          Lista de clientes en espera
+        </ion-button>
       </div>
     </div>
-
-    <!-- OPCIONES USUARIOS -->
-
   </div>
 
-  <!-- FABs visibles solo cuando hay usuario logueado -->
+  <!-- FABs -->
   <ion-fab *ngIf="user" vertical="bottom" horizontal="center" slot="fixed">
     <div class="fab-wrapper">
-      <!-- Cerrar sesión -->
       <ion-fab-button class="fab-btn fab-logout" (click)="logout()">
         <ion-icon size="large" name="exit-outline"></ion-icon>
       </ion-fab-button>
 
-      <!-- Escanear QR -->
       <ion-fab-button class="fab-btn fab-qr" (click)="escanearQr()">
-        <!-- Icono vectorial o tu PNG -->
         <ion-icon size="large" name="qr-code-outline"></ion-icon>
-        <!--  Si prefieres la imagen que ya usas:
-      <img src="../../../assets/qr.png" class="fab-img" />
-      -->
       </ion-fab-button>
     </div>
   </ion-fab>

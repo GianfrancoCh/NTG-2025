@@ -18,7 +18,7 @@ ion-content {
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   padding: 8px;
 }
@@ -44,7 +44,7 @@ ion-content {
   color: #aaaaaa;
   text-align: center;
   width: 100%;
-  margin: 0 0 1rem 0;
+  margin: 0 0 10x 0;
   font-family: "system-ui", sans-serif;
   font-weight: normal;
 }
@@ -54,7 +54,7 @@ ion-content {
   color: #639d4c;
   text-align: center;
   width: 100%;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1rem 0;
   font-family: "system-ui", sans-serif;
   font-weight: bold;
 }
@@ -144,12 +144,12 @@ ion-button {
 }
 
 .botones-inicio {
-  margin-top: 60px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px; /* Espacio entre los botones */
+  gap: 1px; /* Espacio entre los botones */
 }
 
 /* …tus estilos previos… */
@@ -168,3 +168,36 @@ ion-button {
     object-fit: cover;
   }
 }
+
+.avatar-blanco {
+  width: 160px;
+  height: 160px;
+  border: 4px solid white;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cartel-mesa {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.cartel-borde-azul {
+  --color: #039be6;
+  --border-color: #039be6;
+  --border-radius: 25px;
+  --background: transparent;
+  --box-shadow: none;
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: none;
+}
+
+
