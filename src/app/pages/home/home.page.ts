@@ -51,8 +51,8 @@ import { PushNotificationService } from 'src/app/services/push-notification.serv
 import { MenuMesaComponent } from 'src/app/components/menu-mesa/menu-mesa.component';
 import { Pedido, PorcPropina } from 'src/app/clases/pedido';
 import { CuentaComponent } from 'src/app/components/cuenta/cuenta.component';
-import { RealtimeChannel } from '@supabase/supabase-js';          // ⬅️ NUEVO
-
+import { RealtimeChannel } from '@supabase/supabase-js'; // ⬅️ NUEVO
+import { MesaService } from 'src/app/services/mesa.service';
 
 @Component({
   selector: 'app-home',
@@ -86,13 +86,12 @@ import { RealtimeChannel } from '@supabase/supabase-js';          // ⬅️ NUEV
 })
 export class HomePage implements OnInit {
   user: User | null = null;
-  
+
   isLoggedIn = false;
   usuarioActual: Persona | null = null;
   mensajeMesa = 'Sin mesa asignada';
-  private mesaSub!: RealtimeChannel; 
+  private mesaSub!: RealtimeChannel;
   private canalUsuario!: RealtimeChannel;
-
 
   constructor(
     private router: Router,
@@ -102,42 +101,47 @@ export class HomePage implements OnInit {
     private db: DatabaseService,
     private spinner: NgxSpinnerService,
     private pushService: PushNotificationService,
-    protected modalCtrl: ModalController
+    protected modalCtrl: ModalController,
+    private mesaService: MesaService
   ) {}
 
   ngOnInit() {
+
+    //mesa service
+    this.mesaService.mensajeMesa$.subscribe((mensaje) => {
+      this.mensajeMesa = mensaje;
+    });
+
     this.authService.getCurrentUser().subscribe(async (user) => {
-  this.user = user;
-  this.usuarioActual = this.authService.UsuarioEnSesion;
+      this.user = user;
+      this.usuarioActual = this.authService.UsuarioEnSesion;
 
-  if (user && this.usuarioActual?.rol === 'cliente') {
-    /* 1) Mensaje inicial (puede que el metre ya haya asignado) */
-    this.setMensajeMesa((this.usuarioActual as any).idMesa ?? null);
+      if (user && this.usuarioActual?.rol === 'cliente') {
+        /* 1) Mensaje inicial (puede que el metre ya haya asignado) */
+        this.setMensajeMesa((this.usuarioActual as any).idMesa ?? null);
 
-    /* 2) Suscripción realtime usando la MISMA función del otro componente */
-    this.canalUsuario = this.db.escucharUsuario(
-      user.id,                                // id numérico de la tabla
-      (clienteActualizado: Cliente) => {
-        this.setMensajeMesa(clienteActualizado.idMesa ?? null);
+        /* 2) Suscripción realtime usando la MISMA función del otro componente */
+        this.canalUsuario = this.db.escucharUsuario(
+          user.id, // id numérico de la tabla
+          (clienteActualizado: Cliente) => {
+            this.setMensajeMesa(clienteActualizado.idMesa ?? null);
 
-        /* Mantén sincronizado el objeto en memoria */
-        (this.usuarioActual as any).idMesa = clienteActualizado.idMesa;
+            /* Mantén sincronizado el objeto en memoria */
+            (this.usuarioActual as any).idMesa = clienteActualizado.idMesa;
+          }
+        );
+      } else {
+        /* no es cliente → oculta cartel */
+        this.setMensajeMesa(null);
       }
-    );
-  } else {
-    /* no es cliente → oculta cartel */
-    this.setMensajeMesa(null);
+    });
   }
-});
 
-
-
+  private setMensajeMesa(idMesa: string | null) {
+    this.mensajeMesa = idMesa
+      ? `Mesa asignada Nº ${idMesa}`
+      : 'Sin mesa asignada';
   }
-private setMensajeMesa(idMesa: string | null) {
-  this.mensajeMesa = idMesa
-    ? `Mesa asignada Nº ${idMesa}`
-    : 'Sin mesa asignada';
-}
 
   ngOnDestroy(): void {
     this.mesaSub?.unsubscribe();
@@ -161,13 +165,14 @@ private setMensajeMesa(idMesa: string | null) {
         (payload) => {
           // La fila actualizada viene en payload.new
           const fila = payload.new as { idMesa: number | null };
-          this.actualizarMensajeMesa({ ...this.usuarioActual!, idMesa: fila.idMesa } as Persona);
+          this.actualizarMensajeMesa({
+            ...this.usuarioActual!,
+            idMesa: fila.idMesa,
+          } as Persona);
         }
       )
       .subscribe();
   }
-
-  
 
   /* -------- MENSAJE -------- */
   private actualizarMensajeMesa(usuario?: Persona | null) {
@@ -183,30 +188,29 @@ private setMensajeMesa(idMesa: string | null) {
   }
 
   // ► ELIMINA o ignora subscribeMesaRealtime()
-// ► AGREGA esta nueva versión:
-private subscribeMesaRealtimeMesas(idUsuario: string) {
-  /* Cancela previa (útil en hot-reload) */
-  this.mesaSub?.unsubscribe();
+  // ► AGREGA esta nueva versión:
+  private subscribeMesaRealtimeMesas(idUsuario: string) {
+    /* Cancela previa (útil en hot-reload) */
+    this.mesaSub?.unsubscribe();
 
-  this.mesaSub = this.db.supabase
-    .channel(`mesas-asign-${idUsuario}`)
-    .on(
-      'postgres_changes',
-      {
-        event: '*',
-        schema: 'public',
-        table: 'mesas',
-        filter: `id_cliente=eq.${idUsuario}`,   // 👍 escucha SOLO las filas del cliente
-      },
-      (payload) => {
-        const mesa = payload.new as any;        // nroMesa o nro_mesa según tu esquema
-        const nroMesa = mesa.nroMesa ?? mesa.nro_mesa ?? null;
-        this.setMensajeMesa(nroMesa);
-      }
-    )
-    .subscribe();
-}
-
+    this.mesaSub = this.db.supabase
+      .channel(`mesas-asign-${idUsuario}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'mesas',
+          filter: `id_cliente=eq.${idUsuario}`, // 👍 escucha SOLO las filas del cliente
+        },
+        (payload) => {
+          const mesa = payload.new as any; // nroMesa o nro_mesa según tu esquema
+          const nroMesa = mesa.nroMesa ?? mesa.nro_mesa ?? null;
+          this.setMensajeMesa(nroMesa);
+        }
+      )
+      .subscribe();
+  }
 
   goToLogin() {
     this.navCtrl.navigateForward('/login');
@@ -373,8 +377,8 @@ private subscribeMesaRealtimeMesas(idUsuario: string) {
           ErrorCodes.MesaInexistente,
           'Este QR no pertenece a una de nuestras mesas.'
         );
-        
-        console.log('Estado de la mesa escaneada:', mesaEscan.estado);
+
+      console.log('Estado de la mesa escaneada:', mesaEscan.estado);
       switch (mesaEscan.estado) {
         case EstadoMesa.Disponible:
           ToastInfo.fire(
@@ -545,7 +549,6 @@ private subscribeMesaRealtimeMesas(idUsuario: string) {
             'Ya se solicitó la cuenta. Por favor, espere al mozo para finalizar el pago.'
           );
           break;
-    
       }
 
       this.spinner.hide();
@@ -607,22 +610,21 @@ private subscribeMesaRealtimeMesas(idUsuario: string) {
     console.log('pruebaMesa');
     const mesaEscan = await this.db.traerDoc<Mesa>(Colecciones.Mesas, '2');
     const cliente = await this.db.traerDoc<Cliente>(
-        Colecciones.Usuarios,
-        this.authService.UsuarioEnSesion!.id
+      Colecciones.Usuarios,
+      this.authService.UsuarioEnSesion!.id
     );
     if (!cliente) return;
-    if(!mesaEscan) return;
+    if (!mesaEscan) return;
     this.mostrarMenu(mesaEscan).then((rta) => {
-            this.spinner.show();
+      this.spinner.show();
 
-            if (rta === 'pedir-comida')
-              this.navCtrl.navigateRoot('alta-pedido');
-            else if (rta === 'consultar')
-              this.navCtrl.navigateForward('consulta-mozo');
+      if (rta === 'pedir-comida') this.navCtrl.navigateRoot('alta-pedido');
+      else if (rta === 'consultar')
+        this.navCtrl.navigateForward('consulta-mozo');
 
-            this.spinner.hide();
-          });
-        
+      this.spinner.hide();
+    });
+
     // const pedidooo = (
     //         await this.db.traerCoincidencias<Pedido>(Colecciones.Pedidos, {
     //           campo: 'idCliente',
@@ -678,20 +680,17 @@ private subscribeMesaRealtimeMesas(idUsuario: string) {
     //         }
     //       });
 
-          ToastInfo.fire(
-            'Ya se solicitó la cuenta. Por favor, espere al mozo para finalizar el pago.'
-          );
-        
-    
+    ToastInfo.fire(
+      'Ya se solicitó la cuenta. Por favor, espere al mozo para finalizar el pago.'
+    );
   }
 
   private async obtenerMesaAsignada(idUsuario: string): Promise<number | null> {
-  const mesas = await this.db.traerCoincidencias<Mesa>(Colecciones.Mesas, {
-    campo: 'idCliente',       // ← tu campo FK
-    operacion: 'eq',
-    valor: idUsuario,
-  });
-  return mesas.length ? mesas[0].nroMesa : null;
-}
-
+    const mesas = await this.db.traerCoincidencias<Mesa>(Colecciones.Mesas, {
+      campo: 'idCliente', // ← tu campo FK
+      operacion: 'eq',
+      valor: idUsuario,
+    });
+    return mesas.length ? mesas[0].nroMesa : null;
+  }
 }

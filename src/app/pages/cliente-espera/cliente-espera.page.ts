@@ -26,6 +26,7 @@ import { Mesa } from 'src/app/clases/mesa';
 import { ToastSuccess } from 'src/app/utils/alerts';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { RouterLink } from '@angular/router';
+import { MesaService } from 'src/app/services/mesa.service';
 
 @Component({
   selector: 'app-cliente-espera',
@@ -56,7 +57,8 @@ export class ClienteEsperaPage implements OnInit {
     private db: DatabaseService,
     private auth: AuthService,
     private navCtrl: NavController,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private mesaService: MesaService
   ) {}
 
   async ngOnInit() {
@@ -78,6 +80,8 @@ export class ClienteEsperaPage implements OnInit {
 
         // Actualizar el cliente en sesión con la mesa asignada(para los anon)
         (this.auth.UsuarioEnSesion as Cliente).idMesa = cliente.idMesa;
+
+        this.mesaService.actualizarMensaje(`Mesa asignada Nº ${mesa?.nroMesa}`);
 
         this.navCtrl.navigateRoot('home');
 
