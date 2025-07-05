@@ -119,14 +119,38 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
   <img src="https://github.com/user-attachments/assets/fdbe22bc-95db-4d92-8ffc-98bb669b515b" alt="Splash Screen" width="300" />
 </p>
 
+### 👥 Página Principal Cocinero 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/dd0be98e-bc0a-49c1-ab4d-4b05f539f9e2" alt="Splash Screen" width="300" />
+</p>
+
 ### 📋 Lista Clientes Pendientes
 <p align="center">
-  <img src="URL_DE_LA_IMAGEN_ENCUESTA" alt="Pantalla Encuesta" width="300" />
+  <img src="https://github.com/user-attachments/assets/545e77ce-b67d-44d2-bffc-9c724d38a9b1" alt="Splash Screen" width="300" />
+</p>
+
+### 📋 Encuestas
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d2b62736-f366-4da2-81a2-7e2c97d95ca7" alt="Splash Screen" width="300" />
+</p>
+
+### 📋 Graficos
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aaf4a0a2-24d5-4a61-89a6-e6ccc51c8322" alt="Splash Screen" width="300" />
+  <img src="https://github.com/user-attachments/assets/e70b9a08-8b45-4b27-95d9-b110e9d680af" alt="Splash Screen" width="300" />
+  <img src="https://github.com/user-attachments/assets/86f814c4-8267-4872-a2bc-6c1d36461b82" alt="Splash Screen" width="300" />
+</p>
+
+### 📋 Graficos
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aaf4a0a2-24d5-4a61-89a6-e6ccc51c8322" alt="Splash Screen" width="300" />
+  <img src="https://github.com/user-attachments/assets/e70b9a08-8b45-4b27-95d9-b110e9d680af" alt="Splash Screen" width="300" />
+  <img src="https://github.com/user-attachments/assets/86f814c4-8267-4872-a2bc-6c1d36461b82" alt="Splash Screen" width="300" />
 </p>
 
 ### 🍔 Menú de Pedido
 <p align="center">
-  <img src="URL_DE_LA_IMAGEN_MENU" alt="Pantalla Menú" width="300" />
+  <img src="https://github.com/user-attachments/assets/dafc1921-9cf8-4bdc-a991-ef854f2cd0f5" alt="Pantalla Menú" width="300" />
 </p>
 
 
