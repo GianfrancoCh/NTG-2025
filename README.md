@@ -121,3 +121,8 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-20.png?raw=true" alt="QR Propina 20" width="120" />
 
 </div>
+
+![image](https://github.com/user-attachments/assets/dbac282a-62e8-4782-9721-bd271704559a)
+
+![image](https://github.com/user-attachments/assets/53203032-31f2-41fd-b83d-7c5d8929e90d)
+
