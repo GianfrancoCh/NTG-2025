@@ -123,6 +123,7 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 </div>
 
 ✉️ Templates de Correos
+
 ✅ Email de Aceptación
 <p align="center"> <img src="https://github.com/user-attachments/assets/dbac282a-62e8-4782-9721-bd271704559a" alt="Email de Aceptación" width="600"/> </p>
 ❌ Email de Rechazo
