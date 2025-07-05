@@ -106,11 +106,20 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 
 ### 👥 Página Principal Dueño 
 <p align="center">
- ![image](https://github.com/user-attachments/assets/728b901b-c847-4616-9c91-ab221a4ae347)
-
+  <img src="https://github.com/user-attachments/assets/728b901b-c847-4616-9c91-ab221a4ae347" alt="Splash Screen" width="300" />
 </p>
 
-### 📋 Encuestas
+### 👥 Página Principal Maitre 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0712fcaa-96d6-4d0a-8bd9-e7b872fa6ab1" alt="Splash Screen" width="300" />
+</p>
+
+### 👥 Página Principal Cocinero 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fdbe22bc-95db-4d92-8ffc-98bb669b515b" alt="Splash Screen" width="300" />
+</p>
+
+### 📋 Lista Clientes Pendientes
 <p align="center">
   <img src="URL_DE_LA_IMAGEN_ENCUESTA" alt="Pantalla Encuesta" width="300" />
 </p>
