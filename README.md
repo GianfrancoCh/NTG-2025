@@ -129,29 +129,44 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
   <img src="https://github.com/user-attachments/assets/545e77ce-b67d-44d2-bffc-9c724d38a9b1" alt="Splash Screen" width="300" />
 </p>
 
-### 📋 Encuestas
+### 📊 Encuestas
 <p align="center">
   <img src="https://github.com/user-attachments/assets/d2b62736-f366-4da2-81a2-7e2c97d95ca7" alt="Splash Screen" width="300" />
 </p>
 
-### 📋 Graficos
+### 📊 Graficos
 <p align="center">
   <img src="https://github.com/user-attachments/assets/aaf4a0a2-24d5-4a61-89a6-e6ccc51c8322" alt="Splash Screen" width="300" />
   <img src="https://github.com/user-attachments/assets/e70b9a08-8b45-4b27-95d9-b110e9d680af" alt="Splash Screen" width="300" />
   <img src="https://github.com/user-attachments/assets/86f814c4-8267-4872-a2bc-6c1d36461b82" alt="Splash Screen" width="300" />
 </p>
 
-### 📋 Graficos
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/aaf4a0a2-24d5-4a61-89a6-e6ccc51c8322" alt="Splash Screen" width="300" />
-  <img src="https://github.com/user-attachments/assets/e70b9a08-8b45-4b27-95d9-b110e9d680af" alt="Splash Screen" width="300" />
-  <img src="https://github.com/user-attachments/assets/86f814c4-8267-4872-a2bc-6c1d36461b82" alt="Splash Screen" width="300" />
-</p>
-
-### 🍔 Menú de Pedido
+### 🍽️ Sala Espera
 <p align="center">
   <img src="https://github.com/user-attachments/assets/dafc1921-9cf8-4bdc-a991-ef854f2cd0f5" alt="Pantalla Menú" width="300" />
 </p>
+
+### Menú
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/944a715c-1ecb-433e-9010-56b00bc9e3fb" alt="Pantalla Menú" width="300" />
+  <img src="https://github.com/user-attachments/assets/bc51cab3-2f35-4d71-bc65-091eedaba793" alt="Pantalla Menú" width="300" />
+</p>
+
+### Opciones Mesa
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/90cd8ace-e120-4b39-b13c-82ef36c53f55" alt="Pantalla Menú" width="300" />
+</p>
+
+### Juego
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/64fb6f77-2d51-4c03-9c37-99dc5111b3a7" alt="Pantalla Menú" width="300" />
+</p>
+
+### Cuenta
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f0995a72-4210-442b-9b84-d2bcc3ad756d" alt="Pantalla Menú" width="300" />
+</p>
+
 
 
 ✉️ Templates de Correos
