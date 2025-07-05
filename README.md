@@ -94,15 +94,20 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
 
 ## 📱 Vistas de la Aplicación
 
-### 🏠 Pantalla de Inicio
+### Splash Screen
 <p align="center">
-  ![image](https://github.com/user-attachments/assets/49edec92-db74-47be-81d7-90520a0b82f7)
-
+  <img src="https://github.com/user-attachments/assets/aa9510de-c512-4408-a663-95b3803105ed" alt="Splash Screen" width="300" />
 </p>
 
-### 👥 Registro de Usuario
+### 🏠 Inicio de Sesión
 <p align="center">
-  <img src="URL_DE_LA_IMAGEN_DEL_REGISTRO" alt="Pantalla Registro" width="300" />
+  <img src="https://github.com/user-attachments/assets/fbc264cd-df47-41ac-9cce-3ec545723f3d" alt="Splash Screen" width="300" />
+</p>
+
+### 👥 Página Principal Dueño 
+<p align="center">
+ ![image](https://github.com/user-attachments/assets/728b901b-c847-4616-9c91-ab221a4ae347)
+
 </p>
 
 ### 📋 Encuestas
