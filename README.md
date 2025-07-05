@@ -72,55 +72,26 @@ Aplicación móvil integral para la gestión de restaurantes: registro de usuari
   <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/qr-entrada.png?raw=true" alt="QR ingreso" width="260" />
 </p>
 
-### QRs por mesa
+## QRs por mesa
 
-<div align="center">
+<p align="center">
 
-  <p><strong>Mesa 1</strong><br/>
-    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true" alt="QR Mesa 1" width="120" />
-  </p>
+| Mesa 1 | Mesa 2 | Mesa 3 | Mesa 4 | Mesa 5 | Mesa 6 |
+|--------|--------|--------|--------|--------|--------|
+| ![Mesa 1](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-1.png?raw=true) | ![Mesa 2](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-2.png?raw=true) | ![Mesa 3](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-3.png?raw=true) | ![Mesa 4](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true) | ![Mesa 5](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-5.png?raw=true) | ![Mesa 6](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-6.png?raw=true) |
 
-  <p><strong>Mesa 2</strong><br/>
-    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-2.png?raw=true" alt="QR Mesa 2" width="120" />
-  </p>
+</p>
 
-  <p><strong>Mesa 3</strong><br/>
-    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-3.png?raw=true" alt="QR Mesa 3" width="120" />
-  </p>
+## QRs Propina
 
-  <p><strong>Mesa 4</strong><br/>
-    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-4.png?raw=true" alt="QR Mesa 4" width="120" />
-  </p>
+<p align="center">
 
-  <p><strong>Mesa 5</strong><br/>
-    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-5.png?raw=true" alt="QR Mesa 4" width="120" />
-  </p>
+| Propina 0 | Propina 5 | Propina 10 | Propina 15 | Propina 20 |
+|-----------|-----------|-------------|-------------|-------------|
+| ![P0](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-0.png?raw=true) | ![P5](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-5.png?raw=true) | ![P10](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-10.png?raw=true) | ![P15](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-15.png?raw=true) | ![P20](https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-20.png?raw=true) |
 
-  <p><strong>Mesa 6</strong><br/>
-    <img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/mesa-6.png?raw=true" alt="QR Mesa 4" width="120" />
-  </p>
+</p>
 
-</div>
-### QRs Propina
-
-<div align="center">
-
-**Propina 0**  
-<img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-0.png?raw=true" alt="QR Propina 0" width="120" />
-
-**Propina 5**  
-<img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-5.png?raw=true" alt="QR Propina 5" width="120" />
-
-**Propina 10**  
-<img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-10.png?raw=true" alt="QR Propina 10" width="120" />
-
-**Propina 15**  
-<img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-15.png?raw=true" alt="QR Propina 15" width="120" />
-
-**Propina 20**  
-<img src="https://github.com/GianfrancoCh/NTG-2025/blob/main/src/assets/qrs/propina-20.png?raw=true" alt="QR Propina 20" width="120" />
-
-</div>
 
 ✉️ Templates de Correos
 
