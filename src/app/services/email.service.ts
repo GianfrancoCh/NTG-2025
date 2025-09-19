@@ -28,37 +28,5 @@ export class EmailService {
     );
   }
 
-  //Como Mandar correo aprobado
-
-  // async enviarCorreo() {
-  //   const templateData = {
-  //     nombre: 'Gianfranco',
-  //     email: 'gianfrancochiarizia@gmail.com',
-  //   };
-
-  //   try {
-  //     await this.emailService.enviarCorreoAprobado(templateData);
-  //     ToastSuccess.fire('Correo enviado con éxito');
-  //   } catch (error) {
-  //     console.error('Error al enviar correo:', error);
-  //     ToastError.fire('Error al enviar correo');
-  //   }
-  // }
-
-  //Como Mandar correo rechazado
-
-  // async enviarCorreo() {
-  //   const templateData = {
-  //     nombre: 'Gianfranco',
-  //     email: 'gianfrancochiarizia@gmail.com',
-  //   };
-
-  //   try {
-  //     await this.emailService.enviarCorreoRechazado(templateData);
-  //     ToastSuccess.fire('Correo enviado con éxito');
-  //   } catch (error) {
-  //     console.error('Error al enviar correo:', error);
-  //     ToastError.fire('Error al enviar correo');
-  //   }
-  // }
+  
 }
